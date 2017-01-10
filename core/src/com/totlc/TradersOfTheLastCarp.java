@@ -8,10 +8,15 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-import com.totlc.desktop.*;
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
+	public static int CONFIG_WIDTH = 1024;
+	public static int CONFIG_HEIGHT = 512;
+
 	SpriteBatch batch;
 	Texture characterImg;
 	private OrthographicCamera camera;
@@ -21,7 +26,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	@Override
 	public void create() {
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 500, 750);
+		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
 		batch = new SpriteBatch();
 
@@ -33,9 +38,9 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		character.width = 50;
 		character.height = character.width * 2;
 
-		// Config dimensions are 500 x 500 - see DesktopLauncher.java.
-		character.x = 500 / 2 - character.width / 2;
-		character.y = 500 / 2 - character.height / 2;
+		// Config dimensions are 1024 x 512 - see DesktopLauncher.java.
+		character.x = CONFIG_WIDTH / 2 - character.width / 2;
+		character.y = CONFIG_HEIGHT / 2 - character.height / 2;
 	}
 
 	@Override
@@ -57,16 +62,36 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		batch.end();
 
 		// Process user input.
-		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) character.x -= 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) character.x += 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) character.y -= 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.UP)) character.y += 200 * Gdx.graphics.getDeltaTime();
+		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+			character.x -= 200 * Gdx.graphics.getDeltaTime();
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			character.x += 200 * Gdx.graphics.getDeltaTime();
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+			character.y -= 200 * Gdx.graphics.getDeltaTime();
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+			character.y += 200 * Gdx.graphics.getDeltaTime();
+		}
 
 		// make sure the bucket stays within the screen bounds
-		if(character.x < 0) character.x = 0;
-		if(character.x > 500 - character.width) character.x = 500 - character.width;
-        if(character.y < 0) character.y = 0;
-        if(character.y > 500 - character.width) character.x = 500 - character.width;
+		if (character.x < 0) {
+			// Check left out of bounds
+			character.x = 0;
+		}
+		if (character.x > CONFIG_WIDTH - character.width) {
+			// Check right out of bounds
+			character.x = CONFIG_WIDTH - character.width;
+		}
+        if (character.y < 0) {
+			// Check bottom out of bounds
+        	character.y = 0;
+		}
+        if (character.y > CONFIG_HEIGHT - character.height) {
+			// Check top out of bounds
+        	character.y = CONFIG_HEIGHT - character.height;
+		}
 	}
 	
 	@Override
