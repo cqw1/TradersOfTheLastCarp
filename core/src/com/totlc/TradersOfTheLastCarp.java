@@ -42,7 +42,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		character = new Rectangle();
 
         dummyTextureAtlas = new TextureAtlas(Gdx.files.internal("dummy_spritesheet/dummy_spritesheet.atlas"));
-        animation = new Animation(1/15f, dummyTextureAtlas.getRegions());
+        animation = new Animation(1/12f, dummyTextureAtlas.getRegions());
 
 		// Dimension ratio is 1:2; width:height
 		character.width = 128;
@@ -64,7 +64,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		// arguments to glClearColor are the red, green
 		// blue and alpha component in the range [0,1]
 		// of the color to be used to clear the screen.
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		// Tell the camera to update its matrices.
