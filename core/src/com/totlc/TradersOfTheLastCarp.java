@@ -12,6 +12,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.totlc.input.levelInputProcessor;
 
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
@@ -41,11 +44,10 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		stage = new Stage();
 
-		/*
 		Dummy dummy = new Dummy();
 		stage.addActor(dummy);
-		*/
 
+		/*
         dummyTextureAtlas = new TextureAtlas(Gdx.files.internal("dummy_spritesheet/dummy_spritesheet.atlas"));
         animation = new Animation(1/12f, dummyTextureAtlas.getRegions());
 
@@ -57,6 +59,10 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		// Config dimensions are 1024 x 512 - see DesktopLauncher.java.
 		character.x = CONFIG_WIDTH / 2 - character.width / 2;
 		character.y = CONFIG_HEIGHT / 2 - character.height / 2;
+		*/
+
+		// Initialize input processor.
+		Gdx.input.setInputProcessor(new levelInputProcessor());
 	}
 
 	@Override
@@ -77,6 +83,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera.update();
 		stage.draw();
 
+		/*
 		// Begin a new batch. Draw character image.
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
@@ -116,6 +123,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 			// Check top out of bounds
         	character.y = CONFIG_HEIGHT - character.height;
 		}
+		*/
 	}
 	
 	@Override
