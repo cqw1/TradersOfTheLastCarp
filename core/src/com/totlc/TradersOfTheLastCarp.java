@@ -14,6 +14,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.totlc.input.levelInputProcessor;
+
 
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
@@ -51,6 +53,9 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		// Config dimensions are 1024 x 512 - see DesktopLauncher.java.
 		character.x = CONFIG_WIDTH / 2 - character.width / 2;
 		character.y = CONFIG_HEIGHT / 2 - character.height / 2;
+
+		// Initialize input processor.
+		Gdx.input.setInputProcessor(new levelInputProcessor());
 	}
 
 	@Override
@@ -78,37 +83,37 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         batch.draw(animation.getKeyFrame(elapsedTime, true), character.x, character.y);
 		batch.end();
 
-		// Process user input.
-		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			character.x -= 200 * Gdx.graphics.getDeltaTime();
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			character.x += 200 * Gdx.graphics.getDeltaTime();
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			character.y -= 200 * Gdx.graphics.getDeltaTime();
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			character.y += 200 * Gdx.graphics.getDeltaTime();
-		}
-
-		// make sure the bucket stays within the screen bounds
-		if (character.x < 0) {
-			// Check left out of bounds
-			character.x = 0;
-		}
-		if (character.x > CONFIG_WIDTH - character.width) {
-			// Check right out of bounds
-			character.x = CONFIG_WIDTH - character.width;
-		}
-        if (character.y < 0) {
-			// Check bottom out of bounds
-        	character.y = 0;
-		}
-        if (character.y > CONFIG_HEIGHT - character.height) {
-			// Check top out of bounds
-        	character.y = CONFIG_HEIGHT - character.height;
-		}
+//		// Process user input.
+//		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+//			character.x -= 200 * Gdx.graphics.getDeltaTime();
+//		}
+//		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+//			character.x += 200 * Gdx.graphics.getDeltaTime();
+//		}
+//		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+//			character.y -= 200 * Gdx.graphics.getDeltaTime();
+//		}
+//		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+//			character.y += 200 * Gdx.graphics.getDeltaTime();
+//		}
+//
+//		// make sure the bucket stays within the screen bounds
+//		if (character.x < 0) {
+//			// Check left out of bounds
+//			character.x = 0;
+//		}
+//		if (character.x > CONFIG_WIDTH - character.width) {
+//			// Check right out of bounds
+//			character.x = CONFIG_WIDTH - character.width;
+//		}
+//        if (character.y < 0) {
+//			// Check bottom out of bounds
+//        	character.y = 0;
+//		}
+//        if (character.y > CONFIG_HEIGHT - character.height) {
+//			// Check top out of bounds
+//        	character.y = CONFIG_HEIGHT - character.height;
+//		}
 	}
 	
 	@Override
