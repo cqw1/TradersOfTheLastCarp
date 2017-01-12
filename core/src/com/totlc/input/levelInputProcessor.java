@@ -1,18 +1,56 @@
 package com.totlc.input;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.totlc.Player;
 
-/**
- * Created by Ben on 1/11/2017.
- */
-public class levelInputProcessor implements InputProcessor {
+ public class LevelInputProcessor implements InputProcessor {
+
+    private Player player;
+
+    public LevelInputProcessor(Player player){
+        this.player = player;
+    }
+
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.LEFT){
+            player.setMovingLeft(true);
+            return true;
+        }
+        if (keycode == Input.Keys.RIGHT){
+            player.setMovingRight(true);
+            return true;
+        }
+        if (keycode == Input.Keys.UP){
+            player.setMovingUp(true);
+            return true;
+        }
+        if (keycode == Input.Keys.DOWN){
+            player.setMovingDown(true);
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
+        if (keycode == Input.Keys.LEFT){
+            player.setMovingLeft(false);
+            return true;
+        }
+        if (keycode == Input.Keys.RIGHT){
+            player.setMovingRight(false);
+            return true;
+        }
+        if (keycode == Input.Keys.UP){
+            player.setMovingUp(false);
+            return true;
+        }
+        if (keycode == Input.Keys.DOWN){
+            player.setMovingDown(false);
+            return true;
+        }
         return false;
     }
 
