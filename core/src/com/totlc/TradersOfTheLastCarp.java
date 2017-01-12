@@ -3,6 +3,8 @@ package com.totlc;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -34,23 +36,21 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
-		batch = new SpriteBatch();
-
+//		batch = new SpriteBatch();
+//
 		Player player = new Player(0, 0);
-//		stage.addActor(player);
+//
+//        dummyTextureAtlas = new TextureAtlas(Gdx.files.internal("dummy_spritesheet/dummy_spritesheet.atlas"));
+//        animation = new Animation(1/12f, dummyTextureAtlas.getRegions());
 
-		/*
-        dummyTextureAtlas = new TextureAtlas(Gdx.files.internal("dummy_spritesheet/dummy_spritesheet.atlas"));
-        animation = new Animation(1/12f, dummyTextureAtlas.getRegions());
+//		character = new Rectangle();
+//		// Dimension ratio is 1:2; width:height
+//		character.width = 128;
+//		character.height = character.width;
 
-		character = new Rectangle();
-		// Dimension ratio is 1:2; width:height
-		character.width = 128;
-		character.height = character.width;
-
-		// Config dimensions are 1024 x 512 - see DesktopLauncher.java.
-		character.x = CONFIG_WIDTH / 2 - character.width / 2;
-		character.y = CONFIG_HEIGHT / 2 - character.height / 2;
+//		// Config dimensions are 1024 x 512 - see DesktopLauncher.java.
+//		character.x = CONFIG_WIDTH / 2 - character.width / 2;
+//		character.y = CONFIG_HEIGHT / 2 - character.height / 2;
 
 		// Initialize input processor.
 		level = new Level(player);
@@ -76,6 +76,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		level.act(Gdx.graphics.getDeltaTime());
 		level.draw();
 
+		/*
 		// Begin a new batch. Draw character image.
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
