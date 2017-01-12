@@ -59,7 +59,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		// Config dimensions are 1024 x 512 - see DesktopLauncher.java.
 		character.x = CONFIG_WIDTH / 2 - character.width / 2;
 		character.y = CONFIG_HEIGHT / 2 - character.height / 2;
-		*/
 
 		// Initialize input processor.
 		Gdx.input.setInputProcessor(new levelInputProcessor());
@@ -81,9 +80,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		// Tell the camera to update its matrices.
 		camera.update();
-		stage.draw();
+		//stage.draw();
 
-		/*
 		// Begin a new batch. Draw character image.
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
