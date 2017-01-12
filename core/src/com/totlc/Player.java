@@ -10,9 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Player extends Actor {
     // Player texture information.
-    TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("dummy_spritesheet/dummy_spritesheet.atlas"));
+    TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("dummy/dummy.atlas"));
     Animation<TextureRegion> animation = new Animation(1/12f, textureAtlas.getRegions());
-    Texture texture = new Texture(Gdx.files.internal("dummy_spritesheet/0.png"));
+    Texture texture = new Texture(Gdx.files.internal("dummy/0.png"));
 
     // Player health.
     private int hp;
