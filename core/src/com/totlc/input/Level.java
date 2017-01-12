@@ -4,9 +4,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.totlc.Player;
 
- public class Level extends Stage {
+public class Level extends Stage {
 
     private Player player;
+
 
     public Level(Player player){
         this.player = player;

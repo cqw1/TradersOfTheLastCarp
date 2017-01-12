@@ -14,6 +14,8 @@ public class Player extends Actor {
     Animation<TextureRegion> animation = new Animation(1/12f, textureAtlas.getRegions());
     Texture texture = new Texture(Gdx.files.internal("dummy/0.png"));
 
+    private float animationTime = 0;
+
     // Player health.
     private int hp;
     private float speed = 200;
@@ -28,14 +30,23 @@ public class Player extends Actor {
         setMovingRight(false);
         setMovingUp(false);
         setMovingDown(false);
+        animation.setPlayMode(Animation.PlayMode.LOOP);
     }
 
     public void draw(Batch batch, float alpha) {
-        batch.draw(texture, getX(), getY());
+        batch.draw(animation.getKeyFrame(animationTime), getX(), getY());
+        //batch.draw(texture, getX(), getY());
     }
 
     @Override
     public void act(float deltaTime){
+        animationTime += deltaTime;
+        System.out.println(deltaTime);
+        System.out.println(animationTime);
+        if (animationTime > 6) {
+            animationTime = 1;
+        }
+
         if (isMovingLeft()){
             moveBy(-speed * deltaTime, 0);
         }
@@ -48,7 +59,6 @@ public class Player extends Actor {
         if (isMovingDown()){
             moveBy(0, -speed * deltaTime);
         }
-        System.out.println(getX() +"," + getY());
     }
 
     public int getHp() {
