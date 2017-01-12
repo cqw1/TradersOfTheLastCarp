@@ -1,15 +1,16 @@
 package com.totlc.input;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.totlc.Player;
 
- public class LevelInputProcessor implements InputProcessor {
+ public class Level extends Stage {
 
     private Player player;
 
-    public LevelInputProcessor(Player player){
+    public Level(Player player){
         this.player = player;
+        this.addActor(player);
     }
 
     @Override

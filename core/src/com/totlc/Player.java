@@ -48,6 +48,7 @@ public class Player extends Actor {
         if (isMovingDown()){
             moveBy(0, -speed * deltaTime);
         }
+        System.out.println(getX() +"," + getY());
     }
 
     public int getHp() {
