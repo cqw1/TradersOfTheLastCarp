@@ -2,7 +2,6 @@ package com.totlc;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,9 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.totlc.input.levelInputProcessor;
+import com.totlc.input.LevelInputProcessor;
 
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
@@ -44,8 +41,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		stage = new Stage();
 
-		Dummy dummy = new Dummy();
-		stage.addActor(dummy);
+		Player player = new Player(0, 0);
+		stage.addActor(player);
 
 		/*
         dummyTextureAtlas = new TextureAtlas(Gdx.files.internal("dummy_spritesheet/dummy_spritesheet.atlas"));
@@ -61,7 +58,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		character.y = CONFIG_HEIGHT / 2 - character.height / 2;
 
 		// Initialize input processor.
-		Gdx.input.setInputProcessor(new levelInputProcessor());
+		Gdx.input.setInputProcessor(new LevelInputProcessor(player));
 	}
 
 	@Override

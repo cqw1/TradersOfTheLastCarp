@@ -5,7 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 /**
  * Created by Ben on 1/11/2017.
  */
-public class menuInputProcessor implements InputProcessor {
+public class MenuInputProcessor implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         return false;
