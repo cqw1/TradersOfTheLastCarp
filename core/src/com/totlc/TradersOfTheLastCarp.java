@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.totlc.input.LevelInputProcessor;
+import com.totlc.input.Level;
 
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
@@ -29,7 +29,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	private OrthographicCamera camera;
 
-	Stage stage;
+	Level level;
 
 
 	@Override
@@ -39,10 +39,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		batch = new SpriteBatch();
 
-		stage = new Stage();
-
 		Player player = new Player(0, 0);
-		stage.addActor(player);
+//		stage.addActor(player);
 
 		/*
         dummyTextureAtlas = new TextureAtlas(Gdx.files.internal("dummy_spritesheet/dummy_spritesheet.atlas"));
@@ -59,7 +57,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		*/
 
 		// Initialize input processor.
-		Gdx.input.setInputProcessor(new LevelInputProcessor(player));
+		level = new Level(player);
+		Gdx.input.setInputProcessor(level);
 	}
 
 	@Override
@@ -78,7 +77,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		// Tell the camera to update its matrices.
 		camera.update();
-		stage.draw();
+		level.act(Gdx.graphics.getDeltaTime());
+		level.draw();
 
 		/*
 		// Begin a new batch. Draw character image.
@@ -125,6 +125,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	
 	@Override
 	public void dispose() {
-		stage.dispose();
+		level.dispose();
 	}
 }
