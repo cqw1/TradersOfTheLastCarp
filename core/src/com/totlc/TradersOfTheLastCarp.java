@@ -2,6 +2,7 @@ package com.totlc;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.totlc.input.LevelInputProcessor;
+//import com.totlc.input.LevelInputProcessor;
 
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
@@ -44,7 +46,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		Player player = new Player(0, 0);
 		stage.addActor(player);
 
-		/*
         dummyTextureAtlas = new TextureAtlas(Gdx.files.internal("dummy_spritesheet/dummy_spritesheet.atlas"));
         animation = new Animation(1/12f, dummyTextureAtlas.getRegions());
 
@@ -59,6 +60,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		// Initialize input processor.
 		Gdx.input.setInputProcessor(new LevelInputProcessor(player));
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
@@ -77,8 +79,11 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		// Tell the camera to update its matrices.
 		camera.update();
-		//stage.draw();
 
+		stage.act(Gdx.graphics.getDeltaTime());
+		stage.draw();
+
+		/*
 		// Begin a new batch. Draw character image.
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
