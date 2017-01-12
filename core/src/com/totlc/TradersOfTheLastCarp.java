@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.totlc.audio.MusicPlayer;
 import com.totlc.input.Level;
 
 
@@ -11,15 +12,20 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1024;
 	public static int CONFIG_HEIGHT = 512;
 
-	private OrthographicCamera camera;
+	private static OrthographicCamera camera;
+	private static MusicPlayer musicPlayer;
 
-	Level level;
+	private Level level;
 
 
 	@Override
 	public void create() {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
+
+		musicPlayer = new MusicPlayer();
+		musicPlayer.setSong("test2");
+		musicPlayer.play();
 
 		Player player = new Player(0, 0);
 
@@ -51,5 +57,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		level.dispose();
+		musicPlayer.dispose();
 	}
 }

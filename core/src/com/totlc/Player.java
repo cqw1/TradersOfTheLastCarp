@@ -41,8 +41,8 @@ public class Player extends Actor {
     @Override
     public void act(float deltaTime){
         animationTime += deltaTime;
-        System.out.println(deltaTime);
-        System.out.println(animationTime);
+//        System.out.println(deltaTime);
+//        System.out.println(animationTime);
         if (animationTime > 6) {
             animationTime = 1;
         }
