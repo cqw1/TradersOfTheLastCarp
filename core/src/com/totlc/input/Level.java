@@ -8,7 +8,6 @@ public class Level extends Stage {
 
     private Player player;
 
-
     public Level(Player player){
         this.player = player;
         this.addActor(player);

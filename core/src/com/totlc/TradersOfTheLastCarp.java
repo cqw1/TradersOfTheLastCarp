@@ -6,6 +6,9 @@ import com.badlogic.gdx.assets.loaders.TextureAtlasLoader;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.totlc.Actors.UI.LifeGauge;
+import com.totlc.audio.MusicPlayer;
 import com.totlc.input.Level;
 
 
@@ -13,10 +16,12 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1024;
 	public static int CONFIG_HEIGHT = 512;
 
-	private OrthographicCamera camera;
 	public AssetManager assetManager = new AssetManager();
 
-	Level level;
+	private static OrthographicCamera camera;
+	private static MusicPlayer musicPlayer;
+
+	private Level level;
 
 	@Override
 	public void create() {
@@ -25,10 +30,16 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		assetManager.load("dummy/dummy.atlas", TextureAtlasLoader.class);
 
-		Player player = new Player(assetManager.get("dummy/dummy.atlas"), 0, 0);
+		Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
+		musicPlayer = new MusicPlayer();
+		musicPlayer.setSong("test0");
+		musicPlayer.play();
 
+		LifeGauge hpBar = new LifeGauge(player, 0, CONFIG_HEIGHT);
+		hpBar.moveBy(0, -hpBar.getHeight());
 		// Initialize input processor.
 		level = new Level(player);
+		level.addActor(hpBar);
 		Gdx.input.setInputProcessor(level);
 	}
 
@@ -64,5 +75,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		level.dispose();
+		musicPlayer.dispose();
 	}
 }
