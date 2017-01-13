@@ -28,9 +28,12 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
-		assetManager.load("dummy/dummy.atlas", TextureAtlasLoader.class);
+		assetManager.load("dummy/dummy.atlas", TextureAtlas.class);
+		assetManager.finishLoading();
 
-		Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
+
+		//Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
+		Player player = new Player(assetManager, "dummy/dummy.atlas", 0, 0);
 		musicPlayer = new MusicPlayer();
 		musicPlayer.setSong("test0");
 		musicPlayer.play();
@@ -56,6 +59,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		} else {
 			// Returns a number from 0 to 1
 			float progress = assetManager.getProgress();
+			System.out.println("Progress: " + progress);
 			// TODO: Update progress bar.
 		}
 

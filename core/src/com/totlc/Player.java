@@ -1,6 +1,7 @@
 package com.totlc;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -23,11 +24,13 @@ public class Player extends Actor {
     private float speed = 200;
     private TextureAtlas textureAtlas;
     private Animation<TextureRegion> animation;
+    private AssetManager assetManager;
+    private String asset;
 
     // Orientation and movement flags.
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
 
-    public Player(TextureAtlas textureAtlas, int x, int y){
+    public Player(AssetManager assetManager, String asset, int x, int y){
         setX(x);
         setY(y);
         setMovingLeft(false);
@@ -36,12 +39,19 @@ public class Player extends Actor {
         setMovingDown(false);
         setHpMAX(3);
         setHpCURRENT(getHpMAX());
-        setTextureAtlas(textureAtlas);
-        animation.setPlayMode(Animation.PlayMode.LOOP);
+        setAssetManager(assetManager);
+        setAsset(asset);
     }
 
     public void draw(Batch batch, float alpha) {
-        batch.draw(animation.getKeyFrame(animationTime), getX(), getY());
+        if (assetManager.update()) {
+            // Done loading. Move to next screen.
+            // TODO: Move to next screen.
+            textureAtlas = assetManager.get(asset);
+            animation = new Animation(1/12f, textureAtlas.getRegions());
+            animation.setPlayMode(Animation.PlayMode.LOOP);
+            batch.draw(animation.getKeyFrame(animationTime), getX(), getY());
+        }
     }
 
     @Override
@@ -115,8 +125,11 @@ public class Player extends Actor {
         this.hpCURRENT = hpCURRENT;
     }
 
-    public void setTextureAtlas(TextureAtlas textureAtlas) {
-        this.textureAtlas = textureAtlas;
-        this.animation = new Animation(1/12f, this.textureAtlas.getRegions());
+    public void setAssetManager(AssetManager assetManager) {
+        this.assetManager = assetManager;
+    }
+
+    public void setAsset(String asset) {
+        this.asset = asset;
     }
 }
