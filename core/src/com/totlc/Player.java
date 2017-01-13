@@ -31,7 +31,7 @@ public class Player extends Actor {
         setMovingRight(false);
         setMovingUp(false);
         setMovingDown(false);
-        setHpMAX(10);
+        setHpMAX(3);
         setHpCURRENT(getHpMAX());
         animation.setPlayMode(Animation.PlayMode.LOOP);
     }

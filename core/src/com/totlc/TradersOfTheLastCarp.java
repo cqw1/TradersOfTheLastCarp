@@ -25,7 +25,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
 		musicPlayer = new MusicPlayer();
-		musicPlayer.setSong("test2");
+		musicPlayer.setSong("test0");
 		musicPlayer.play();
 
 		Player player = new Player(0, 0);

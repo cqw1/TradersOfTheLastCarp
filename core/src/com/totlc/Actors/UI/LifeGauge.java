@@ -19,9 +19,11 @@ public class LifeGauge extends Actor {
     private static int notchWidth = 10;
     private static int vGaugeOffset = 21;
     private static int hGaugeOffset = notchWidth + (int)(0.2 * notchWidth);
+    // Notch width multiplier
+    private static int notchMult = 3;
     // Texture information.
     private NinePatch gauge = new NinePatch(new Texture(Gdx.files.internal("UI/LifeGauge.png")), 60, 30, gaugeHeight / 4, gaugeHeight / 4);
-    private NinePatch notch = new NinePatch(new Texture(Gdx.files.internal("UI/LifeGaugeBar.png")), notchWidth / 4, notchWidth / 4, notchHeight / 4, notchHeight / 4);
+    private NinePatch notch = new NinePatch(new Texture(Gdx.files.internal("UI/LifeGaugeBar.png")), notchWidth / 2 - 1, notchWidth / 2 - 1, notchHeight / 4, notchHeight / 4);
 
     // Reference to actor to draw for.
     private Player player;
@@ -29,7 +31,7 @@ public class LifeGauge extends Actor {
     public LifeGauge(Player player, int x, int y){
         setX(x);
         setY(y);
-        setWidth(Math.max(gauge.getLeftWidth() + notch.getTotalWidth() * player.getHpMAX() + hGaugeOffset, gauge.getLeftWidth() + gauge.getRightWidth()));
+        setWidth(Math.max(gauge.getLeftWidth() + (notch.getTotalWidth() * notchMult) * player.getHpMAX() + hGaugeOffset, gauge.getLeftWidth() + gauge.getRightWidth()));
         setHeight(gauge.getTotalHeight());
         setPlayer(player);
     }
@@ -37,9 +39,9 @@ public class LifeGauge extends Actor {
     public void draw(Batch batch, float alpha){
         gauge.draw(batch, getX(), getY(), getWidth(), getHeight());
         for(int i = 0; i < player.getHpCURRENT(); i++){
-            float xAdjust = getX() + gauge.getLeftWidth() + notch.getTotalWidth() * i + 1;
+            float xAdjust = getX() + gauge.getLeftWidth() + (notch.getTotalWidth() * notchMult) * i + 1;
             float yAdjust = getY() + vGaugeOffset;
-            notch.draw(batch, xAdjust, yAdjust, notch.getTotalWidth(), notch.getTotalHeight());
+            notch.draw(batch, xAdjust, yAdjust, notch.getTotalWidth() * notchMult, notch.getTotalHeight());
         }
     }
 
