@@ -17,7 +17,8 @@ public class Player extends Actor {
     private float animationTime = 0;
 
     // Player health.
-    private int hp;
+    private int hpMAX;
+    private int hpCURRENT;
     private float speed = 200;
 
     // Orientation and movement flags.
@@ -30,6 +31,8 @@ public class Player extends Actor {
         setMovingRight(false);
         setMovingUp(false);
         setMovingDown(false);
+        setHpMAX(10);
+        setHpCURRENT(getHpMAX());
         animation.setPlayMode(Animation.PlayMode.LOOP);
     }
 
@@ -61,12 +64,12 @@ public class Player extends Actor {
         }
     }
 
-    public int getHp() {
-        return hp;
+    public int getHpMAX() {
+        return hpMAX;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
+    public void setHpMAX(int hpMAX) {
+        this.hpMAX = hpMAX;
     }
 
     public boolean isMovingLeft() {
@@ -102,4 +105,11 @@ public class Player extends Actor {
     }
 
 
+    public int getHpCURRENT() {
+        return hpCURRENT;
+    }
+
+    public void setHpCURRENT(int hpCURRENT) {
+        this.hpCURRENT = hpCURRENT;
+    }
 }

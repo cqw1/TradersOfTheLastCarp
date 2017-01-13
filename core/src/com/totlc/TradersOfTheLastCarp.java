@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.totlc.Actors.UI.LifeGauge;
 import com.totlc.audio.MusicPlayer;
 import com.totlc.input.Level;
 
@@ -28,9 +29,11 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		musicPlayer.play();
 
 		Player player = new Player(0, 0);
-
+		LifeGauge hpBar = new LifeGauge(player, 0, CONFIG_HEIGHT);
+		hpBar.moveBy(0, -hpBar.getHeight());
 		// Initialize input processor.
 		level = new Level(player);
+		level.addActor(hpBar);
 		Gdx.input.setInputProcessor(level);
 	}
 
