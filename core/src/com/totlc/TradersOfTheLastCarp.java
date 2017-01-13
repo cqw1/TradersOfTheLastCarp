@@ -1,6 +1,8 @@
 package com.totlc;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.TextureAtlasLoader;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,16 +14,18 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_HEIGHT = 512;
 
 	private OrthographicCamera camera;
+	public AssetManager assetManager = new AssetManager();
 
 	Level level;
-
 
 	@Override
 	public void create() {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
-		Player player = new Player(0, 0);
+		assetManager.load("dummy/dummy.atlas", TextureAtlasLoader.class);
+
+		Player player = new Player(assetManager.get("dummy/dummy.atlas"), 0, 0);
 
 		// Initialize input processor.
 		level = new Level(player);
@@ -35,6 +39,15 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	@Override
 	public void render() {
+		if (assetManager.update()) {
+			// Done loading. Move to next screen.
+			// TODO: Move to next screen.
+		} else {
+			// Returns a number from 0 to 1
+			float progress = assetManager.getProgress();
+			// TODO: Update progress bar.
+		}
+
 		// Clear the screen with a white color. The
 		// arguments to glClearColor are the red, green
 		// blue and alpha component in the range [0,1]

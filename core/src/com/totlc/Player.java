@@ -7,10 +7,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.TradersOfTheLastCarp;
 
 public class Player extends Actor {
     // Player texture information.
-    TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("dummy/dummy.atlas"));
+    //TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("dummy/dummy.atlas"));
+    TextureAtlas textureAtlas = TradersOfTheLastCarp.assetManager.get("dummy/dummy.atlas");
     Animation<TextureRegion> animation = new Animation(1/12f, textureAtlas.getRegions());
     Texture texture = new Texture(Gdx.files.internal("dummy/0.png"));
 
@@ -35,17 +37,11 @@ public class Player extends Actor {
 
     public void draw(Batch batch, float alpha) {
         batch.draw(animation.getKeyFrame(animationTime), getX(), getY());
-        //batch.draw(texture, getX(), getY());
     }
 
     @Override
     public void act(float deltaTime){
         animationTime += deltaTime;
-        System.out.println(deltaTime);
-        System.out.println(animationTime);
-        if (animationTime > 6) {
-            animationTime = 1;
-        }
 
         if (isMovingLeft()){
             moveBy(-speed * deltaTime, 0);
