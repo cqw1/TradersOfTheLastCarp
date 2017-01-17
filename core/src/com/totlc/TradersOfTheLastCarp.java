@@ -20,7 +20,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public AssetManager assetManager = new AssetManager();
 
 	private static OrthographicCamera camera;
-	private static MusicPlayer musicPlayer;
 
 	private ALevel level;
 
@@ -74,6 +73,5 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		level.dispose();
-		musicPlayer.dispose();
 	}
 }

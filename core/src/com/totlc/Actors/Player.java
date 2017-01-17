@@ -35,9 +35,7 @@ public class Player extends Character {
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
-        if (getAnimationTime() > 6) {
-            setAnimationTime(1);
-        }
+        setAnimationTime(getAnimationTime() % 6);
 
         if (isMovingLeft()){
             moveRel(-getSpeed() * deltaTime, 0);
@@ -50,6 +48,11 @@ public class Player extends Character {
         }
         if (isMovingDown()){
             moveRel(0, -getSpeed() * deltaTime);
+        }
+
+        if (!(isMovingDown() || isMovingLeft() ||
+        isMovingRight() || isMovingUp())) {
+            setAnimationTime(0);
         }
 
         returnIntoBounds();
