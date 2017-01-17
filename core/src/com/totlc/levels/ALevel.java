@@ -1,17 +1,14 @@
-package com.totlc.input;
+package com.totlc.levels;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.totlc.Player;
+import com.totlc.Actors.Player;
+import com.totlc.audio.MusicPlayer;
 
-public class Level extends Stage {
+public abstract class ALevel extends Stage {
 
     private Player player;
-
-    public Level(Player player){
-        this.player = player;
-        this.addActor(player);
-    }
+    private MusicPlayer musicPlayer;
 
     @Override
     public boolean keyDown(int keycode) {
@@ -84,4 +81,11 @@ public class Level extends Stage {
     public boolean scrolled(int amount) {
         return false;
     }
+
+    //Getters and setters
+    public void setPlayer(Player p) { player = p; }
+
+    public void setMusicPlayer(MusicPlayer mp) { musicPlayer = mp; }
+
+    public void playSong(String filename) { musicPlayer.setSong(filename); musicPlayer.play(); }
 }
