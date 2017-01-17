@@ -31,14 +31,14 @@ public class LifeGauge extends Actor {
     public LifeGauge(Player player, int x, int y){
         setX(x);
         setY(y);
-        setWidth(Math.max(gauge.getLeftWidth() + (notch.getTotalWidth() * notchMult) * player.getHpMAX() + hGaugeOffset, gauge.getLeftWidth() + gauge.getRightWidth()));
+        setWidth(Math.max(gauge.getLeftWidth() + (notch.getTotalWidth() * notchMult) * player.getHpMax() + hGaugeOffset, gauge.getLeftWidth() + gauge.getRightWidth()));
         setHeight(gauge.getTotalHeight());
         setPlayer(player);
     }
 
     public void draw(Batch batch, float alpha){
         gauge.draw(batch, getX(), getY(), getWidth(), getHeight());
-        for(int i = 0; i < player.getHpCURRENT(); i++){
+        for(int i = 0; i < player.getHpCurrent(); i++){
             float xAdjust = getX() + gauge.getLeftWidth() + (notch.getTotalWidth() * notchMult) * i + 1;
             float yAdjust = getY() + vGaugeOffset;
             notch.draw(batch, xAdjust, yAdjust, notch.getTotalWidth() * notchMult, notch.getTotalHeight());
