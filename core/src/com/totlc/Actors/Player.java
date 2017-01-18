@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.enemies.Enemy;
 import com.totlc.AssetList;
 
+import java.awt.geom.Point2D;
+
 public class Player extends Character {
     // Player texture information.
     private Texture standDownTexture;
@@ -21,12 +23,8 @@ public class Player extends Character {
 
 
     // Player info.
-    private float friction = 0.0f;
-    private float[] acceleration = {0, 0};
-    private float[] velocity = {0, 0};
     private float acc = 300;
     private float maxVelocity = 300;
-    private static float knockback = 25;
 
     private TextureAtlas walkDownTextureAtlas;
     private Animation<TextureRegion> walkDownAnimation;
@@ -51,9 +49,7 @@ public class Player extends Character {
         setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
 
         setSpeed(acc);
-        setFriction(friction);
-        setVel(velocity);
-        setAcc(acceleration);
+
         setMaxVel(maxVelocity);
 
         setMovingLeft(false);
@@ -136,34 +132,33 @@ public class Player extends Character {
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
-        //setAnimationTime(getAnimationTime() % animationFrames);
 
-        float[] newAcc = getAcc();
+        Point2D newAcc = getAcc();
         if (this.isMovingDown()) {
-            newAcc[1] = -getSpeed();
+            newAcc.setLocation(newAcc.getX(), -getSpeed());
             setAcc(newAcc);
         }
         if (this.isMovingUp()) {
-            newAcc[1] = getSpeed();
+            newAcc.setLocation(newAcc.getX(), getSpeed());
             setAcc(newAcc);
         }
         if ((this.isMovingDown() && this.isMovingUp()) ||
                 !(this.isMovingDown() || this.isMovingUp())){
-            newAcc[1] = 0;
+            newAcc.setLocation(newAcc.getX(), 0);
             setAcc(newAcc);
         }
 
         if (this.isMovingRight()) {
-            newAcc[0] = getSpeed();
+            newAcc.setLocation(getSpeed(), newAcc.getY());
             setAcc(newAcc);
         }
         if (this.isMovingLeft()) {
-            newAcc[0] = -getSpeed();
+            newAcc.setLocation(-getSpeed(), newAcc.getY());
             setAcc(newAcc);
         }
         if (this.isMovingRight() && this.isMovingLeft()||
                 !(this.isMovingRight() || this.isMovingLeft())){
-            newAcc[0] = 0;
+            newAcc.setLocation(0, newAcc.getY());
             setAcc(newAcc);
         }
 
@@ -171,8 +166,9 @@ public class Player extends Character {
                 this.isMovingRight() || this.isMovingUp())) {
             setAnimationTime(0);
         }
+
         updateVelocity();
-        movePlayer(deltaTime);
+        moveUnit(deltaTime);
         returnIntoBounds();
     }
 
@@ -182,10 +178,6 @@ public class Player extends Character {
         }
 
         return (getHpCurrent() <= 0);
-    }
-
-    private void movePlayer(float delta) {
-       moveRel(getVel()[0] * delta, getVel()[1] * delta);
     }
 
     public void endCollidesWith(Actor otherActor) {}
