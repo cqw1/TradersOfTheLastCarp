@@ -1,6 +1,7 @@
 package com.totlc;
 
 public enum AssetList {
+    SPIDER_IDLE("sprites/spider/spider_idel.atlse"),
     SPIDER_WALK("sprites/spider/spider.atlas");
 
     private String pathname;

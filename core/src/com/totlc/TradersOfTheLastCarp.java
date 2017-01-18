@@ -35,8 +35,10 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
         assetManager.load("dummy/0.png", Texture.class);
 		assetManager.load("dummy/dummy.atlas", TextureAtlas.class);
+		assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
-        assetManager.load("sounds/trap_activation.mp3", Sound.class);
+
+		assetManager.load("sounds/trap_activation.mp3", Sound.class);
 
 		assetManager.finishLoading();
 
