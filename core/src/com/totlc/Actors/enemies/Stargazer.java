@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 import com.totlc.levels.ALevel;
 
+import java.awt.geom.Point2D;
+
 public class Stargazer extends Enemy {
 
     // Stat constants.
@@ -18,8 +20,6 @@ public class Stargazer extends Enemy {
     private static int atk = 1;
 
     private static float friction = 0.95f;
-    private static float[] acceleration = {0, 0};
-    private static float[] velocity = {0, 0};
     private static float acc = 200;
     private static float maxVelocity = 50;
     private static float knockback = 5;
@@ -30,7 +30,6 @@ public class Stargazer extends Enemy {
     private int spin_duration = 200;
     private float spin_chance = .005f;
     private int counter = 0;
-    float[] targetVector = {0, 0};
 
     // Asset and animation constants.
     private TextureAtlas bodyTextureAtlas;
@@ -54,8 +53,6 @@ public class Stargazer extends Enemy {
         setHitBox(new Rectangle(x + 40, y + 16, 42, 16));
         setSpeed(acc);
         setFriction(friction);
-        setVel(velocity);
-        setAcc(acceleration);
         setMaxVel(maxVelocity);
         setKnockback(knockback);
 
@@ -91,19 +88,16 @@ public class Stargazer extends Enemy {
             }
         }
 
-        float newAcc[] = getAcc();
+        Point2D newAcc = getAcc();
 
         Actor target = ((ALevel)getStage()).getPlayer();
-        targetVector[0] = target.getX() - getX();
-        targetVector[1] = target.getY() - getY();
+        Point2D targetVector = getTarget(target);
 
-        float n = (float)Math.sqrt( targetVector[0] * targetVector[0] + targetVector[1] * targetVector[1] );
+        float n = (float) Math.sqrt(Math.pow(targetVector.getX(), 2) + Math.pow(targetVector.getY(), 2));
         if (n != 0) {
-            targetVector[0] = targetVector[0] / n;
-            targetVector[1] = targetVector[1] / n;
+            targetVector.setLocation(targetVector.getX() / n, targetVector.getY() / n);
         }
-        newAcc[0] = targetVector[0] * getSpeed();
-        newAcc[1] = targetVector[1] * getSpeed();
+        newAcc.setLocation(targetVector.getX() * getSpeed(), targetVector.getY() * getSpeed());
         setAcc(newAcc);
 
         updateVelocity();

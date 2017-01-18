@@ -1,15 +1,15 @@
 package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
+
+import java.awt.geom.Point2D;
 
 //Empty for now. All enemies will inherit from this one, to differentiate player and enemy?
 
 public abstract class Enemy extends Character {
     // Player health.
-    private int hpMAX;
-    private int hpCURRENT;
     private int attack;
 
     public Enemy(AssetManager assetManager, int x, int y){
@@ -18,21 +18,6 @@ public abstract class Enemy extends Character {
         setAssetManager(assetManager);
     }
 
-    public int getHpMax() {
-        return hpMAX;
-    }
-
-    public void setHpMax(int hpMAX) {
-        this.hpMAX = hpMAX;
-    }
-
-    public int getHpCurrent() {
-        return hpCURRENT;
-    }
-
-    public void setHpCurrent(int hpCURRENT) {
-        this.hpCURRENT = hpCURRENT;
-    }
     public int getAttack() {
         return attack;
     }
@@ -41,8 +26,8 @@ public abstract class Enemy extends Character {
         this.attack = attack;
     }
 
-    public void moveUnit(float delta) {
-        moveRel(getVel()[0] * delta, getVel()[1] * delta);
+    public Point2D getTarget(Actor target) {
+        return new Point2D.Double(target.getX() - getX(), target.getY() - getY());
     }
 
 }

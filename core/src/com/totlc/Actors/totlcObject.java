@@ -10,6 +10,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.TradersOfTheLastCarp;
 
+import java.awt.*;
+import java.awt.geom.Point2D;
+
 public abstract class totlcObject extends Actor {
 
     private float speed;
@@ -30,12 +33,12 @@ public abstract class totlcObject extends Actor {
     private float HEIGHT;
     private float WIDTH;
 
-    private float friction;
-    private float[] acc;
-    private float[] vel;
+    private float friction = 0.0f;
+    private Point2D acc = new Point2D.Double(0, 0);
+    private Point2D vel = new Point2D.Double(0, 0);
     private float maxVel;
 
-    private static float knockback = 25;
+    private float knockback = 25;
 
     // Orientation and movement flags.
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
@@ -92,16 +95,16 @@ public abstract class totlcObject extends Actor {
     }
 
     public void updateVelocity(){
-        float newVelocity[] = getVel();
-        newVelocity[0] = newVelocity[0] * getFriction() + getAcc()[0];
-        newVelocity[1] = newVelocity[1] * getFriction() + getAcc()[1];
-        if (Math.abs(newVelocity[0])  > getMaxVel()){
-            newVelocity[0] = getMaxVel() * Math.signum(newVelocity[0]);
+        Point2D newVelocity = getVel();
+        double newX = newVelocity.getX() * getFriction() + getAcc().getX();
+        double newY = newVelocity.getY() * getFriction() + getAcc().getY();
+        if (Math.abs(newX)  > getMaxVel()){
+            newX = getMaxVel() * Math.signum(newX);
         }
-        if (Math.abs(newVelocity[1]) > getMaxVel()){
-            newVelocity[1] = getMaxVel() * Math.signum(newVelocity[1]);
+        if (Math.abs(newY) > getMaxVel()){
+            newY = getMaxVel() * Math.signum(newY);
         }
-        setVel(newVelocity);
+        setVel(new Point2D.Double(newX, newY));
     }
 
     public Rectangle getHitBox() { return hitBox; }
@@ -116,19 +119,19 @@ public abstract class totlcObject extends Actor {
         this.friction = friction;
     }
 
-    public float[] getAcc() {
+    public Point2D getAcc() {
         return acc;
     }
 
-    public void setAcc(float[] acc) {
+    public void setAcc(Point2D acc) {
         this.acc = acc;
     }
 
-    public float[] getVel() {
+    public Point2D getVel() {
         return vel;
     }
 
-    public void setVel(float[] vel) {
+    public void setVel(Point2D vel) {
         this.vel = vel;
     }
 
@@ -140,12 +143,12 @@ public abstract class totlcObject extends Actor {
         this.maxVel = maxVel;
     }
 
-    public static float getKnockback() {
+    public float getKnockback() {
         return knockback;
     }
 
-    public static void setKnockback(float knockback) {
-        totlcObject.knockback = knockback;
+    public void setKnockback(float knockback) {
+        this.knockback = knockback;
     }
 
     public void setAssetManager(AssetManager assetManager) {
@@ -187,6 +190,10 @@ public abstract class totlcObject extends Actor {
     public float getAnimationTime() { return animationTime; }
 
     public void increaseAnimationTime(float i) { animationTime += i; }
+
+    public void moveUnit(float delta) {
+        moveRel((float) vel.getX() * delta, (float) vel.getY() * delta);
+    }
 
     public void returnIntoBounds() {
         if (getX() < 0) {

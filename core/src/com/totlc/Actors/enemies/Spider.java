@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 import com.totlc.levels.ALevel;
 
+import java.awt.geom.Point2D;
+
 public class Spider extends Enemy {
 
     // Stat constants.
@@ -19,8 +21,6 @@ public class Spider extends Enemy {
     private static int atk = 0;
 
     private static float friction = 0.9f;
-    private static float[] acceleration = {0, 0};
-    private static float[] velocity = {0, 0};
     private static float acc = 200;
     private static float maxVelocity = 200;
     private static float knockback = 25;
@@ -29,7 +29,6 @@ public class Spider extends Enemy {
     private boolean skitter = false;
     private int wait_cycles = 50;
     private int counter = 0;
-    float[] targetVector = {0, 0};
 
     // Asset and animation constants.
     private TextureAtlas idleTextureAtlas;
@@ -48,8 +47,6 @@ public class Spider extends Enemy {
 
         setSpeed(acc);
         setFriction(friction);
-        setVel(velocity);
-        setAcc(acceleration);
         setMaxVel(maxVelocity);
         setKnockback(knockback);
 
@@ -61,30 +58,29 @@ public class Spider extends Enemy {
     public void act(float deltaTime) {
         increaseAnimationTime(deltaTime);
 
-        counter++;
-        if (counter >= wait_cycles){
+        Point2D targetVector = new Point2D.Double(0, 0);
+        if (++counter >= wait_cycles){
             skitter = !skitter;
             if (skitter){
                 Actor target = ((ALevel)getStage()).getPlayer();
-                targetVector[0] = target.getX() - getX();
-                targetVector[1] = target.getY() - getY();
+                targetVector = getTarget(target);
             }
             counter = 0;
         }
-        float newAcc[] = getAcc();
+
+        Point2D newAcc = getAcc();
         if (skitter){
-            float n = (float)Math.sqrt( targetVector[0] * targetVector[0] + targetVector[1] * targetVector[1] );
+            float n = (float)Math.sqrt( Math.pow(targetVector.getX(), 2) + Math.pow(targetVector.getY(), 2));
             if (n != 0) {
-                targetVector[0] = targetVector[0] / n;
-                targetVector[1] = targetVector[1] / n;
+                targetVector.setLocation(targetVector.getX() / n, targetVector.getY() / n);
             }
-            newAcc[0] = targetVector[0] * getSpeed();
-            newAcc[1] = targetVector[1] * getSpeed();
+            newAcc.setLocation(targetVector.getX() * getSpeed(), targetVector.getY() * getSpeed());
             setAcc(newAcc);
         } else{
-            newAcc[0] = 0;
-            newAcc[1] = 0;
+            newAcc.setLocation(0, 0);
+            setAcc(newAcc);
         }
+
         updateVelocity();
         moveUnit(deltaTime);
         returnIntoBounds();
