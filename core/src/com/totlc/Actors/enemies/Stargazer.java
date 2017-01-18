@@ -23,4 +23,7 @@ public class Stargazer extends Enemy {
     public boolean collidesWith(Actor otherActor) {
         return false;
     }
+
+    @Override
+    public void endCollidesWith(Actor otherActor) {}
 }
