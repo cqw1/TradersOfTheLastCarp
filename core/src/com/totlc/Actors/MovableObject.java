@@ -17,8 +17,10 @@ public class MovableObject extends Actor {
 
     //Image related fields
     Texture texture;
+
     private TextureAtlas textureAtlas;
     private Animation<TextureRegion> animation;
+
     private AssetManager assetManager;
     private String asset;
 
@@ -89,6 +91,10 @@ public class MovableObject extends Actor {
 
     public void setHitBox(Rectangle r) { hitBox = r; }
 
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
+
     public void setAssetManager(AssetManager assetManager) {
         this.assetManager = assetManager;
     }
@@ -98,6 +104,10 @@ public class MovableObject extends Actor {
     }
 
     public void setTexture(Texture t) { texture = t; }
+
+    public void setTextureAtlas(TextureAtlas textureAtlas) {
+        this.textureAtlas = textureAtlas;
+    }
 
     public void setWidth(float w) { WIDTH = w; }
 

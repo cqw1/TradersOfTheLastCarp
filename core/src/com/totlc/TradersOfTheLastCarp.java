@@ -29,10 +29,10 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
 		assetManager.load("dummy/dummy.atlas", TextureAtlas.class);
+		assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
 		assetManager.finishLoading();
 
-
-		//Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
+		// Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
 		Player player = new Player(assetManager, "dummy/dummy.atlas", 0, CONFIG_HEIGHT / 2);
 
 		// Initialize input processor.

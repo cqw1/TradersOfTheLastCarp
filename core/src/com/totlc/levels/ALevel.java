@@ -101,6 +101,9 @@ public abstract class ALevel extends Stage {
 
     //Getters and setters
     public void setPlayer(Player p) { player = p; }
+    public Player getPlayer() {
+        return player;
+    }
 
     public void setMusicPlayer(MusicPlayer mp) { musicPlayer = mp; }
 
