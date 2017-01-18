@@ -38,6 +38,13 @@ public abstract class Character extends Actor {
             // Done loading. Move to next screen.
             // TODO: Move to next screen.
             textureAtlas = assetManager.get(asset);
+
+            /*
+            TextureRegion walkingRightRegion = textureAtlas.findRegion("right");
+            System.out.println("walkingRightRegion: " + walkingRightRegion);
+            animation = new Animation<TextureRegion>(1/12f, walkingRightRegion);
+            */
+
             animation = new Animation<TextureRegion>(1/12f, textureAtlas.getRegions());
             animation.setPlayMode(Animation.PlayMode.LOOP);
             batch.draw(animation.getKeyFrame(animationTime), getX(), getY());

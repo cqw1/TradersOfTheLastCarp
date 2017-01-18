@@ -28,6 +28,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
+		//assetManager.load("dummy_new/dummy_new.atlas", TextureAtlas.class);
 		assetManager.load("dummy/dummy.atlas", TextureAtlas.class);
 		assetManager.finishLoading();
 
