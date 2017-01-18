@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -14,6 +15,7 @@ public abstract class totlcObject extends Actor {
     private float speed;
 
     //Image related fields
+    private TextureAtlas textureAtlas;
     private AssetManager assetManager;
 
     Texture texture;
@@ -86,6 +88,10 @@ public abstract class totlcObject extends Actor {
 
     public void setAssetManager(AssetManager assetManager) {
         this.assetManager = assetManager;
+    }
+
+    public void setTextureAtlas(TextureAtlas textureAtlas) {
+        this.textureAtlas = textureAtlas;
     }
 
     public void setWidth(float w) { WIDTH = w; }
