@@ -69,6 +69,9 @@ public class Spider extends Enemy {
         return false;
     }
 
+    @Override
+    public void endCollidesWith(Actor otherActor) {}
+
     public static int getId() {
         return id;
     }

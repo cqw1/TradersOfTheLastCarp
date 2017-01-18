@@ -161,4 +161,6 @@ public class Player extends Character {
             moveRel(0, -distance);
         }
     }
+
+    public void endCollidesWith(Actor otherActor) {}
 }

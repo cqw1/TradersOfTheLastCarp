@@ -36,6 +36,8 @@ public abstract class totlcObject extends Actor {
     // Must return true if removing oneself, false otherwise.
     public abstract boolean collidesWith(Actor otherActor);
 
+    public abstract void endCollidesWith(Actor otherActor);
+
     public boolean isMovingLeft() {
         return isMovingLeft;
     }
