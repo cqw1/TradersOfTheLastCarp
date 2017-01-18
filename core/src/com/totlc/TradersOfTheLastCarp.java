@@ -33,7 +33,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 
 		//Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
-		Player player = new Player(assetManager, "dummy/dummy.atlas", 0, 0);
+		Player player = new Player(assetManager, "dummy/dummy.atlas", 0, CONFIG_HEIGHT / 2);
 
 		// Initialize input processor.
 		level = new Level01(player);

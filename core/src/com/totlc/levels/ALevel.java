@@ -1,6 +1,8 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.totlc.Actors.Player;
 import com.totlc.audio.MusicPlayer;
@@ -9,6 +11,21 @@ public abstract class ALevel extends Stage {
 
     private Player player;
     private MusicPlayer musicPlayer;
+
+//    @Override
+//    public void act(float delta) {
+//        //First let actors update themselves
+//        for (Actor a: getActors()) {
+//            a.act(delta);
+//        }
+//
+//        //Now check for collisions
+//        for (Actor a: getActors()) {
+//            for (Actor b: getActors()) {
+//                if (Intersector.overlaps(a))
+//            }
+//        }
+//    }
 
     @Override
     public boolean keyDown(int keycode) {
