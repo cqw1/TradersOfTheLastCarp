@@ -1,15 +1,9 @@
-package com.totlc;
+package com.totlc.Actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.TradersOfTheLastCarp;
 
 public class Player extends Character {
     // Player texture information.
@@ -41,9 +35,7 @@ public class Player extends Character {
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
-        if (getAnimationTime() > 6) {
-            setAnimationTime(1);
-        }
+        setAnimationTime(getAnimationTime() % 6);
 
         if (isMovingLeft()){
             moveRel(-getSpeed() * deltaTime, 0);
@@ -56,6 +48,11 @@ public class Player extends Character {
         }
         if (isMovingDown()){
             moveRel(0, -getSpeed() * deltaTime);
+        }
+
+        if (!(isMovingDown() || isMovingLeft() ||
+        isMovingRight() || isMovingUp())) {
+            setAnimationTime(0);
         }
 
         returnIntoBounds();

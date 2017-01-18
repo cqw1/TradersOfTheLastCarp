@@ -1,17 +1,31 @@
-package com.totlc.input;
+package com.totlc.levels;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.totlc.Player;
+import com.totlc.Actors.Player;
+import com.totlc.audio.MusicPlayer;
 
-public class Level extends Stage {
+public abstract class ALevel extends Stage {
 
     private Player player;
+    private MusicPlayer musicPlayer;
 
-    public Level(Player player){
-        this.player = player;
-        this.addActor(player);
-    }
+//    @Override
+//    public void act(float delta) {
+//        //First let actors update themselves
+//        for (Actor a: getActors()) {
+//            a.act(delta);
+//        }
+//
+//        //Now check for collisions
+//        for (Actor a: getActors()) {
+//            for (Actor b: getActors()) {
+//                if (Intersector.overlaps(a))
+//            }
+//        }
+//    }
 
     @Override
     public boolean keyDown(int keycode) {
@@ -84,4 +98,11 @@ public class Level extends Stage {
     public boolean scrolled(int amount) {
         return false;
     }
+
+    //Getters and setters
+    public void setPlayer(Player p) { player = p; }
+
+    public void setMusicPlayer(MusicPlayer mp) { musicPlayer = mp; }
+
+    public void playSong(String filename) { musicPlayer.setSong(filename); musicPlayer.play(); }
 }

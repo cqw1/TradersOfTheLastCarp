@@ -1,6 +1,5 @@
-package com.totlc;
+package com.totlc.Actors;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -9,26 +8,24 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.TradersOfTheLastCarp;
 
-public abstract class Character extends Actor {
-    // Player texture information.
-    //TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("dummy/dummy.atlas"));
-    //TextureAtlas textureAtlas = TradersOfTheLastCarp.getAssetManager().get("dummy/dummy.atlas");
-    Texture texture;
+public class MovableObject extends Actor {
 
     private float animationTime = 0;
-    private float HEIGHT;
-    private float WIDTH;
-
-    // Player health.
-    private int hpMAX;
-    private int hpCURRENT;
     private float speed;
+
+    //Image related fields
+    Texture texture;
     private TextureAtlas textureAtlas;
     private Animation<TextureRegion> animation;
     private AssetManager assetManager;
     private String asset;
+
+    //Hit box related fields
     private Rectangle hitBox;
+    private float HEIGHT;
+    private float WIDTH;
 
     // Orientation and movement flags.
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
@@ -49,16 +46,6 @@ public abstract class Character extends Actor {
             animation.setPlayMode(Animation.PlayMode.LOOP);
             batch.draw(animation.getKeyFrame(animationTime), getX(), getY());
         }
-    }
-
-    abstract public void act(float deltaTime);
-
-    public int getHpMax() {
-        return hpMAX;
-    }
-
-    public void setHpMax(int hpMAX) {
-        this.hpMAX = hpMAX;
     }
 
     public boolean isMovingLeft() {
@@ -103,14 +90,6 @@ public abstract class Character extends Actor {
         setX(x);
         setY(y);
         hitBox.setPosition(x, y);
-    }
-
-    public int getHpCurrent() {
-        return hpCURRENT;
-    }
-
-    public void setHpCurrent(int hpCURRENT) {
-        this.hpCURRENT = hpCURRENT;
     }
 
     public Rectangle getHitBox() { return hitBox; }
