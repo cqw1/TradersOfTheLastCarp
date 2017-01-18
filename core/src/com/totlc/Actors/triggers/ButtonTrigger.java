@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Player;
+import com.totlc.Actors.enemies.Enemy;
+import com.totlc.Actors.traps.ATrap;
 
 public class ButtonTrigger extends ATrigger {
 
@@ -39,14 +42,24 @@ public class ButtonTrigger extends ATrigger {
     }
 
     public boolean collidesWith(Actor otherActor) {
+        if ((otherActor instanceof Player ||
+                otherActor instanceof Enemy) && !isTriggered) {
+            setTriggered(true);
 
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/trap_activation.mp3"));
-        sound.play(1.0f);
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/trap_activation.mp3"));
+            sound.play(1.0f);
 
-//        for (ATrap trap: getListOfTraps()) {
-//            trap.activate();
-//        }
+            for (ATrap trap: getListOfTraps()) {
+                trap.activate();
+            }
+        }
 
         return false;
+    }
+
+    public void endCollidesWith(Actor otherActor) {
+        if (isTriggered) {
+            isTriggered = false;
+        }
     }
 }

@@ -49,6 +49,9 @@ public abstract class ALevel extends Stage {
                     if (objB.collidesWith(objA)) {
                         toBeRemoved.add(objB);
                     }
+                } else {
+                    objA.endCollidesWith(objB);
+                    objB.endCollidesWith(objA);
                 }
             }
         }
