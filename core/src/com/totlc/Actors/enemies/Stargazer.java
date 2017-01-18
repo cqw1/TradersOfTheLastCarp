@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
+import com.totlc.levels.ALevel;
 
 public class Stargazer extends Enemy {
 
@@ -87,6 +88,11 @@ public class Stargazer extends Enemy {
         }
 
         float newAcc[] = getAcc();
+
+        Actor target = ((ALevel)getStage()).getPlayer();
+        targetVector[0] = target.getX() - getX();
+        targetVector[1] = target.getY() - getY();
+
         float n = (float)Math.sqrt( targetVector[0] * targetVector[0] + targetVector[1] * targetVector[1] );
         if (n != 0) {
             targetVector[0] = targetVector[0] / n;
