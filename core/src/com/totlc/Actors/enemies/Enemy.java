@@ -33,7 +33,6 @@ public abstract class Enemy extends Character {
     public void setHpCurrent(int hpCURRENT) {
         this.hpCURRENT = hpCURRENT;
     }
-
     public int getAttack() {
         return attack;
     }
@@ -41,4 +40,9 @@ public abstract class Enemy extends Character {
     public void setAttack(int attack) {
         this.attack = attack;
     }
+
+    public void moveUnit(float delta) {
+        moveRel(getVel()[0] * delta, getVel()[1] * delta);
+    }
+
 }

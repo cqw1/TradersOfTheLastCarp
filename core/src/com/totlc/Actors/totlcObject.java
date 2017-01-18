@@ -31,6 +31,9 @@ public abstract class totlcObject extends Actor {
     private float friction;
     private float[] acc;
     private float[] vel;
+    private float maxVel;
+
+    private static float knockback = 25;
 
     // Orientation and movement flags.
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
@@ -86,6 +89,19 @@ public abstract class totlcObject extends Actor {
         hitBox.setPosition(x, y);
     }
 
+    public void updateVelocity(){
+        float newVelocity[] = getVel();
+        newVelocity[0] = newVelocity[0] * getFriction() + getAcc()[0];
+        newVelocity[1] = newVelocity[1] * getFriction() + getAcc()[1];
+        if (Math.abs(newVelocity[0])  > getMaxVel()){
+            newVelocity[0] = getMaxVel() * Math.signum(newVelocity[0]);
+        }
+        if (Math.abs(newVelocity[1]) > getMaxVel()){
+            newVelocity[1] = getMaxVel() * Math.signum(newVelocity[1]);
+        }
+        setVel(newVelocity);
+    }
+
     public Rectangle getHitBox() { return hitBox; }
 
     public void setHitBox(Rectangle r) { hitBox = r; }
@@ -112,6 +128,22 @@ public abstract class totlcObject extends Actor {
 
     public void setVel(float[] vel) {
         this.vel = vel;
+    }
+
+    public float getMaxVel() {
+        return maxVel;
+    }
+
+    public void setMaxVel(float maxVel) {
+        this.maxVel = maxVel;
+    }
+
+    public static float getKnockback() {
+        return knockback;
+    }
+
+    public static void setKnockback(float knockback) {
+        totlcObject.knockback = knockback;
     }
 
     public void setAssetManager(AssetManager assetManager) {

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.UI.LifeGauge;
 import com.totlc.Actors.enemies.Spider;
+import com.totlc.Actors.enemies.Stargazer;
 import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.ALevel;
 import com.totlc.levels.Level01;
@@ -37,6 +38,10 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		//assetManager.load("dummy/dummy.atlas", TextureAtlas.class);
 		assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.STARGAZER_BODY.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.STARGAZER_EYE.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.STARGAZER_SPIN.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
 
 		assetManager.load("sounds/trap_activation.mp3", Sound.class);
 
@@ -45,10 +50,12 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		// Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
 		Player player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 		Spider spider = new Spider(assetManager, 0, 0);
+		Stargazer stargazer = new Stargazer(assetManager, CONFIG_WIDTH / 3, CONFIG_HEIGHT / 3);
 
 		// Initialize input processor.
 		level = new Level01(player, assetManager);
 		level.addActor(spider);
+		level.addActor(stargazer);
 		Gdx.input.setInputProcessor(level);
 	}
 

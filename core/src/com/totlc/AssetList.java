@@ -3,6 +3,10 @@ package com.totlc;
 public enum AssetList {
     SPIDER_IDLE("sprites/spider/spider_idle.atlas"),
     SPIDER_WALK("sprites/spider/spider.atlas"),
+    STARGAZER_BODY("sprites/stargazer/stargazer_body.atlas"),
+    STARGAZER_EYE("sprites/stargazer/stargazer_eye.atlas"),
+    STARGAZER_SPIN("sprites/stargazer/stargazer_spin.atlas"),
+    STARGAZER_GAZE("sprites/stargazer/stargazer_gaze.atlas"),
     PLAYER_STAND_LEFT("dummy/stand/left.png"),
     PLAYER_STAND_RIGHT("dummy/stand/right.png"),
     PLAYER_STAND_DOWN("dummy/stand/front.png"),

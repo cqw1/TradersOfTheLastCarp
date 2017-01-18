@@ -21,9 +21,13 @@ public class Player extends Character {
 
 
     // Player info.
-    private float friction = 0.9f;
+    private float friction = 0.0f;
     private float[] acceleration = {0, 0};
     private float[] velocity = {0, 0};
+    private float acc = 300;
+    private float maxVelocity = 300;
+    private static float knockback = 25;
+
     private TextureAtlas walkDownTextureAtlas;
     private Animation<TextureRegion> walkDownAnimation;
 
@@ -46,10 +50,11 @@ public class Player extends Character {
         setWidth(96);
         setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
 
-        setSpeed(200);
+        setSpeed(acc);
         setFriction(friction);
         setVel(velocity);
         setAcc(acceleration);
+        setMaxVel(maxVelocity);
 
         setMovingLeft(false);
         setMovingRight(false);
@@ -108,7 +113,13 @@ public class Player extends Character {
 
         if (assetsRetrieved) {
 
-            if (this.isMovingDown()) {
+            if (this.isMovingRight()) {
+                batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+            } else if (this.isMovingLeft()) {
+                batch.draw(walkLeftAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+            } else if (this.isMovingDown()) {
                 // TODO: double check parameter value.
                 // Technically, animationTime parameter to getKeyFrame shouldn't matter cause it's looping. (???)
                 batch.draw(walkDownAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
@@ -116,15 +127,8 @@ public class Player extends Character {
             } else if (this.isMovingUp()) {
                 batch.draw(walkUpAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
 
-            } else if (this.isMovingRight()) {
-                batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-
-            } else if (this.isMovingLeft()) {
-                batch.draw(walkLeftAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-
             } else {
                 batch.draw(standDownTexture, getX(), getY());
-
             }
         }
     }
@@ -134,40 +138,54 @@ public class Player extends Character {
         increaseAnimationTime(deltaTime);
         //setAnimationTime(getAnimationTime() % animationFrames);
 
-        movePlayer(getSpeed() * deltaTime);
-
-        if (!(isMovingDown() || isMovingLeft() ||
-        isMovingRight() || isMovingUp())) {
-            setAnimationTime(0);
+        float[] newAcc = getAcc();
+        if (this.isMovingDown()) {
+            newAcc[1] = -getSpeed();
+            setAcc(newAcc);
+        }
+        if (this.isMovingUp()) {
+            newAcc[1] = getSpeed();
+            setAcc(newAcc);
+        }
+        if ((this.isMovingDown() && this.isMovingUp()) ||
+                !(this.isMovingDown() || this.isMovingUp())){
+            newAcc[1] = 0;
+            setAcc(newAcc);
         }
 
+        if (this.isMovingRight()) {
+            newAcc[0] = getSpeed();
+            setAcc(newAcc);
+        }
+        if (this.isMovingLeft()) {
+            newAcc[0] = -getSpeed();
+            setAcc(newAcc);
+        }
+        if (this.isMovingRight() && this.isMovingLeft()||
+                !(this.isMovingRight() || this.isMovingLeft())){
+            newAcc[0] = 0;
+            setAcc(newAcc);
+        }
+
+        if (!(this.isMovingDown() || this.isMovingLeft() ||
+                this.isMovingRight() || this.isMovingUp())) {
+            setAnimationTime(0);
+        }
+        updateVelocity();
+        movePlayer(deltaTime);
         returnIntoBounds();
     }
 
     public boolean collidesWith(Actor otherActor) {
-        int knockback = 25;
-
         if (otherActor instanceof Enemy) {
-            movePlayer(-knockback);
             setHpCurrent(getHpCurrent() - ((Enemy)otherActor).getAttack());
         }
 
         return (getHpCurrent() <= 0);
     }
 
-    private void movePlayer(float distance) {
-        if (isMovingLeft()){
-            moveRel(-distance, 0);
-        }
-        if (isMovingRight()){
-            moveRel(distance, 0);
-        }
-        if (isMovingUp()){
-            moveRel(0, distance);
-        }
-        if (isMovingDown()){
-            moveRel(0, -distance);
-        }
+    private void movePlayer(float delta) {
+       moveRel(getVel()[0] * delta, getVel()[1] * delta);
     }
 
     public void endCollidesWith(Actor otherActor) {}
