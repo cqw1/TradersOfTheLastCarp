@@ -16,7 +16,6 @@ public abstract class Enemy extends Character {
         setX(x);
         setY(y);
         setAssetManager(assetManager);
-        setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
     }
 
     public int getHpMax() {

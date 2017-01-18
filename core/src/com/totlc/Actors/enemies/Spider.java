@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 import com.totlc.levels.ALevel;
@@ -26,6 +27,7 @@ public class Spider extends Enemy {
     private boolean skitter = false;
     private int wait_cycles = 50;
     private int counter = 0;
+    float[] targetVector = {0, 0};
 
 
     public Spider(AssetManager assetManager, int x, int y){
@@ -33,12 +35,13 @@ public class Spider extends Enemy {
         this.walk_texture_0 = getAssetManager().get(AssetList.SPIDER_WALK.toString());
         this.stand_texture_0 = getAssetManager().get(AssetList.SPIDER_IDLE.toString());
         this.stand_animation_0 = new Animation<TextureRegion>(1/2f, this.stand_texture_0.getRegions());
-        this.walk_animation_0 = new Animation<TextureRegion>(1/16f, this.walk_texture_0.getRegions());
+        this.walk_animation_0 = new Animation<TextureRegion>(1/12f, this.walk_texture_0.getRegions());
         this.stand_animation_0.setPlayMode(Animation.PlayMode.LOOP);
         this.walk_animation_0.setPlayMode(Animation.PlayMode.LOOP);
         setHpMax(hp);
         setHpCurrent(getHpMax());
         setAttack(atk);
+        setHitBox(new Rectangle(x + 40, y + 16, 42, 16));
     }
 
     @Override
@@ -48,20 +51,23 @@ public class Spider extends Enemy {
         counter++;
         if (counter >= wait_cycles){
             skitter = !skitter;
+            if (skitter){
+                Actor target = ((ALevel)getStage()).getPlayer();
+                targetVector[0] = target.getX() - getX();
+                targetVector[1] = target.getY() - getY();
+            }
             counter = 0;
+
         }
         if (skitter){
             float moveDistance = spd * deltaTime;
-            Actor target = ((ALevel)getStage()).getPlayer();
-
-            float[] targetVector = {target.getX() - getX(), target.getY() - getY()};
             float n = (float)Math.sqrt( targetVector[0] * targetVector[0] + targetVector[1] * targetVector[1] );
             if (n != 0) {
                 targetVector[0] = targetVector[0] / n;
                 targetVector[1] = targetVector[1] / n;
             }
 
-            moveBy(targetVector[0] * moveDistance, targetVector[1] * moveDistance);
+            moveRel(targetVector[0] * moveDistance, targetVector[1] * moveDistance);
         }
         returnIntoBounds();
     }
@@ -79,7 +85,7 @@ public class Spider extends Enemy {
     @Override
     public boolean collidesWith(Actor otherActor) {
         skitter = false;
-        return true;
+        return false;
     }
 
     @Override

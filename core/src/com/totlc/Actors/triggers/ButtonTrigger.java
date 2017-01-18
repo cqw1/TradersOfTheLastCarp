@@ -5,12 +5,11 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.AssetList;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.enemies.Enemy;
-import com.totlc.Actors.totlcObject;
 import com.totlc.Actors.traps.ATrap;
 
 public class ButtonTrigger extends ATrigger {
@@ -29,7 +28,7 @@ public class ButtonTrigger extends ATrigger {
         setMovingUp(false);
         setMovingDown(false);
 
-        setTexture(new Texture(Gdx.files.internal("dummy/0.png")));
+        setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
         setAsset(asset);
 
         setAssetManager(assetManager);
