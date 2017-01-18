@@ -3,12 +3,17 @@ package com.totlc.Actors;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.enemies.Enemy;
 
 public class Player extends Character {
     // Player texture information.
-    Texture texture = new Texture(Gdx.files.internal("dummy/0.png"));
-
+    private TextureAtlas textureAtlas;
 
     public Player(AssetManager assetManager, String asset, int x, int y){
         setX(x);
@@ -28,8 +33,20 @@ public class Player extends Character {
         setHpCurrent(getHpMax());
 
         setAssetManager(assetManager);
-        setAsset(asset);
-        setTexture(texture);
+        setTexture(new Texture(Gdx.files.internal("dummy/0.png")));
+        this.asset = asset;
+    }
+
+    public void draw(Batch batch, float delta) {
+        AssetManager assetManager = getAssetManager();
+        if (assetManager.update()) {
+            // Done loading. Move to next screen.
+            // TODO: Move to next screen.
+            textureAtlas = assetManager.get(asset);
+            animation = new Animation<TextureRegion>(1/12f, textureAtlas.getRegions());
+            animation.setPlayMode(Animation.PlayMode.LOOP);
+            batch.draw(animation.getKeyFrame(animationTime), getX(), getY());
+        }
     }
 
     @Override
@@ -37,18 +54,7 @@ public class Player extends Character {
         increaseAnimationTime(deltaTime);
         setAnimationTime(getAnimationTime() % 6);
 
-        if (isMovingLeft()){
-            moveRel(-getSpeed() * deltaTime, 0);
-        }
-        if (isMovingRight()){
-            moveRel(getSpeed() * deltaTime, 0);
-        }
-        if (isMovingUp()){
-            moveRel(0, getSpeed() * deltaTime);
-        }
-        if (isMovingDown()){
-            moveRel(0, -getSpeed() * deltaTime);
-        }
+        movePlayer(getSpeed() * deltaTime);
 
         if (!(isMovingDown() || isMovingLeft() ||
         isMovingRight() || isMovingUp())) {
@@ -58,4 +64,28 @@ public class Player extends Character {
         returnIntoBounds();
     }
 
+    public boolean collidesWith(Actor otherActor) {
+        int knockback = 25;
+
+        if (otherActor instanceof Enemy) {
+            movePlayer(-knockback);
+        }
+
+        return (getHpCurrent() <= 0);
+    }
+
+    private void movePlayer(float distance) {
+        if (isMovingLeft()){
+            moveRel(-distance, 0);
+        }
+        if (isMovingRight()){
+            moveRel(distance, 0);
+        }
+        if (isMovingUp()){
+            moveRel(0, distance);
+        }
+        if (isMovingDown()){
+            moveRel(0, -distance);
+        }
+    }
 }

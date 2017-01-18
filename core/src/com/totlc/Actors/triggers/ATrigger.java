@@ -1,17 +1,21 @@
 package com.totlc.Actors.triggers;
 
-import com.totlc.Actors.MovableObject;
-import com.totlc.Actors.traps.ITrap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.totlc.Actors.totlcObject;
+import com.totlc.Actors.traps.ATrap;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ATrigger extends MovableObject {
+public abstract class ATrigger extends totlcObject {
 
-    private List<ITrap> listOfTraps;
+    private List<ATrap> listOfTraps = new ArrayList<ATrap>();
 
-    public void addTrap(ITrap t) { listOfTraps.add(t); }
+    public void addTrap(ATrap t) { listOfTraps.add(t); }
 
-    public List<ITrap> getListOfTraps() { return listOfTraps; }
+    public List<ATrap> getListOfTraps() { return listOfTraps; }
 
-    public void setListOfTraps(List<ITrap> lt) { listOfTraps = lt; }
+    public void setListOfTraps(List<ATrap> lt) { listOfTraps = lt; }
 }
