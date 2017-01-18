@@ -33,8 +33,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		//assetManager.load("dummy_new/dummy_new.atlas", TextureAtlas.class);
 
-        assetManager.load("dummy/0.png", Texture.class);
-		assetManager.load("dummy/dummy.atlas", TextureAtlas.class);
+        //assetManager.load("dummy/0.png", Texture.class);
+		//assetManager.load("dummy/dummy.atlas", TextureAtlas.class);
 		assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
 
@@ -43,7 +43,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		assetManager.finishLoading();
 
 		// Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
-		Player player = new Player(assetManager, "dummy/dummy.atlas", 0, CONFIG_HEIGHT / 2);
+		Player player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 		Spider spider = new Spider(assetManager, 0, 0);
 
 		// Initialize input processor.

@@ -10,12 +10,31 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.enemies.Enemy;
+import com.totlc.AssetList;
 
 public class Player extends Character {
     // Player texture information.
-    private TextureAtlas textureAtlas;
+    private Texture standDownTexture;
+    private Texture standUpTexture;
+    private Texture standLeftTexture;
+    private Texture standRightTexture;
 
-    public Player(AssetManager assetManager, String asset, int x, int y){
+    private TextureAtlas walkDownTextureAtlas;
+    private Animation<TextureRegion> walkDownAnimation;
+
+    private TextureAtlas walkUpTextureAtlas;
+    private Animation<TextureRegion> walkUpAnimation;
+
+    private TextureAtlas walkLeftTextureAtlas;
+    private Animation<TextureRegion> walkLeftAnimation;
+
+    private TextureAtlas walkRightTextureAtlas;
+    private Animation<TextureRegion> walkRightAnimation;
+
+    private boolean assetsRetrieved = false;
+    private int animationFrames = 1;
+
+    public Player(AssetManager assetManager, int x, int y){
         setX(x);
         setY(y);
         setHeight(128);
@@ -23,6 +42,7 @@ public class Player extends Character {
         setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
 
         setSpeed(200);
+
 
         setMovingLeft(false);
         setMovingRight(false);
@@ -33,26 +53,79 @@ public class Player extends Character {
         setHpCurrent(getHpMax());
 
         setAssetManager(assetManager);
-        setTexture(new Texture(Gdx.files.internal("dummy/0.png")));
-        this.asset = asset;
+
+        // Standing assets.
+        assetManager.load(AssetList.PLAYER_STAND_UP.toString(), Texture.class);
+        assetManager.load(AssetList.PLAYER_STAND_DOWN.toString(), Texture.class);
+        assetManager.load(AssetList.PLAYER_STAND_LEFT.toString(), Texture.class);
+        assetManager.load(AssetList.PLAYER_STAND_RIGHT.toString(), Texture.class);
+
+        // Walking animations
+        assetManager.load(AssetList.PLAYER_WALK_UP.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WALK_DOWN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WALK_LEFT.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WALK_RIGHT.toString(), TextureAtlas.class);
+
+        setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
     }
 
     public void draw(Batch batch, float delta) {
         AssetManager assetManager = getAssetManager();
-        if (assetManager.update()) {
-            // Done loading. Move to next screen.
-            // TODO: Move to next screen.
-            textureAtlas = assetManager.get(asset);
-            animation = new Animation<TextureRegion>(1/12f, textureAtlas.getRegions());
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(animationTime), getX(), getY());
+        if (assetManager.update() && !assetsRetrieved) {
+            // Done loading. Instantiate all assets
+
+            assetsRetrieved = true;
+
+            standDownTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
+            standUpTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
+            standLeftTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
+            standRightTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
+
+            walkDownTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_DOWN.toString());
+            walkDownAnimation = new Animation<TextureRegion>(1 / 12f, walkDownTextureAtlas.getRegions());
+            walkDownAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+            walkUpTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_UP.toString());
+            walkUpAnimation = new Animation<TextureRegion>(1 / 12f, walkUpTextureAtlas.getRegions());
+            walkUpAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+            walkLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_LEFT.toString());
+            walkLeftAnimation = new Animation<TextureRegion>(1 / 12f, walkLeftTextureAtlas.getRegions());
+            walkLeftAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+
+            walkRightTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_RIGHT.toString());
+            walkRightAnimation = new Animation<TextureRegion>(1 / 12f, walkRightTextureAtlas.getRegions());
+            walkRightAnimation.setPlayMode(Animation.PlayMode.LOOP);
+        }
+
+        if (assetsRetrieved) {
+
+            if (this.isMovingDown()) {
+                // TODO: double check parameter value.
+                // Technically, animationTime parameter to getKeyFrame shouldn't matter cause it's looping. (???)
+                batch.draw(walkDownAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+            } else if (this.isMovingUp()) {
+                batch.draw(walkUpAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+            } else if (this.isMovingRight()) {
+                batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+            } else if (this.isMovingLeft()) {
+                batch.draw(walkLeftAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+            } else {
+                batch.draw(standDownTexture, getX(), getY());
+
+            }
         }
     }
 
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
-        setAnimationTime(getAnimationTime() % 6);
+        //setAnimationTime(getAnimationTime() % animationFrames);
 
         movePlayer(getSpeed() * deltaTime);
 

@@ -2,7 +2,16 @@ package com.totlc;
 
 public enum AssetList {
     SPIDER_IDLE("sprites/spider/spider_idle.atlas"),
-    SPIDER_WALK("sprites/spider/spider.atlas");
+    SPIDER_WALK("sprites/spider/spider.atlas"),
+    PLAYER_STAND_LEFT("dummy/stand/left.png"),
+    PLAYER_STAND_RIGHT("dummy/stand/right.png"),
+    PLAYER_STAND_DOWN("dummy/stand/front.png"),
+    PLAYER_STAND_UP("dummy/stand/back.png"),
+    PLAYER_WALK_LEFT("dummy/walk/left.atlas"),
+    PLAYER_WALK_RIGHT("dummy/walk/right.atlas"),
+    PLAYER_WALK_DOWN("dummy/walk/front.atlas"),
+    PLAYER_WALK_UP("dummy/walk/back.atlas");
+
 
     private String pathname;
     AssetList(String s) {
