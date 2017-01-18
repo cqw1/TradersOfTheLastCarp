@@ -2,12 +2,15 @@ package com.totlc;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.UI.LifeGauge;
+import com.totlc.Actors.enemies.Spider;
 import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.ALevel;
 import com.totlc.levels.Level01;
@@ -28,15 +31,22 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
+		//assetManager.load("dummy_new/dummy_new.atlas", TextureAtlas.class);
+
+        assetManager.load("dummy/0.png", Texture.class);
 		assetManager.load("dummy/dummy.atlas", TextureAtlas.class);
 		assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
+        assetManager.load("sounds/trap_activation.mp3", Sound.class);
+
 		assetManager.finishLoading();
 
 		// Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
 		Player player = new Player(assetManager, "dummy/dummy.atlas", 0, CONFIG_HEIGHT / 2);
+		Spider spider = new Spider(assetManager, 0, 0);
 
 		// Initialize input processor.
-		level = new Level01(player);
+		level = new Level01(player, assetManager);
+		level.addActor(spider);
 		Gdx.input.setInputProcessor(level);
 	}
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 
 public class Spider extends Enemy {
@@ -21,7 +22,8 @@ public class Spider extends Enemy {
     // State variables.
     private boolean skitter = false;
     private int wait_cycles = 10;
-    
+    private int counter = 0;
+
 
     public Spider(AssetManager assetManager, int x, int y){
         super(assetManager, x, y);
@@ -35,12 +37,20 @@ public class Spider extends Enemy {
 
     @Override
     public void act(float deltaTime) {
+        increaseAnimationTime(deltaTime);
+        setAnimationTime(getAnimationTime() % 6);
 
+        returnIntoBounds();
     }
 
     @Override
     public void draw(Batch batch, float alpha){
+        batch.draw(walk_animation_0.getKeyFrame(getAnimationTime()), getX(), getY());
+    }
 
+    @Override
+    public boolean collidesWith(Actor otherActor) {
+        return false;
     }
 
     public static int getId() {

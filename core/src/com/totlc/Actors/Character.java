@@ -1,17 +1,6 @@
 package com.totlc.Actors;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.TradersOfTheLastCarp;
-
-public abstract class Character extends MovableObject {
+public abstract class Character extends totlcObject {
 
     // Player health.
     private int hpMAX;

@@ -1,6 +1,7 @@
 package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.Character;
 
 //Empty for now. All enemies will inherit from this one, to differentiate player and enemy?
@@ -15,6 +16,7 @@ public abstract class Enemy extends Character {
         setX(x);
         setY(y);
         setAssetManager(assetManager);
+        setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
     }
 
     public int getHpMax() {
