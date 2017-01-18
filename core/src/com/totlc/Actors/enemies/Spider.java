@@ -30,7 +30,7 @@ public class Spider extends Enemy {
         super(assetManager, x, y);
         this.walk_texture_0 = getAssetManager().get(AssetList.SPIDER_WALK.toString());
         this.stand_texture_0 = getAssetManager().get(AssetList.SPIDER_IDLE.toString());
-        this.walk_animation_0 = new Animation<TextureRegion>(1/2f, this.stand_texture_0.getRegions());
+        this.stand_animation_0 = new Animation<TextureRegion>(1/2f, this.stand_texture_0.getRegions());
         this.walk_animation_0 = new Animation<TextureRegion>(1/24f, this.walk_texture_0.getRegions());
         this.stand_animation_0.setPlayMode(Animation.PlayMode.LOOP);
         this.walk_animation_0.setPlayMode(Animation.PlayMode.LOOP);
