@@ -5,8 +5,13 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Player;
+import com.totlc.Actors.enemies.Enemy;
+import com.totlc.Actors.totlcObject;
+import com.totlc.Actors.traps.ATrap;
 
 public class ButtonTrigger extends ATrigger {
 
@@ -39,13 +44,20 @@ public class ButtonTrigger extends ATrigger {
     }
 
     public boolean collidesWith(Actor otherActor) {
+        if (otherActor instanceof Player ||
+                otherActor instanceof Enemy) {
 
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/trap_activation.mp3"));
-        sound.play(1.0f);
+            if (!isTriggered()) {
+                Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/trap_activation.mp3"));
+                sound.play(1.0f);
 
-//        for (ATrap trap: getListOfTraps()) {
-//            trap.activate();
-//        }
+                for (ATrap trap : getListOfTraps()) {
+                    trap.activate();
+                }
+            }
+
+            handleTrigger(true, otherActor);
+        }
 
         return false;
     }
