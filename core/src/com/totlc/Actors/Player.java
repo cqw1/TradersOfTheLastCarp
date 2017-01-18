@@ -15,6 +15,12 @@ public class Player extends Character {
     // Player texture information.
     private TextureAtlas textureAtlas;
 
+    // Player info.
+    private float friction = 0.9f;
+    private float[] acceleration = {0, 0};
+    private float[] velocity = {0, 0};
+
+
     public Player(AssetManager assetManager, String asset, int x, int y){
         setX(x);
         setY(y);
@@ -23,6 +29,9 @@ public class Player extends Character {
         setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
 
         setSpeed(200);
+        setFriction(friction);
+        setVel(velocity);
+        setAcc(acceleration);
 
         setMovingLeft(false);
         setMovingRight(false);
@@ -69,6 +78,7 @@ public class Player extends Character {
 
         if (otherActor instanceof Enemy) {
             movePlayer(-knockback);
+            setHpCurrent(getHpCurrent() - ((Enemy)otherActor).getAttack());
         }
 
         return (getHpCurrent() <= 0);

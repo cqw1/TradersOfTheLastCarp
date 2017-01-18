@@ -28,6 +28,10 @@ public abstract class totlcObject extends Actor {
     private float HEIGHT;
     private float WIDTH;
 
+    private float friction;
+    private float[] acc;
+    private float[] vel;
+
     // Orientation and movement flags.
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
 
@@ -83,6 +87,30 @@ public abstract class totlcObject extends Actor {
     public Rectangle getHitBox() { return hitBox; }
 
     public void setHitBox(Rectangle r) { hitBox = r; }
+
+    public float getFriction() {
+        return friction;
+    }
+
+    public void setFriction(float friction) {
+        this.friction = friction;
+    }
+
+    public float[] getAcc() {
+        return acc;
+    }
+
+    public void setAcc(float[] acc) {
+        this.acc = acc;
+    }
+
+    public float[] getVel() {
+        return vel;
+    }
+
+    public void setVel(float[] vel) {
+        this.vel = vel;
+    }
 
     public void setAssetManager(AssetManager assetManager) {
         this.assetManager = assetManager;

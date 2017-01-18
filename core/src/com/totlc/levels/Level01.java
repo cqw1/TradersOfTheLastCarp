@@ -1,6 +1,7 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.totlc.Actors.triggers.ButtonTrigger;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.Actors.Player;
@@ -10,10 +11,7 @@ import com.totlc.audio.MusicPlayer;
 public class Level01 extends ALevel{
 
     public Level01(Player player, AssetManager assetManager) {
-        setPlayer(player);
-        addActor(player);
-
-        setMusicPlayer(new MusicPlayer());
+        super(player, assetManager);
         playSong("test0");
 
         ButtonTrigger testButton = new ButtonTrigger(assetManager, "dummy/0.png", TradersOfTheLastCarp.CONFIG_WIDTH/2, TradersOfTheLastCarp.CONFIG_HEIGHT/2);

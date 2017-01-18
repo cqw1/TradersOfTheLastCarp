@@ -1,6 +1,9 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,6 +18,13 @@ public abstract class ALevel extends Stage {
 
     private Player player;
     private MusicPlayer musicPlayer;
+
+    public ALevel(Player player, AssetManager assetManager){
+        setPlayer(player);
+        addActor(player);
+
+        setMusicPlayer(new MusicPlayer());
+    }
 
     @Override
     public void act(float delta) {
