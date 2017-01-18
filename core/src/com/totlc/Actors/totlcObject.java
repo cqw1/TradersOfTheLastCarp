@@ -4,23 +4,22 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.TradersOfTheLastCarp;
 
-public class MovableObject extends Actor {
+public abstract class totlcObject extends Actor {
 
-    private float animationTime = 0;
     private float speed;
 
     //Image related fields
-    Texture texture;
-    private TextureAtlas textureAtlas;
-    private Animation<TextureRegion> animation;
     private AssetManager assetManager;
-    private String asset;
+
+    Texture texture;
+    Animation<TextureRegion> animation;
+    String asset;
+    float animationTime = 0;
 
     //Hit box related fields
     private Rectangle hitBox;
@@ -30,16 +29,10 @@ public class MovableObject extends Actor {
     // Orientation and movement flags.
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
 
-    public void draw(Batch batch, float alpha) {
-        if (assetManager.update()) {
-            // Done loading. Move to next screen.
-            // TODO: Move to next screen.
-            textureAtlas = assetManager.get(asset);
-            animation = new Animation<TextureRegion>(1/12f, textureAtlas.getRegions());
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(animationTime), getX(), getY());
-        }
-    }
+    public abstract void draw(Batch batch, float alpha);
+
+    // Must return true if removing oneself, false otherwise.
+    public abstract boolean collidesWith(Actor otherActor);
 
     public boolean isMovingLeft() {
         return isMovingLeft;
@@ -93,12 +86,6 @@ public class MovableObject extends Actor {
         this.assetManager = assetManager;
     }
 
-    public void setAsset(String asset) {
-        this.asset = asset;
-    }
-
-    public void setTexture(Texture t) { texture = t; }
-
     public void setWidth(float w) { WIDTH = w; }
 
     public float getWidth() { return WIDTH; }
@@ -110,6 +97,20 @@ public class MovableObject extends Actor {
     public void setSpeed(float s) { speed = s; }
 
     public float getSpeed() { return speed; }
+
+    public AssetManager getAssetManager() { return assetManager; }
+
+    public void setTexture(Texture t) { texture = t; }
+
+    public Texture getTexture() { return texture; }
+
+    public void setAnimation(Animation<TextureRegion> a) { animation = a; }
+
+    public Animation<TextureRegion> getAnimation() { return getAnimation(); }
+
+    public String getAsset() { return asset; }
+
+    public void setAsset(String asset) { this.asset = asset; }
 
     public void setAnimationTime(float a) { animationTime = a; }
 
