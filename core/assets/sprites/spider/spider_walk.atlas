@@ -1,5 +1,5 @@
 
-spider.png
+spider_walk.png
 size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
@@ -10,31 +10,24 @@ spider
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
-  index: 0
+  index: 1
 spider
   rotate: false
   xy: 132, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
-  index: 1
+  index: 2
 spider
   rotate: false
   xy: 262, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
-  index: 2
-spider
-  rotate: false
-  xy: 392, 2
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
   index: 3
 spider
   rotate: false
-  xy: 522, 2
+  xy: 392, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0

@@ -2,7 +2,7 @@ package com.totlc;
 
 public enum AssetList {
     SPIDER_IDLE("sprites/spider/spider_idle.atlas"),
-    SPIDER_WALK("sprites/spider/spider.atlas"),
+    SPIDER_WALK("sprites/spider/spider_walk.atlas"),
     STARGAZER_BODY("sprites/stargazer/stargazer_body.atlas"),
     STARGAZER_EYE("sprites/stargazer/stargazer_eye.atlas"),
     STARGAZER_SPIN("sprites/stargazer/stargazer_spin.atlas"),

@@ -27,7 +27,14 @@ public abstract class Enemy extends Character {
     }
 
     public Point2D getTarget(Actor target) {
-        return new Point2D.Double(target.getX() - getX(), target.getY() - getY());
+        Point2D targetVector = new Point2D.Double(target.getX() - getX(), target.getY() - getY());
+        float n = (float) Math.sqrt(Math.pow(targetVector.getX(), 2) + Math.pow(targetVector.getY(), 2));
+        if (n != 0) {
+            targetVector.setLocation(targetVector.getX() / n, targetVector.getY() / n);
+            return targetVector;
+        } else{
+            return new Point2D.Double(0, 0);
+        }
     }
 
 }

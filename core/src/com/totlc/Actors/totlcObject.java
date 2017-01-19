@@ -131,7 +131,7 @@ public abstract class totlcObject extends Actor {
     }
 
     public Point2D getAcc() {
-        return acc;
+        return this.acc;
     }
 
     public void setAcc(Point2D acc) {

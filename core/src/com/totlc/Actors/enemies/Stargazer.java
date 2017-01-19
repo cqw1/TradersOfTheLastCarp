@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
+import com.totlc.Directionality;
 import com.totlc.levels.ALevel;
 
 import java.awt.geom.Point2D;
@@ -19,15 +20,15 @@ public class Stargazer extends Enemy {
     private static int hp = 3;
     private static int atk = 1;
 
-    private static float friction = 0.95f;
-    private static float acc = 200;
-    private static float maxVelocity = 50;
+    private static float friction = .99f;
+    private static float speed = 15;
+    private static float maxVelocity = 15;
     private static float knockback = 5;
 
     // State variables.
     private boolean spin = false;
     private boolean wind_down = false;
-    private int spin_duration = 200;
+    private int spin_duration = 100;
     private float spin_chance = .005f;
     private int counter = 0;
 
@@ -51,7 +52,7 @@ public class Stargazer extends Enemy {
         setHpCurrent(getHpMax());
         setAttack(atk);
         setHitBox(new Rectangle(x + 40, y + 16, 42, 16));
-        setSpeed(acc);
+        setSpeed(speed);
         setFriction(friction);
         setMaxVel(maxVelocity);
         setKnockback(knockback);
@@ -92,11 +93,12 @@ public class Stargazer extends Enemy {
 
         Actor target = ((ALevel)getStage()).getPlayer();
         Point2D targetVector = getTarget(target);
-
-        float n = (float) Math.sqrt(Math.pow(targetVector.getX(), 2) + Math.pow(targetVector.getY(), 2));
-        if (n != 0) {
-            targetVector.setLocation(targetVector.getX() / n, targetVector.getY() / n);
+        if(Math.signum(targetVector.getX()) > 0){
+            setIsFacing(Directionality.RIGHT);
+        } else{
+            setIsFacing(Directionality.LEFT);
         }
+
         newAcc.setLocation(targetVector.getX() * getSpeed(), targetVector.getY() * getSpeed());
         setAcc(newAcc);
 
@@ -128,16 +130,19 @@ public class Stargazer extends Enemy {
         }
 
         if (assetsLoaded()) {
+            boolean flip = getIsFacing().isFacingRight();
+            float w = spinAnimation.getKeyFrame(getAnimationTime()).getRegionWidth();
+            float h = spinAnimation.getKeyFrame(getAnimationTime()).getRegionHeight();
             if (!spin){
-                batch.draw(bodyAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+                batch.draw(bodyAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
                 if (wind_down){
-                    batch.draw(gazeReverseAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
+                    batch.draw(gazeReverseAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
                 } else {
-                    batch.draw(eyeAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+                    batch.draw(eyeAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
                 }
             } else{
-                batch.draw(spinAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-                batch.draw(gazeAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
+                batch.draw(spinAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
+                batch.draw(gazeAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
             }
         }
     }
