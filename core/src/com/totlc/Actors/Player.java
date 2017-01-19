@@ -28,6 +28,7 @@ public class Player extends Character {
     private float acc = 300;
     private float maxVelocity = 300;
 
+    // Walking
     private TextureAtlas walkDownTextureAtlas;
     private Animation<TextureRegion> walkDownAnimation;
 
@@ -40,7 +41,35 @@ public class Player extends Character {
     private TextureAtlas walkRightTextureAtlas;
     private Animation<TextureRegion> walkRightAnimation;
 
+    // Player whipping
+    private TextureAtlas whippingRightTextureAtlas;
+    private Animation<TextureRegion> whippingRightAnimation;
+
+    private TextureAtlas whippingLeftTextureAtlas;
+    private Animation<TextureRegion> whippingLeftAnimation;
+
+    private TextureAtlas whippingUpTextureAtlas;
+    private Animation<TextureRegion> whippingUpAnimation;
+
+    private TextureAtlas whippingDownTextureAtlas;
+    private Animation<TextureRegion> whippingDownAnimation;
+
+    // Whip
+    private TextureAtlas whipRightTextureAtlas;
+    private Animation<TextureRegion> whipRightAnimation;
+
+    private TextureAtlas whipLeftTextureAtlas;
+    private Animation<TextureRegion> whipLeftAnimation;
+
+    private TextureAtlas whipUpTextureAtlas;
+    private Animation<TextureRegion> whipUpAnimation;
+
+    private TextureAtlas whipDownTextureAtlas;
+    private Animation<TextureRegion> whipDownAnimation;
+
     private boolean invincible = false;
+    private boolean whipping = false;
+    private double whippingAnimationLength = 0.5;
 
     public Player(AssetManager assetManager, int x, int y){
         setX(x);
@@ -75,6 +104,18 @@ public class Player extends Character {
         assetManager.load(AssetList.PLAYER_WALK_LEFT.toString(), TextureAtlas.class);
         assetManager.load(AssetList.PLAYER_WALK_RIGHT.toString(), TextureAtlas.class);
 
+        // Whipping animations
+        assetManager.load(AssetList.PLAYER_WHIP_UP.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WHIP_DOWN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WHIP_LEFT.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WHIP_RIGHT.toString(), TextureAtlas.class);
+
+        // Whip animations
+        assetManager.load(AssetList.WHIP_UP.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.WHIP_DOWN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.WHIP_LEFT.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.WHIP_RIGHT.toString(), TextureAtlas.class);
+
         setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
     }
 
@@ -85,11 +126,13 @@ public class Player extends Character {
 
             setAssetsLoaded(true);
 
+            // Standing
             standDownTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
             standUpTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
             standLeftTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
             standRightTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
 
+            // Walking
             walkDownTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_DOWN.toString());
             walkDownAnimation = new Animation<TextureRegion>(1 / 12f, walkDownTextureAtlas.getRegions());
 
@@ -101,6 +144,33 @@ public class Player extends Character {
 
             walkRightTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_RIGHT.toString());
             walkRightAnimation = new Animation<TextureRegion>(1 / 12f, walkRightTextureAtlas.getRegions());
+
+            // Whipping
+            whippingDownTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_DOWN.toString());
+            System.out.println("whippingDownTextureAtlas size: " + whippingDownTextureAtlas.getRegions().size);
+            whippingDownAnimation = new Animation<TextureRegion>(1/12f, whippingDownTextureAtlas.getRegions());
+
+            whippingUpTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_UP.toString());
+            whippingUpAnimation = new Animation<TextureRegion>(1/12f, whippingUpTextureAtlas.getRegions());
+
+            whippingLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_LEFT.toString());
+            whippingLeftAnimation = new Animation<TextureRegion>(1/12f, whippingLeftTextureAtlas.getRegions());
+
+            whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
+            whippingRightAnimation = new Animation<TextureRegion>(1/12f, whippingRightTextureAtlas.getRegions());
+
+            // Whip
+            whipDownTextureAtlas = assetManager.get(AssetList.WHIP_DOWN.toString());
+            whipDownAnimation = new Animation<TextureRegion>(1/12f, whipDownTextureAtlas.getRegions());
+
+            whipUpTextureAtlas = assetManager.get(AssetList.WHIP_UP.toString());
+            whipUpAnimation = new Animation<TextureRegion>(1/12f, whipUpTextureAtlas.getRegions());
+
+            whipLeftTextureAtlas = assetManager.get(AssetList.WHIP_LEFT.toString());
+            whipLeftAnimation = new Animation<TextureRegion>(1/12f, whipLeftTextureAtlas.getRegions());
+
+            whipRightTextureAtlas = assetManager.get(AssetList.WHIP_RIGHT.toString());
+            whipRightAnimation = new Animation<TextureRegion>(1/12f, whipRightTextureAtlas.getRegions());
         }
 
         if (assetsLoaded()) {
@@ -184,5 +254,9 @@ public class Player extends Character {
 
     public void setInvincible(boolean invincible) {
         this.invincible = invincible;
+    }
+
+    public void setWhipping(boolean whipping) {
+        this.whipping = true;
     }
 }

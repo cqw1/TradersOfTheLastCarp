@@ -75,24 +75,29 @@ public abstract class ALevel extends Stage {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.LEFT){
+        if (keycode == Input.Keys.LEFT) {
             player.setMovingLeft(true);
             player.setIsFacing(Directionality.LEFT);
             return true;
         }
-        if (keycode == Input.Keys.RIGHT){
+        if (keycode == Input.Keys.RIGHT) {
             player.setMovingRight(true);
             player.setIsFacing(Directionality.RIGHT);
             return true;
         }
-        if (keycode == Input.Keys.UP){
+        if (keycode == Input.Keys.UP) {
             player.setMovingUp(true);
             player.setIsFacing(Directionality.UP);
             return true;
         }
-        if (keycode == Input.Keys.DOWN){
+        if (keycode == Input.Keys.DOWN) {
             player.setMovingDown(true);
             player.setIsFacing(Directionality.DOWN);
+            return true;
+        }
+
+        if (keycode == Input.Keys.SPACE) {
+            player.setWhipping(true);
             return true;
         }
         return false;
