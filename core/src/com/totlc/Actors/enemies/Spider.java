@@ -1,7 +1,6 @@
 package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,7 +12,7 @@ import com.totlc.levels.ALevel;
 
 import java.awt.geom.Point2D;
 
-public class Spider extends Enemy {
+public class Spider extends AEnemy {
 
     // Stat constants.
     private static int id = 0;

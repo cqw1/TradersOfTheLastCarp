@@ -13,7 +13,7 @@ import com.totlc.levels.ALevel;
 
 import java.awt.geom.Point2D;
 
-public class Stargazer extends Enemy {
+public class Stargazer extends AEnemy {
 
     // Stat constants.
     private static int id = 1;

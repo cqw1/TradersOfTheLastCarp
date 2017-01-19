@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Timer;
-import com.totlc.Actors.enemies.Enemy;
+import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
@@ -193,13 +193,7 @@ public class Player extends Character {
         increaseAnimationTime(deltaTime);
 
         if (getAttacking()) {
-//            whippingCounter += deltaTime;
-//
-//            if (whippingCounter > whippingAnimationLength) {
-//                whippingCounter = 0;
-//                whipping = false;
-//            }
-            // Returns so we don't move while we're whipping.
+            // Returns so we don't move while we're attacking.
             return;
         }
 
@@ -243,9 +237,9 @@ public class Player extends Character {
     }
 
     public boolean collidesWith(Actor otherActor) {
-        if (otherActor instanceof Enemy) {
+        if (otherActor instanceof AEnemy) {
             if (!invincible) {
-                takeDamage(((Enemy)otherActor).getAttack());
+                takeDamage(((AEnemy)otherActor).getAttack());
                 invincible = true;
                 Timer.schedule(new RemoveInvincibilityTask(this), invincibilityTime);
             }
