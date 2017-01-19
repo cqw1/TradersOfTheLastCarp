@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Timer;
 import com.totlc.Actors.enemies.Enemy;
 import com.totlc.AssetList;
+import com.totlc.tasks.RemoveInvincibilityTask;
 
 import java.awt.geom.Point2D;
 
@@ -37,6 +39,8 @@ public class Player extends Character {
 
     private TextureAtlas walkRightTextureAtlas;
     private Animation<TextureRegion> walkRightAnimation;
+
+    private boolean invincible = false;
 
     public Player(AssetManager assetManager, int x, int y){
         setX(x);
@@ -166,11 +170,19 @@ public class Player extends Character {
 
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Enemy) {
-            setHpCurrent(getHpCurrent() - ((Enemy)otherActor).getAttack());
+            if (!invincible) {
+                setHpCurrent(getHpCurrent() - ((Enemy)otherActor).getAttack());
+                invincible = true;
+                Timer.schedule(new RemoveInvincibilityTask(this), 5);
+            }
         }
 
         return (getHpCurrent() <= 0);
     }
 
     public void endCollidesWith(Actor otherActor) {}
+
+    public void setInvincible(boolean invincible) {
+        this.invincible = invincible;
+    }
 }
