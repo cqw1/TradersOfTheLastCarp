@@ -3,6 +3,7 @@ package com.totlc.Actors.enemies;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
+import com.totlc.Actors.projectiles.Projectile;
 
 import java.awt.geom.Point2D;
 
@@ -13,10 +14,18 @@ public abstract class Enemy extends Character {
     private int attack;
 
     public Enemy(AssetManager assetManager, int x, int y){
-        setX(x);
-        setY(y);
-        setAssetManager(assetManager);
+        super(assetManager, x ,y);
     }
+
+    public boolean collidesWith(Actor otherActor) {
+        if (otherActor instanceof Projectile) {
+            takeDamage(((Projectile)otherActor).getAttack());
+        }
+
+        return (getHpCurrent() <= 0);
+    }
+
+    public void endCollidesWith(Actor otherActor) {}
 
     public int getAttack() {
         return attack;
@@ -27,7 +36,14 @@ public abstract class Enemy extends Character {
     }
 
     public Point2D getTarget(Actor target) {
-        return new Point2D.Double(target.getX() - getX(), target.getY() - getY());
+        Point2D targetVector = new Point2D.Double(target.getX() - getX(), target.getY() - getY());
+        float n = (float) Math.sqrt(Math.pow(targetVector.getX(), 2) + Math.pow(targetVector.getY(), 2));
+        if (n != 0) {
+            targetVector.setLocation(targetVector.getX() / n, targetVector.getY() / n);
+            return targetVector;
+        } else{
+            return new Point2D.Double(0, 0);
+        }
     }
 
 }

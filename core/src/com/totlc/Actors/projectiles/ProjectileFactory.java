@@ -1,45 +1,26 @@
 package com.totlc.Actors.projectiles;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.totlcObject;
+import com.totlc.Directionality;
 
-/**
- * Created by Bao on 1/18/2017.
- */
+import java.awt.geom.Point2D;
+
 public class ProjectileFactory {
 
-    final static String ARROW = "ARROW";
-
-    //Directional states
-    final static String LEFT = "LEFT";
-    final static String RIGHT = "RIGHT";
-    final static String UP = "UP";
-    final static String DOWN = "DOWN";
-
-    public static Actor createProjectile(String type, String direction, float speed) {
+    public static Actor createProjectile(ProjEnum type, Point2D vel, AssetManager assetManager, float x, float y) {
         totlcObject returnMe;
 
         //Handle the type
-        if (type.equals(ARROW)) {
-            returnMe = new Arrow();
+        if (type.equals(ProjEnum.ARROW)) {
+            returnMe = new Arrow(assetManager, x, y);
         } else {
             return null;
         }
 
         //Handle direction
-        if (direction.equals(LEFT)) {
-            returnMe.setMovingLeft(true);
-        } else if (direction.equals(RIGHT)) {
-            returnMe.setMovingRight(true);
-        } else if (direction.equals(UP)) {
-            returnMe.setMovingUp(true);
-        } else if (direction.equals(DOWN)) {
-            returnMe.setMovingDown(true);
-        } else {
-            return null;
-        }
-
-        returnMe.setSpeed(speed);
+        returnMe.setVel(vel);
 
         return returnMe;
     }

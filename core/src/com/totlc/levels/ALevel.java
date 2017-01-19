@@ -48,7 +48,7 @@ public abstract class ALevel extends Stage {
             for (int bCounter = aCounter; bCounter < allActors.size; bCounter++) {
                 //Ignore again, except add that we ignore references to ourselves, or objects being removed
                 Actor b = allActors.get(bCounter);
-                if (!(b instanceof totlcObject) || a == b || toBeRemoved.contains(b)) {
+                if (!(b instanceof totlcObject) || a == b) { // || toBeRemoved.contains(b)
                     continue;
                 }
 

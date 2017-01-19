@@ -15,8 +15,7 @@ import com.totlc.Actors.traps.ATrap;
 public class ButtonTrigger extends ATrigger {
 
     public ButtonTrigger(AssetManager assetManager, String asset, int x, int y){
-        setX(x);
-        setY(y);
+        super(assetManager, x, y);
         setHeight(32);
         setWidth(32);
         setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
@@ -30,8 +29,6 @@ public class ButtonTrigger extends ATrigger {
 
         setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
         setAsset(asset);
-
-        setAssetManager(assetManager);
     }
 
     public void draw(Batch batch, float delta) {

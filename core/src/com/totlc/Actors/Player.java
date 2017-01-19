@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Timer;
 import com.totlc.Actors.enemies.Enemy;
+import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.AssetList;
 import com.totlc.tasks.RemoveInvincibilityTask;
 
@@ -70,10 +71,10 @@ public class Player extends Character {
     private boolean invincible = false;
     private boolean whipping = false;
     private double whippingAnimationLength = 0.5;
+    private static float invincibilityTime = 2;
 
-    public Player(AssetManager assetManager, int x, int y){
-        setX(x);
-        setY(y);
+    public Player(AssetManager assetManager, float x, float y){
+        super(assetManager, x, y);
         setHeight(128);
         setWidth(96);
         setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
@@ -89,8 +90,6 @@ public class Player extends Character {
 
         setHpMax(5);
         setHpCurrent(getHpMax());
-
-        setAssetManager(assetManager);
 
         // Standing assets.
         assetManager.load(AssetList.PLAYER_STAND_UP.toString(), Texture.class);
@@ -241,9 +240,15 @@ public class Player extends Character {
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Enemy) {
             if (!invincible) {
-                setHpCurrent(getHpCurrent() - ((Enemy)otherActor).getAttack());
+                takeDamage(((Enemy)otherActor).getAttack());
                 invincible = true;
-                Timer.schedule(new RemoveInvincibilityTask(this), 5);
+                Timer.schedule(new RemoveInvincibilityTask(this), invincibilityTime);
+            }
+        } else if (otherActor instanceof Projectile) {
+            if (!invincible) {
+                takeDamage(((Projectile)otherActor).getAttack());
+                invincible = true;
+                Timer.schedule(new RemoveInvincibilityTask(this), invincibilityTime);
             }
         }
 

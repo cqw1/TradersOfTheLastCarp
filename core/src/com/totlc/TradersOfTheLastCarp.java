@@ -38,12 +38,16 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		// Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
 		Player player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
-		Spider spider = new Spider(assetManager, 0, 0);
+		Spider spider0 = new Spider(assetManager, 0, 0);
+		Spider spider1 = new Spider(assetManager, 0, 0);
+		Spider spider2 = new Spider(assetManager, 0, 0);
 		Stargazer stargazer = new Stargazer(assetManager, CONFIG_WIDTH / 3, CONFIG_HEIGHT / 3);
 
 		// Initialize input processor.
 		level = new Level01(player, assetManager);
-		level.addActor(spider);
+		level.addActor(spider0);
+		level.addActor(spider1);
+		level.addActor(spider2);
 		level.addActor(stargazer);
 		Gdx.input.setInputProcessor(level);
 	}

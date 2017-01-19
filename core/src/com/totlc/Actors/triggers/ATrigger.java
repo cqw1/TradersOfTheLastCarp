@@ -1,5 +1,6 @@
 package com.totlc.Actors.triggers;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.totlcObject;
 import com.totlc.Actors.traps.ATrap;
@@ -14,6 +15,10 @@ public abstract class ATrigger extends totlcObject {
     private Actor actorThatTriggered;
 
     private List<ATrap> listOfTraps = new ArrayList<ATrap>();
+
+    public ATrigger(AssetManager assetManager, float x, float y) {
+        super(assetManager, x, y);
+    }
 
     public void addTrap(ATrap t) { listOfTraps.add(t); }
 

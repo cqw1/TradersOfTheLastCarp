@@ -2,7 +2,7 @@ package com.totlc;
 
 public enum AssetList {
     SPIDER_IDLE("sprites/spider/spider_idle.atlas"),
-    SPIDER_WALK("sprites/spider/spider.atlas"),
+    SPIDER_WALK("sprites/spider/spider_walk.atlas"),
     STARGAZER_BODY("sprites/stargazer/stargazer_body.atlas"),
     STARGAZER_EYE("sprites/stargazer/stargazer_eye.atlas"),
     STARGAZER_SPIN("sprites/stargazer/stargazer_spin.atlas"),
@@ -22,7 +22,9 @@ public enum AssetList {
     WHIP_LEFT("sprites/whip/left.atlas"),
     WHIP_RIGHT("sprites/whip/right.atlas"),
     WHIP_DOWN("sprites/whip/front.atlas"),
-    WHIP_UP("sprites/whip/back.atlas");
+    WHIP_UP("sprites/whip/back.atlas"),
+    ARROW_TRAP("traps/arrowTotem0.png"),
+    PROJECTILE_ARROW("traps/arrow.png");
 
 
     private String pathname;
