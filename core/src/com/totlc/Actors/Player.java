@@ -176,7 +176,7 @@ public class Player extends Character {
             if (this.whipping) {
                 if (this.getIsFacing().isFacingDown()) {
                     batch.draw(whippingDownAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
-                    batch.draw(whipDownAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                    batch.draw(whipDownAnimation.getKeyFrame(whippingCounter, false), getX(), (float)(getY() - 0.9375 * getHeight()));
                 } else if (this.getIsFacing().isFacingUp()) {
                     batch.draw(whippingUpAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
                     batch.draw(whipUpAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
@@ -185,7 +185,7 @@ public class Player extends Character {
                     batch.draw(whipRightAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
                 } else if (this.getIsFacing().isFacingLeft()) {
                     batch.draw(whippingLeftAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
-                    batch.draw(whipLeftAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                    batch.draw(whipLeftAnimation.getKeyFrame(whippingCounter, false), (float)(getX() - 1.35 * getWidth()), getY());
                 }
 
             } else if (this.isMovingRight()) {
