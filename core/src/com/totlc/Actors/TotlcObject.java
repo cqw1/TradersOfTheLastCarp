@@ -14,7 +14,7 @@ import com.totlc.TradersOfTheLastCarp;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public abstract class totlcObject extends Actor {
+public abstract class TotlcObject extends Actor {
 
     private float speed;
 
@@ -49,7 +49,7 @@ public abstract class totlcObject extends Actor {
     private boolean isMovingUp = false;
     private boolean isMovingDown = false;
 
-    public totlcObject(AssetManager assetManager, float x, float y) {
+    public TotlcObject(AssetManager assetManager, float x, float y) {
         setX(x);
         setY(y);
         setAssetManager(assetManager);

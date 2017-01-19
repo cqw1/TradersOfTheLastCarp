@@ -3,9 +3,9 @@ package com.totlc.Actors.traps;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.totlcObject;
+import com.totlc.Actors.TotlcObject;
 
-public abstract class ATrap extends totlcObject {
+public abstract class ATrap extends TotlcObject {
     private double delay;
 
     public ATrap(AssetManager assetManager, float x, float y) {

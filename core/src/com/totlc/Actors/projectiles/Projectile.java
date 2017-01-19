@@ -1,9 +1,9 @@
 package com.totlc.Actors.projectiles;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.totlc.Actors.totlcObject;
+import com.totlc.Actors.TotlcObject;
 
-public abstract class Projectile extends totlcObject {
+public abstract class Projectile extends TotlcObject {
 
     private int attack = 1;
 

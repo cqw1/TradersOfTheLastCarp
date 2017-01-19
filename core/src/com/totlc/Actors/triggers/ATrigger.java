@@ -2,13 +2,13 @@ package com.totlc.Actors.triggers;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.totlcObject;
+import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.traps.ATrap;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ATrigger extends totlcObject {
+public abstract class ATrigger extends TotlcObject {
 
     private boolean triggered = false;
 

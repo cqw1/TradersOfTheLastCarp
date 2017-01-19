@@ -2,14 +2,13 @@ package com.totlc.levels;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.totlc.Actors.totlcObject;
+import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
+import com.totlc.Actors.weapons.Whip;
 import com.totlc.Directionality;
 import com.totlc.audio.MusicPlayer;
 
@@ -19,10 +18,15 @@ public abstract class ALevel extends Stage {
 
     private Player player;
     private MusicPlayer musicPlayer;
+    private AssetManager assetManager;
+    private Whip whip;
 
     public ALevel(Player player, AssetManager assetManager){
         setPlayer(player);
         addActor(player);
+        this.assetManager = assetManager;
+
+        whip = new Whip(assetManager, player);
 
         setMusicPlayer(new MusicPlayer());
     }
@@ -40,19 +44,19 @@ public abstract class ALevel extends Stage {
         for (int aCounter = 0; aCounter < allActors.size; aCounter++) {
             //Ignore if not an interactable object or being removed
             Actor a = allActors.get(aCounter);
-            if (!(a instanceof totlcObject) || toBeRemoved.contains(a)) {
+            if (!(a instanceof TotlcObject) || toBeRemoved.contains(a)) {
                 continue;
             }
 
-            totlcObject objA = (totlcObject) a;
+            TotlcObject objA = (TotlcObject) a;
             for (int bCounter = aCounter; bCounter < allActors.size; bCounter++) {
                 //Ignore again, except add that we ignore references to ourselves, or objects being removed
                 Actor b = allActors.get(bCounter);
-                if (!(b instanceof totlcObject) || a == b) { // || toBeRemoved.contains(b)
+                if (!(b instanceof TotlcObject) || a == b) { // || toBeRemoved.contains(b)
                     continue;
                 }
 
-                totlcObject objB = (totlcObject) b;
+                TotlcObject objB = (TotlcObject) b;
                 if (Intersector.overlaps(objA.getHitBox(), objB.getHitBox())) {
                     if (objA.collidesWith(objB)) {
                         toBeRemoved.add(objA);
@@ -97,7 +101,9 @@ public abstract class ALevel extends Stage {
         }
 
         if (keycode == Input.Keys.SPACE) {
-            player.setWhipping(true);
+            this.addActor(whip);
+            player.setWeapon(whip);
+            player.setAttacking(true);
             return true;
         }
 

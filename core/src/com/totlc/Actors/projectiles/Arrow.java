@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.enemies.Enemy;
-import com.totlc.Actors.totlcObject;
 import com.totlc.AssetList;
 
 public class Arrow extends Projectile {

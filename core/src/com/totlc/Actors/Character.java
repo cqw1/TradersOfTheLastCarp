@@ -1,13 +1,13 @@
 package com.totlc.Actors;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public abstract class Character extends totlcObject {
+public abstract class Character extends TotlcObject {
 
     // Player health.
     private int hpMAX;
     private int hpCURRENT;
+    private boolean attacking = false;
 
     public Character(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
@@ -32,6 +32,14 @@ public abstract class Character extends totlcObject {
     }
 
     public void takeDamage(int damage) { hpCURRENT = hpCURRENT - damage; }
+
+    public void setAttacking(boolean attacking) {
+        this.attacking = attacking;
+    }
+
+    public boolean getAttacking() {
+        return attacking;
+    }
 
 
 }
