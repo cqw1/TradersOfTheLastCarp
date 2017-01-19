@@ -100,6 +100,7 @@ public abstract class ALevel extends Stage {
             player.setWhipping(true);
             return true;
         }
+
         return false;
     }
 

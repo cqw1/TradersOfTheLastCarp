@@ -70,7 +70,8 @@ public class Player extends Character {
 
     private boolean invincible = false;
     private boolean whipping = false;
-    private double whippingAnimationLength = 0.5;
+    private float whippingAnimationLength = 0.5f;
+    private float whippingCounter = 0;
     private static float invincibilityTime = 2;
 
     public Player(AssetManager assetManager, float x, float y){
@@ -172,7 +173,22 @@ public class Player extends Character {
         }
 
         if (assetsLoaded()) {
-            if (this.isMovingRight()) {
+            if (this.whipping) {
+                if (this.getIsFacing().isFacingDown()) {
+                    batch.draw(whippingDownAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                    batch.draw(whipDownAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                } else if (this.getIsFacing().isFacingUp()) {
+                    batch.draw(whippingUpAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                    batch.draw(whipUpAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                } else if (this.getIsFacing().isFacingRight()) {
+                    batch.draw(whippingRightAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                    batch.draw(whipRightAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                } else if (this.getIsFacing().isFacingLeft()) {
+                    batch.draw(whippingLeftAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                    batch.draw(whipLeftAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                }
+
+            } else if (this.isMovingRight()) {
                 batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
 
             } else if (this.isMovingLeft()) {
@@ -205,6 +221,17 @@ public class Player extends Character {
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
+
+        if (whipping) {
+            whippingCounter += deltaTime;
+
+            if (whippingCounter > whippingAnimationLength) {
+                whippingCounter = 0;
+                whipping = false;
+            }
+            // Returns so we don't move while we're whipping.
+            return;
+        }
 
         Point2D newAcc = getAcc();
         if (this.isMovingDown()) {
