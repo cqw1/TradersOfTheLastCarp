@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.totlc.Actors.totlcObject;
 import com.totlc.Actors.Player;
+import com.totlc.Directionality;
 import com.totlc.audio.MusicPlayer;
 
 import java.util.HashSet;
@@ -76,18 +77,22 @@ public abstract class ALevel extends Stage {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.LEFT){
             player.setMovingLeft(true);
+            player.setIsFacing(Directionality.LEFT);
             return true;
         }
         if (keycode == Input.Keys.RIGHT){
             player.setMovingRight(true);
+            player.setIsFacing(Directionality.RIGHT);
             return true;
         }
         if (keycode == Input.Keys.UP){
             player.setMovingUp(true);
+            player.setIsFacing(Directionality.UP);
             return true;
         }
         if (keycode == Input.Keys.DOWN){
             player.setMovingDown(true);
+            player.setIsFacing(Directionality.DOWN);
             return true;
         }
         return false;

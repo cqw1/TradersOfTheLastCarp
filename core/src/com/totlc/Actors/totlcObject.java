@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 
 import java.awt.*;
@@ -38,7 +39,9 @@ public abstract class totlcObject extends Actor {
 
     private float knockback = 25;
 
+
     // Orientation and movement flags.
+    private Directionality isFacing;
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
 
     public abstract void draw(Batch batch, float alpha);
@@ -78,6 +81,14 @@ public abstract class totlcObject extends Actor {
 
     public void setMovingDown(boolean movingDown) {
         isMovingDown = movingDown;
+    }
+
+    public Directionality getIsFacing() {
+        return isFacing;
+    }
+
+    public void setIsFacing(Directionality isFacing) {
+        this.isFacing = isFacing;
     }
 
     public void moveRel(float x, float y) {
