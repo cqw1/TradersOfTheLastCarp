@@ -1,5 +1,5 @@
 
-whip_right.png
+right.png
 size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest

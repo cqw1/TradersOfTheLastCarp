@@ -1,9 +1,13 @@
 package com.totlc;
 
 public enum Directionality {
-    LEFT(0), UP(1), RIGHT(2), DOWN(3);
+    LEFT(0),
+    UP(1),
+    RIGHT(2),
+    DOWN(3);
 
     private int direction;
+
     Directionality(int direction) {
         this.direction = direction;
     }

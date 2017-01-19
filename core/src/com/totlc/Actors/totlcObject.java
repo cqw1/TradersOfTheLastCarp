@@ -43,8 +43,11 @@ public abstract class totlcObject extends Actor {
 
 
     // Orientation and movement flags.
-    private Directionality isFacing;
-    private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
+    private Directionality isFacing = Directionality.DOWN;
+    private boolean isMovingLeft = false;
+    private boolean isMovingRight = false;
+    private boolean isMovingUp = false;
+    private boolean isMovingDown = false;
 
     public totlcObject(AssetManager assetManager, float x, float y) {
         setX(x);

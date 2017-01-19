@@ -127,9 +127,9 @@ public class Player extends Character {
 
             // Standing
             standDownTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
-            standUpTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
-            standLeftTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
-            standRightTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
+            standUpTexture = assetManager.get(AssetList.PLAYER_STAND_UP.toString());
+            standLeftTexture = assetManager.get(AssetList.PLAYER_STAND_LEFT.toString());
+            standRightTexture = assetManager.get(AssetList.PLAYER_STAND_RIGHT.toString());
 
             // Walking
             walkDownTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_DOWN.toString());
@@ -146,34 +146,32 @@ public class Player extends Character {
 
             // Whipping
             whippingDownTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_DOWN.toString());
-            System.out.println("whippingDownTextureAtlas size: " + whippingDownTextureAtlas.getRegions().size);
-            whippingDownAnimation = new Animation<TextureRegion>(1/12f, whippingDownTextureAtlas.getRegions());
+            whippingDownAnimation = new Animation<TextureRegion>((float) (1.0/whippingDownTextureAtlas.getRegions().size * whippingAnimationLength), whippingDownTextureAtlas.getRegions());
 
             whippingUpTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_UP.toString());
-            whippingUpAnimation = new Animation<TextureRegion>(1/12f, whippingUpTextureAtlas.getRegions());
+            whippingUpAnimation = new Animation<TextureRegion>((float) (1.0/whippingUpTextureAtlas.getRegions().size * whippingAnimationLength), whippingUpTextureAtlas.getRegions());
 
             whippingLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_LEFT.toString());
-            whippingLeftAnimation = new Animation<TextureRegion>(1/12f, whippingLeftTextureAtlas.getRegions());
+            whippingLeftAnimation = new Animation<TextureRegion>((float) (1.0/whippingLeftTextureAtlas.getRegions().size * whippingAnimationLength), whippingLeftTextureAtlas.getRegions());
 
             whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
-            whippingRightAnimation = new Animation<TextureRegion>(1/12f, whippingRightTextureAtlas.getRegions());
+            whippingRightAnimation = new Animation<TextureRegion>((float) (1.0/whippingRightTextureAtlas.getRegions().size * whippingAnimationLength), whippingRightTextureAtlas.getRegions());
 
             // Whip
             whipDownTextureAtlas = assetManager.get(AssetList.WHIP_DOWN.toString());
-            whipDownAnimation = new Animation<TextureRegion>(1/12f, whipDownTextureAtlas.getRegions());
+            whipDownAnimation = new Animation<TextureRegion>((float) (1.0/whipDownTextureAtlas.getRegions().size * whippingAnimationLength), whipDownTextureAtlas.getRegions());
 
             whipUpTextureAtlas = assetManager.get(AssetList.WHIP_UP.toString());
-            whipUpAnimation = new Animation<TextureRegion>(1/12f, whipUpTextureAtlas.getRegions());
+            whipUpAnimation = new Animation<TextureRegion>((float) (1.0/whipUpTextureAtlas.getRegions().size * whippingAnimationLength), whipUpTextureAtlas.getRegions());
 
             whipLeftTextureAtlas = assetManager.get(AssetList.WHIP_LEFT.toString());
-            whipLeftAnimation = new Animation<TextureRegion>(1/12f, whipLeftTextureAtlas.getRegions());
+            whipLeftAnimation = new Animation<TextureRegion>((float) (1.0/whipLeftTextureAtlas.getRegions().size * whippingAnimationLength), whipLeftTextureAtlas.getRegions());
 
             whipRightTextureAtlas = assetManager.get(AssetList.WHIP_RIGHT.toString());
-            whipRightAnimation = new Animation<TextureRegion>(1/12f, whipRightTextureAtlas.getRegions());
+            whipRightAnimation = new Animation<TextureRegion>((float) (1.0/whipRightTextureAtlas.getRegions().size * whippingAnimationLength), whipRightTextureAtlas.getRegions());
         }
 
         if (assetsLoaded()) {
-
             if (this.isMovingRight()) {
                 batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
 
@@ -188,6 +186,16 @@ public class Player extends Character {
             } else if (this.isMovingUp()) {
                 batch.draw(walkUpAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
 
+            } else if (this.getIsFacing() != null) {
+                if (this.getIsFacing().isFacingDown()) {
+                    batch.draw(standDownTexture, getX(), getY());
+                } else if (this.getIsFacing().isFacingLeft()) {
+                    batch.draw(standLeftTexture, getX(), getY());
+                } else if (this.getIsFacing().isFacingRight()) {
+                    batch.draw(standRightTexture, getX(), getY());
+                } else if (this.getIsFacing().isFacingUp()) {
+                    batch.draw(standUpTexture, getX(), getY());
+                }
             } else {
                 batch.draw(standDownTexture, getX(), getY());
             }
