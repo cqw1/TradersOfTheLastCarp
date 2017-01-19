@@ -38,9 +38,6 @@ public class Player extends Character {
     private TextureAtlas walkRightTextureAtlas;
     private Animation<TextureRegion> walkRightAnimation;
 
-    private boolean assetsRetrieved = false;
-    private int animationFrames = 1;
-
     public Player(AssetManager assetManager, int x, int y){
         setX(x);
         setY(y);
@@ -79,10 +76,10 @@ public class Player extends Character {
 
     public void draw(Batch batch, float delta) {
         AssetManager assetManager = getAssetManager();
-        if (assetManager.update() && !assetsRetrieved) {
+        if (assetManager.update() && !assetsLoaded()) {
             // Done loading. Instantiate all assets
 
-            assetsRetrieved = true;
+            setAssetsLoaded(true);
 
             standDownTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
             standUpTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
@@ -91,23 +88,18 @@ public class Player extends Character {
 
             walkDownTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_DOWN.toString());
             walkDownAnimation = new Animation<TextureRegion>(1 / 12f, walkDownTextureAtlas.getRegions());
-            walkDownAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
             walkUpTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_UP.toString());
             walkUpAnimation = new Animation<TextureRegion>(1 / 12f, walkUpTextureAtlas.getRegions());
-            walkUpAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
             walkLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_LEFT.toString());
             walkLeftAnimation = new Animation<TextureRegion>(1 / 12f, walkLeftTextureAtlas.getRegions());
-            walkLeftAnimation.setPlayMode(Animation.PlayMode.LOOP);
-
 
             walkRightTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_RIGHT.toString());
             walkRightAnimation = new Animation<TextureRegion>(1 / 12f, walkRightTextureAtlas.getRegions());
-            walkRightAnimation.setPlayMode(Animation.PlayMode.LOOP);
         }
 
-        if (assetsRetrieved) {
+        if (assetsLoaded()) {
 
             if (this.isMovingRight()) {
                 batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());

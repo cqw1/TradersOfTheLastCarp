@@ -1,6 +1,7 @@
 package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,10 +14,6 @@ import com.totlc.levels.ALevel;
 import java.awt.geom.Point2D;
 
 public class Spider extends Enemy {
-
-    // Asset and animation constants.
-    private TextureAtlas stand_texture_0, walk_texture_0;
-    private Animation<TextureRegion> stand_animation_0, walk_animation_0;
 
     // Stat constants.
     private static int id = 0;
@@ -33,13 +30,16 @@ public class Spider extends Enemy {
     private int wait_cycles = 50;
     private int counter = 0;
 
+    // Asset and animation constants.
+    private TextureAtlas idleTextureAtlas;
+    private Animation<TextureRegion> idleAnimation;
+
+    private TextureAtlas walkTextureAtlas;
+    private Animation<TextureRegion> walkAnimation;
 
     public Spider(AssetManager assetManager, int x, int y){
         super(assetManager, x, y);
-        this.walk_texture_0 = getAssetManager().get(AssetList.SPIDER_WALK.toString());
-        this.stand_texture_0 = getAssetManager().get(AssetList.SPIDER_IDLE.toString());
-        this.stand_animation_0 = new Animation<TextureRegion>(1/2f, this.stand_texture_0.getRegions());
-        this.walk_animation_0 = new Animation<TextureRegion>(1/12f, this.walk_texture_0.getRegions());
+
         setHpMax(hp);
         setHpCurrent(getHpMax());
         setAttack(atk);
@@ -49,6 +49,9 @@ public class Spider extends Enemy {
         setFriction(friction);
         setMaxVel(maxVelocity);
         setKnockback(knockback);
+
+        assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
     }
 
     @Override
@@ -85,10 +88,25 @@ public class Spider extends Enemy {
 
     @Override
     public void draw(Batch batch, float alpha){
-        if (skitter){
-            batch.draw(walk_animation_0.getKeyFrame(getAnimationTime(), true), getX(), getY());
-        } else{
-            batch.draw(stand_animation_0.getKeyFrame(getAnimationTime(), true), getX(), getY());
+        AssetManager assetManager = getAssetManager();
+        if (assetManager.update() && !assetsLoaded()) {
+            // Done loading. Instantiate all assets
+
+            setAssetsLoaded(true);
+
+            idleTextureAtlas = assetManager.get(AssetList.SPIDER_IDLE.toString());
+            idleAnimation = new Animation<TextureRegion>(1 / 12f, idleTextureAtlas.getRegions());
+
+            walkTextureAtlas = assetManager.get(AssetList.SPIDER_WALK.toString());
+            walkAnimation = new Animation<TextureRegion>(1 / 12f, walkTextureAtlas.getRegions());
+        }
+
+        if (assetsLoaded()) {
+            if (skitter){
+                batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+            } else{
+                batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+            }
         }
     }
 

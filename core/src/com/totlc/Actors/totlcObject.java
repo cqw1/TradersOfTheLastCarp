@@ -27,6 +27,8 @@ public abstract class totlcObject extends Actor {
     String asset;
     float animationTime = 0;
 
+    private boolean assetsLoaded = false;
+
     //Hit box related fields
     private Rectangle hitBox;
     private float HEIGHT;
@@ -220,5 +222,13 @@ public abstract class totlcObject extends Actor {
         if (getY() + HEIGHT > TradersOfTheLastCarp.CONFIG_HEIGHT) {
             moveAbs(getX(), TradersOfTheLastCarp.CONFIG_HEIGHT - HEIGHT);
         }
+    }
+
+    public boolean assetsLoaded() {
+        return assetsLoaded;
+    }
+
+    public void setAssetsLoaded(boolean assetsLoaded) {
+        this.assetsLoaded = assetsLoaded;
     }
 }

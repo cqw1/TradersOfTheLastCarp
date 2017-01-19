@@ -32,17 +32,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
-		//assetManager.load("dummy_new/dummy_new.atlas", TextureAtlas.class);
-
-        //assetManager.load("dummy/0.png", Texture.class);
-		//assetManager.load("dummy/dummy.atlas", TextureAtlas.class);
-		assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.STARGAZER_BODY.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.STARGAZER_EYE.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.STARGAZER_SPIN.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
-
 		assetManager.load("sounds/trap_activation.mp3", Sound.class);
 
 		assetManager.finishLoading();

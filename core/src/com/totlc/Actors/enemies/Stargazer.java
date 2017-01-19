@@ -14,10 +14,6 @@ import java.awt.geom.Point2D;
 
 public class Stargazer extends Enemy {
 
-    // Asset and animation constants.
-    private TextureAtlas body_texture_0, eye_texture_0, spin_texture_0, gaze_texture_0;
-    private Animation<TextureRegion> body_animation_0, eye_animation_0, spin_animation_0, gaze_animation_0, gaze_animation_1;
-
     // Stat constants.
     private static int id = 1;
     private static int hp = 3;
@@ -35,18 +31,21 @@ public class Stargazer extends Enemy {
     private float spin_chance = .005f;
     private int counter = 0;
 
+    // Asset and animation constants.
+    private TextureAtlas bodyTextureAtlas;
+    private TextureAtlas eyeTextureAtlas;
+    private TextureAtlas spinTextureAtlas;
+    private TextureAtlas gazeTextureAtlas;
+
+    private Animation<TextureRegion> bodyAnimation;
+    private Animation<TextureRegion> eyeAnimation;
+    private Animation<TextureRegion> spinAnimation;
+    private Animation<TextureRegion> gazeAnimation;
+    private Animation<TextureRegion> gazeReverseAnimation;
+
+
     public Stargazer(AssetManager assetManager, int x, int y) {
         super(assetManager, x, y);
-        this.body_texture_0 = getAssetManager().get(AssetList.STARGAZER_BODY.toString());
-        this.eye_texture_0 = getAssetManager().get(AssetList.STARGAZER_EYE.toString());
-        this.spin_texture_0 = getAssetManager().get(AssetList.STARGAZER_SPIN.toString());
-        this.gaze_texture_0 = getAssetManager().get(AssetList.STARGAZER_GAZE.toString());
-        this.body_animation_0 = new Animation<TextureRegion>(1/16f, this.body_texture_0.getRegions());
-        this.eye_animation_0 = new Animation<TextureRegion>(1/12f, this.eye_texture_0.getRegions());
-        this.spin_animation_0 = new Animation<TextureRegion>(1/24f, this.spin_texture_0.getRegions());
-        this.gaze_animation_0 = new Animation<TextureRegion>(1/24f, this.gaze_texture_0.getRegions());
-        this.gaze_animation_1 = new Animation<TextureRegion>(1/24f, this.gaze_texture_0.getRegions());
-        this.gaze_animation_1.setPlayMode(Animation.PlayMode.REVERSED);
 
         setHpMax(hp);
         setHpCurrent(getHpMax());
@@ -56,6 +55,11 @@ public class Stargazer extends Enemy {
         setFriction(friction);
         setMaxVel(maxVelocity);
         setKnockback(knockback);
+
+        assetManager.load(AssetList.STARGAZER_BODY.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.STARGAZER_EYE.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.STARGAZER_SPIN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
     }
 
     @Override
@@ -103,16 +107,38 @@ public class Stargazer extends Enemy {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        if (!spin){
-            batch.draw(body_animation_0.getKeyFrame(getAnimationTime(), true), getX(), getY());
-            if (wind_down){
-                batch.draw(gaze_animation_1.getKeyFrame(getAnimationTime(), false), getX(), getY());
-            } else {
-                batch.draw(eye_animation_0.getKeyFrame(getAnimationTime(), true), getX(), getY());
+        if (getAssetManager().update() && !assetsLoaded()) {
+            // Done loading. Instantiate all assets
+
+            setAssetsLoaded(true);
+
+            bodyTextureAtlas = getAssetManager().get(AssetList.STARGAZER_BODY.toString());
+            bodyAnimation = new Animation<TextureRegion>(1/16f, this.bodyTextureAtlas.getRegions());
+
+            eyeTextureAtlas = getAssetManager().get(AssetList.STARGAZER_EYE.toString());
+            eyeAnimation = new Animation<TextureRegion>(1/12f, this.eyeTextureAtlas.getRegions());
+
+            spinTextureAtlas = getAssetManager().get(AssetList.STARGAZER_SPIN.toString());
+            spinAnimation = new Animation<TextureRegion>(1/24f, this.spinTextureAtlas.getRegions());
+
+            gazeTextureAtlas = getAssetManager().get(AssetList.STARGAZER_GAZE.toString());
+            gazeAnimation = new Animation<TextureRegion>(1/24f, this.gazeTextureAtlas.getRegions());
+            gazeReverseAnimation = new Animation<TextureRegion>(1/24f, this.gazeTextureAtlas.getRegions());
+            gazeReverseAnimation.setPlayMode(Animation.PlayMode.REVERSED);
+        }
+
+        if (assetsLoaded()) {
+            if (!spin){
+                batch.draw(bodyAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+                if (wind_down){
+                    batch.draw(gazeReverseAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
+                } else {
+                    batch.draw(eyeAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+                }
+            } else{
+                batch.draw(spinAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+                batch.draw(gazeAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
             }
-        } else{
-            batch.draw(spin_animation_0.getKeyFrame(getAnimationTime(), true), getX(), getY());
-            batch.draw(gaze_animation_0.getKeyFrame(getAnimationTime(), false), getX(), getY());
         }
     }
 
