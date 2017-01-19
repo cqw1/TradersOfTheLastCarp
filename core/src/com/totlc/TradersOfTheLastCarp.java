@@ -18,8 +18,8 @@ import com.totlc.levels.Level01;
 
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
-	public static int CONFIG_WIDTH = 1024;
-	public static int CONFIG_HEIGHT = 512;
+	public static int CONFIG_WIDTH = 2048;
+	public static int CONFIG_HEIGHT = 1024;
 
 	public AssetManager assetManager = new AssetManager();
 

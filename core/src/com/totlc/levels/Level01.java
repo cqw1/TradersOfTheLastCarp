@@ -13,7 +13,7 @@ public class Level01 extends ALevel{
 
     public Level01(Player player, AssetManager assetManager) {
         super(player, assetManager);
-        playSong("test1");
+        playSong("test0");
 
         ButtonTrigger testButton = new ButtonTrigger(assetManager, "dummy/0.png", TradersOfTheLastCarp.CONFIG_WIDTH/2, TradersOfTheLastCarp.CONFIG_HEIGHT/2);
         ArrowTrap arrowTrap = new ArrowTrap(assetManager, 700, 300);
