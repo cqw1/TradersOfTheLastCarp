@@ -16,10 +16,11 @@ public class Arrow extends Projectile {
     public Arrow(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
-        setWidth(32);
+        setWidth(128);
         setHeight(32);
         setHitBox(new Rectangle(getX(), getY(), getWidth(), getHeight()));
         setAttack(1);
+        setScaleFactor(0.75f);
 
         assetManager.load(AssetList.PROJECTILE_ARROW.toString(), Texture.class);
         setTexture(new Texture(Gdx.files.internal(AssetList.PROJECTILE_ARROW.toString())));
@@ -28,7 +29,7 @@ public class Arrow extends Projectile {
     @Override
     public void act(float delta) {
         moveUnit(delta);
-
+        System.out.println("VEL " + getVel() + "; " + getVelocityAngle());
         if (isOutOfBounds()) {
             remove();
         }
@@ -37,7 +38,7 @@ public class Arrow extends Projectile {
     @Override
     public void draw(Batch batch, float alpha) {
         if (getAssetManager().update()) {
-            batch.draw(getTexture(), getX(), getY());
+            batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth() * getScaleFactor(), getHeight() * getScaleFactor(), 1f, 1f, getVelocityAngle(), 0, 0, 128, 32, false, false);
         }
     }
 
