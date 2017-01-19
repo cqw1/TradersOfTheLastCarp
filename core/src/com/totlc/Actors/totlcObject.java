@@ -46,6 +46,12 @@ public abstract class totlcObject extends Actor {
     private Directionality isFacing;
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
 
+    public totlcObject(AssetManager assetManager, float x, float y) {
+        setX(x);
+        setY(y);
+        setAssetManager(assetManager);
+    }
+
     public abstract void draw(Batch batch, float alpha);
 
     // Must return true if removing oneself, false otherwise.
@@ -178,6 +184,8 @@ public abstract class totlcObject extends Actor {
 
     public float getHeight() { return HEIGHT; }
 
+    public Point2D getCenter() { return new Point2D.Double(getX() + getWidth() / 2, getY() + getHeight() / 2);}
+
     public void setSpeed(float s) { speed = s; }
 
     public float getSpeed() { return speed; }
@@ -222,6 +230,11 @@ public abstract class totlcObject extends Actor {
         if (getY() + HEIGHT > TradersOfTheLastCarp.CONFIG_HEIGHT) {
             moveAbs(getX(), TradersOfTheLastCarp.CONFIG_HEIGHT - HEIGHT);
         }
+    }
+
+    public boolean isOutOfBounds() {
+        return getX() < 0 || getX() + WIDTH > TradersOfTheLastCarp.CONFIG_WIDTH ||
+                getY() < 0 || getY() + HEIGHT > TradersOfTheLastCarp.CONFIG_HEIGHT;
     }
 
     public boolean assetsLoaded() {

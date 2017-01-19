@@ -149,7 +149,7 @@ public class Stargazer extends Enemy {
 
     @Override
     public boolean collidesWith(Actor otherActor) {
-        return false;
+        return super.collidesWith(otherActor);
     }
 
     @Override

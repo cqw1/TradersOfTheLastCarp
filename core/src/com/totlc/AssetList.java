@@ -14,7 +14,9 @@ public enum AssetList {
     PLAYER_WALK_LEFT("dummy/walk/left.atlas"),
     PLAYER_WALK_RIGHT("dummy/walk/right.atlas"),
     PLAYER_WALK_DOWN("dummy/walk/front.atlas"),
-    PLAYER_WALK_UP("dummy/walk/back.atlas");
+    PLAYER_WALK_UP("dummy/walk/back.atlas"),
+    ARROW_TRAP("traps/arrowTotem0.png"),
+    PROJECTILE_ARROW("traps/arrow.png");
 
 
     private String pathname;
