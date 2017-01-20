@@ -21,15 +21,15 @@ public abstract class Projectile extends TotlcObject {
         this.attack = attack;
     }
 
-    public float getVelocityAngle(){
-        double angle = Math.atan2(getVel().getY(), getVel().getX());
-        return (float)Math.toDegrees(angle);
-    }
     public float getScaleFactor() {
         return scaleFactor;
     }
 
     public void setScaleFactor(float scaleFactor) {
         this.scaleFactor = scaleFactor;
+    }
+
+    public void calibrateHitBox() {
+
     }
 }

@@ -57,7 +57,7 @@ public abstract class ALevel extends Stage {
                 }
 
                 TotlcObject objB = (TotlcObject) b;
-                if (Intersector.overlaps(objA.getHitBox(), objB.getHitBox())) {
+                if (Intersector.overlapConvexPolygons(objA.getHitBox(), objB.getHitBox())) {
                     if (objA.collidesWith(objB)) {
                         toBeRemoved.add(objA);
                     }

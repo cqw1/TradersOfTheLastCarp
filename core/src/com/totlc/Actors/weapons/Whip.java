@@ -21,7 +21,9 @@ public class Whip extends AWeapon {
         this.assetManager = assetManager;
         this.player = player;
 
-        setHitBox(new Rectangle(player.getX(), player.getY(), getWidth(), getHeight()));
+        setX(player.getX());
+        setY(player.getY());
+        initHitBox();
 
         setUpAsset(AssetList.WHIP_UP.toString());
         setDownAsset(AssetList.WHIP_DOWN.toString());

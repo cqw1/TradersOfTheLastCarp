@@ -17,7 +17,7 @@ public class Arrow extends Projectile {
 
         setWidth(128);
         setHeight(32);
-        setHitBox(new Rectangle(getX(), getY(), getWidth(), getHeight()));
+        initHitBox();
         setAttack(1);
         setScaleFactor(0.75f);
 
@@ -28,7 +28,6 @@ public class Arrow extends Projectile {
     @Override
     public void act(float delta) {
         moveUnit(delta);
-        System.out.println("VEL " + getVel() + "; " + getVelocityAngle());
         if (isOutOfBounds()) {
             remove();
         }
