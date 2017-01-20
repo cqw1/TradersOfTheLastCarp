@@ -26,8 +26,8 @@ public class ArrowTrap extends ATrap{
     public ArrowTrap(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
-        setHeight(96);
-        setWidth(64);
+        setHeight(192);
+        setWidth(124);
         initHitBox();
 
         assetManager.load(AssetList.ARROW_TRAP.toString(), TextureAtlas.class);

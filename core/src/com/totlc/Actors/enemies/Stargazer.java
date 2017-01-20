@@ -52,10 +52,15 @@ public class Stargazer extends AEnemy {
         setHpCurrent(getHpMax());
         setAttack(atk);
 
-        setWidth(32);
-        setHeight(32);
+        setWidth(48);
+        setHeight(48);
+
+        setFloating(true);
 
         initHitBox();
+        //TODO: Remove after correcting hitboxes
+        getHitBox().translate(40, 40);
+
         setSpeed(speed);
         setFriction(friction);
         setMaxVel(maxVelocity);

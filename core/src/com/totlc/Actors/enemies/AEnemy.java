@@ -15,6 +15,8 @@ public abstract class AEnemy extends Character {
     // Player health.
     private int attack;
 
+    private boolean isFloating = false;
+
     public AEnemy(AssetManager assetManager, int x, int y){
         super(assetManager, x ,y);
     }
@@ -42,6 +44,14 @@ public abstract class AEnemy extends Character {
 
     public void setAttack(int attack) {
         this.attack = attack;
+    }
+
+    public boolean isFloating() {
+        return isFloating;
+    }
+
+    public void setFloating(boolean floating) {
+        isFloating = floating;
     }
 
     public Point2D getTarget(Actor target) {

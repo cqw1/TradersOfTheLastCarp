@@ -1,8 +1,12 @@
 package com.totlc.Actors.triggers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
+import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.traps.ATrap;
 
 import java.util.ArrayList;
@@ -35,6 +39,26 @@ public abstract class ATrigger extends TotlcObject {
     public void setActorThatTriggered(Actor actorThatTriggered) { this.actorThatTriggered = actorThatTriggered; }
 
     public void handleTrigger(boolean b, Actor a) { setTriggered(b); setActorThatTriggered(a);}
+
+    public boolean collidesWith(Actor otherActor) {
+        if (otherActor instanceof Player ||
+                (otherActor instanceof AEnemy &&
+                        !((AEnemy) otherActor).isFloating())) {
+
+            if (!isTriggered()) {
+                Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/trap_activation.mp3"));
+                sound.play(1.0f);
+
+                for (ATrap trap : getListOfTraps()) {
+                    trap.activate();
+                }
+            }
+
+            handleTrigger(true, otherActor);
+        }
+
+        return false;
+    }
 
     public void endCollidesWith(Actor otherActor) {
         if (isTriggered() && otherActor == getActorThatTriggered()) {

@@ -17,8 +17,8 @@ public class Level01 extends ALevel{
         super(player, assetManager);
         playSong("test0");
 
-        ButtonTrigger testButton = new ButtonTrigger(assetManager, "dummy/0.png", TradersOfTheLastCarp.CONFIG_WIDTH/2, TradersOfTheLastCarp.CONFIG_HEIGHT/2);
-        ArrowTrap arrowTrap = new ArrowTrap(assetManager, 700, 300);
+        ButtonTrigger testButton = new ButtonTrigger(assetManager, "dummy/0.png", 400, 300);
+        ArrowTrap arrowTrap = new ArrowTrap(assetManager, 700, 600);
         testButton.addTrap(arrowTrap);
         addActor(testButton);
         addActor(arrowTrap);

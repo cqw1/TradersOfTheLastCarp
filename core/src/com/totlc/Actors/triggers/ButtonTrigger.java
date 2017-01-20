@@ -27,6 +27,7 @@ public class ButtonTrigger extends ATrigger {
         setWidth(32);
         initHitBox();
 
+        getHitBox().translate(48, 48);
         setSpeed(200);
 
         setMovingLeft(false);
@@ -63,21 +64,6 @@ public class ButtonTrigger extends ATrigger {
     }
 
     public boolean collidesWith(Actor otherActor) {
-        if (otherActor instanceof Player ||
-                otherActor instanceof AEnemy) {
-
-            if (!isTriggered()) {
-                Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/trap_activation.mp3"));
-                sound.play(1.0f);
-
-                for (ATrap trap : getListOfTraps()) {
-                    trap.activate();
-                }
-            }
-
-            handleTrigger(true, otherActor);
-        }
-
-        return false;
+        return super.collidesWith(otherActor);
     }
 }
