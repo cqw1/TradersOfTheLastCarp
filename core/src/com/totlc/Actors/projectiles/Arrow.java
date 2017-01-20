@@ -2,11 +2,14 @@ package com.totlc.Actors.projectiles;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
+import com.totlc.Actors.effects.Impact;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.AssetList;
 
@@ -44,6 +47,9 @@ public class Arrow extends Projectile {
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player ||
                 otherActor instanceof AEnemy) {
+            Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/punch1.mp3"));
+            impactSound.play(1.0f);
+            getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
             return true;
         }
 

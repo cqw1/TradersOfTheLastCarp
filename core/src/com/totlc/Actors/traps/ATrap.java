@@ -8,9 +8,12 @@ import com.totlc.Actors.TotlcObject;
 public abstract class ATrap extends TotlcObject {
     private double delay;
 
+    private boolean active;
+
     public ATrap(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
-        this.delay = delay;
+        setDelay(delay);
+        setActive(false);
     }
 
     public void setDelay(double d) { delay = d; }
@@ -32,5 +35,13 @@ public abstract class ATrap extends TotlcObject {
     @Override
     public void endCollidesWith(Actor otherActor) {
 
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
