@@ -6,15 +6,19 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
+import com.badlogic.gdx.math.Polygon;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 
 public abstract class TotlcObject extends Actor {
+
+    /**
+     * IMPORTANT: MAKE SURE TO SET THE WIDTH, HEIGHT, AND CALL initHitBox()
+     */
 
     private float speed;
 
@@ -30,7 +34,7 @@ public abstract class TotlcObject extends Actor {
     private boolean assetsLoaded = false;
 
     //Hit box related fields
-    private Rectangle hitBox;
+    private Polygon hitBox;
     private float HEIGHT;
     private float WIDTH;
 
@@ -105,13 +109,16 @@ public abstract class TotlcObject extends Actor {
     public void moveRel(float x, float y) {
         setX(getX() + x);
         setY(getY() + y);
-        hitBox.setPosition(hitBox.getX() + x, hitBox.getY() + y);
+        hitBox.translate(x, y);
     }
 
     public void moveAbs(float x, float y) {
+        float translateX = getX() - x;
+        float translateY = getY() - y;
+
         setX(x);
         setY(y);
-        hitBox.setPosition(x, y);
+        hitBox.translate(translateX, translateY);
     }
 
     public void updateVelocity(){
@@ -127,9 +134,19 @@ public abstract class TotlcObject extends Actor {
         setVel(new Point2D.Double(newX, newY));
     }
 
-    public Rectangle getHitBox() { return hitBox; }
+    public Polygon getHitBox() { return hitBox; }
 
-    public void setHitBox(Rectangle r) { hitBox = r; }
+    public void setHitBox(Polygon r) { hitBox = r; }
+
+    public void initHitBox() {
+        hitBox = new Polygon(new float[] {
+                getX(), getY(),
+                getX() + getWidth(), getY(),
+                getX(), getY() + getHeight(),
+                getX() + getWidth(), getY() + getHeight()
+                });
+        hitBox.setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
+    }
 
     public float getFriction() {
         return friction;
@@ -192,6 +209,11 @@ public abstract class TotlcObject extends Actor {
     public void setSpeed(float s) { speed = s; }
 
     public float getSpeed() { return speed; }
+
+    public float getVelocityAngle(){
+        double angle = Math.atan2(getVel().getY(), getVel().getX());
+        return (float)Math.toDegrees(angle);
+    }
 
     public AssetManager getAssetManager() { return assetManager; }
 

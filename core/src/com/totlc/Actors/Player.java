@@ -67,7 +67,7 @@ public class Player extends Character {
         super(assetManager, x, y);
         setHeight(128);
         setWidth(96);
-        setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
+        initHitBox();
 
         setSpeed(acc);
 

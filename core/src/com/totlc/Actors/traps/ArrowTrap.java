@@ -19,7 +19,7 @@ public class ArrowTrap extends ATrap{
 
         setHeight(96);
         setWidth(64);
-        setHitBox(new Rectangle(getX(), getY(), getWidth(), getHeight()));
+        initHitBox();
 
         assetManager.load(AssetList.ARROW_TRAP.toString(), Texture.class);
         setTexture(new Texture(Gdx.files.internal(AssetList.ARROW_TRAP.toString())));
@@ -31,12 +31,12 @@ public class ArrowTrap extends ATrap{
         Point2D center = getCenter();
 
         //Left/right-wards arrow
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(-200, 0), getAssetManager(), (float) center.getX(), (float) center.getY()));
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(200, 0), getAssetManager(), (float) center.getX(), (float) center.getY()));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(-500, 0), getAssetManager(), (float) center.getX(), (float) center.getY()));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(500, 0), getAssetManager(), (float) center.getX(), (float) center.getY()));
 
         //Up/down arrow
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, 200), getAssetManager(), (float) center.getX(), (float) center.getY()));
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, -200), getAssetManager(), (float) center.getX(), (float) center.getY()));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, 500), getAssetManager(), (float) center.getX(), (float) center.getY()));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, -500), getAssetManager(), (float) center.getX(), (float) center.getY()));
     }
 
     @Override

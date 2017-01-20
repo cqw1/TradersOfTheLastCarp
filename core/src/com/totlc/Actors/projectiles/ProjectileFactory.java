@@ -20,6 +20,7 @@ public class ProjectileFactory {
 
         //Handle direction
         returnMe.setVel(vel);
+        returnMe.getHitBox().rotate(returnMe.getVelocityAngle());
 
         return returnMe;
     }

@@ -35,6 +35,9 @@ public abstract class AWeapon extends TotlcObject {
     public AWeapon(AssetManager assetManager, Character character, int attack, float attackingAnimationLength) {
         super(assetManager, character.getX(), character.getY());
 
+        setWidth(24);
+        setHeight(48);
+
         this.assetManager = assetManager;
         this.character = character;
         this.attack = attack;

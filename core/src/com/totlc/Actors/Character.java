@@ -4,6 +4,10 @@ import com.badlogic.gdx.assets.AssetManager;
 
 public abstract class Character extends TotlcObject {
 
+    /**
+     * IMPORTANT: MAKE SURE TO SET THE HEALTH OF THE CREATED OBJECT
+     */
+
     // Player health.
     private int hpMAX;
     private int hpCURRENT;

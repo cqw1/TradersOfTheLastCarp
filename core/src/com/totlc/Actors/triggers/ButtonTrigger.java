@@ -18,7 +18,7 @@ public class ButtonTrigger extends ATrigger {
         super(assetManager, x, y);
         setHeight(32);
         setWidth(32);
-        setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
+        initHitBox();
 
         setSpeed(200);
 

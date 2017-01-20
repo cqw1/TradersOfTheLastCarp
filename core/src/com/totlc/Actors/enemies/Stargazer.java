@@ -51,7 +51,11 @@ public class Stargazer extends AEnemy {
         setHpMax(hp);
         setHpCurrent(getHpMax());
         setAttack(atk);
-        setHitBox(new Rectangle(x + 40, y + 16, 42, 16));
+
+        setWidth(32);
+        setHeight(32);
+
+        initHitBox();
         setSpeed(speed);
         setFriction(friction);
         setMaxVel(maxVelocity);
