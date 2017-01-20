@@ -44,6 +44,7 @@ public abstract class ALevel extends Stage {
         for (int aCounter = 0; aCounter < allActors.size; aCounter++) {
             //Ignore if not an interactable object or being removed
             Actor a = allActors.get(aCounter);
+            System.out.println(a.getClass());
             if (!(a instanceof TotlcObject) || toBeRemoved.contains(a)) {
                 continue;
             }

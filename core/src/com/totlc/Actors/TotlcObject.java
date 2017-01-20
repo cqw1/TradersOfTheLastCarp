@@ -113,8 +113,9 @@ public abstract class TotlcObject extends Actor {
     }
 
     public void moveAbs(float x, float y) {
-        float translateX = getX() - x;
-        float translateY = getY() - y;
+        float translateX = x - getX();
+        float translateY = y - getY();
+
 
         setX(x);
         setY(y);
@@ -204,7 +205,7 @@ public abstract class TotlcObject extends Actor {
 
     public float getHeight() { return HEIGHT; }
 
-    public Point2D getCenter() { return new Point2D.Double(getX() + getWidth() / 2, getY() + getHeight() / 2);}
+    public Point2D getCenter() { return new Point2D.Float(getX() + getWidth() / 2, getY() + getHeight() / 2);}
 
     public void setSpeed(float s) { speed = s; }
 

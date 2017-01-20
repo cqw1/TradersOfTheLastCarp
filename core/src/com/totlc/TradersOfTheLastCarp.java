@@ -3,12 +3,17 @@ package com.totlc;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Array;
 import com.totlc.Actors.Player;
+import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.UI.LifeGauge;
 import com.totlc.Actors.enemies.Spider;
 import com.totlc.Actors.enemies.Stargazer;
@@ -16,10 +21,13 @@ import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.ALevel;
 import com.totlc.levels.Level01;
 
+import java.util.Arrays;
+
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 2048;
 	public static int CONFIG_HEIGHT = 1024;
+	private boolean drawHitboxes = true;
 
 	public AssetManager assetManager = new AssetManager();
 
@@ -72,6 +80,27 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera.update();
 		level.act(Gdx.graphics.getDeltaTime());
 		level.draw();
+
+
+		if (drawHitboxes) {
+			ShapeRenderer shapeRenderer = new ShapeRenderer();
+			shapeRenderer.setColor(Color.RED);
+			shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+			Array<Actor> actors = level.getActors();
+			for (Actor a : actors) {
+				if (a instanceof TotlcObject) {
+					System.out.println("instanceof TotlcObject");
+					System.out.println("class: " + a.getClass());
+					System.out.println("hitbox: " + ((TotlcObject)a).getHitBox());
+					System.out.println("transformed vertices: " + Arrays.toString(((TotlcObject)a).getHitBox().getTransformedVertices()));
+//				System.out.println("vertices: " + Arrays.toString(((TotlcObject)a).getHitBox().getVertices()));
+					shapeRenderer.polygon(((TotlcObject)a).getHitBox().getTransformedVertices());
+//				shapeRenderer.polygon(((TotlcObject)a).getHitBox().getVertices());
+				}
+			}
+			shapeRenderer.end();
+
+		}
 	}
 	
 	@Override

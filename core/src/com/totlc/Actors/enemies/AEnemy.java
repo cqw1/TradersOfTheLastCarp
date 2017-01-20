@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.Actors.weapons.AWeapon;
+import com.totlc.Actors.weapons.Whip;
 
 import java.awt.geom.Point2D;
 
@@ -19,12 +20,14 @@ public abstract class AEnemy extends Character {
     }
 
     public boolean collidesWith(Actor otherActor) {
-        System.out.println("colllidesWith detected");
         if (otherActor instanceof Projectile) {
-            System.out.println("Projectile");
+            System.out.println("collidesWith Projectile");
             takeDamage(((Projectile)otherActor).getAttack());
         } else if (otherActor instanceof AWeapon) {
-            System.out.println("AWeapon");
+            System.out.println("collidesWith AWeapon");
+            takeDamage(((AWeapon)otherActor).getAttack());
+        } else if (otherActor instanceof Whip) {
+            System.out.println("collidesWith Whip");
             takeDamage(((AWeapon)otherActor).getAttack());
         }
 
