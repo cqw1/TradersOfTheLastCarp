@@ -3,7 +3,10 @@ package com.totlc.Actors.traps;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.projectiles.ProjEnum;
@@ -14,6 +17,12 @@ import java.awt.geom.Point2D;
 
 public class ArrowTrap extends ATrap{
 
+    // Asset and animation constants.
+    private TextureAtlas trapTextureAtlas;
+    private Animation<TextureRegion> trapAnimation;
+
+    private long startTime;
+
     public ArrowTrap(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
@@ -21,15 +30,14 @@ public class ArrowTrap extends ATrap{
         setWidth(64);
         initHitBox();
 
-        assetManager.load(AssetList.ARROW_TRAP.toString(), Texture.class);
-        setTexture(new Texture(Gdx.files.internal(AssetList.ARROW_TRAP.toString())));
-
+        assetManager.load(AssetList.ARROW_TRAP.toString(), TextureAtlas.class);
         setDelay(0.5);
     }
 
     public void activate() {
         Point2D center = getCenter();
-
+        setActive(true);
+        startTime = System.currentTimeMillis();
         //Left/right-wards arrow
         getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(-500, 0), getAssetManager(), (float) center.getX(), (float) center.getY()));
         getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(500, 0), getAssetManager(), (float) center.getX(), (float) center.getY()));
@@ -40,9 +48,30 @@ public class ArrowTrap extends ATrap{
     }
 
     @Override
+    public void act(float deltaTime){
+        increaseAnimationTime(deltaTime);
+        if(isActive() && System.currentTimeMillis() - startTime > 1000){
+            setActive(false);
+        }
+    }
+
+    @Override
     public void draw(Batch batch, float alpha) {
-        if (getAssetManager().update()) {
-            batch.draw(getTexture(), getX(), getY());
+        AssetManager assetManager = getAssetManager();
+        if (assetManager.update() && !assetsLoaded()) {
+            // Done loading. Instantiate all assets
+            setAssetsLoaded(true);
+
+            trapTextureAtlas = assetManager.get(AssetList.ARROW_TRAP.toString());
+            trapAnimation = new Animation<TextureRegion>(1 / 12f, trapTextureAtlas.getRegions());
+        }
+
+        if (assetsLoaded()) {
+            if(isActive()){
+                batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
+            } else{
+                batch.draw(trapTextureAtlas.getRegions().first(), getX(), getY());
+            }
         }
     }
 

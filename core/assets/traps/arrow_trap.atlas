@@ -1,0 +1,20 @@
+
+arrow_trap.png
+size: 512,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+arrow_trap
+  rotate: false
+  xy: 2, 2
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: 0
+arrow_trap
+  rotate: false
+  xy: 132, 2
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: 1
