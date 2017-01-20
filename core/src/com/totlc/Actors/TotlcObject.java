@@ -143,8 +143,8 @@ public abstract class TotlcObject extends Actor {
         hitBox = new Polygon(new float[] {
                 getX(), getY(),
                 getX() + getWidth(), getY(),
-                getX(), getY() + getHeight(),
-                getX() + getWidth(), getY() + getHeight()
+                getX() + getWidth(), getY() + getHeight(),
+                getX(), getY() + getHeight()
                 });
         hitBox.setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
     }
