@@ -10,8 +10,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Timer;
-import com.totlc.Actors.enemies.Enemy;
+import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.projectiles.Projectile;
+import com.totlc.Actors.weapons.AWeapon;
+import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.tasks.RemoveInvincibilityTask;
 
@@ -55,30 +57,17 @@ public class Player extends Character {
     private TextureAtlas whippingDownTextureAtlas;
     private Animation<TextureRegion> whippingDownAnimation;
 
-    // Whip
-    private TextureAtlas whipRightTextureAtlas;
-    private Animation<TextureRegion> whipRightAnimation;
-
-    private TextureAtlas whipLeftTextureAtlas;
-    private Animation<TextureRegion> whipLeftAnimation;
-
-    private TextureAtlas whipUpTextureAtlas;
-    private Animation<TextureRegion> whipUpAnimation;
-
-    private TextureAtlas whipDownTextureAtlas;
-    private Animation<TextureRegion> whipDownAnimation;
-
     private boolean invincible = false;
-    private boolean whipping = false;
     private float whippingAnimationLength = 0.5f;
     private float whippingCounter = 0;
     private static float invincibilityTime = 2;
+    private AWeapon weapon;
 
     public Player(AssetManager assetManager, float x, float y){
         super(assetManager, x, y);
         setHeight(128);
         setWidth(96);
-        setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
+        initHitBox();
 
         setSpeed(acc);
 
@@ -109,12 +98,6 @@ public class Player extends Character {
         assetManager.load(AssetList.PLAYER_WHIP_DOWN.toString(), TextureAtlas.class);
         assetManager.load(AssetList.PLAYER_WHIP_LEFT.toString(), TextureAtlas.class);
         assetManager.load(AssetList.PLAYER_WHIP_RIGHT.toString(), TextureAtlas.class);
-
-        // Whip animations
-        assetManager.load(AssetList.WHIP_UP.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.WHIP_DOWN.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.WHIP_LEFT.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.WHIP_RIGHT.toString(), TextureAtlas.class);
 
         setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
     }
@@ -157,35 +140,22 @@ public class Player extends Character {
 
             whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
             whippingRightAnimation = new Animation<TextureRegion>((float) (1.0/whippingRightTextureAtlas.getRegions().size * whippingAnimationLength), whippingRightTextureAtlas.getRegions());
-
-            // Whip
-            whipDownTextureAtlas = assetManager.get(AssetList.WHIP_DOWN.toString());
-            whipDownAnimation = new Animation<TextureRegion>((float) (1.0/whipDownTextureAtlas.getRegions().size * whippingAnimationLength), whipDownTextureAtlas.getRegions());
-
-            whipUpTextureAtlas = assetManager.get(AssetList.WHIP_UP.toString());
-            whipUpAnimation = new Animation<TextureRegion>((float) (1.0/whipUpTextureAtlas.getRegions().size * whippingAnimationLength), whipUpTextureAtlas.getRegions());
-
-            whipLeftTextureAtlas = assetManager.get(AssetList.WHIP_LEFT.toString());
-            whipLeftAnimation = new Animation<TextureRegion>((float) (1.0/whipLeftTextureAtlas.getRegions().size * whippingAnimationLength), whipLeftTextureAtlas.getRegions());
-
-            whipRightTextureAtlas = assetManager.get(AssetList.WHIP_RIGHT.toString());
-            whipRightAnimation = new Animation<TextureRegion>((float) (1.0/whipRightTextureAtlas.getRegions().size * whippingAnimationLength), whipRightTextureAtlas.getRegions());
         }
 
         if (assetsLoaded()) {
-            if (this.whipping) {
+            if (getAttacking()) {
                 if (this.getIsFacing().isFacingDown()) {
-                    batch.draw(whippingDownAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
-                    batch.draw(whipDownAnimation.getKeyFrame(whippingCounter, false), getX(), (float)(getY() - 0.9375 * getHeight()));
+                    batch.draw(whippingDownAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
+//                    batch.draw(whipDownAnimation.getKeyFrame(whippingCounter, false), getX(), (float)(getY() - 0.9375 * getHeight()));
                 } else if (this.getIsFacing().isFacingUp()) {
-                    batch.draw(whippingUpAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
-                    batch.draw(whipUpAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                    batch.draw(whippingUpAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
+//                    batch.draw(whipUpAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
                 } else if (this.getIsFacing().isFacingRight()) {
-                    batch.draw(whippingRightAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
-                    batch.draw(whipRightAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
+                    batch.draw(whippingRightAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
+//                    batch.draw(whipRightAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
                 } else if (this.getIsFacing().isFacingLeft()) {
-                    batch.draw(whippingLeftAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
-                    batch.draw(whipLeftAnimation.getKeyFrame(whippingCounter, false), (float)(getX() - 1.35 * getWidth()), getY());
+                    batch.draw(whippingLeftAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
+//                    batch.draw(whipLeftAnimation.getKeyFrame(whippingCounter, false), (float)(getX() - 1.35 * getWidth()), getY());
                 }
 
             } else if (this.isMovingRight()) {
@@ -222,14 +192,8 @@ public class Player extends Character {
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
 
-        if (whipping) {
-            whippingCounter += deltaTime;
-
-            if (whippingCounter > whippingAnimationLength) {
-                whippingCounter = 0;
-                whipping = false;
-            }
-            // Returns so we don't move while we're whipping.
+        if (getAttacking()) {
+            // Returns so we don't move while we're attacking.
             return;
         }
 
@@ -273,9 +237,9 @@ public class Player extends Character {
     }
 
     public boolean collidesWith(Actor otherActor) {
-        if (otherActor instanceof Enemy) {
+        if (otherActor instanceof AEnemy) {
             if (!invincible) {
-                takeDamage(((Enemy)otherActor).getAttack());
+                takeDamage(((AEnemy)otherActor).getAttack());
                 invincible = true;
                 Timer.schedule(new RemoveInvincibilityTask(this), invincibilityTime);
             }
@@ -296,7 +260,7 @@ public class Player extends Character {
         this.invincible = invincible;
     }
 
-    public void setWhipping(boolean whipping) {
-        this.whipping = true;
+    public void setWeapon(Whip whip) {
+        weapon = whip;
     }
 }

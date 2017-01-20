@@ -13,7 +13,7 @@ import com.totlc.levels.ALevel;
 
 import java.awt.geom.Point2D;
 
-public class Stargazer extends Enemy {
+public class Stargazer extends AEnemy {
 
     // Stat constants.
     private static int id = 1;
@@ -51,7 +51,11 @@ public class Stargazer extends Enemy {
         setHpMax(hp);
         setHpCurrent(getHpMax());
         setAttack(atk);
-        setHitBox(new Rectangle(x + 40, y + 16, 42, 16));
+
+        setWidth(32);
+        setHeight(32);
+
+        initHitBox();
         setSpeed(speed);
         setFriction(friction);
         setMaxVel(maxVelocity);

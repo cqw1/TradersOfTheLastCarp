@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 import com.totlc.Actors.Player;
-import com.totlc.Actors.enemies.Enemy;
+import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.traps.ATrap;
 
 public class ButtonTrigger extends ATrigger {
@@ -18,7 +18,7 @@ public class ButtonTrigger extends ATrigger {
         super(assetManager, x, y);
         setHeight(32);
         setWidth(32);
-        setHitBox(new Rectangle(x, y, getWidth(), getHeight()));
+        initHitBox();
 
         setSpeed(200);
 
@@ -41,7 +41,7 @@ public class ButtonTrigger extends ATrigger {
 
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player ||
-                otherActor instanceof Enemy) {
+                otherActor instanceof AEnemy) {
 
             if (!isTriggered()) {
                 Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/trap_activation.mp3"));

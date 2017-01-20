@@ -1,9 +1,9 @@
 package com.totlc.Actors.projectiles;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.totlc.Actors.totlcObject;
+import com.totlc.Actors.TotlcObject;
 
-public abstract class Projectile extends totlcObject {
+public abstract class Projectile extends TotlcObject {
 
     private int attack = 1;
 
@@ -21,15 +21,15 @@ public abstract class Projectile extends totlcObject {
         this.attack = attack;
     }
 
-    public float getVelocityAngle(){
-        double angle = Math.atan2(getVel().getY(), getVel().getX());
-        return (float)Math.toDegrees(angle);
-    }
     public float getScaleFactor() {
         return scaleFactor;
     }
 
     public void setScaleFactor(float scaleFactor) {
         this.scaleFactor = scaleFactor;
+    }
+
+    public void calibrateHitBox() {
+
     }
 }

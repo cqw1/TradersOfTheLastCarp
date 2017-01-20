@@ -7,8 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
-import com.totlc.Actors.enemies.Enemy;
-import com.totlc.Actors.totlcObject;
+import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.AssetList;
 
 public class Arrow extends Projectile {
@@ -18,7 +17,7 @@ public class Arrow extends Projectile {
 
         setWidth(128);
         setHeight(32);
-        setHitBox(new Rectangle(getX(), getY(), getWidth(), getHeight()));
+        initHitBox();
         setAttack(1);
         setScaleFactor(0.75f);
 
@@ -29,7 +28,6 @@ public class Arrow extends Projectile {
     @Override
     public void act(float delta) {
         moveUnit(delta);
-        System.out.println("VEL " + getVel() + "; " + getVelocityAngle());
         if (isOutOfBounds()) {
             remove();
         }
@@ -45,7 +43,7 @@ public class Arrow extends Projectile {
     @Override
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player ||
-                otherActor instanceof Enemy) {
+                otherActor instanceof AEnemy) {
             return true;
         }
 
