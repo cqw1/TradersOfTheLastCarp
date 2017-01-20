@@ -7,16 +7,20 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Timer;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
+import com.totlc.Actors.enemies.AEnemy;
+import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.AssetList;
+import com.totlc.tasks.RemoveInvincibilityTask;
 
 public class Whip extends AWeapon {
     private AssetManager assetManager;
     private Player player;
 
     public Whip(AssetManager assetManager, Player player) {
-        super(assetManager, player, 0.5f);
+        super(assetManager, player, 1, 0.5f);
 
         this.assetManager = assetManager;
         this.player = player;

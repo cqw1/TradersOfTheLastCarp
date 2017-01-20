@@ -15,6 +15,7 @@ public abstract class AWeapon extends TotlcObject {
     private float attackingCounter = 0;
     private float attackingAnimationLength = 0;
     private Character character;
+    private int attack = 1;
 
     private String upAsset;
     private String downAsset;
@@ -31,11 +32,12 @@ public abstract class AWeapon extends TotlcObject {
     private Animation<TextureRegion> leftAnimation;
     private Animation<TextureRegion> rightAnimation;
 
-    public AWeapon(AssetManager assetManager, Character character, float attackingAnimationLength) {
+    public AWeapon(AssetManager assetManager, Character character, int attack, float attackingAnimationLength) {
         super(assetManager, character.getX(), character.getY());
 
         this.assetManager = assetManager;
         this.character = character;
+        this.attack = attack;
         this.attackingAnimationLength = attackingAnimationLength;
     }
 
@@ -112,5 +114,9 @@ public abstract class AWeapon extends TotlcObject {
 
     public float getAttackingCounter() {
         return attackingCounter;
+    }
+
+    public int getAttack() {
+        return attack;
     }
 }
