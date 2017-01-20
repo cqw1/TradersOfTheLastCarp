@@ -71,7 +71,6 @@ public abstract class AWeapon extends TotlcObject {
             // Done loading. Instantiate all assets
             setAssetsLoaded(true);
 
-
             // Whip
             downTextureAtlas = assetManager.get(downAsset);
             downAnimation = new Animation<TextureRegion>((float) (1.0/downTextureAtlas.getRegions().size * attackingAnimationLength), downTextureAtlas.getRegions());
