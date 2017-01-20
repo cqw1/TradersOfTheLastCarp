@@ -23,6 +23,8 @@ public enum AssetList {
     WHIP_RIGHT("sprites/whip/right.atlas"),
     WHIP_DOWN("sprites/whip/front.atlas"),
     WHIP_UP("sprites/whip/back.atlas"),
+    IMPACT("effects/impact.atlas"),
+    PLATE_BROWN("traps/plate_brown.atlas"),
     ARROW_TRAP("traps/arrowTotem0.png"),
     PROJECTILE_ARROW("traps/arrow.png");
 
