@@ -47,6 +47,11 @@ public class StarShot extends Projectile {
             }
             delayRemove();
         }
+        if (removeFlag){
+            for (ParticleEmitter p : star_trail.getEmitters()){
+                p.allowCompletion();
+            }
+        }
         star_trail.setPosition((float)getCenter().getX(), (float)getCenter().getY());
     }
 
@@ -64,19 +69,21 @@ public class StarShot extends Projectile {
             star_trail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
         }
 
-        if (assetsLoaded()) {
+        if (assetsLoaded() && !removeFlag) {
             batch.draw(shotAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-            star_trail.draw(batch, Gdx.graphics.getDeltaTime());
         }
+        star_trail.draw(batch, Gdx.graphics.getDeltaTime());
     }
 
     @Override
     public boolean collidesWith(Actor otherActor) {
-        if (otherActor instanceof Player) {
+        if (otherActor instanceof Player && !removeFlag) {
             Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/punch2.mp3"));
             impactSound.play(1.0f);
             getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
-            return true;
+            startTime = System.currentTimeMillis();
+            removeFlag = true;
+            return false;
         }
         return false;
     }

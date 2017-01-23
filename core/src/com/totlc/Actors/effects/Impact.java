@@ -38,7 +38,7 @@ public class Impact extends AEffect {
             setAssetsLoaded(true);
 
             impactTextureAtlas = assetManager.get(AssetList.IMPACT.toString());
-            impactAnimation = new Animation<TextureRegion>(1 / 20f, impactTextureAtlas.getRegions());
+            impactAnimation = new Animation<TextureRegion>(1 / 16f, impactTextureAtlas.getRegions());
         }
 
         if (assetsLoaded()) {
