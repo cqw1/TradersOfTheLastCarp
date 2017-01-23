@@ -67,6 +67,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 			float progress = assetManager.getProgress();
 			System.out.println("Progress: " + progress);
 			// TODO: Update progress bar.
+
 		}
 
 		// Clear the screen with a white color. The
