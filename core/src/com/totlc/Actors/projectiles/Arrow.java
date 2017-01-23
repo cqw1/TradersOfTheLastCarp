@@ -18,7 +18,7 @@ public class Arrow extends Projectile {
     public Arrow(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
-        setWidth(64);
+        setWidth(80);
         setHeight(32);
         initHitBox();
         setAttack(1);

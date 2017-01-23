@@ -26,7 +26,8 @@ public enum AssetList {
     IMPACT("effects/impact.atlas"),
     PLATE_BROWN("traps/plate_brown.atlas"),
     ARROW_TRAP("traps/arrow_trap.atlas"),
-    PROJECTILE_ARROW("traps/arrow.png");
+    PROJECTILE_ARROW("traps/arrow.png"),
+    DEFAULT_TILESET("tileset/tan_map.png");
 
 
     private String pathname;
