@@ -1,4 +1,4 @@
-star
+star0
 - Delay -
 active: true
 lowMin: 0.0
@@ -47,27 +47,33 @@ timeline0: 0.0
 - Y Offset - 
 active: false
 - Spawn Shape - 
-shape: line
+shape: ellipse
+edges: true
+side: both
 - Spawn Width - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 50.0
-highMax: 50.0
+highMin: 64.0
+highMax: 64.0
 relative: false
-scalingCount: 1
-scaling0: 1.0
-timelineCount: 1
+scalingCount: 2
+scaling0: 0.50980395
+scaling1: 1.0
+timelineCount: 2
 timeline0: 0.0
+timeline1: 1.0
 - Spawn Height - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 20.0
-highMax: 20.0
+highMin: 64.0
+highMax: 64.0
 relative: false
-scalingCount: 1
-scaling0: 1.0
-timelineCount: 1
+scalingCount: 2
+scaling0: 0.49019608
+scaling1: 1.0
+timelineCount: 2
 timeline0: 0.0
+timeline1: 1.0
 - Scale - 
 lowMin: 0.0
 lowMax: 0.0
@@ -112,8 +118,8 @@ active: false
 active: true
 lowMin: 0.0
 lowMax: 0.0
-highMin: 128.0
-highMax: 128.0
+highMin: 0.0
+highMax: 0.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -123,8 +129,8 @@ timeline0: 0.0
 active: true
 lowMin: 0.0
 lowMax: 0.0
-highMin: 100.0
-highMax: 100.0
+highMin: 10.0
+highMax: 10.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -154,7 +160,7 @@ timeline1: 0.44991213
 timeline2: 0.9015817
 timeline3: 1.0
 - Options - 
-attached: false
+attached: true
 continuous: true
 aligned: true
 additive: true
@@ -251,16 +257,16 @@ highMax: 8.0
 relative: false
 scalingCount: 6
 scaling0: 1.0
-scaling1: 0.0
+scaling1: 0.49438202
 scaling2: 1.0
-scaling3: 0.0
+scaling3: 0.505618
 scaling4: 1.0
 scaling5: 0.0
 timelineCount: 6
 timeline0: 0.0
-timeline1: 0.19860017
+timeline1: 0.20113853
 timeline2: 0.4006999
-timeline3: 0.59755033
+timeline3: 0.60151803
 timeline4: 0.80052495
 timeline5: 1.0
 - Velocity - 
@@ -269,7 +275,7 @@ lowMin: 0.0
 lowMax: 0.0
 highMin: 25.0
 highMax: 25.0
-relative: false
+relative: true
 scalingCount: 1
 scaling0: 1.0
 timelineCount: 1
@@ -277,21 +283,17 @@ timeline0: 0.0
 - Angle - 
 active: false
 - Rotation - 
-active: false
-- Wind - 
 active: true
 lowMin: 0.0
 lowMax: 0.0
-highMin: 200.0
-highMax: 200.0
+highMin: 360.0
+highMax: 360.0
 relative: false
-scalingCount: 2
+scalingCount: 1
 scaling0: 1.0
-scaling1: 0.0
-timelineCount: 2
+timelineCount: 1
 timeline0: 0.0
-timeline1: 1.0
-- Gravity - 
+- Wind - 
 active: true
 lowMin: 0.0
 lowMax: 0.0
@@ -304,6 +306,8 @@ scaling1: 0.0
 timelineCount: 2
 timeline0: 0.0
 timeline1: 1.0
+- Gravity - 
+active: false
 - Tint - 
 colorsCount: 3
 colors0: 1.0
@@ -318,13 +322,13 @@ highMin: 1.0
 highMax: 1.0
 relative: false
 scalingCount: 2
-scaling0: 1.0
+scaling0: 0.49122807
 scaling1: 0.0
 timelineCount: 2
 timeline0: 0.0
 timeline1: 1.0
 - Options - 
-attached: true
+attached: false
 continuous: true
 aligned: false
 additive: true
@@ -498,3 +502,190 @@ behind: false
 premultipliedAlpha: false
 - Image Path -
 glowparticle.png
+
+
+star1
+- Delay -
+active: true
+lowMin: 0.0
+lowMax: 0.0
+- Duration - 
+lowMin: 0.0
+lowMax: 8000.0
+- Count - 
+min: 0
+max: 20
+- Emission - 
+lowMin: 0.0
+lowMax: 0.0
+highMin: 8.0
+highMax: 8.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
+- Life - 
+lowMin: 0.0
+lowMax: 0.0
+highMin: 2000.0
+highMax: 2000.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
+- Life Offset - 
+active: false
+- X Offset - 
+active: false
+- Y Offset - 
+active: true
+lowMin: 0.0
+lowMax: 0.0
+highMin: 0.0
+highMax: 0.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
+- Spawn Shape - 
+shape: ellipse
+edges: true
+side: both
+- Spawn Width - 
+lowMin: 0.0
+lowMax: 0.0
+highMin: 16.0
+highMax: 16.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
+- Spawn Height - 
+lowMin: 0.0
+lowMax: 0.0
+highMin: 16.0
+highMax: 16.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
+- Scale - 
+lowMin: 0.0
+lowMax: 0.0
+highMin: 64.0
+highMax: 64.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
+- Velocity - 
+active: true
+lowMin: 0.0
+lowMax: 0.0
+highMin: 0.0
+highMax: 0.0
+relative: true
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
+- Angle - 
+active: true
+lowMin: 0.0
+lowMax: 0.0
+highMin: 10.0
+highMax: 10.0
+relative: false
+scalingCount: 11
+scaling0: 1.0
+scaling1: 0.83707863
+scaling2: 1.0
+scaling3: 0.83707863
+scaling4: 1.0
+scaling5: 0.8426966
+scaling6: 1.0
+scaling7: 0.8426966
+scaling8: 1.0
+scaling9: 0.8258427
+scaling10: 0.994382
+timelineCount: 11
+timeline0: 0.0
+timeline1: 0.10246679
+timeline2: 0.19924098
+timeline3: 0.30170777
+timeline4: 0.39848197
+timeline5: 0.4971537
+timeline6: 0.5996205
+timeline7: 0.6982922
+timeline8: 0.79696393
+timeline9: 0.89563566
+timeline10: 0.9943074
+- Rotation - 
+active: true
+lowMin: 0.0
+lowMax: 0.0
+highMin: 360.0
+highMax: 360.0
+relative: false
+scalingCount: 2
+scaling0: 1.0
+scaling1: 0.0
+timelineCount: 2
+timeline0: 0.0
+timeline1: 1.0
+- Wind - 
+active: true
+lowMin: 0.0
+lowMax: 0.0
+highMin: 0.0
+highMax: 0.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
+- Gravity - 
+active: true
+lowMin: 0.0
+lowMax: 0.0
+highMin: 5.0
+highMax: 5.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
+- Tint - 
+colorsCount: 3
+colors0: 1.0
+colors1: 0.99607843
+colors2: 0.9529412
+timelineCount: 1
+timeline0: 0.0
+- Transparency - 
+lowMin: 0.0
+lowMax: 0.0
+highMin: 1.0
+highMax: 1.0
+relative: false
+scalingCount: 2
+scaling0: 0.2631579
+scaling1: 0.0
+timelineCount: 2
+timeline0: 0.0
+timeline1: 1.0
+- Options - 
+attached: false
+continuous: true
+aligned: false
+additive: true
+behind: false
+premultipliedAlpha: false
+- Image Path -
+starshot.png

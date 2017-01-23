@@ -1,6 +1,8 @@
 package com.totlc.Actors.enemies;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.projectiles.ProjEnum;
+import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.Actors.projectiles.ProjectileFactory;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
@@ -23,9 +26,10 @@ public class Stargazer extends AEnemy {
     private static int atk = 1;
 
     private static float friction = .99f;
-    private static float speed = 15;
-    private static float maxVelocity = 15;
+    private static float speed = 25;
+    private static float maxVelocity = 25;
     private static float knockback = 5;
+    private static float projectileSpeed = 300;
 
     // State variables.
     private boolean spin = false;
@@ -100,9 +104,7 @@ public class Stargazer extends AEnemy {
                 wind_down = true;
                 spin = false;
                 counter = 0;
-            } else if (counter >= spin_duration * 0.2f){
-                getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.STAR_SHOT,
-                        new Point2D.Double(getVel().getX() * 5, getVel().getY() * 5), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY()));
+                star_shot();
             }
         }
 
@@ -165,6 +167,13 @@ public class Stargazer extends AEnemy {
             }
             batch.draw(shadow, getX() + Math.abs(128 - shadow.getWidth() * shadow_size) / 2, getY() - 128 * 0.1f, shadow.getWidth() * shadow_size, shadow.getHeight() * shadow_size);
         }
+    }
+
+    private void star_shot(){
+        Point2D targetVector = getTarget(((ALevel)getStage()).getPlayer());
+        Sound laserSound = Gdx.audio.newSound(Gdx.files.internal("sounds/sparkle0.mp3"));
+       laserSound.play(0.7f);
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.STAR_SHOT, new Point2D.Double(targetVector.getX() * projectileSpeed, targetVector.getY() * projectileSpeed), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
     }
 
     @Override

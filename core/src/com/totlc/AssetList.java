@@ -30,7 +30,9 @@ public enum AssetList {
     PROJECTILE_ARROW("traps/arrow.png"),
     PROJECTILE_STAR_SHOT("sprites/starshot/star_shot.atlas"),
     STAR_TRAIL("sprites/starshot/star_effect.particle"),
-    STAR_PARTICLES("sprites/starshot/star_particles.atlas");
+    STAR_PARTICLES("sprites/starshot/star_particles.atlas"),
+    DEFAULT_TILESET("tileset/tan_map.png");
+
 
 
     private String pathname;

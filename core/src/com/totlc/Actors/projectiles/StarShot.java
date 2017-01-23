@@ -2,10 +2,11 @@ package com.totlc.Actors.projectiles;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.ParticleEffectLoader;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Player;
+import com.totlc.Actors.effects.Impact;
 import com.totlc.AssetList;
 
 public class StarShot extends Projectile {
@@ -15,9 +16,14 @@ public class StarShot extends Projectile {
     private Animation<TextureRegion> shotAnimation;
     private ParticleEffect star_trail;
 
-    public StarShot(AssetManager assetManager, float x, float y){
+    // Bookeeping variables.
+    private long startTime;
+    private boolean removeFlag = false;
+
+    public StarShot(AssetManager assetManager, float x, float y, int damageType){
         super(assetManager, x, y);
 
+        setDamageType(damageType);
         setWidth(64);
         setHeight(64);
         initHitBox();
@@ -27,7 +33,7 @@ public class StarShot extends Projectile {
         assetManager.load(AssetList.PROJECTILE_STAR_SHOT.toString(), TextureAtlas.class);
         assetManager.load(AssetList.STAR_PARTICLES.toString(), TextureAtlas.class);
         star_trail = new ParticleEffect();
-        star_trail.setPosition(getX(), getY());
+        star_trail.setPosition((float)getCenter().getX(), (float)getCenter().getY());
     }
 
     @Override
@@ -35,9 +41,13 @@ public class StarShot extends Projectile {
         increaseAnimationTime(deltaTime);
         moveUnit(deltaTime);
         if (isOutOfBounds()) {
-            remove();
+            if(!removeFlag){
+                startTime = System.currentTimeMillis();
+                removeFlag = !removeFlag;
+            }
+            delayRemove();
         }
-        star_trail.setPosition(getX(), getY());
+        star_trail.setPosition((float)getCenter().getX(), (float)getCenter().getY());
     }
 
     @Override
@@ -56,12 +66,25 @@ public class StarShot extends Projectile {
 
         if (assetsLoaded()) {
             batch.draw(shotAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-            star_trail.draw(batch);
+            star_trail.draw(batch, Gdx.graphics.getDeltaTime());
         }
     }
 
     @Override
     public boolean collidesWith(Actor otherActor) {
+        if (otherActor instanceof Player) {
+            Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/punch2.mp3"));
+            impactSound.play(1.0f);
+            getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean delayRemove(){
+        if (System.currentTimeMillis() - startTime > 8000){
+            return super.remove();
+        }
         return false;
     }
 

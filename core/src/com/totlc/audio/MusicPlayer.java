@@ -33,7 +33,10 @@ public class MusicPlayer {
         // Add paths to audio files.
         trackListByName.put("test0", "music/Misc6.mp3");
         trackListByName.put("test1", "music/Misc9.mp3");
-        trackListByName.put("test2", "music/Shop1.mp3");
+        trackListByName.put("test2", "music/Dungeon5.mp3");
+        trackListByName.put("test3", "music/HiveSemaphore1.mp3");
+        trackListByName.put("test4", "music/Tremble.mp3");
+        trackListByName.put("test5", "music/Shop1.mp3");
 
         int count = 0;
         for (String name : trackListByName.keySet()){

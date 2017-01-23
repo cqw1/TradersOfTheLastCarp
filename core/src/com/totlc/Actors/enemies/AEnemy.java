@@ -22,7 +22,7 @@ public abstract class AEnemy extends Character {
     }
 
     public boolean collidesWith(Actor otherActor) {
-        if (otherActor instanceof Projectile) {
+        if (otherActor instanceof Projectile && ((Projectile)otherActor).getDamageType() != 1) {
             System.out.println("collidesWith Projectile");
             takeDamage(((Projectile)otherActor).getAttack());
         } else if (otherActor instanceof AWeapon) {
