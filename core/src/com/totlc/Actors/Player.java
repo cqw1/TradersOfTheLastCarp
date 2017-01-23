@@ -2,6 +2,7 @@ package com.totlc.Actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.SynchronousAssetLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -62,6 +63,8 @@ public class Player extends Character {
     private float whippingCounter = 0;
     private static float invincibilityTime = 2;
     private AWeapon weapon;
+
+    private long time;
 
     public Player(AssetManager assetManager, float x, float y){
         super(assetManager, x, y);
@@ -143,6 +146,11 @@ public class Player extends Character {
         }
 
         if (assetsLoaded()) {
+            if(invincible){
+                if ((System.currentTimeMillis() - time) % 2 == 0){
+                    return;
+                }
+            }
             if (getAttacking()) {
                 if (this.getIsFacing().isFacingDown()) {
                     batch.draw(whippingDownAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
@@ -241,12 +249,14 @@ public class Player extends Character {
             if (!invincible) {
                 takeDamage(((AEnemy)otherActor).getAttack());
                 invincible = true;
+                time = System.currentTimeMillis();
                 Timer.schedule(new RemoveInvincibilityTask(this), invincibilityTime);
             }
         } else if (otherActor instanceof Projectile) {
-            if (!invincible) {
+            if (!invincible && ((Projectile)otherActor).getDamageType() != 2) {
                 takeDamage(((Projectile)otherActor).getAttack());
                 invincible = true;
+                time = System.currentTimeMillis();
                 Timer.schedule(new RemoveInvincibilityTask(this), invincibilityTime);
             }
         }

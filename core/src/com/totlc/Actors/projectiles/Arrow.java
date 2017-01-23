@@ -5,8 +5,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.effects.Impact;
@@ -15,10 +13,11 @@ import com.totlc.AssetList;
 
 public class Arrow extends Projectile {
 
-    public Arrow(AssetManager assetManager, float x, float y) {
+    public Arrow(AssetManager assetManager, float x, float y, int damageType) {
         super(assetManager, x, y);
 
-        setWidth(128);
+        setDamageType(damageType);
+        setWidth(80);
         setHeight(32);
         initHitBox();
         setAttack(1);

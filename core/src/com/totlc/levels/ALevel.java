@@ -2,6 +2,8 @@ package com.totlc.levels;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -9,7 +11,9 @@ import com.badlogic.gdx.utils.Array;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.weapons.Whip;
+import com.totlc.AssetList;
 import com.totlc.Directionality;
+import com.totlc.TradersOfTheLastCarp;
 import com.totlc.audio.MusicPlayer;
 
 import java.util.HashSet;
@@ -23,7 +27,6 @@ public abstract class ALevel extends Stage {
 
     public ALevel(Player player, AssetManager assetManager){
         setPlayer(player);
-        addActor(player);
         this.assetManager = assetManager;
 
         whip = new Whip(assetManager, player);
@@ -53,7 +56,7 @@ public abstract class ALevel extends Stage {
             for (int bCounter = aCounter; bCounter < allActors.size; bCounter++) {
                 //Ignore again, except add that we ignore references to ourselves, or objects being removed
                 Actor b = allActors.get(bCounter);
-                if (!(b instanceof TotlcObject) || a == b) { // || toBeRemoved.contains(b)
+                if (!(b instanceof TotlcObject) || a == b || toBeRemoved.contains(b)) { // || toBeRemoved.contains(b)
                     continue;
                 }
 
@@ -77,6 +80,14 @@ public abstract class ALevel extends Stage {
             beingRemoved.remove();
         }
     }
+
+//    public void draw() {
+//        if (assetManager.update()) {
+//            getBatch().begin();
+//            getBatch().draw((Texture)assetManager.get(AssetList.DEFAULT_TILESET.toString()), 0f, 0f, (float) TradersOfTheLastCarp.CONFIG_WIDTH, (float) TradersOfTheLastCarp.CONFIG_HEIGHT);
+//            getBatch().end();
+//        }
+//    }
 
     @Override
     public boolean keyDown(int keycode) {

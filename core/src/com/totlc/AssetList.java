@@ -7,6 +7,7 @@ public enum AssetList {
     STARGAZER_EYE("sprites/stargazer/stargazer_eye.atlas"),
     STARGAZER_SPIN("sprites/stargazer/stargazer_spin.atlas"),
     STARGAZER_GAZE("sprites/stargazer/stargazer_gaze.atlas"),
+    SHADOW("sprites/float_shadow.png"),
     PLAYER_STAND_LEFT("dummy/stand/left.png"),
     PLAYER_STAND_RIGHT("dummy/stand/right.png"),
     PLAYER_STAND_DOWN("dummy/stand/front.png"),
@@ -26,7 +27,12 @@ public enum AssetList {
     IMPACT("effects/impact.atlas"),
     PLATE_BROWN("traps/plate_brown.atlas"),
     ARROW_TRAP("traps/arrow_trap.atlas"),
-    PROJECTILE_ARROW("traps/arrow.png");
+    PROJECTILE_ARROW("traps/arrow.png"),
+    PROJECTILE_STAR_SHOT("sprites/starshot/star_shot.atlas"),
+    STAR_TRAIL("sprites/starshot/star_effect.particle"),
+    STAR_PARTICLES("sprites/starshot/star_particles.atlas"),
+    DEFAULT_TILESET("tileset/map.png");
+
 
 
     private String pathname;

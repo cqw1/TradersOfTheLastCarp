@@ -2,7 +2,8 @@ package com.totlc.Actors.projectiles;
 
 public enum ProjEnum {
 
-    ARROW(0);
+    ARROW(0),
+    STAR_SHOT(1);
 
     int type;
     ProjEnum(int id) {
@@ -13,6 +14,8 @@ public enum ProjEnum {
         switch (type) {
             case 0:
                 return "ARROW";
+            case 1:
+                return "STAR_SHOT";
         }
 
         return "";

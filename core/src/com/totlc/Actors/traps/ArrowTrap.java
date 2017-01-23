@@ -26,8 +26,8 @@ public class ArrowTrap extends ATrap{
     public ArrowTrap(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
-        setHeight(96);
-        setWidth(64);
+        setHeight(192);
+        setWidth(124);
         initHitBox();
 
         assetManager.load(AssetList.ARROW_TRAP.toString(), TextureAtlas.class);
@@ -39,12 +39,12 @@ public class ArrowTrap extends ATrap{
         setActive(true);
         startTime = System.currentTimeMillis();
         //Left/right-wards arrow
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(-500, 0), getAssetManager(), (float) center.getX(), (float) center.getY()));
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(500, 0), getAssetManager(), (float) center.getX(), (float) center.getY()));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(-500, 0), getAssetManager(), (float) center.getX(), (float) center.getY(), 0));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(500, 0), getAssetManager(), (float) center.getX(), (float) center.getY(), 0));
 
         //Up/down arrow
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, 500), getAssetManager(), (float) center.getX(), (float) center.getY()));
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, -500), getAssetManager(), (float) center.getX(), (float) center.getY()));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, 500), getAssetManager(), (float) center.getX(), (float) center.getY(), 0));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, -500), getAssetManager(), (float) center.getX(), (float) center.getY(), 0));
     }
 
     @Override

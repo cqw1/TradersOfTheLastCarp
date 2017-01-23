@@ -47,8 +47,10 @@ public class Spider extends AEnemy {
         setAttack(atk);
 
         setHeight(32);
-        setWidth(32);
+        setWidth(64);
         initHitBox();
+        //TODO: Remove after fixing hitboxes
+        getHitBox().translate(32, 0);
 
         setSpeed(speed);
         setFriction(friction);

@@ -1,12 +1,17 @@
 package com.totlc.Actors.enemies;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.projectiles.ProjEnum;
+import com.totlc.Actors.projectiles.Projectile;
+import com.totlc.Actors.projectiles.ProjectileFactory;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
 import com.totlc.levels.ALevel;
@@ -21,9 +26,10 @@ public class Stargazer extends AEnemy {
     private static int atk = 1;
 
     private static float friction = .99f;
-    private static float speed = 15;
-    private static float maxVelocity = 15;
+    private static float speed = 25;
+    private static float maxVelocity = 25;
     private static float knockback = 5;
+    private static float projectileSpeed = 300;
 
     // State variables.
     private boolean spin = false;
@@ -37,6 +43,8 @@ public class Stargazer extends AEnemy {
     private TextureAtlas eyeTextureAtlas;
     private TextureAtlas spinTextureAtlas;
     private TextureAtlas gazeTextureAtlas;
+    private Texture shadow;
+    private float shadow_size = 0.5f;
 
     private Animation<TextureRegion> bodyAnimation;
     private Animation<TextureRegion> eyeAnimation;
@@ -52,10 +60,15 @@ public class Stargazer extends AEnemy {
         setHpCurrent(getHpMax());
         setAttack(atk);
 
-        setWidth(32);
-        setHeight(32);
+        setWidth(48);
+        setHeight(48);
+
+        setFloating(true);
 
         initHitBox();
+        //TODO: Remove after correcting hitboxes
+        getHitBox().translate(40, 40);
+
         setSpeed(speed);
         setFriction(friction);
         setMaxVel(maxVelocity);
@@ -65,6 +78,7 @@ public class Stargazer extends AEnemy {
         assetManager.load(AssetList.STARGAZER_EYE.toString(), TextureAtlas.class);
         assetManager.load(AssetList.STARGAZER_SPIN.toString(), TextureAtlas.class);
         assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.SHADOW.toString(), Texture.class);
     }
 
     @Override
@@ -90,6 +104,7 @@ public class Stargazer extends AEnemy {
                 wind_down = true;
                 spin = false;
                 counter = 0;
+                star_shot();
             }
         }
 
@@ -131,6 +146,8 @@ public class Stargazer extends AEnemy {
             gazeAnimation = new Animation<TextureRegion>(1/24f, this.gazeTextureAtlas.getRegions());
             gazeReverseAnimation = new Animation<TextureRegion>(1/24f, this.gazeTextureAtlas.getRegions());
             gazeReverseAnimation.setPlayMode(Animation.PlayMode.REVERSED);
+
+            shadow = getAssetManager().get(AssetList.SHADOW.toString());
         }
 
         if (assetsLoaded()) {
@@ -148,7 +165,15 @@ public class Stargazer extends AEnemy {
                 batch.draw(spinAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
                 batch.draw(gazeAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
             }
+            batch.draw(shadow, getX() + Math.abs(128 - shadow.getWidth() * shadow_size) / 2, getY() - 128 * 0.1f, shadow.getWidth() * shadow_size, shadow.getHeight() * shadow_size);
         }
+    }
+
+    private void star_shot(){
+        Point2D targetVector = getTarget(((ALevel)getStage()).getPlayer());
+        Sound laserSound = Gdx.audio.newSound(Gdx.files.internal("sounds/sparkle0.mp3"));
+       laserSound.play(0.7f);
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.STAR_SHOT, new Point2D.Double(targetVector.getX() * projectileSpeed, targetVector.getY() * projectileSpeed), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
     }
 
     @Override

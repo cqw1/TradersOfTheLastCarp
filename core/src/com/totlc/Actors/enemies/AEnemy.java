@@ -15,12 +15,14 @@ public abstract class AEnemy extends Character {
     // Player health.
     private int attack;
 
+    private boolean isFloating = false;
+
     public AEnemy(AssetManager assetManager, int x, int y){
         super(assetManager, x ,y);
     }
 
     public boolean collidesWith(Actor otherActor) {
-        if (otherActor instanceof Projectile) {
+        if (otherActor instanceof Projectile && ((Projectile)otherActor).getDamageType() != 1) {
             System.out.println("collidesWith Projectile");
             takeDamage(((Projectile)otherActor).getAttack());
         } else if (otherActor instanceof AWeapon) {
@@ -42,6 +44,14 @@ public abstract class AEnemy extends Character {
 
     public void setAttack(int attack) {
         this.attack = attack;
+    }
+
+    public boolean isFloating() {
+        return isFloating;
+    }
+
+    public void setFloating(boolean floating) {
+        isFloating = floating;
     }
 
     public Point2D getTarget(Actor target) {
