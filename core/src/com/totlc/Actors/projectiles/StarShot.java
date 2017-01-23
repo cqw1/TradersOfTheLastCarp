@@ -16,7 +16,7 @@ public class StarShot extends Projectile {
     private Animation<TextureRegion> shotAnimation;
     private ParticleEffect star_trail;
 
-    // Bookeeping variables.
+    // Bookkeeping variables.
     private long startTime;
     private boolean removeFlag = false;
 
@@ -88,11 +88,8 @@ public class StarShot extends Projectile {
         return false;
     }
 
-    public boolean delayRemove(){
-        if (System.currentTimeMillis() - startTime > 8000){
-            return super.remove();
-        }
-        return false;
+    private boolean delayRemove() {
+        return System.currentTimeMillis() - startTime > 8000 && super.remove();
     }
 
     @Override

@@ -36,14 +36,14 @@ public class Level01 extends ALevel{
         addActor(arrowTrap);
 
         Spider spider0 = new Spider(assetManager, 0, 0);
-        Spider spider1 = new Spider(assetManager, 0, 0);
-        Spider spider2 = new Spider(assetManager, 0, 0);
+        Spider spider1 = new Spider(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
+        Spider spider2 = new Spider(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
         Stargazer stargazer = new Stargazer(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
         addActor(spider0);
         addActor(spider1);
         addActor(spider2);
         addActor(stargazer);
-
+        getPlayer().setZIndex(999);
 
         LifeGauge hpBar = new LifeGauge(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
         hpBar.moveBy(0, -hpBar.getHeight());
