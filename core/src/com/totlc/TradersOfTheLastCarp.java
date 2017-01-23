@@ -27,7 +27,7 @@ import java.util.Arrays;
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;
-	private boolean drawHitboxes = true;
+	private boolean drawHitboxes = false;
 
 	public AssetManager assetManager = new AssetManager();
 
@@ -84,6 +84,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		if (drawHitboxes) {
 			ShapeRenderer shapeRenderer = new ShapeRenderer();
+            shapeRenderer.setProjectionMatrix(camera.combined);
 			shapeRenderer.setColor(Color.RED);
 			shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 			Array<Actor> actors = level.getActors();
