@@ -1,0 +1,27 @@
+
+star_particles.png
+size: 64,32
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+glowparticle
+  rotate: false
+  xy: 33, 12
+  size: 11, 11
+  orig: 11, 11
+  offset: 0, 0
+  index: -1
+sparkleparticle
+  rotate: false
+  xy: 20, 2
+  size: 11, 21
+  orig: 11, 21
+  offset: 0, 0
+  index: -1
+starparticle
+  rotate: false
+  xy: 2, 5
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1

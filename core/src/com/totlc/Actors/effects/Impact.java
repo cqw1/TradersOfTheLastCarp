@@ -18,9 +18,10 @@ public class Impact extends AEffect {
 
     public Impact(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y );
-        assetManager.load(AssetList.IMPACT.toString(), TextureAtlas.class);
         float[] coords = {getX(), getY(), getX() + 1, getY(), getX(), getY() + 1};
         setHitBox(new Polygon(coords));
+
+        assetManager.load(AssetList.IMPACT.toString(), TextureAtlas.class);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class Impact extends AEffect {
             setAssetsLoaded(true);
 
             impactTextureAtlas = assetManager.get(AssetList.IMPACT.toString());
-            impactAnimation = new Animation<TextureRegion>(1 / 16f, impactTextureAtlas.getRegions());
+            impactAnimation = new Animation<TextureRegion>(1 / 20f, impactTextureAtlas.getRegions());
         }
 
         if (assetsLoaded()) {
