@@ -18,7 +18,7 @@ public class LifeGauge extends Actor {
     private static int gaugeWidth = 256;
     private static int notchHeight = 19;
     private static int notchWidth = 10;
-    private static int vGaugeOffset = 21;
+    private static int vGaugeOffset = 22;
     private static int hGaugeOffset = notchWidth + (int)(0.2 * notchWidth);
     // Notch width multiplier
     private static int notchMult = 3;

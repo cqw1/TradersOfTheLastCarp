@@ -167,8 +167,8 @@ public abstract class ALevel extends Stage {
     }
 
     public void initUI(){
-        int xOffset = 16;
-        int yOffset = 16;
+        int xOffset = 32;
+        int yOffset = 32;
         // Add health bar, inventory bar, and level information bar.
         LifeGauge hpBar = new LifeGauge(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
         Inventory inventory = new Inventory(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
@@ -176,8 +176,8 @@ public abstract class ALevel extends Stage {
         LevelInfo info = new LevelInfo(this, TradersOfTheLastCarp.CONFIG_WIDTH, TradersOfTheLastCarp.CONFIG_HEIGHT);
 
         bar0.moveBy(-xOffset, -(bar0.getHeight() + yOffset));
-        hpBar.moveBy(inventory.getWidth(), -(hpBar.getHeight() + 3));
-        inventory.moveBy(0, -(inventory.getHeight() - 3));
+        hpBar.moveBy(inventory.getWidth(), -(hpBar.getHeight() + yOffset * 0.8f));
+        inventory.moveBy(0, -(inventory.getHeight() + yOffset * 0.6f));
         info.moveBy(-(info.getWidth() - xOffset), -(info.getHeight() + yOffset));
 
         addActor(bar0);
