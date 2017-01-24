@@ -1,6 +1,16 @@
 package com.totlc;
 
 public enum AssetList {
+    // UI elements.
+    UI_BAR("UI/UIBar.png"),
+    LIFE_GAUGE("UI/LifeGauge.png"),
+    LIFE_BAR("UI/LifeGaugeBar.png"),
+    INVENTORY_BOX("UI/Satchel.png"),
+    ICON_PACK("UI/icon_pak.atlas"),
+    LOVELO_FONT("UI/Lovelo.fnt"),
+    LOVELO_IMAGE("UI/Lovelo.png"),
+
+    // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas"),
     SPIDER_WALK("sprites/spider/spider_walk.atlas"),
     STARGAZER_BODY("sprites/stargazer/stargazer_body.atlas"),
@@ -8,6 +18,8 @@ public enum AssetList {
     STARGAZER_SPIN("sprites/stargazer/stargazer_spin.atlas"),
     STARGAZER_GAZE("sprites/stargazer/stargazer_gaze.atlas"),
     SHADOW("sprites/float_shadow.png"),
+
+    // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png"),
     PLAYER_STAND_RIGHT("dummy/stand/right.png"),
     PLAYER_STAND_DOWN("dummy/stand/front.png"),
@@ -24,13 +36,21 @@ public enum AssetList {
     WHIP_RIGHT("sprites/whip/right.atlas"),
     WHIP_DOWN("sprites/whip/front.atlas"),
     WHIP_UP("sprites/whip/back.atlas"),
+
+    // Special Effects.
     IMPACT("effects/impact.atlas"),
+
+    // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas"),
     ARROW_TRAP("traps/arrow_trap.atlas"),
+
+    // Projectile sprites and effects.
     PROJECTILE_ARROW("traps/arrow.png"),
     PROJECTILE_STAR_SHOT("sprites/starshot/star_shot.atlas"),
     STAR_TRAIL("sprites/starshot/star_effect.particle"),
     STAR_PARTICLES("sprites/starshot/star_particles.atlas"),
+
+    // Tilesets
     DEFAULT_TILESET("tileset/map.png");
 
 

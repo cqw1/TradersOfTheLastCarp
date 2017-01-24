@@ -1,24 +1,57 @@
 package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
+import com.totlc.AssetList;
 
 import java.awt.geom.Point2D;
 
 //Empty for now. All enemies will inherit from this one, to differentiate player and enemy?
 
 public abstract class AEnemy extends Character {
-    // Player health.
+
+    // Enemy attributes.
     private int attack;
+
+    private long hpTimer;
+
+    private boolean showHP = false;
 
     private boolean isFloating = false;
 
+    // Health indicator texture.
+    private TextureRegion heart;
+
+    private int heartSize = 48;
+    private BitmapFont font;
+    GlyphLayout layout = new GlyphLayout();
+
     public AEnemy(AssetManager assetManager, int x, int y){
         super(assetManager, x ,y);
+        TextureAtlas atlas = new TextureAtlas(AssetList.ICON_PACK.toString());
+        heart = atlas.findRegion("heart_icon");
+        font = new BitmapFont(new FileHandle(AssetList.LOVELO_FONT.toString()),
+               new FileHandle(AssetList.LOVELO_IMAGE.toString()), false);
+    }
+
+    /**
+     * Helper that draws a health indicator above the enemy.
+     */
+    public void drawHealth(Batch batch, float alpha, int xOffset, int yOffset) {
+        if(showHP) {
+            batch.draw(heart, (float) getCenter().getX() - (heartSize / 2) + xOffset, (float) getCenter().getY() + getHeight() - heartSize / 2 + yOffset, heartSize, heartSize);
+            layout.setText(font, getHpCurrent() + "/" + getHpMax());
+            font.draw(batch, getHpCurrent() + "/" + getHpMax(), (float) getCenter().getX() + xOffset - (layout.width / 2), (float) getCenter().getY() + getHeight() + yOffset + 4);
+            if (System.currentTimeMillis() - this.hpTimer > 3000) {
+                this.showHP = false;
+            }
+        }
     }
 
     public boolean collidesWith(Actor otherActor) {
@@ -54,6 +87,14 @@ public abstract class AEnemy extends Character {
         isFloating = floating;
     }
 
+    public boolean isShowHP() {
+        return showHP;
+    }
+
+    public void setShowHP(boolean showHP) {
+        this.showHP = showHP;
+    }
+
     public Point2D getTarget(Actor target) {
         Point2D targetVector = new Point2D.Double(target.getX() - getX(), target.getY() - getY());
         float n = (float) Math.sqrt(Math.pow(targetVector.getX(), 2) + Math.pow(targetVector.getY(), 2));
@@ -63,6 +104,13 @@ public abstract class AEnemy extends Character {
         } else{
             return new Point2D.Double(0, 0);
         }
+    }
+
+    @Override
+    public void takeDamage(int damage){
+        super.takeDamage(damage);
+        this.hpTimer = System.currentTimeMillis();
+        this.showHP = true;
     }
 
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
+import com.totlc.AssetList;
 
 /**
  * Actor that draws the life gauge of a player.
@@ -22,8 +23,8 @@ public class LifeGauge extends Actor {
     // Notch width multiplier
     private static int notchMult = 3;
     // Texture information.
-    private NinePatch gauge = new NinePatch(new Texture(Gdx.files.internal("UI/LifeGauge.png")), 60, 30, gaugeHeight / 4, gaugeHeight / 4);
-    private NinePatch notch = new NinePatch(new Texture(Gdx.files.internal("UI/LifeGaugeBar.png")), notchWidth / 2 - 1, notchWidth / 2 - 1, notchHeight / 4, notchHeight / 4);
+    private NinePatch gauge = new NinePatch(new Texture(AssetList.LIFE_GAUGE.toString()), 60, 30, gaugeHeight / 4, gaugeHeight / 4);
+    private NinePatch notch = new NinePatch(new Texture(AssetList.LIFE_BAR.toString()), notchWidth / 2 - 1, notchWidth / 2 - 1, notchHeight / 4, notchHeight / 4);
 
     // Reference to actor to draw for.
     private Player player;

@@ -2,16 +2,17 @@ package com.totlc.levels;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
+import com.totlc.Actors.UI.Bar;
+import com.totlc.Actors.UI.Inventory;
+import com.totlc.Actors.UI.LevelInfo;
+import com.totlc.Actors.UI.LifeGauge;
 import com.totlc.Actors.weapons.Whip;
-import com.totlc.AssetList;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.audio.MusicPlayer;
@@ -24,6 +25,28 @@ public abstract class ALevel extends Stage {
     private MusicPlayer musicPlayer;
     private AssetManager assetManager;
     private Whip whip;
+
+    // Level information strings.
+    private String nameString, infoString;
+
+    // Level objective types.
+    public enum objectives {
+        SURVIVE(0),
+        UNLOCK(1),
+        DESTROY(2);
+
+        private int id;
+
+        objectives(int id) {
+            this.id = id;
+        }
+
+        public int getID() {
+            return this.id;
+        }
+    }
+
+    private objectives objective;
 
     public ALevel(Player player, AssetManager assetManager){
         setPlayer(player);
@@ -143,6 +166,26 @@ public abstract class ALevel extends Stage {
         return false;
     }
 
+    public void initUI(){
+        int xOffset = 16;
+        int yOffset = 16;
+        // Add health bar, inventory bar, and level information bar.
+        LifeGauge hpBar = new LifeGauge(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
+        Inventory inventory = new Inventory(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
+        Bar bar0 = new Bar(0, TradersOfTheLastCarp.CONFIG_HEIGHT, (int)(hpBar.getWidth() + inventory.getWidth() + 16), 64);
+        LevelInfo info = new LevelInfo(this, TradersOfTheLastCarp.CONFIG_WIDTH, TradersOfTheLastCarp.CONFIG_HEIGHT);
+
+        bar0.moveBy(-xOffset, -(bar0.getHeight() + yOffset));
+        hpBar.moveBy(inventory.getWidth(), -(hpBar.getHeight() + 3));
+        inventory.moveBy(0, -(inventory.getHeight() - 3));
+        info.moveBy(-(info.getWidth() - xOffset), -(info.getHeight() + yOffset));
+
+        addActor(bar0);
+        addActor(hpBar);
+        addActor(inventory);
+        addActor(info);
+    }
+
     @Override
     public boolean keyTyped(char key) {
         return false;
@@ -182,4 +225,44 @@ public abstract class ALevel extends Stage {
     public void setMusicPlayer(MusicPlayer mp) { musicPlayer = mp; }
 
     public void playSong(String filename) { musicPlayer.setSong(filename); musicPlayer.play(); }
+
+    public String getNameString() {
+        return nameString;
+    }
+
+    public void setNameString(String nameString) {
+        this.nameString = nameString;
+    }
+
+    public String getInfoString() {
+        return infoString;
+    }
+
+    public void setInfoString(String infoString) {
+        this.infoString = infoString;
+    }
+
+    public String getObjectiveInfo(){
+        switch (getObjective().getID()){
+            case 0:
+                // Survive.
+                return "TIME REMAINING";
+            case 1:
+                // Unlock.
+                return "LOCKED/UNLOCKED";
+            case 2:
+                // Destroy.
+                return "ENEMIES LEFT";
+            default:
+                return "???";
+        }
+    }
+
+    public objectives getObjective() {
+        return objective;
+    }
+
+    public void setObjective(objectives objective) {
+        this.objective = objective;
+    }
 }

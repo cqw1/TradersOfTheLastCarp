@@ -167,12 +167,13 @@ public class Stargazer extends AEnemy {
             }
             batch.draw(shadow, getX() + Math.abs(128 - shadow.getWidth() * shadow_size) / 2, getY() - 128 * 0.1f, shadow.getWidth() * shadow_size, shadow.getHeight() * shadow_size);
         }
+        drawHealth(batch, alpha, (int)getWidth() / 2, 24);
     }
 
     private void star_shot(){
         Point2D targetVector = getTarget(((ALevel)getStage()).getPlayer());
-        Sound laserSound = Gdx.audio.newSound(Gdx.files.internal("sounds/sparkle0.mp3"));
-       laserSound.play(0.7f);
+        Sound starSound = Gdx.audio.newSound(Gdx.files.internal("sounds/sparkle0.mp3"));
+        starSound.play(0.7f);
         getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.STAR_SHOT, new Point2D.Double(targetVector.getX() * projectileSpeed, targetVector.getY() * projectileSpeed), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
     }
 

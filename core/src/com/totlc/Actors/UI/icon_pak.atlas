@@ -1,0 +1,41 @@
+
+icon_pak.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+heart_icon
+  rotate: false
+  xy: 295, 48
+  size: 166, 151
+  orig: 166, 151
+  offset: 0, 0
+  index: -1
+lock_icon
+  rotate: false
+  xy: 463, 15
+  size: 122, 184
+  orig: 122, 184
+  offset: 0, 0
+  index: -1
+skull_icon
+  rotate: false
+  xy: 587, 60
+  size: 122, 139
+  orig: 122, 139
+  offset: 0, 0
+  index: -1
+time_icon
+  rotate: false
+  xy: 154, 2
+  size: 139, 197
+  orig: 139, 197
+  offset: 0, 0
+  index: -1
+unlock_icon
+  rotate: false
+  xy: 2, 3
+  size: 150, 196
+  orig: 150, 196
+  offset: 0, 0
+  index: -1

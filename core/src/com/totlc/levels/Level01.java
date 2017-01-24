@@ -17,6 +17,9 @@ public class Level01 extends ALevel{
     public Level01(Player player, AssetManager assetManager) {
         super(player, assetManager);
         playSong("test0");
+        setNameString("TEST LEVEL");
+
+        setObjective(objectives.DESTROY);
 
         BasicTileSet bts = new BasicTileSet(assetManager);
         addActor(bts);
@@ -45,8 +48,6 @@ public class Level01 extends ALevel{
         addActor(stargazer);
         getPlayer().setZIndex(999);
 
-        LifeGauge hpBar = new LifeGauge(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
-        hpBar.moveBy(0, -hpBar.getHeight());
-        addActor(hpBar);
+        initUI();
     }
 }
