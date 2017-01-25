@@ -145,6 +145,18 @@ public abstract class TotlcObject extends Actor {
 
     public Polygon getHitBox() { return hitBox; }
 
+    public float getHitBoxWidth() { return hitBox.getBoundingRectangle().width; }
+
+    public float getHitBoxHeight() { return hitBox.getBoundingRectangle().height; }
+
+    public float getHitBoxX() { return hitBox.getBoundingRectangle().x; }
+
+    public float getHitBoxY() { return hitBox.getBoundingRectangle().y; }
+
+    public Rectangle getRectangleHitBox() {
+        return hitBox.getBoundingRectangle();
+    }
+
     public void setHitBox(Polygon r) { hitBox = r; }
 
     public void initHitBox() {

@@ -3,6 +3,7 @@ package com.totlc.levels;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
@@ -12,6 +13,10 @@ import com.totlc.Actors.UI.Bar;
 import com.totlc.Actors.UI.Inventory;
 import com.totlc.Actors.UI.LevelInfo;
 import com.totlc.Actors.UI.LifeGauge;
+import com.totlc.Actors.terrain.BottomWall;
+import com.totlc.Actors.terrain.LeftWall;
+import com.totlc.Actors.terrain.RightWall;
+import com.totlc.Actors.terrain.TopWall;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
@@ -47,6 +52,8 @@ public abstract class ALevel extends Stage {
     }
 
     private objectives objective;
+
+    private float wallSize = 50;
 
     public ALevel(Player player, AssetManager assetManager){
         setPlayer(player);
@@ -264,5 +271,23 @@ public abstract class ALevel extends Stage {
 
     public void setObjective(objectives objective) {
         this.objective = objective;
+    }
+
+    public void initWalls() {
+        LeftWall lw = new LeftWall(assetManager, new Rectangle(0, 0, wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT));
+        lw.setZIndex(1);
+        addActor(lw);
+
+        RightWall rw = new RightWall(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize, 0, wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT));
+        rw.setZIndex(1);
+        addActor(rw);
+
+        TopWall tw = new TopWall(assetManager, new Rectangle(0, TradersOfTheLastCarp.CONFIG_HEIGHT - wallSize, TradersOfTheLastCarp.CONFIG_WIDTH, wallSize));
+        tw.setZIndex(1);
+        addActor(tw);
+
+        BottomWall bw = new BottomWall(assetManager, new Rectangle(0, 0, TradersOfTheLastCarp.CONFIG_WIDTH, wallSize));
+        bw.setZIndex(1);
+        addActor(bw);
     }
 }

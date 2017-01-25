@@ -16,13 +16,10 @@ import com.totlc.AssetList;
 import com.totlc.tasks.RemoveInvincibilityTask;
 
 public class Whip extends AWeapon {
-    private AssetManager assetManager;
     private Player player;
 
     public Whip(AssetManager assetManager, Player player) {
         super(assetManager, player, 0, 0.5f);
-
-        this.assetManager = assetManager;
         this.player = player;
 
         setUpAsset(AssetList.WHIP_UP.toString());

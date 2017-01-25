@@ -15,7 +15,6 @@ import com.totlc.AssetList;
 
 public abstract class AWeapon extends TotlcObject {
 
-    private AssetManager assetManager;
     private float attackingCounter = 0;
     private float attackingAnimationLength = 0;
     private Character character;
@@ -42,7 +41,6 @@ public abstract class AWeapon extends TotlcObject {
     public AWeapon(AssetManager assetManager, Character character, int attack, float attackingAnimationLength) {
         super(assetManager, new Rectangle(character.getX(), character.getY(), 128, 64));
 
-        this.assetManager = assetManager;
         this.character = character;
         this.attack = attack;
         this.attackingAnimationLength = attackingAnimationLength;
@@ -61,6 +59,7 @@ public abstract class AWeapon extends TotlcObject {
 
     @Override
     public void draw(Batch batch, float alpha) {
+        AssetManager assetManager = getAssetManager();
 
         if (assetManager.update() && !assetsLoaded()) {
             // Done loading. Instantiate all assets
@@ -125,7 +124,7 @@ public abstract class AWeapon extends TotlcObject {
     }
 
     public void loadAnimation(String asset) {
-        assetManager.load(asset, TextureAtlas.class);
+        getAssetManager().load(asset, TextureAtlas.class);
     }
 
     public void setUpAsset(String asset) {

@@ -2,8 +2,11 @@ package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.enemies.Spider;
 import com.totlc.Actors.enemies.Stargazer;
+import com.totlc.Actors.terrain.LeftWall;
+import com.totlc.Actors.terrain.RightWall;
 import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ArrowTrap;
 import com.totlc.Actors.triggers.ButtonTrigger;
@@ -22,7 +25,10 @@ public class Level01 extends ALevel{
         setObjective(objectives.DESTROY);
 
         BasicTileSet bts = new BasicTileSet(assetManager);
+        bts.setZIndex(0);
         addActor(bts);
+
+        initWalls();
 
         addActor(getPlayer());
 

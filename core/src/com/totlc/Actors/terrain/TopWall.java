@@ -7,9 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.TotlcObject;
 
-public class LeftWall extends TotlcObject implements AWall {
+public class TopWall extends TotlcObject implements AWall {
 
-    public LeftWall(AssetManager assetManager, Rectangle r) {
+    public TopWall(AssetManager assetManager, Rectangle r) {
         super(assetManager, r);
     }
 
@@ -23,7 +23,7 @@ public class LeftWall extends TotlcObject implements AWall {
         if (otherActor instanceof Character) {
             Character other = (Character) otherActor;
 
-            other.moveRel((getX() + getWidth()) - other.getHitBox().getX(), 0);
+            other.moveRel(0, getY() - (other.getHitBoxY() + other.getHitBoxHeight()));
         }
 
         return false;
