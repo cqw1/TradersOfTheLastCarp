@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 
@@ -17,9 +18,7 @@ public class Impact extends AEffect {
     private Animation<TextureRegion> impactAnimation;
 
     public Impact(AssetManager assetManager, float x, float y) {
-        super(assetManager, x, y );
-        float[] coords = {getX(), getY(), getX() + 1, getY(), getX(), getY() + 1};
-        setHitBox(new Polygon(coords));
+        super(assetManager, new Rectangle(x, y, 1, 1));
 
         assetManager.load(AssetList.IMPACT.toString(), TextureAtlas.class);
     }

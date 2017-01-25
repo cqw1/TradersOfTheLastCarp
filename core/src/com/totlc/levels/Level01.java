@@ -26,9 +26,9 @@ public class Level01 extends ALevel{
 
         addActor(getPlayer());
 
-        ButtonTrigger testButton = new ButtonTrigger(assetManager, "dummy/0.png", 400, 300);
-        ButtonTrigger testButton2 = new ButtonTrigger(assetManager, "dummy/0.png", 700, 200);
-        ButtonTrigger testButton3 = new ButtonTrigger(assetManager, "dummy/0.png", 900, 600);
+        ButtonTrigger testButton = new ButtonTrigger(assetManager, 400, 300);
+        ButtonTrigger testButton2 = new ButtonTrigger(assetManager, 700, 200);
+        ButtonTrigger testButton3 = new ButtonTrigger(assetManager, 900, 600);
         ArrowTrap arrowTrap = new ArrowTrap(assetManager, 700, 600);
         testButton.addTrap(arrowTrap);
         testButton2.addTrap(arrowTrap);
@@ -42,10 +42,10 @@ public class Level01 extends ALevel{
         Spider spider1 = new Spider(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
         Spider spider2 = new Spider(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
         Stargazer stargazer = new Stargazer(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
-        addActor(spider0);
-        addActor(spider1);
-        addActor(spider2);
-        addActor(stargazer);
+//        addActor(spider0);
+//        addActor(spider1);
+//        addActor(spider2);
+//        addActor(stargazer);
         getPlayer().setZIndex(999);
 
         initUI();

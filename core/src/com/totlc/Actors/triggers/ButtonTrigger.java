@@ -21,19 +21,18 @@ public class ButtonTrigger extends ATrigger {
     private TextureAtlas buttonTextureAtlas;
     private Animation<TextureRegion> buttonAnimation;
 
-    public ButtonTrigger(AssetManager assetManager, String asset, int x, int y){
-        super(assetManager, x, y);
-        setHeight(32);
-        setWidth(32);
-        initHitBox();
+    public ButtonTrigger(AssetManager assetManager, int x, int y){
+        super(assetManager, new Rectangle(x, y, 32, 32));
 
         getHitBox().translate(48, 48);
         setSpeed(200);
 
-        setMovingLeft(false);
-        setMovingRight(false);
-        setMovingUp(false);
-        setMovingDown(false);
+        assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);
+    }
+
+    public ButtonTrigger(AssetManager assetManager, Rectangle r) {
+        super(assetManager, r);
+        setSpeed(200);
 
         assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);
     }

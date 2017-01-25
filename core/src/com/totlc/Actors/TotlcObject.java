@@ -6,12 +6,13 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.badlogic.gdx.math.Polygon;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 
 public abstract class TotlcObject extends Actor {
@@ -53,9 +54,12 @@ public abstract class TotlcObject extends Actor {
     private boolean isMovingUp = false;
     private boolean isMovingDown = false;
 
-    public TotlcObject(AssetManager assetManager, float x, float y) {
-        setX(x);
-        setY(y);
+    public TotlcObject(AssetManager assetManager, Rectangle r) {
+        setX(r.getX());
+        setY(r.getY());
+        setWidth(r.getWidth());
+        setHeight(r.getHeight());
+        initHitBox();
         setAssetManager(assetManager);
     }
 
@@ -120,6 +124,10 @@ public abstract class TotlcObject extends Actor {
         setX(x);
         setY(y);
         hitBox.translate(translateX, translateY);
+    }
+
+    public void moveHitBox(float x, float y) {
+        hitBox.translate(x, y);
     }
 
     public void updateVelocity(){
@@ -206,6 +214,8 @@ public abstract class TotlcObject extends Actor {
     public float getHeight() { return HEIGHT; }
 
     public Point2D getCenter() { return new Point2D.Float(getX() + getWidth() / 2, getY() + getHeight() / 2);}
+
+    public Vector2 getHitBoxCenter() { return hitBox.getBoundingRectangle().getCenter(new Vector2()); }
 
     public void setSpeed(float s) { speed = s; }
 

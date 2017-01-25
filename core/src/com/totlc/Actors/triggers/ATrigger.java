@@ -3,6 +3,7 @@ package com.totlc.Actors.triggers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
@@ -20,8 +21,8 @@ public abstract class ATrigger extends TotlcObject {
 
     private List<ATrap> listOfTraps = new ArrayList<ATrap>();
 
-    public ATrigger(AssetManager assetManager, float x, float y) {
-        super(assetManager, x, y);
+    public ATrigger(AssetManager assetManager, Rectangle r) {
+        super(assetManager, r);
     }
 
     public void addTrap(ATrap t) { listOfTraps.add(t); }

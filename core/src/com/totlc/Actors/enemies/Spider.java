@@ -40,17 +40,14 @@ public class Spider extends AEnemy {
     private Animation<TextureRegion> walkAnimation;
 
     public Spider(AssetManager assetManager, int x, int y){
-        super(assetManager, x, y);
+        super(assetManager, new Rectangle(x, y, 36, 20));
 
         setHpMax(hp);
         setHpCurrent(getHpMax());
         setAttack(atk);
 
-        setHeight(32);
-        setWidth(64);
-        initHitBox();
         //TODO: Remove after fixing hitboxes
-        getHitBox().translate(32, 0);
+        moveHitBox(48, 0);
 
         setSpeed(speed);
         setFriction(friction);

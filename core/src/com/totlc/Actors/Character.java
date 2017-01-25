@@ -1,6 +1,7 @@
 package com.totlc.Actors;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.math.Rectangle;
 
 public abstract class Character extends TotlcObject {
 
@@ -13,8 +14,8 @@ public abstract class Character extends TotlcObject {
     private int hpCURRENT;
     private boolean attacking = false;
 
-    public Character(AssetManager assetManager, float x, float y) {
-        super(assetManager, x, y);
+    public Character(AssetManager assetManager, Rectangle r) {
+        super(assetManager, r);
     }
 
     abstract public void act(float deltaTime);

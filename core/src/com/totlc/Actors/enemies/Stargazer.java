@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.projectiles.ProjEnum;
 import com.totlc.Actors.projectiles.Projectile;
@@ -54,20 +55,16 @@ public class Stargazer extends AEnemy {
 
 
     public Stargazer(AssetManager assetManager, int x, int y) {
-        super(assetManager, x, y);
+        super(assetManager, new Rectangle(x, y, 40, 40));
 
         setHpMax(hp);
         setHpCurrent(getHpMax());
         setAttack(atk);
 
-        setWidth(48);
-        setHeight(48);
-
         setFloating(true);
 
-        initHitBox();
         //TODO: Remove after correcting hitboxes
-        getHitBox().translate(40, 40);
+        moveHitBox(44,44);
 
         setSpeed(speed);
         setFriction(friction);

@@ -7,27 +7,19 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
-import com.totlc.Actors.UI.LifeGauge;
-import com.totlc.Actors.enemies.Spider;
-import com.totlc.Actors.enemies.Stargazer;
-import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.ALevel;
 import com.totlc.levels.Level01;
-
-import java.util.Arrays;
 
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;
-	private boolean drawHitboxes = false;
+	private boolean drawHitboxes = true;
 
 	public AssetManager assetManager = new AssetManager();
 

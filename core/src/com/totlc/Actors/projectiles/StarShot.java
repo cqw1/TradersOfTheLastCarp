@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.effects.Impact;
@@ -21,12 +22,12 @@ public class StarShot extends Projectile {
     private boolean removeFlag = false;
 
     public StarShot(AssetManager assetManager, float x, float y, int damageType){
-        super(assetManager, x, y);
+        super(assetManager, new Rectangle(x, y, 24, 24));
+
+        //TODO: Correct hitboxes?
+        moveHitBox(20, 20);
 
         setDamageType(damageType);
-        setWidth(64);
-        setHeight(64);
-        initHitBox();
         setAttack(2);
         setScaleFactor(1.0f);
 

@@ -3,6 +3,7 @@ package com.totlc.Actors.enemies;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.projectiles.Projectile;
@@ -32,8 +33,8 @@ public abstract class AEnemy extends Character {
     private BitmapFont font;
     GlyphLayout layout = new GlyphLayout();
 
-    public AEnemy(AssetManager assetManager, int x, int y){
-        super(assetManager, x ,y);
+    public AEnemy(AssetManager assetManager, Rectangle r){
+        super(assetManager, r);
         TextureAtlas atlas = new TextureAtlas(AssetList.ICON_PACK.toString());
         heart = atlas.findRegion("heart_icon");
         font = new BitmapFont(new FileHandle(AssetList.LOVELO_FONT.toString()),
@@ -58,9 +59,6 @@ public abstract class AEnemy extends Character {
         if (otherActor instanceof Projectile && ((Projectile)otherActor).getDamageType() != 1) {
             System.out.println("collidesWith Projectile");
             takeDamage(((Projectile)otherActor).getAttack());
-        } else if (otherActor instanceof AWeapon) {
-            System.out.println("collidesWith AWeapon");
-            takeDamage(((AWeapon)otherActor).getAttack());
         } else if (otherActor instanceof Whip) {
             System.out.println("collidesWith Whip");
             takeDamage(((AWeapon)otherActor).getAttack());

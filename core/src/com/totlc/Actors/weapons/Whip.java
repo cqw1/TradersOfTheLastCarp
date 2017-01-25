@@ -20,14 +20,10 @@ public class Whip extends AWeapon {
     private Player player;
 
     public Whip(AssetManager assetManager, Player player) {
-        super(assetManager, player, 1, 0.5f);
+        super(assetManager, player, 0, 0.5f);
 
         this.assetManager = assetManager;
         this.player = player;
-
-        setX(player.getX());
-        setY(player.getY());
-        initHitBox();
 
         setUpAsset(AssetList.WHIP_UP.toString());
         setDownAsset(AssetList.WHIP_DOWN.toString());

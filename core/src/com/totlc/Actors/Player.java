@@ -67,10 +67,7 @@ public class Player extends Character {
     private long time;
 
     public Player(AssetManager assetManager, float x, float y){
-        super(assetManager, x, y);
-        setHeight(128);
-        setWidth(96);
-        initHitBox();
+        super(assetManager, new Rectangle(x, y, 72, 100));
 
         setSpeed(acc);
 
@@ -83,6 +80,9 @@ public class Player extends Character {
 
         setHpMax(5);
         setHpCurrent(getHpMax());
+
+        //TODO: Correct the hitbox?
+        moveHitBox(24, 12);
 
         // Standing assets.
         assetManager.load(AssetList.PLAYER_STAND_UP.toString(), Texture.class);
