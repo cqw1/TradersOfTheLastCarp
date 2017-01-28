@@ -22,7 +22,7 @@ public class Level01 extends ALevel{
         playSong("test0");
         setNameString("TEST LEVEL");
 
-        setObjective(objectives.DESTROY);
+        setObjective(objectives.UNLOCK);
 
         BasicTileSet bts = new BasicTileSet(assetManager);
         bts.setZIndex(0);
@@ -48,10 +48,10 @@ public class Level01 extends ALevel{
         Spider spider1 = new Spider(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
         Spider spider2 = new Spider(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
         Stargazer stargazer = new Stargazer(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
-//        addActor(spider0);
-//        addActor(spider1);
-//        addActor(spider2);
-//        addActor(stargazer);
+        addActor(spider0);
+        addActor(spider1);
+        addActor(spider2);
+        addActor(stargazer);
         getPlayer().setZIndex(999);
 
         initUI();

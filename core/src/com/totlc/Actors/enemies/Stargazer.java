@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.projectiles.ProjEnum;
-import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.Actors.projectiles.ProjectileFactory;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
@@ -19,11 +18,16 @@ import com.totlc.levels.ALevel;
 
 import java.awt.geom.Point2D;
 
+/**
+ * Floating enemy that drifts slowly towards player.
+ * Periodically shoots a projectile in direction of player.
+ * Projectile attack is telegraphed by short spin-up animation.
+ */
 public class Stargazer extends AEnemy {
 
     // Stat constants.
     private static int id = 1;
-    private static int hp = 3;
+    private static int hp = 2;
     private static int atk = 1;
 
     private static float friction = .99f;

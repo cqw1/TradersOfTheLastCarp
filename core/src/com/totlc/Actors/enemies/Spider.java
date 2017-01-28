@@ -12,6 +12,10 @@ import com.totlc.levels.ALevel;
 
 import java.awt.geom.Point2D;
 
+/**
+ * Basic weak spider enemy.
+ * Moves towards player in short bursts that are on a random interval.
+ */
 public class Spider extends AEnemy {
 
     // Stat constants.
