@@ -14,6 +14,7 @@ public class BasicTileSet extends Image {
     public BasicTileSet(AssetManager assetManager) {
         this.assetManager = assetManager;
         assetManager.load(AssetList.DEFAULT_TILESET.toString(), Texture.class);
+        this.setZIndex(0);
     }
 
     public void draw(Batch batch, float delta) {

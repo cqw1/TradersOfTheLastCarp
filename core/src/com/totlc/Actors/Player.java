@@ -70,6 +70,7 @@ public class Player extends Character {
         super(assetManager, new Rectangle(x, y, 72, 100));
 
         setSpeed(acc);
+        setZIndex(10);
 
         setMaxVel(maxVelocity);
 

@@ -1,9 +1,11 @@
 package com.totlc.levels;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
@@ -13,10 +15,7 @@ import com.totlc.Actors.UI.Bar;
 import com.totlc.Actors.UI.Inventory;
 import com.totlc.Actors.UI.LevelInfo;
 import com.totlc.Actors.UI.LifeGauge;
-import com.totlc.Actors.terrain.BottomWall;
-import com.totlc.Actors.terrain.LeftWall;
-import com.totlc.Actors.terrain.RightWall;
-import com.totlc.Actors.terrain.TopWall;
+import com.totlc.Actors.terrain.*;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
@@ -30,6 +29,9 @@ public abstract class ALevel extends Stage {
     private MusicPlayer musicPlayer;
     private AssetManager assetManager;
     private Whip whip;
+    private NextStage nextStage;
+    private ALevel nextLevel;
+    private Vector2 playerStartPosition = new Vector2(DEFAULT_WALLSIZE + 10, TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - 50);
 
     // Level information strings.
     private String nameString, infoString;
@@ -53,15 +55,30 @@ public abstract class ALevel extends Stage {
 
     private objectives objective;
 
-    private float wallSize = 50;
+    private float wallSize = DEFAULT_WALLSIZE;
+    public static float DEFAULT_WALLSIZE = 50;
 
-    public ALevel(Player player, AssetManager assetManager){
-        setPlayer(player);
+    public ALevel(Player player, AssetManager assetManager) {
+        this.player = player;
         this.assetManager = assetManager;
+        setMusicPlayer(new MusicPlayer());
+    }
+
+    public ALevel(Player player, AssetManager assetManager, NextStage nextStage, ALevel nextLevel, objectives objective){
+        this.player = player;
+        this.player.moveAbs(playerStartPosition.x, playerStartPosition.y);
+
+        this.nextStage = nextStage;
+        this.assetManager = assetManager;
+        this.nextLevel = nextLevel;
+        this.objective = objective;
 
         whip = new Whip(assetManager, player);
 
         setMusicPlayer(new MusicPlayer());
+
+        initWalls();
+        initUI();
     }
 
     @Override
@@ -69,6 +86,10 @@ public abstract class ALevel extends Stage {
         //First let actors update themselves
         for (Actor a: getActors()) {
             a.act(delta);
+        }
+
+        if (Intersector.overlapConvexPolygons(player.getHitBox(), nextStage.getHitBox())) {
+            System.out.println("Proceed to the next level.");
         }
 
         //Now check for collisions
@@ -110,14 +131,6 @@ public abstract class ALevel extends Stage {
             beingRemoved.remove();
         }
     }
-
-//    public void draw() {
-//        if (assetManager.update()) {
-//            getBatch().begin();
-//            getBatch().draw((Texture)assetManager.get(AssetList.DEFAULT_TILESET.toString()), 0f, 0f, (float) TradersOfTheLastCarp.CONFIG_WIDTH, (float) TradersOfTheLastCarp.CONFIG_HEIGHT);
-//            getBatch().end();
-//        }
-//    }
 
     @Override
     public boolean keyDown(int keycode) {
@@ -273,14 +286,28 @@ public abstract class ALevel extends Stage {
         this.objective = objective;
     }
 
+    public float getWallSize() {
+        return wallSize;
+    }
+
+    public void setWallSize(float wallSize) {
+        this.wallSize = wallSize;
+    }
+
     public void initWalls() {
+        addActor(nextStage);
+
         LeftWall lw = new LeftWall(assetManager, new Rectangle(0, 0, wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT));
         lw.setZIndex(1);
         addActor(lw);
 
-        RightWall rw = new RightWall(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize, 0, wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT));
-        rw.setZIndex(1);
-        addActor(rw);
+        RightWall rwBot = new RightWall(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY()));
+        rwBot.setZIndex(1);
+        addActor(rwBot);
+
+        RightWall rwTop = new RightWall(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize, nextStage.getY() + nextStage.getHeight(), wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight()));
+        rwTop.setZIndex(1);
+        addActor(rwTop);
 
         TopWall tw = new TopWall(assetManager, new Rectangle(0, TradersOfTheLastCarp.CONFIG_HEIGHT - wallSize, TradersOfTheLastCarp.CONFIG_WIDTH, wallSize));
         tw.setZIndex(1);

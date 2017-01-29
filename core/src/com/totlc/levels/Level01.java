@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.enemies.Spider;
 import com.totlc.Actors.enemies.Stargazer;
 import com.totlc.Actors.terrain.LeftWall;
+import com.totlc.Actors.terrain.NextStage;
 import com.totlc.Actors.terrain.RightWall;
 import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ArrowTrap;
@@ -18,17 +19,17 @@ import com.totlc.audio.MusicPlayer;
 public class Level01 extends ALevel{
 
     public Level01(Player player, AssetManager assetManager) {
-        super(player, assetManager);
+        super(player, assetManager,
+                new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
+                new Level02(player, assetManager),
+                objectives.UNLOCK);
         playSong("test0");
         setNameString("TEST LEVEL");
 
         setObjective(objectives.UNLOCK);
 
         BasicTileSet bts = new BasicTileSet(assetManager);
-        bts.setZIndex(0);
         addActor(bts);
-
-        initWalls();
 
         addActor(getPlayer());
 
@@ -52,8 +53,5 @@ public class Level01 extends ALevel{
         addActor(spider1);
         addActor(spider2);
         addActor(stargazer);
-        getPlayer().setZIndex(999);
-
-        initUI();
     }
 }
