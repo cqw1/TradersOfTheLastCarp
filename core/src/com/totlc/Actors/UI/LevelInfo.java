@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 import com.totlc.levels.ALevel;
+import com.totlc.levels.ObjectiveVerifier.*;
 
 /**
  * UI Actor that displays level #, objectives, and objective information.
@@ -22,7 +23,7 @@ public class LevelInfo extends Actor {
     // Level to display information for.
     private ALevel level;
 
-    private ALevel.objectives objective;
+    private objectives objective;
 
     public LevelInfo(ALevel level, int x, int y){
         setX(x);
@@ -76,11 +77,11 @@ public class LevelInfo extends Actor {
         this.level = level;
     }
 
-    public ALevel.objectives getObjective() {
+    public objectives getObjective() {
         return objective;
     }
 
-    public void setObjective(ALevel.objectives objective) {
+    public void setObjective(objectives objective) {
         this.objective = objective;
     }
 }

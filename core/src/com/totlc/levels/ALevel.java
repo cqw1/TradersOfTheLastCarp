@@ -1,6 +1,5 @@
 package com.totlc.levels;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Intersector;
@@ -20,6 +19,7 @@ import com.totlc.Actors.weapons.Whip;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.audio.MusicPlayer;
+import com.totlc.levels.ObjectiveVerifier.objectives;
 
 import java.util.HashSet;
 
@@ -35,23 +35,6 @@ public abstract class ALevel extends Stage {
 
     // Level information strings.
     private String nameString, infoString;
-
-    // Level objective types.
-    public enum objectives {
-        SURVIVE(0),
-        UNLOCK(1),
-        DESTROY(2);
-
-        private int id;
-
-        objectives(int id) {
-            this.id = id;
-        }
-
-        public int getID() {
-            return this.id;
-        }
-    }
 
     private objectives objective;
 
@@ -86,6 +69,10 @@ public abstract class ALevel extends Stage {
         //First let actors update themselves
         for (Actor a: getActors()) {
             a.act(delta);
+        }
+
+        if (ObjectiveVerifier.verifyDone(this) == 0.0f) {
+            nextStage.unlock();
         }
 
         if (Intersector.overlapConvexPolygons(player.getHitBox(), nextStage.getHitBox())) {
@@ -296,6 +283,7 @@ public abstract class ALevel extends Stage {
 
     public void initWalls() {
         addActor(nextStage);
+        addActor(nextStage.getPhysicalBlock());
 
         LeftWall lw = new LeftWall(assetManager, new Rectangle(0, 0, wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT));
         lw.setZIndex(1);

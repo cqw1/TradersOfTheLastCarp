@@ -3,6 +3,7 @@ package com.totlc.levels;
 import com.badlogic.gdx.assets.AssetManager;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.terrain.NextStage;
+import com.totlc.levels.ObjectiveVerifier.*;
 
 public class Level02 extends ALevel {
 
@@ -10,7 +11,7 @@ public class Level02 extends ALevel {
         super(player, assetManager,
                 new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
                 new EndLevel(player, assetManager),
-                objectives.UNLOCK);
+                objectives.DESTROY);
 
     }
 }

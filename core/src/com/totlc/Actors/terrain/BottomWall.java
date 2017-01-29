@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.TotlcObject;
 
-public class BottomWall extends TotlcObject implements AWall {
+public class BottomWall extends AWall {
 
     public BottomWall(AssetManager assetManager, Rectangle r) {
         super(assetManager, r);

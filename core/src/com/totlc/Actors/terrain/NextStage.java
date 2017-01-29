@@ -9,10 +9,17 @@ import com.totlc.TradersOfTheLastCarp;
 
 public class NextStage extends TotlcObject {
 
+    public AWall physicalBlock;
+
     public NextStage(AssetManager assetManager, float wallSize, float playerHeight) {
-        super(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize + 1,
+        super(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize + 25,
                 (TradersOfTheLastCarp.CONFIG_HEIGHT / 2) - (playerHeight / 2) - 25,
-                wallSize - 1,
+                wallSize - 25,
+                playerHeight + 50));
+
+        physicalBlock = new RightWall(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize,
+                (TradersOfTheLastCarp.CONFIG_HEIGHT / 2) - (playerHeight / 2) - 25,
+                wallSize,
                 playerHeight + 50));
     }
 
@@ -31,5 +38,17 @@ public class NextStage extends TotlcObject {
     @Override
     public void endCollidesWith(Actor otherActor) {
 
+    }
+
+    public AWall getPhysicalBlock() {
+        return physicalBlock;
+    }
+
+    public void setPhysicalBlock(AWall physicalBlock) {
+        this.physicalBlock = physicalBlock;
+    }
+
+    public void unlock() {
+        physicalBlock.remove();
     }
 }

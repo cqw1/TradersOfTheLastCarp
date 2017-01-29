@@ -1,20 +1,15 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.enemies.Spider;
 import com.totlc.Actors.enemies.Stargazer;
-import com.totlc.Actors.terrain.LeftWall;
 import com.totlc.Actors.terrain.NextStage;
-import com.totlc.Actors.terrain.RightWall;
 import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ArrowTrap;
 import com.totlc.Actors.triggers.ButtonTrigger;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.Actors.Player;
-import com.totlc.Actors.UI.LifeGauge;
-import com.totlc.audio.MusicPlayer;
+import com.totlc.levels.ObjectiveVerifier.*;
 
 public class Level01 extends ALevel{
 
@@ -22,11 +17,9 @@ public class Level01 extends ALevel{
         super(player, assetManager,
                 new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
                 new Level02(player, assetManager),
-                objectives.UNLOCK);
+                objectives.DESTROY);
         playSong("test0");
         setNameString("TEST LEVEL");
-
-        setObjective(objectives.UNLOCK);
 
         BasicTileSet bts = new BasicTileSet(assetManager);
         addActor(bts);
@@ -50,8 +43,8 @@ public class Level01 extends ALevel{
         Spider spider2 = new Spider(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
         Stargazer stargazer = new Stargazer(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
         addActor(spider0);
-        addActor(spider1);
-        addActor(spider2);
-        addActor(stargazer);
+//        addActor(spider1);
+//        addActor(spider2);
+//        addActor(stargazer);
     }
 }
