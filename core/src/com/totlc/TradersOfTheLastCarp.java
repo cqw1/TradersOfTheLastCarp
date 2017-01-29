@@ -25,7 +25,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	private static OrthographicCamera camera;
 
-	private ALevel level;
+	public static ALevel level;
 
 	@Override
 	public void create() {
@@ -42,6 +42,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		// Initialize input processor.
 		level = new Level01(player, assetManager);
 		Gdx.input.setInputProcessor(level);
+		level.initLevel(player);
 	}
 
 	@Override

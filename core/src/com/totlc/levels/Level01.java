@@ -18,18 +18,22 @@ public class Level01 extends ALevel{
                 new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
                 new Level02(player, assetManager),
                 objectives.DESTROY);
+    }
+
+    public void initLevel(Player player) {
         playSong("test0");
         setNameString("TEST LEVEL");
 
-        BasicTileSet bts = new BasicTileSet(assetManager);
+        BasicTileSet bts = new BasicTileSet(getAssetManager());
         addActor(bts);
 
-        addActor(getPlayer());
+        //REQUIRED
+        setPlayer(player);
 
-        ButtonTrigger testButton = new ButtonTrigger(assetManager, 400, 300);
-        ButtonTrigger testButton2 = new ButtonTrigger(assetManager, 700, 200);
-        ButtonTrigger testButton3 = new ButtonTrigger(assetManager, 900, 600);
-        ArrowTrap arrowTrap = new ArrowTrap(assetManager, 700, 600);
+        ButtonTrigger testButton = new ButtonTrigger(getAssetManager(), 400, 300);
+        ButtonTrigger testButton2 = new ButtonTrigger(getAssetManager(), 700, 200);
+        ButtonTrigger testButton3 = new ButtonTrigger(getAssetManager(), 900, 600);
+        ArrowTrap arrowTrap = new ArrowTrap(getAssetManager(), 700, 600);
         testButton.addTrap(arrowTrap);
         testButton2.addTrap(arrowTrap);
         testButton3.addTrap(arrowTrap);
@@ -38,13 +42,16 @@ public class Level01 extends ALevel{
         addActor(testButton3);
         addActor(arrowTrap);
 
-        Spider spider0 = new Spider(assetManager, 0, 0);
-        Spider spider1 = new Spider(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
-        Spider spider2 = new Spider(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
-        Stargazer stargazer = new Stargazer(assetManager, TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
-        addActor(spider0);
+//        Spider spider0 = new Spider(getAssetManager(), 0, 0);
+//        Spider spider1 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
+//        Spider spider2 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
+//        Stargazer stargazer = new Stargazer(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
+//        addActor(spider0);
 //        addActor(spider1);
 //        addActor(spider2);
 //        addActor(stargazer);
+
+        //REQUIRED
+        endInit();
     }
 }

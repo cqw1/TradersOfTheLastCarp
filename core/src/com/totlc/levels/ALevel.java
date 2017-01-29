@@ -41,6 +41,8 @@ public abstract class ALevel extends Stage {
     private float wallSize = DEFAULT_WALLSIZE;
     public static float DEFAULT_WALLSIZE = 50;
 
+    public ALevel() {}
+
     public ALevel(Player player, AssetManager assetManager) {
         this.player = player;
         this.assetManager = assetManager;
@@ -49,7 +51,6 @@ public abstract class ALevel extends Stage {
 
     public ALevel(Player player, AssetManager assetManager, NextStage nextStage, ALevel nextLevel, objectives objective){
         this.player = player;
-        this.player.moveAbs(playerStartPosition.x, playerStartPosition.y);
 
         this.nextStage = nextStage;
         this.assetManager = assetManager;
@@ -59,9 +60,17 @@ public abstract class ALevel extends Stage {
         whip = new Whip(assetManager, player);
 
         setMusicPlayer(new MusicPlayer());
+    }
 
+    public abstract void initLevel(Player player);
+
+    public void endInit() {
         initWalls();
         initUI();
+
+        player.moveAbs(playerStartPosition.x, playerStartPosition.y);
+        addActor(player);
+        getPlayer().setZIndex(20);
     }
 
     @Override
@@ -76,7 +85,10 @@ public abstract class ALevel extends Stage {
         }
 
         if (Intersector.overlapConvexPolygons(player.getHitBox(), nextStage.getHitBox())) {
-            System.out.println("Proceed to the next level.");
+            initNextLevel();
+            dispose();
+            TradersOfTheLastCarp.level = nextLevel;
+            return;
         }
 
         //Now check for collisions
@@ -178,9 +190,13 @@ public abstract class ALevel extends Stage {
         int yOffset = 32;
         // Add health bar, inventory bar, and level information bar.
         LifeGauge hpBar = new LifeGauge(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
+        hpBar.setZIndex(10);
         Inventory inventory = new Inventory(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
+        inventory.setZIndex(10);
         Bar bar0 = new Bar(0, TradersOfTheLastCarp.CONFIG_HEIGHT, (int)(hpBar.getWidth() + inventory.getWidth() + 32), 64);
+        bar0.setZIndex(10);
         LevelInfo info = new LevelInfo(this, TradersOfTheLastCarp.CONFIG_WIDTH, TradersOfTheLastCarp.CONFIG_HEIGHT);
+        info.setZIndex(10);
 
         bar0.moveBy(-xOffset, -(bar0.getHeight() + yOffset));
         hpBar.moveBy(inventory.getWidth() - yOffset * 0.3f, -(hpBar.getHeight() + yOffset * 0.8f));
@@ -230,6 +246,22 @@ public abstract class ALevel extends Stage {
     }
 
     public void setMusicPlayer(MusicPlayer mp) { musicPlayer = mp; }
+
+    public Vector2 getPlayerStartPosition() {
+        return playerStartPosition;
+    }
+
+    public void setPlayerStartPosition(Vector2 playerStartPosition) {
+        this.playerStartPosition = playerStartPosition;
+    }
+
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
+
+    public void setAssetManager(AssetManager assetManager) {
+        this.assetManager = assetManager;
+    }
 
     public void playSong(String filename) { musicPlayer.setSong(filename); musicPlayer.play(); }
 
@@ -304,5 +336,9 @@ public abstract class ALevel extends Stage {
         BottomWall bw = new BottomWall(assetManager, new Rectangle(0, 0, TradersOfTheLastCarp.CONFIG_WIDTH, wallSize));
         bw.setZIndex(1);
         addActor(bw);
+    }
+
+    public void initNextLevel() {
+        nextLevel.initLevel(player);
     }
 }

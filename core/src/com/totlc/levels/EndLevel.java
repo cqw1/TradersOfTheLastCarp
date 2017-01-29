@@ -8,4 +8,6 @@ public class EndLevel extends ALevel {
     public EndLevel(Player player, AssetManager assetManager) {
         super(player, assetManager);
     }
+
+    public void initLevel(Player player) {}
 }
