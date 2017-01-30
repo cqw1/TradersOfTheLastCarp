@@ -58,8 +58,11 @@ public class Spider extends AEnemy {
         setMaxVel(maxVelocity);
         setKnockback(knockback);
 
-        assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
+        idleTextureAtlas = assetManager.get(AssetList.SPIDER_IDLE.toString());
+        idleAnimation = new Animation<TextureRegion>(1 / 12f, idleTextureAtlas.getRegions());
+
+        walkTextureAtlas = assetManager.get(AssetList.SPIDER_WALK.toString());
+        walkAnimation = new Animation<TextureRegion>(1 / 12f, walkTextureAtlas.getRegions());
 
         // Randomize wait_cycles.
         wait_cycles = wait_cycles + (int)(Math.random() * wait_variance);
@@ -93,25 +96,10 @@ public class Spider extends AEnemy {
 
     @Override
     public void draw(Batch batch, float alpha){
-        AssetManager assetManager = getAssetManager();
-        if (assetManager.update() && !assetsLoaded()) {
-            // Done loading. Instantiate all assets
-
-            setAssetsLoaded(true);
-
-            idleTextureAtlas = assetManager.get(AssetList.SPIDER_IDLE.toString());
-            idleAnimation = new Animation<TextureRegion>(1 / 12f, idleTextureAtlas.getRegions());
-
-            walkTextureAtlas = assetManager.get(AssetList.SPIDER_WALK.toString());
-            walkAnimation = new Animation<TextureRegion>(1 / 12f, walkTextureAtlas.getRegions());
-        }
-
-        if (assetsLoaded()) {
-            if (skitter){
-                batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-            } else{
-                batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-            }
+        if (skitter){
+            batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+        } else{
+            batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
         }
         drawHealth(batch, alpha, (int)getWidth() / 2, -8);
     }

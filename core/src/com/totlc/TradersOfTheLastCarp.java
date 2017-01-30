@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
@@ -33,6 +35,17 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
 		assetManager.load("sounds/trap_activation.mp3", Sound.class);
+
+		assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
+
+		assetManager.load(AssetList.STARGAZER_BODY.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.STARGAZER_EYE.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.STARGAZER_SPIN.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.SHADOW.toString(), Texture.class);
+
+		assetManager.load(AssetList.DEFAULT_TILESET.toString(), Texture.class);
 
 		assetManager.finishLoading();
 

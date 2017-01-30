@@ -75,11 +75,21 @@ public class Stargazer extends AEnemy {
         setMaxVel(maxVelocity);
         setKnockback(knockback);
 
-        assetManager.load(AssetList.STARGAZER_BODY.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.STARGAZER_EYE.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.STARGAZER_SPIN.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.SHADOW.toString(), Texture.class);
+        bodyTextureAtlas = getAssetManager().get(AssetList.STARGAZER_BODY.toString());
+        bodyAnimation = new Animation<TextureRegion>(1/16f, this.bodyTextureAtlas.getRegions());
+
+        eyeTextureAtlas = getAssetManager().get(AssetList.STARGAZER_EYE.toString());
+        eyeAnimation = new Animation<TextureRegion>(1/12f, this.eyeTextureAtlas.getRegions());
+
+        spinTextureAtlas = getAssetManager().get(AssetList.STARGAZER_SPIN.toString());
+        spinAnimation = new Animation<TextureRegion>(1/24f, this.spinTextureAtlas.getRegions());
+
+        gazeTextureAtlas = getAssetManager().get(AssetList.STARGAZER_GAZE.toString());
+        gazeAnimation = new Animation<TextureRegion>(1/24f, this.gazeTextureAtlas.getRegions());
+        gazeReverseAnimation = new Animation<TextureRegion>(1/24f, this.gazeTextureAtlas.getRegions());
+        gazeReverseAnimation.setPlayMode(Animation.PlayMode.REVERSED);
+
+        shadow = getAssetManager().get(AssetList.SHADOW.toString());
     }
 
     @Override
@@ -129,45 +139,23 @@ public class Stargazer extends AEnemy {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        if (getAssetManager().update() && !assetsLoaded()) {
-            // Done loading. Instantiate all assets
 
-            setAssetsLoaded(true);
-
-            bodyTextureAtlas = getAssetManager().get(AssetList.STARGAZER_BODY.toString());
-            bodyAnimation = new Animation<TextureRegion>(1/16f, this.bodyTextureAtlas.getRegions());
-
-            eyeTextureAtlas = getAssetManager().get(AssetList.STARGAZER_EYE.toString());
-            eyeAnimation = new Animation<TextureRegion>(1/12f, this.eyeTextureAtlas.getRegions());
-
-            spinTextureAtlas = getAssetManager().get(AssetList.STARGAZER_SPIN.toString());
-            spinAnimation = new Animation<TextureRegion>(1/24f, this.spinTextureAtlas.getRegions());
-
-            gazeTextureAtlas = getAssetManager().get(AssetList.STARGAZER_GAZE.toString());
-            gazeAnimation = new Animation<TextureRegion>(1/24f, this.gazeTextureAtlas.getRegions());
-            gazeReverseAnimation = new Animation<TextureRegion>(1/24f, this.gazeTextureAtlas.getRegions());
-            gazeReverseAnimation.setPlayMode(Animation.PlayMode.REVERSED);
-
-            shadow = getAssetManager().get(AssetList.SHADOW.toString());
-        }
-
-        if (assetsLoaded()) {
-            boolean flip = getIsFacing().isFacingRight();
-            float w = spinAnimation.getKeyFrame(getAnimationTime()).getRegionWidth();
-            float h = spinAnimation.getKeyFrame(getAnimationTime()).getRegionHeight();
-            if (!spin){
-                batch.draw(bodyAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
-                if (wind_down){
-                    batch.draw(gazeReverseAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
-                } else {
-                    batch.draw(eyeAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
-                }
-            } else{
-                batch.draw(spinAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
-                batch.draw(gazeAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
+        boolean flip = getIsFacing().isFacingRight();
+        float w = spinAnimation.getKeyFrame(getAnimationTime()).getRegionWidth();
+        float h = spinAnimation.getKeyFrame(getAnimationTime()).getRegionHeight();
+        if (!spin){
+            batch.draw(bodyAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
+            if (wind_down){
+                batch.draw(gazeReverseAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
+            } else {
+                batch.draw(eyeAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
             }
-            batch.draw(shadow, getX() + Math.abs(128 - shadow.getWidth() * shadow_size) / 2, getY() - 128 * 0.1f, shadow.getWidth() * shadow_size, shadow.getHeight() * shadow_size);
+        } else{
+            batch.draw(spinAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
+            batch.draw(gazeAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
         }
+        batch.draw(shadow, getX() + Math.abs(128 - shadow.getWidth() * shadow_size) / 2, getY() - 128 * 0.1f, shadow.getWidth() * shadow_size, shadow.getHeight() * shadow_size);
+
         drawHealth(batch, alpha, (int)getWidth() / 2, 24);
     }
 

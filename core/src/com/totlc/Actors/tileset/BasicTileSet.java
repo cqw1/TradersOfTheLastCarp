@@ -13,13 +13,10 @@ public class BasicTileSet extends Image {
 
     public BasicTileSet(AssetManager assetManager) {
         this.assetManager = assetManager;
-        assetManager.load(AssetList.DEFAULT_TILESET.toString(), Texture.class);
         this.setZIndex(0);
     }
 
     public void draw(Batch batch, float delta) {
-        if (assetManager.update()) {
-            batch.draw((Texture) assetManager.get(AssetList.DEFAULT_TILESET.toString()), 0f, 0f, (float) TradersOfTheLastCarp.CONFIG_WIDTH, (float) TradersOfTheLastCarp.CONFIG_HEIGHT);
-        }
+        batch.draw((Texture) assetManager.get(AssetList.DEFAULT_TILESET.toString()), 0f, 0f, (float) TradersOfTheLastCarp.CONFIG_WIDTH, (float) TradersOfTheLastCarp.CONFIG_HEIGHT);
     }
 }

@@ -42,14 +42,14 @@ public class Level01 extends ALevel{
         addActor(testButton3);
         addActor(arrowTrap);
 
-//        Spider spider0 = new Spider(getAssetManager(), 0, 0);
-//        Spider spider1 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
-//        Spider spider2 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
-//        Stargazer stargazer = new Stargazer(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
-//        addActor(spider0);
-//        addActor(spider1);
-//        addActor(spider2);
-//        addActor(stargazer);
+        Spider spider0 = new Spider(getAssetManager(), 0, 0);
+        Spider spider1 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
+        Spider spider2 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
+        Stargazer stargazer = new Stargazer(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
+        addActor(spider0);
+        addActor(spider1);
+        addActor(spider2);
+        addActor(stargazer);
 
         //REQUIRED
         endInit();
