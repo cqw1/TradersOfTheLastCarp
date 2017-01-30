@@ -19,14 +19,14 @@ public class Health extends APickup{
     private TextureRegion heart;
     private float scale = 0.5f;
 
-    public Health(AssetManager assetManager, Rectangle r) {
-        super(assetManager, r);
-        heart = assetManager.get(AssetList.ITEM_PACK.toString(), TextureAtlas.class).findRegion("1heart");
+    public Health(AssetManager assetManager, int x, int y) {
+        super(assetManager, new Rectangle(x, y, 64, 64));
+        heart = assetManager.get(AssetList.ITEM_PACK.toString(), TextureAtlas.class).findRegion("1Heart");
     }
 
     @Override
     public void draw(Batch batch, float alpha) {
-        batch.draw(heart, getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth() * scale, getHeight() * scale, scale, scale, 0);
+        batch.draw(heart, getX(), getY(), heart.getRegionWidth() / 2, heart.getRegionHeight() / 2, heart.getRegionWidth(), heart.getRegionHeight(), scale, scale, 0);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Health extends APickup{
         if (otherActor instanceof Player){
             Player p = (Player) otherActor;
             if (p.getHpCurrent() < p.getHpMax()){
-                p.setHpCurrent(Math.max(p.getHpCurrent() + 2, p.getHpMax()));
+                p.setHpCurrent(Math.min(p.getHpCurrent() + 2, p.getHpMax()));
                 pickup();
             }
         }

@@ -34,7 +34,7 @@ public class Arrow extends Projectile {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth() * getScaleFactor(), getHeight() * getScaleFactor(), 1f, 1f, getVelocityAngle(), 0, 0, 128, 32, false, false);
+        batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), getVelocityAngle(), 0, 0, 128, 32, false, false);
     }
 
     @Override
