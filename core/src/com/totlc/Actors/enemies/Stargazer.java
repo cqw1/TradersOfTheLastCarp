@@ -38,10 +38,13 @@ public class Stargazer extends AEnemy {
 
     // State variables.
     private boolean spin = false;
-    private boolean wind_down = false;
+    private boolean windDown = false;
     private int spin_duration = 100;
-    private float spin_chance = .005f;
+    private float spinChance = .005f;
     private int counter = 0;
+
+    private int spinPeriod = 2000; // in millis
+    private long movementTime;
 
     // Asset and animation constants.
     private TextureAtlas bodyTextureAtlas;
@@ -49,7 +52,7 @@ public class Stargazer extends AEnemy {
     private TextureAtlas spinTextureAtlas;
     private TextureAtlas gazeTextureAtlas;
     private Texture shadow;
-    private float shadow_size = 0.5f;
+    private float shadowSize = 0.5f;
 
     private Animation<TextureRegion> bodyAnimation;
     private Animation<TextureRegion> eyeAnimation;
@@ -101,27 +104,43 @@ public class Stargazer extends AEnemy {
         }
 
         if (!spin){
-            if (wind_down){
-                counter++;
-                if (counter >= spin_duration * 0.2){
-                    wind_down = false;
-                    counter = 0;
+            if (windDown){
+                if (System.currentTimeMillis() > (movementTime + (spinPeriod * 0.2))) {
+                    windDown = false;
+                    movementTime = System.currentTimeMillis();
                 }
+
+//                counter++;
+//                if (counter >= spin_duration * 0.2){
+//                    windDown = false;
+//                    counter = 0;
+//                }
             } else{
-                if (Math.random() < spin_chance){
+
+                if (Math.random() < spinChance){
                     setAnimationTime(0);
                     spin = true;
+                    movementTime = System.currentTimeMillis();
                 }
             }
         } else {
-            counter++;
-            if (counter >= spin_duration){
+
+            if (System.currentTimeMillis() > (movementTime + spinPeriod)) {
                 setAnimationTime(0);
-                wind_down = true;
+                windDown = true;
                 spin = false;
-                counter = 0;
+                movementTime = System.currentTimeMillis();
                 star_shot();
             }
+
+//            counter++;
+//            if (counter >= spin_duration){
+//                setAnimationTime(0);
+//                windDown = true;
+//                spin = false;
+//                counter = 0;
+//                star_shot();
+//            }
         }
 
         Point2D newAcc = getAcc();
@@ -150,7 +169,7 @@ public class Stargazer extends AEnemy {
         float h = spinAnimation.getKeyFrame(getAnimationTime()).getRegionHeight();
         if (!spin){
             batch.draw(bodyAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
-            if (wind_down){
+            if (windDown){
                 batch.draw(gazeReverseAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
             } else {
                 batch.draw(eyeAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
@@ -159,7 +178,7 @@ public class Stargazer extends AEnemy {
             batch.draw(spinAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
             batch.draw(gazeAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), w / 2, h / 2, w, h, flip ? -1f : 1f, 1f, 0f);
         }
-        batch.draw(shadow, getX() + Math.abs(128 - shadow.getWidth() * shadow_size) / 2, getY() - 128 * 0.1f, shadow.getWidth() * shadow_size, shadow.getHeight() * shadow_size);
+        batch.draw(shadow, getX() + Math.abs(128 - shadow.getWidth() * shadowSize) / 2, getY() - 128 * 0.1f, shadow.getWidth() * shadowSize, shadow.getHeight() * shadowSize);
 
         drawHealth(batch, alpha, (int)getWidth() / 2, 24);
     }

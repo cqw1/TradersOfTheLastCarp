@@ -30,13 +30,9 @@ public class Spider extends AEnemy {
 
     // State variables.
     private boolean skitter = false;
-    private int wait_cycles = 40;
-    private int wait_variance = 20;
-    private int skitter_cycles = 40;
-
     private int skitterPeriod = 1000; // in millis
     private int waitPeriod = 1000; // in millis
-    private int waitVariance = 1000;
+    private int waitVariance = 1000; // in millis
     private long movementTime; // Keeps track of when we switch between idle and skitter
 
     private int counter = 0;
@@ -71,7 +67,6 @@ public class Spider extends AEnemy {
         walkAnimation = new Animation<TextureRegion>(1 / 12f, walkTextureAtlas.getRegions());
 
         // Randomize wait_cycles.
-//        wait_cycles = wait_cycles + (int)(Math.random() * wait_variance);
         waitPeriod = waitPeriod + (int)(Math.random() * waitVariance);
     }
 
@@ -90,10 +85,6 @@ public class Spider extends AEnemy {
                 movementTime = System.currentTimeMillis();
             }
 
-//            if (++counter >= skitter_cycles){
-//                skitter = false;
-//                counter = 0;
-//            }
             newAcc.setLocation(targetVector.getX() * getSpeed(), targetVector.getY() * getSpeed());
             setAcc(newAcc);
         } else {
@@ -103,13 +94,6 @@ public class Spider extends AEnemy {
                 targetVector = getTarget(target);
                 movementTime = System.currentTimeMillis();
             }
-
-//            if (++counter >= wait_cycles){
-//                skitter = true;
-//                Actor target = ((ALevel)getStage()).getPlayer();
-//                targetVector = getTarget(target);
-//                counter = 0;
-//            }
 
             newAcc.setLocation(0, 0);
             setAcc(newAcc);
