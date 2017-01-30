@@ -60,10 +60,9 @@ public class Player extends Character {
 
     private boolean invincible = false;
     private float whippingAnimationLength = 0.5f;
-    private static float invincibilityTime = 2;
+    private int invincibilityPeriod = 2000; // in millis
+    private long invincibilityStart;
     private AWeapon weapon;
-
-    private long time;
 
     public Player(AssetManager assetManager, float x, float y){
         super(assetManager, new Rectangle(x, y, 72, 100));
@@ -121,10 +120,16 @@ public class Player extends Character {
 
     public void draw(Batch batch, float delta) {
         if (invincible) {
-            if ((System.currentTimeMillis() - time) % 2 == 0){
-                return;
+            if (System.currentTimeMillis() > (invincibilityStart + invincibilityPeriod)) {
+                invincible = false;
+            } else {
+                if (System.currentTimeMillis() % 2 == 0){
+                    return;
+                }
             }
         }
+
+
         if (getAttacking()) {
             if (this.getIsFacing().isFacingDown()) {
                 batch.draw(whippingDownAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
@@ -218,15 +223,13 @@ public class Player extends Character {
             if (!invincible) {
                 takeDamage(((AEnemy)otherActor).getAttack());
                 invincible = true;
-                time = System.currentTimeMillis();
-                Timer.schedule(new RemoveInvincibilityTask(this), invincibilityTime);
+                invincibilityStart = System.currentTimeMillis();
             }
         } else if (otherActor instanceof Projectile) {
             if (!invincible && ((Projectile)otherActor).getDamageType() != 2) {
                 takeDamage(((Projectile)otherActor).getAttack());
                 invincible = true;
-                time = System.currentTimeMillis();
-                Timer.schedule(new RemoveInvincibilityTask(this), invincibilityTime);
+                invincibilityStart = System.currentTimeMillis();
             }
         }
 
