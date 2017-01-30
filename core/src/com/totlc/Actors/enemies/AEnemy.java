@@ -26,6 +26,10 @@ public abstract class AEnemy extends Character {
 
     private boolean isFloating = false;
 
+    private boolean stunned = false;
+    private long stunStart;
+    private long stunPeriod = 1000; // in millis
+
     // Health indicator texture.
     private TextureRegion heart;
 
@@ -59,9 +63,14 @@ public abstract class AEnemy extends Character {
         if (otherActor instanceof Projectile && ((Projectile)otherActor).getDamageType() != 1) {
             System.out.println("collidesWith Projectile");
             takeDamage(((Projectile)otherActor).getAttack());
+
         } else if (otherActor instanceof Whip) {
             System.out.println("collidesWith Whip");
-            takeDamage(((AWeapon)otherActor).getAttack());
+            stunned = true;
+            stunStart = System.currentTimeMillis();
+
+            // Maybe save this for different weapons
+            //takeDamage(((AWeapon)otherActor).getAttack());
         }
 
         return (getHpCurrent() <= 0);
@@ -109,6 +118,33 @@ public abstract class AEnemy extends Character {
         super.takeDamage(damage);
         this.hpTimer = System.currentTimeMillis();
         this.showHP = true;
+    }
+
+    public boolean isStunned() {
+        return stunned;
+    }
+    public void setStunned(boolean stun) {
+        this.stunned = stun;
+    }
+
+    public long getStunStart() {
+        return stunStart;
+    }
+
+    public long getStunPeriod() {
+        return stunPeriod;
+    }
+
+    // Does all the stun checks for enemies. Returns true if they're stunned so the subclass act method knows to return
+    // early.
+    public boolean checkStun() {
+        if (stunned) {
+            if (System.currentTimeMillis() > (stunStart + stunPeriod)) {
+                // No longer stunned
+                stunned = false;
+            }
+        }
+        return stunned;
     }
 
 }

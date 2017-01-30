@@ -60,7 +60,6 @@ public class Player extends Character {
 
     private boolean invincible = false;
     private float whippingAnimationLength = 0.5f;
-    private float whippingCounter = 0;
     private static float invincibilityTime = 2;
     private AWeapon weapon;
 
@@ -129,16 +128,12 @@ public class Player extends Character {
         if (getAttacking()) {
             if (this.getIsFacing().isFacingDown()) {
                 batch.draw(whippingDownAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
-//                    batch.draw(whipDownAnimation.getKeyFrame(whippingCounter, false), getX(), (float)(getY() - 0.9375 * getHeight()));
             } else if (this.getIsFacing().isFacingUp()) {
                 batch.draw(whippingUpAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
-//                    batch.draw(whipUpAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
             } else if (this.getIsFacing().isFacingRight()) {
                 batch.draw(whippingRightAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
-//                    batch.draw(whipRightAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
             } else if (this.getIsFacing().isFacingLeft()) {
                 batch.draw(whippingLeftAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
-//                    batch.draw(whipLeftAnimation.getKeyFrame(whippingCounter, false), (float)(getX() - 1.35 * getWidth()), getY());
             }
 
         } else if (this.isMovingRight()) {

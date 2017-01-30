@@ -72,14 +72,19 @@ public class Spider extends AEnemy {
     public void act(float deltaTime) {
         increaseAnimationTime(deltaTime);
         Point2D newAcc = getAcc();
-        if (skitter){
+
+        if (checkStun()) {
+            return;
+        }
+
+        if (skitter) {
             if (++counter >= skitter_cycles){
                 skitter = false;
                 counter = 0;
             }
             newAcc.setLocation(targetVector.getX() * getSpeed(), targetVector.getY() * getSpeed());
             setAcc(newAcc);
-        } else{
+        } else {
             if (++counter >= wait_cycles){
                 skitter = true;
                 Actor target = ((ALevel)getStage()).getPlayer();

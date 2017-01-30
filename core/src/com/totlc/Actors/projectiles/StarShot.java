@@ -61,8 +61,7 @@ public class StarShot extends Projectile {
 
     @Override
     public void draw(Batch batch, float alpha) {
-
-        if (assetsLoaded() && !removeFlag) {
+        if (!removeFlag) {
             batch.draw(shotAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
         }
         star_trail.draw(batch, Gdx.graphics.getDeltaTime());

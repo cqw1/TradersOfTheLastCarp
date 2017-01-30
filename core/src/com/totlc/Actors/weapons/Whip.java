@@ -21,7 +21,6 @@ public class Whip extends AWeapon {
     public Whip(AssetManager assetManager, Player player, String upAsset, String downAsset, String leftAsset, String rightAsset) {
         super(assetManager, player, 0, 0.5f, upAsset, downAsset, leftAsset, rightAsset);
         this.player = player;
-
     }
 
 

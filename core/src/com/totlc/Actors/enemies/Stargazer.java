@@ -95,6 +95,11 @@ public class Stargazer extends AEnemy {
     @Override
     public void act(float deltaTime) {
         increaseAnimationTime(deltaTime);
+
+        if (checkStun()) {
+            return;
+        }
+
         if (!spin){
             if (wind_down){
                 counter++;
