@@ -2,6 +2,8 @@ package com.totlc.levels;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -29,6 +31,8 @@ public abstract class ALevel extends Stage {
     private Player player;
     private MusicPlayer musicPlayer;
     private AssetManager assetManager;
+
+    private TextureRegion objIcon;
     private Whip whip;
     private NextStage nextStage;
     private ALevel nextLevel;
@@ -52,14 +56,30 @@ public abstract class ALevel extends Stage {
 
     public ALevel(Player player, AssetManager assetManager, NextStage nextStage, ALevel nextLevel, objectives objective){
         this.player = player;
-
         this.nextStage = nextStage;
         this.assetManager = assetManager;
         this.nextLevel = nextLevel;
         this.objective = objective;
 
+        TextureAtlas atlas = assetManager.get(AssetList.ICON_PACK.toString());
         whip = new Whip(assetManager, player, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.WHIP_LEFT.toString(), AssetList.WHIP_RIGHT.toString());
-
+        switch (getObjective().getID()){
+            case 0:
+                // Survive.
+                objIcon = atlas.findRegion("time_icon");
+                setInfoString("SURVIVE UNTIL");
+                break;
+            case 1:
+                // Unlock.
+                objIcon = atlas.findRegion("lock_icon");
+                setInfoString("UNLOCK DOOR");
+                break;
+            case 2:
+                // Destroy.
+                objIcon = atlas.findRegion("skull_icon");
+                setInfoString("DEFEAT ENEMIES");
+                break;
+        }
         setMusicPlayer(new MusicPlayer());
     }
 
@@ -190,13 +210,13 @@ public abstract class ALevel extends Stage {
         int xOffset = 32;
         int yOffset = 32;
         // Add health bar, inventory bar, and level information bar.
-        LifeGauge hpBar = new LifeGauge(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
+        LifeGauge hpBar = new LifeGauge(getAssetManager(), player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
         hpBar.setZIndex(10);
-        Inventory inventory = new Inventory(player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
+        Inventory inventory = new Inventory(getAssetManager(), player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
         inventory.setZIndex(10);
-        Bar bar0 = new Bar(0, TradersOfTheLastCarp.CONFIG_HEIGHT, (int)(hpBar.getWidth() + inventory.getWidth() + 32), 64);
+        Bar bar0 = new Bar(getAssetManager(), 0, TradersOfTheLastCarp.CONFIG_HEIGHT, (int)(hpBar.getWidth() + inventory.getWidth() + 32), 64);
         bar0.setZIndex(10);
-        LevelInfo info = new LevelInfo(this, TradersOfTheLastCarp.CONFIG_WIDTH, TradersOfTheLastCarp.CONFIG_HEIGHT);
+        LevelInfo info = new LevelInfo(getAssetManager(), this, TradersOfTheLastCarp.CONFIG_WIDTH, TradersOfTheLastCarp.CONFIG_HEIGHT);
         info.setZIndex(10);
 
         bar0.moveBy(-xOffset, -(bar0.getHeight() + yOffset));
@@ -292,7 +312,7 @@ public abstract class ALevel extends Stage {
                 return "LOCKED/UNLOCKED";
             case 2:
                 // Destroy.
-                return "ENEMIES LEFT";
+                return "x " + (int)ObjectiveVerifier.verifyDone(this);
             default:
                 return "???";
         }
@@ -312,6 +332,14 @@ public abstract class ALevel extends Stage {
 
     public void setWallSize(float wallSize) {
         this.wallSize = wallSize;
+    }
+
+    public TextureRegion getObjIcon() {
+        return objIcon;
+    }
+
+    public void setObjIcon(TextureRegion objIcon) {
+        this.objIcon = objIcon;
     }
 
     public void initWalls() {

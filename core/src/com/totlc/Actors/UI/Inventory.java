@@ -22,13 +22,13 @@ public class Inventory extends Actor{
     // Reference to actor to draw for.
     private Player player;
 
-    public Inventory(Player player, int x, int y){
+    public Inventory(AssetManager assetManager, Player player, int x, int y){
         setX(x);
         setY(y);
         setWidth(128);
         setHeight(128);
         setPlayer(player);
-        uiComponent = new Texture(AssetList.INVENTORY_BOX.toString());
+        uiComponent = assetManager.get(AssetList.INVENTORY_BOX.toString());
     }
 
     public void draw(Batch batch, float alpha){

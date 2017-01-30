@@ -1,6 +1,7 @@
 package com.totlc.Actors.UI;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -23,13 +24,15 @@ public class LifeGauge extends Actor {
     // Notch width multiplier
     private static int notchMult = 3;
     // Texture information.
-    private NinePatch gauge = new NinePatch(new Texture(AssetList.LIFE_GAUGE.toString()), 60, 30, gaugeHeight / 4, gaugeHeight / 4);
-    private NinePatch notch = new NinePatch(new Texture(AssetList.LIFE_BAR.toString()), notchWidth / 2 - 1, notchWidth / 2 - 1, notchHeight / 4, notchHeight / 4);
+    private NinePatch gauge;
+    private NinePatch notch;
 
     // Reference to actor to draw for.
     private Player player;
 
-    public LifeGauge(Player player, int x, int y){
+    public LifeGauge(AssetManager assetManager, Player player, int x, int y){
+        gauge = new NinePatch(assetManager.get(AssetList.LIFE_GAUGE.toString(), Texture.class), 60, 30, gaugeHeight / 4, gaugeHeight / 4);
+        notch = new NinePatch(assetManager.get(AssetList.LIFE_BAR.toString(), Texture.class), notchWidth / 2 - 1, notchWidth / 2 - 1, notchHeight / 4, notchHeight / 4);
         setX(x);
         setY(y);
         setWidth(Math.max(gauge.getLeftWidth() + (notch.getTotalWidth() * notchMult) * player.getHpMax() + hGaugeOffset, gauge.getLeftWidth() + gauge.getRightWidth()));

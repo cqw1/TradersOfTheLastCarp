@@ -1,7 +1,7 @@
 package com.totlc;
 
 public enum AssetList {
-    // UI elements.
+    // UI elements and icons.
     UI_BAR("UI/UIBar.png"),
     LIFE_GAUGE("UI/LifeGauge.png"),
     LIFE_BAR("UI/LifeGaugeBar.png"),
@@ -9,6 +9,7 @@ public enum AssetList {
     ICON_PACK("UI/icon_pak.atlas"),
     LOVELO_FONT("UI/Lovelo.fnt"),
     LOVELO_IMAGE("UI/Lovelo.png"),
+    ITEM_PACK("sprites/items/items.atlas"),
 
     // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas"),
@@ -43,6 +44,7 @@ public enum AssetList {
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas"),
     ARROW_TRAP("traps/arrow_trap.atlas"),
+    SPIDER_TRAP("traps/spider_trap.atlas"),
 
     // Projectile sprites and effects.
     PROJECTILE_ARROW("traps/arrow.png"),
@@ -52,8 +54,6 @@ public enum AssetList {
 
     // Tilesets
     DEFAULT_TILESET("tileset/map.png");
-
-
 
     private String pathname;
     AssetList(String s) {
