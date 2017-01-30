@@ -39,11 +39,9 @@ public class Stargazer extends AEnemy {
     // State variables.
     private boolean spin = false;
     private boolean windDown = false;
-    private int spin_duration = 100;
     private float spinChance = .005f;
-    private int counter = 0;
 
-    private int spinPeriod = 2000; // in millis
+    private int spinPeriod = 1000; // in millis
     private long movementTime;
 
     // Asset and animation constants.
@@ -109,14 +107,7 @@ public class Stargazer extends AEnemy {
                     windDown = false;
                     movementTime = System.currentTimeMillis();
                 }
-
-//                counter++;
-//                if (counter >= spin_duration * 0.2){
-//                    windDown = false;
-//                    counter = 0;
-//                }
-            } else{
-
+            } else {
                 if (Math.random() < spinChance){
                     setAnimationTime(0);
                     spin = true;
@@ -124,7 +115,6 @@ public class Stargazer extends AEnemy {
                 }
             }
         } else {
-
             if (System.currentTimeMillis() > (movementTime + spinPeriod)) {
                 setAnimationTime(0);
                 windDown = true;
@@ -132,15 +122,6 @@ public class Stargazer extends AEnemy {
                 movementTime = System.currentTimeMillis();
                 star_shot();
             }
-
-//            counter++;
-//            if (counter >= spin_duration){
-//                setAnimationTime(0);
-//                windDown = true;
-//                spin = false;
-//                counter = 0;
-//                star_shot();
-//            }
         }
 
         Point2D newAcc = getAcc();
