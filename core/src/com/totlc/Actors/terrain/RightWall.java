@@ -22,7 +22,8 @@ public class RightWall extends AWall {
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Character) {
             Character other = (Character) otherActor;
-            other.moveRel(getX() - (other.getHitBox().getX() + other.getHitBoxWidth()), 0);
+
+            other.moveRel(getX() - (other.getHitBoxX() + other.getHitBoxWidth()), 0);
         }
 
         return false;

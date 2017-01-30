@@ -3,11 +3,13 @@ package com.totlc;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -16,6 +18,8 @@ import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.levels.ALevel;
 import com.totlc.levels.Level01;
+
+import java.awt.*;
 
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
@@ -26,8 +30,11 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public AssetManager assetManager = new AssetManager();
 
 	private static OrthographicCamera camera;
+	private static ShapeRenderer shapeRenderer;
 
 	public static ALevel level;
+
+	public static BitmapFont systemFont0;
 
 	@Override
 	public void create() {
@@ -35,6 +42,13 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
 		assetManager.load("sounds/trap_activation.mp3", Sound.class);
+
+		systemFont0 =  new BitmapFont(new FileHandle(AssetList.LOVELO_FONT.toString()),
+				new FileHandle(AssetList.LOVELO_IMAGE.toString()), false);
+
+		shapeRenderer = new ShapeRenderer();
+		shapeRenderer.setProjectionMatrix(camera.combined);
+		shapeRenderer.setColor(Color.RED);
 
 		// Spider
 		assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
@@ -62,6 +76,16 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		// Button Trigger
 		assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);
+
+		// Items
+		assetManager.load(AssetList.ITEM_PACK.toString(), TextureAtlas.class);
+
+		// UI
+		assetManager.load(AssetList.ICON_PACK.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.UI_BAR.toString(), Texture.class);
+		assetManager.load(AssetList.INVENTORY_BOX.toString(), Texture.class);
+		assetManager.load(AssetList.LIFE_GAUGE.toString(), Texture.class);
+		assetManager.load(AssetList.LIFE_BAR.toString(), Texture.class);
 
 		// Player
 		// Standing assets.
@@ -131,9 +155,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 
 		if (drawHitboxes) {
-			ShapeRenderer shapeRenderer = new ShapeRenderer();
-            shapeRenderer.setProjectionMatrix(camera.combined);
-			shapeRenderer.setColor(Color.RED);
 			shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 			Array<Actor> actors = level.getActors();
 			for (Actor a : actors) {
@@ -143,12 +164,11 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 //					System.out.println("hitbox: " + ((TotlcObject)a).getHitBox());
 //					System.out.println("transformed vertices: " + Arrays.toString(((TotlcObject)a).getHitBox().getTransformedVertices()));
 //				System.out.println("vertices: " + Arrays.toString(((TotlcObject)a).getHitBox().getVertices()));
-					shapeRenderer.polygon(((TotlcObject)a).getHitBox().getTransformedVertices());
+					shapeRenderer.polygon(((TotlcObject) a).getHitBox().getTransformedVertices());
 //				shapeRenderer.polygon(((TotlcObject)a).getHitBox().getVertices());
 				}
 			}
 			shapeRenderer.end();
-
 		}
 	}
 	

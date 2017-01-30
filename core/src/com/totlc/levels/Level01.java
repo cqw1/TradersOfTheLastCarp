@@ -33,23 +33,23 @@ public class Level01 extends ALevel{
         ButtonTrigger testButton = new ButtonTrigger(getAssetManager(), 400, 300);
         ButtonTrigger testButton2 = new ButtonTrigger(getAssetManager(), 700, 200);
         ButtonTrigger testButton3 = new ButtonTrigger(getAssetManager(), 900, 600);
-//        ArrowTrap arrowTrap = new ArrowTrap(getAssetManager(), 700, 600);
-//        testButton.addTrap(arrowTrap);
-//        testButton2.addTrap(arrowTrap);
-//        testButton3.addTrap(arrowTrap);
+        ArrowTrap arrowTrap = new ArrowTrap(getAssetManager(), 700, 600);
+        testButton.addTrap(arrowTrap);
+        testButton2.addTrap(arrowTrap);
+        testButton3.addTrap(arrowTrap);
         addActor(testButton);
         addActor(testButton2);
         addActor(testButton3);
-//        addActor(arrowTrap);
-
+        addActor(arrowTrap);
+        
         Spider spider0 = new Spider(getAssetManager(), 0, 0);
         Spider spider1 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
         Spider spider2 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
-//        Stargazer stargazer = new Stargazer(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
+        Stargazer stargazer = new Stargazer(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
         addActor(spider0);
         addActor(spider1);
         addActor(spider2);
-//        addActor(stargazer);
+        addActor(stargazer);
 
         //REQUIRED
         endInit();

@@ -4,7 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
- * Bursts into spiders upon collisionl with another actor.
+ * Bursts into spiders upon collision with another actor.
  */
 public class SpiderRepository extends ATrap  {
 

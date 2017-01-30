@@ -9,14 +9,14 @@ import com.badlogic.gdx.math.Rectangle;
  * Must be damaged from other sides.
  * Moves relatively slowly and has only a melee attack.
  */
-public class Bullwark extends AEnemy {
+public class ShieldfacedProtector extends AEnemy {
 
     // Stat constants.
     private static int id = 4;
     private static int hp = 2;
     private static int atk = 3;
 
-    public Bullwark(AssetManager assetManager, Rectangle r) {
+    public ShieldfacedProtector(AssetManager assetManager, Rectangle r) {
         super(assetManager, r);
     }
 
