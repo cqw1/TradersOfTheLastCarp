@@ -19,9 +19,6 @@ import com.totlc.Actors.TotlcObject;
 import com.totlc.levels.ALevel;
 import com.totlc.levels.Level01;
 
-import java.awt.*;
-
-
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;

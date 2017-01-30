@@ -45,12 +45,12 @@ public class LevelInfo extends Actor {
         bar.draw(batch, getX(), getY(), getWidth(), getHeight());
         // Draw level strings.
         font.getData().setScale(1.0f);
-        font.draw(batch, level.getNameString(), getX(), getY() + getHeight() * 0.8f);
+        font.draw(batch, level.getNameString(), getX() + iconSize * 0.3f, getY() + getHeight() * 0.8f);
         font.getData().setScale(0.8f);
-        font.draw(batch, level.getInfoString() + " " + level.getObjectiveInfo(), getX() + objPadding, getY() + getHeight() * 0.55f);
+        font.draw(batch, level.getInfoString() + " " + level.getObjectiveInfo(), getX() + iconSize * 0.3f + objPadding, getY() + getHeight() * 0.55f);
 
         // Draw Objective Icon.
-        batch.draw(level.getObjIcon(), getX() - objPadding, getY(), iconSize, iconSize);
+        batch.draw(level.getObjIcon(), getX() - objPadding * 0.6f, getY() - objPadding, iconSize, iconSize);
     }
 
     public ALevel getLevel() {

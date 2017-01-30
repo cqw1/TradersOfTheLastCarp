@@ -3,6 +3,7 @@ package com.totlc.levels;
 import com.badlogic.gdx.assets.AssetManager;
 import com.totlc.Actors.enemies.Spider;
 import com.totlc.Actors.enemies.Stargazer;
+import com.totlc.Actors.items.Health;
 import com.totlc.Actors.terrain.NextStage;
 import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ArrowTrap;
@@ -29,6 +30,9 @@ public class Level01 extends ALevel{
 
         //REQUIRED
         setPlayer(player);
+
+        Health health = new Health(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, TradersOfTheLastCarp.CONFIG_HEIGHT / 2);
+        addActor(health);
 
         ButtonTrigger testButton = new ButtonTrigger(getAssetManager(), 400, 300);
         ButtonTrigger testButton2 = new ButtonTrigger(getAssetManager(), 700, 200);
