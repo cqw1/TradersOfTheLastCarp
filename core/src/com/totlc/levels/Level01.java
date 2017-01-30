@@ -41,7 +41,7 @@ public class Level01 extends ALevel{
         addActor(testButton2);
         addActor(testButton3);
         addActor(arrowTrap);
-
+        
         Spider spider0 = new Spider(getAssetManager(), 0, 0);
         Spider spider1 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
         Spider spider2 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);

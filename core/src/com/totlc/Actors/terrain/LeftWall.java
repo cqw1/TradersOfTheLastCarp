@@ -23,7 +23,7 @@ public class LeftWall extends AWall {
         if (otherActor instanceof Character) {
             Character other = (Character) otherActor;
 
-            other.moveRel((getX() + getWidth()) - other.getHitBox().getX(), 0);
+            other.moveRel((getX() + getWidth()) - other.getHitBoxX(), 0);
         }
 
         return false;
