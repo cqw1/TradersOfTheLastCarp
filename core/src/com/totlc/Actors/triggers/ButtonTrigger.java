@@ -24,10 +24,11 @@ public class ButtonTrigger extends ATrigger {
     public ButtonTrigger(AssetManager assetManager, int x, int y){
         super(assetManager, new Rectangle(x, y, 32, 32));
 
+        buttonTextureAtlas = assetManager.get(AssetList.PLATE_BROWN.toString());
+        buttonAnimation = new Animation<TextureRegion>(1 / 24f, buttonTextureAtlas.getRegions());
+
         getHitBox().translate(48, 48);
         setSpeed(200);
-
-        assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);
     }
 
     public ButtonTrigger(AssetManager assetManager, Rectangle r) {
@@ -39,26 +40,14 @@ public class ButtonTrigger extends ATrigger {
 
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
-        if(!isTriggered()) {
+        if (!isTriggered()) {
             setAnimationTime(0);
         }
     }
 
     public void draw(Batch batch, float delta) {
-        AssetManager assetManager = getAssetManager();
-
-        if (assetManager.update() && !assetsLoaded()) {
-            // Done loading. Instantiate all assets
-            setAssetsLoaded(true);
-
-            buttonTextureAtlas = assetManager.get(AssetList.PLATE_BROWN.toString());
-            buttonAnimation = new Animation<TextureRegion>(1 / 24f, buttonTextureAtlas.getRegions());
-        }
-
-        if (assetsLoaded()) {
-            if(isTriggered()){
-                batch.draw(buttonAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
-            }
+        if (isTriggered()) {
+            batch.draw(buttonAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
         }
     }
 

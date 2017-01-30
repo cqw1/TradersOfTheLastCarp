@@ -26,7 +26,9 @@ public class ArrowTrap extends ATrap{
     public ArrowTrap(AssetManager assetManager, float x, float y) {
         super(assetManager, new Rectangle(x, y, 124, 192));
 
-        assetManager.load(AssetList.ARROW_TRAP.toString(), TextureAtlas.class);
+        trapTextureAtlas = assetManager.get(AssetList.ARROW_TRAP.toString());
+        trapAnimation = new Animation<TextureRegion>(1 / 12f, trapTextureAtlas.getRegions());
+
         setDelay(0.5);
     }
 
@@ -53,21 +55,11 @@ public class ArrowTrap extends ATrap{
 
     @Override
     public void draw(Batch batch, float alpha) {
-        AssetManager assetManager = getAssetManager();
-        if (assetManager.update() && !assetsLoaded()) {
-            // Done loading. Instantiate all assets
-            setAssetsLoaded(true);
 
-            trapTextureAtlas = assetManager.get(AssetList.ARROW_TRAP.toString());
-            trapAnimation = new Animation<TextureRegion>(1 / 12f, trapTextureAtlas.getRegions());
-        }
-
-        if (assetsLoaded()) {
-            if(isActive()){
-                batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
-            } else{
-                batch.draw(trapTextureAtlas.getRegions().first(), getX(), getY());
-            }
+        if(isActive()){
+            batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
+        } else{
+            batch.draw(trapTextureAtlas.getRegions().first(), getX(), getY());
         }
     }
 

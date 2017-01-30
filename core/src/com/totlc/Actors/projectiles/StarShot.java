@@ -31,10 +31,13 @@ public class StarShot extends Projectile {
         setAttack(2);
         setScaleFactor(1.0f);
 
-        assetManager.load(AssetList.PROJECTILE_STAR_SHOT.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.STAR_PARTICLES.toString(), TextureAtlas.class);
         star_trail = new ParticleEffect();
         star_trail.setPosition((float)getCenter().getX(), (float)getCenter().getY());
+
+        shotTextureAtlas = assetManager.get(AssetList.PROJECTILE_STAR_SHOT.toString());
+        particleAtlas = assetManager.get(AssetList.STAR_PARTICLES.toString());
+        shotAnimation = new Animation<TextureRegion>(1 / 16f, shotTextureAtlas.getRegions());
+        star_trail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
     }
 
     @Override
@@ -58,17 +61,6 @@ public class StarShot extends Projectile {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        AssetManager assetManager = getAssetManager();
-
-        if (assetManager.update() && !assetsLoaded()) {
-            // Done loading. Instantiate all assets
-            setAssetsLoaded(true);
-
-            shotTextureAtlas = assetManager.get(AssetList.PROJECTILE_STAR_SHOT.toString());
-            particleAtlas = assetManager.get(AssetList.STAR_PARTICLES.toString());
-            shotAnimation = new Animation<TextureRegion>(1 / 16f, shotTextureAtlas.getRegions());
-            star_trail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
-        }
 
         if (assetsLoaded() && !removeFlag) {
             batch.draw(shotAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());

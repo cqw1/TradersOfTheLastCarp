@@ -36,16 +36,57 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		assetManager.load("sounds/trap_activation.mp3", Sound.class);
 
+		// Spider
 		assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
 
+		// Stargazer
 		assetManager.load(AssetList.STARGAZER_BODY.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.STARGAZER_EYE.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.STARGAZER_SPIN.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.SHADOW.toString(), Texture.class);
 
+		// BasicTileSet
 		assetManager.load(AssetList.DEFAULT_TILESET.toString(), Texture.class);
+
+		// Arrow
+		assetManager.load(AssetList.PROJECTILE_ARROW.toString(), Texture.class);
+
+		// Starshot
+		assetManager.load(AssetList.PROJECTILE_STAR_SHOT.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.STAR_PARTICLES.toString(), TextureAtlas.class);
+
+		// Arrow Trap
+		assetManager.load(AssetList.ARROW_TRAP.toString(), TextureAtlas.class);
+
+		// Button Trigger
+		assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);
+
+		// Player
+		// Standing assets.
+		assetManager.load(AssetList.PLAYER_STAND_UP.toString(), Texture.class);
+		assetManager.load(AssetList.PLAYER_STAND_DOWN.toString(), Texture.class);
+		assetManager.load(AssetList.PLAYER_STAND_LEFT.toString(), Texture.class);
+		assetManager.load(AssetList.PLAYER_STAND_RIGHT.toString(), Texture.class);
+
+		// Walking animations
+		assetManager.load(AssetList.PLAYER_WALK_UP.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.PLAYER_WALK_DOWN.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.PLAYER_WALK_LEFT.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.PLAYER_WALK_RIGHT.toString(), TextureAtlas.class);
+
+		// Whipping animations
+		assetManager.load(AssetList.PLAYER_WHIP_UP.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.PLAYER_WHIP_DOWN.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.PLAYER_WHIP_LEFT.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.PLAYER_WHIP_RIGHT.toString(), TextureAtlas.class);
+
+		// Whip
+		assetManager.load(AssetList.WHIP_UP.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.WHIP_DOWN.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.WHIP_LEFT.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.WHIP_RIGHT.toString(), TextureAtlas.class);
 
 		assetManager.finishLoading();
 

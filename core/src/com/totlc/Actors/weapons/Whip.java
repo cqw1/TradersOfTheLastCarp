@@ -18,14 +18,10 @@ import com.totlc.tasks.RemoveInvincibilityTask;
 public class Whip extends AWeapon {
     private Player player;
 
-    public Whip(AssetManager assetManager, Player player) {
-        super(assetManager, player, 0, 0.5f);
+    public Whip(AssetManager assetManager, Player player, String upAsset, String downAsset, String leftAsset, String rightAsset) {
+        super(assetManager, player, 0, 0.5f, upAsset, downAsset, leftAsset, rightAsset);
         this.player = player;
 
-        setUpAsset(AssetList.WHIP_UP.toString());
-        setDownAsset(AssetList.WHIP_DOWN.toString());
-        setRightAsset(AssetList.WHIP_RIGHT.toString());
-        setLeftAsset(AssetList.WHIP_LEFT.toString());
     }
 
 

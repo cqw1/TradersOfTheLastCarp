@@ -16,6 +16,7 @@ import com.totlc.Actors.UI.LevelInfo;
 import com.totlc.Actors.UI.LifeGauge;
 import com.totlc.Actors.terrain.*;
 import com.totlc.Actors.weapons.Whip;
+import com.totlc.AssetList;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.audio.MusicPlayer;
@@ -57,7 +58,7 @@ public abstract class ALevel extends Stage {
         this.nextLevel = nextLevel;
         this.objective = objective;
 
-        whip = new Whip(assetManager, player);
+        whip = new Whip(assetManager, player, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.WHIP_LEFT.toString(), AssetList.WHIP_RIGHT.toString());
 
         setMusicPlayer(new MusicPlayer());
     }

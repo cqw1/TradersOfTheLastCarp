@@ -85,115 +85,88 @@ public class Player extends Character {
         //TODO: Correct the hitbox?
         moveHitBox(24, 12);
 
-        // Standing assets.
-        assetManager.load(AssetList.PLAYER_STAND_UP.toString(), Texture.class);
-        assetManager.load(AssetList.PLAYER_STAND_DOWN.toString(), Texture.class);
-        assetManager.load(AssetList.PLAYER_STAND_LEFT.toString(), Texture.class);
-        assetManager.load(AssetList.PLAYER_STAND_RIGHT.toString(), Texture.class);
+        // Standing
+        standDownTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
+        standUpTexture = assetManager.get(AssetList.PLAYER_STAND_UP.toString());
+        standLeftTexture = assetManager.get(AssetList.PLAYER_STAND_LEFT.toString());
+        standRightTexture = assetManager.get(AssetList.PLAYER_STAND_RIGHT.toString());
 
-        // Walking animations
-        assetManager.load(AssetList.PLAYER_WALK_UP.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.PLAYER_WALK_DOWN.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.PLAYER_WALK_LEFT.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.PLAYER_WALK_RIGHT.toString(), TextureAtlas.class);
+        // Walking
+        walkDownTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_DOWN.toString());
+        walkDownAnimation = new Animation<TextureRegion>(1 / 12f, walkDownTextureAtlas.getRegions());
 
-        // Whipping animations
-        assetManager.load(AssetList.PLAYER_WHIP_UP.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.PLAYER_WHIP_DOWN.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.PLAYER_WHIP_LEFT.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.PLAYER_WHIP_RIGHT.toString(), TextureAtlas.class);
+        walkUpTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_UP.toString());
+        walkUpAnimation = new Animation<TextureRegion>(1 / 12f, walkUpTextureAtlas.getRegions());
+
+        walkLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_LEFT.toString());
+        walkLeftAnimation = new Animation<TextureRegion>(1 / 12f, walkLeftTextureAtlas.getRegions());
+
+        walkRightTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_RIGHT.toString());
+        walkRightAnimation = new Animation<TextureRegion>(1 / 12f, walkRightTextureAtlas.getRegions());
+
+        // Whipping
+        whippingDownTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_DOWN.toString());
+        whippingDownAnimation = new Animation<TextureRegion>((float) (1.0/whippingDownTextureAtlas.getRegions().size * whippingAnimationLength), whippingDownTextureAtlas.getRegions());
+
+        whippingUpTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_UP.toString());
+        whippingUpAnimation = new Animation<TextureRegion>((float) (1.0/whippingUpTextureAtlas.getRegions().size * whippingAnimationLength), whippingUpTextureAtlas.getRegions());
+
+        whippingLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_LEFT.toString());
+        whippingLeftAnimation = new Animation<TextureRegion>((float) (1.0/whippingLeftTextureAtlas.getRegions().size * whippingAnimationLength), whippingLeftTextureAtlas.getRegions());
+
+        whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
+        whippingRightAnimation = new Animation<TextureRegion>((float) (1.0/whippingRightTextureAtlas.getRegions().size * whippingAnimationLength), whippingRightTextureAtlas.getRegions());
 
         setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
     }
 
     public void draw(Batch batch, float delta) {
-        AssetManager assetManager = getAssetManager();
-        if (assetManager.update() && !assetsLoaded()) {
-            // Done loading. Instantiate all assets
-
-            setAssetsLoaded(true);
-
-            // Standing
-            standDownTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
-            standUpTexture = assetManager.get(AssetList.PLAYER_STAND_UP.toString());
-            standLeftTexture = assetManager.get(AssetList.PLAYER_STAND_LEFT.toString());
-            standRightTexture = assetManager.get(AssetList.PLAYER_STAND_RIGHT.toString());
-
-            // Walking
-            walkDownTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_DOWN.toString());
-            walkDownAnimation = new Animation<TextureRegion>(1 / 12f, walkDownTextureAtlas.getRegions());
-
-            walkUpTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_UP.toString());
-            walkUpAnimation = new Animation<TextureRegion>(1 / 12f, walkUpTextureAtlas.getRegions());
-
-            walkLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_LEFT.toString());
-            walkLeftAnimation = new Animation<TextureRegion>(1 / 12f, walkLeftTextureAtlas.getRegions());
-
-            walkRightTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_RIGHT.toString());
-            walkRightAnimation = new Animation<TextureRegion>(1 / 12f, walkRightTextureAtlas.getRegions());
-
-            // Whipping
-            whippingDownTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_DOWN.toString());
-            whippingDownAnimation = new Animation<TextureRegion>((float) (1.0/whippingDownTextureAtlas.getRegions().size * whippingAnimationLength), whippingDownTextureAtlas.getRegions());
-
-            whippingUpTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_UP.toString());
-            whippingUpAnimation = new Animation<TextureRegion>((float) (1.0/whippingUpTextureAtlas.getRegions().size * whippingAnimationLength), whippingUpTextureAtlas.getRegions());
-
-            whippingLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_LEFT.toString());
-            whippingLeftAnimation = new Animation<TextureRegion>((float) (1.0/whippingLeftTextureAtlas.getRegions().size * whippingAnimationLength), whippingLeftTextureAtlas.getRegions());
-
-            whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
-            whippingRightAnimation = new Animation<TextureRegion>((float) (1.0/whippingRightTextureAtlas.getRegions().size * whippingAnimationLength), whippingRightTextureAtlas.getRegions());
+        if (invincible) {
+            if ((System.currentTimeMillis() - time) % 2 == 0){
+                return;
+            }
         }
-
-        if (assetsLoaded()) {
-            if(invincible){
-                if ((System.currentTimeMillis() - time) % 2 == 0){
-                    return;
-                }
-            }
-            if (getAttacking()) {
-                if (this.getIsFacing().isFacingDown()) {
-                    batch.draw(whippingDownAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
+        if (getAttacking()) {
+            if (this.getIsFacing().isFacingDown()) {
+                batch.draw(whippingDownAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
 //                    batch.draw(whipDownAnimation.getKeyFrame(whippingCounter, false), getX(), (float)(getY() - 0.9375 * getHeight()));
-                } else if (this.getIsFacing().isFacingUp()) {
-                    batch.draw(whippingUpAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
+            } else if (this.getIsFacing().isFacingUp()) {
+                batch.draw(whippingUpAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
 //                    batch.draw(whipUpAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
-                } else if (this.getIsFacing().isFacingRight()) {
-                    batch.draw(whippingRightAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
+            } else if (this.getIsFacing().isFacingRight()) {
+                batch.draw(whippingRightAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
 //                    batch.draw(whipRightAnimation.getKeyFrame(whippingCounter, false), getX(), getY());
-                } else if (this.getIsFacing().isFacingLeft()) {
-                    batch.draw(whippingLeftAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
+            } else if (this.getIsFacing().isFacingLeft()) {
+                batch.draw(whippingLeftAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
 //                    batch.draw(whipLeftAnimation.getKeyFrame(whippingCounter, false), (float)(getX() - 1.35 * getWidth()), getY());
-                }
-
-            } else if (this.isMovingRight()) {
-                batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-
-            } else if (this.isMovingLeft()) {
-                batch.draw(walkLeftAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-
-            } else if (this.isMovingDown()) {
-                // TODO: double check parameter value.
-                // Technically, animationTime parameter to getKeyFrame shouldn't matter cause it's looping. (???)
-                batch.draw(walkDownAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-
-            } else if (this.isMovingUp()) {
-                batch.draw(walkUpAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-
-            } else if (this.getIsFacing() != null) {
-                if (this.getIsFacing().isFacingDown()) {
-                    batch.draw(standDownTexture, getX(), getY());
-                } else if (this.getIsFacing().isFacingLeft()) {
-                    batch.draw(standLeftTexture, getX(), getY());
-                } else if (this.getIsFacing().isFacingRight()) {
-                    batch.draw(standRightTexture, getX(), getY());
-                } else if (this.getIsFacing().isFacingUp()) {
-                    batch.draw(standUpTexture, getX(), getY());
-                }
-            } else {
-                batch.draw(standDownTexture, getX(), getY());
             }
+
+        } else if (this.isMovingRight()) {
+            batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+        } else if (this.isMovingLeft()) {
+            batch.draw(walkLeftAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+        } else if (this.isMovingDown()) {
+            // TODO: double check parameter value.
+            // Technically, animationTime parameter to getKeyFrame shouldn't matter cause it's looping. (???)
+            batch.draw(walkDownAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+        } else if (this.isMovingUp()) {
+            batch.draw(walkUpAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+
+        } else if (this.getIsFacing() != null) {
+            if (this.getIsFacing().isFacingDown()) {
+                batch.draw(standDownTexture, getX(), getY());
+            } else if (this.getIsFacing().isFacingLeft()) {
+                batch.draw(standLeftTexture, getX(), getY());
+            } else if (this.getIsFacing().isFacingRight()) {
+                batch.draw(standRightTexture, getX(), getY());
+            } else if (this.getIsFacing().isFacingUp()) {
+                batch.draw(standUpTexture, getX(), getY());
+            }
+        } else {
+            batch.draw(standDownTexture, getX(), getY());
         }
     }
 

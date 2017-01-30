@@ -38,12 +38,25 @@ public abstract class AWeapon extends TotlcObject {
     private Animation<TextureRegion> leftAnimation;
     private Animation<TextureRegion> rightAnimation;
 
-    public AWeapon(AssetManager assetManager, Character character, int attack, float attackingAnimationLength) {
+    public AWeapon(AssetManager assetManager, Character character, int attack, float attackingAnimationLength, String upAsset, String downAsset, String leftAsset, String rightAsset) {
         super(assetManager, new Rectangle(character.getX(), character.getY(), 128, 64));
 
         this.character = character;
         this.attack = attack;
         this.attackingAnimationLength = attackingAnimationLength;
+
+        // Whip
+        downTextureAtlas = assetManager.get(downAsset);
+        downAnimation = new Animation<TextureRegion>((float) (1.0/downTextureAtlas.getRegions().size * attackingAnimationLength), downTextureAtlas.getRegions());
+
+        upTextureAtlas = assetManager.get(upAsset);
+        upAnimation = new Animation<TextureRegion>((float) (1.0/upTextureAtlas.getRegions().size * attackingAnimationLength), upTextureAtlas.getRegions());
+
+        leftTextureAtlas = assetManager.get(leftAsset);
+        leftAnimation = new Animation<TextureRegion>((float) (1.0/leftTextureAtlas.getRegions().size * attackingAnimationLength), leftTextureAtlas.getRegions());
+
+        rightTextureAtlas = assetManager.get(rightAsset);
+        rightAnimation = new Animation<TextureRegion>((float) (1.0/rightTextureAtlas.getRegions().size * attackingAnimationLength), rightTextureAtlas.getRegions());
     }
 
     @Override
@@ -59,66 +72,44 @@ public abstract class AWeapon extends TotlcObject {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        AssetManager assetManager = getAssetManager();
+        Rectangle characterHB = character.getHitBox().getBoundingRectangle();
 
-        if (assetManager.update() && !assetsLoaded()) {
-            // Done loading. Instantiate all assets
-            setAssetsLoaded(true);
-
-            // Whip
-            downTextureAtlas = assetManager.get(downAsset);
-            downAnimation = new Animation<TextureRegion>((float) (1.0/downTextureAtlas.getRegions().size * attackingAnimationLength), downTextureAtlas.getRegions());
-
-            upTextureAtlas = assetManager.get(upAsset);
-            upAnimation = new Animation<TextureRegion>((float) (1.0/upTextureAtlas.getRegions().size * attackingAnimationLength), upTextureAtlas.getRegions());
-
-            leftTextureAtlas = assetManager.get(leftAsset);
-            leftAnimation = new Animation<TextureRegion>((float) (1.0/leftTextureAtlas.getRegions().size * attackingAnimationLength), leftTextureAtlas.getRegions());
-
-            rightTextureAtlas = assetManager.get(rightAsset);
-            rightAnimation = new Animation<TextureRegion>((float) (1.0/rightTextureAtlas.getRegions().size * attackingAnimationLength), rightTextureAtlas.getRegions());
-        }
-
-        if (assetsLoaded()) {
-            Rectangle characterHB = character.getHitBox().getBoundingRectangle();
-
-            if (character.getIsFacing().isFacingRight()) {
+        if (character.getIsFacing().isFacingRight()) {
 //                setWidth(rightAnimation.getKeyFrame(attackingCounter, false).getRegionWidth());
 //                setHeight(rightAnimation.getKeyFrame(ahbttackingCounter, false).getRegionHeight());
-                moveAbs(characterHB.getX() + character.getWidth(), characterHB.getY() + Math.abs(characterHB.getHeight() - whip_height) / 2);
-                setWidth(whip_width);
-                setHeight(whip_height);
-                initHitBox();
+            moveAbs(characterHB.getX() + character.getWidth(), characterHB.getY() + Math.abs(characterHB.getHeight() - whip_height) / 2);
+            setWidth(whip_width);
+            setHeight(whip_height);
+            initHitBox();
 
-                batch.draw(rightAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY());
-            } else if (character.getIsFacing().isFacingLeft()) {
+            batch.draw(rightAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY());
+        } else if (character.getIsFacing().isFacingLeft()) {
 //                setWidth(-1 * leftAnimation.getKeyFrame(attackingCounter, false).getRegionWidth());
 //                setHeight(leftAnimation.getKeyFrame(attackingCounter, false).getRegionHeight());
-                moveAbs(characterHB.getX(), characterHB.getY() + Math.abs(characterHB.getHeight() - whip_height) / 2);
-                setHeight(whip_height);
-                setWidth(-1 * whip_width);
-                initHitBox();
+            moveAbs(characterHB.getX(), characterHB.getY() + Math.abs(characterHB.getHeight() - whip_height) / 2);
+            setHeight(whip_height);
+            setWidth(-1 * whip_width);
+            initHitBox();
 
-                batch.draw(leftAnimation.getKeyFrame(attackingCounter, false), character.getX() - 1.35f * character.getWidth(), character.getY());
-            } else if (character.getIsFacing().isFacingDown()) {
+            batch.draw(leftAnimation.getKeyFrame(attackingCounter, false), character.getX() - 1.35f * character.getWidth(), character.getY());
+        } else if (character.getIsFacing().isFacingDown()) {
 //                setWidth(downAnimation.getKeyFrame(attackingCounter, false).getRegionWidth());
 //                setHeight(-1 * downAnimation.getKeyFrame(attackingCounter, false).getRegionHeight());
-                moveAbs(characterHB.getX() + Math.abs(characterHB.getWidth() - whip_height) / 2, characterHB.getY());
-                setWidth(whip_height);
-                setHeight(-1 * whip_width);
-                initHitBox();
+            moveAbs(characterHB.getX() + Math.abs(characterHB.getWidth() - whip_height) / 2, characterHB.getY());
+            setWidth(whip_height);
+            setHeight(-1 * whip_width);
+            initHitBox();
 
-                batch.draw(downAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY() - 0.9375f * character.getHeight());
-            } else if (character.getIsFacing().isFacingUp()) {
+            batch.draw(downAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY() - 0.9375f * character.getHeight());
+        } else if (character.getIsFacing().isFacingUp()) {
 //                setWidth(upAnimation.getKeyFrame(attackingCounter, false).getRegionWidth());
 //                setHeight(upAnimation.getKeyFrame(attackingCounter, false).getRegionHeight());
-                moveAbs(characterHB.getX() + Math.abs(characterHB.getWidth() - whip_height) / 2, characterHB.getY() + characterHB.getHeight());
-                setHeight(whip_width);
-                setWidth(whip_height);
-                initHitBox();
+            moveAbs(characterHB.getX() + Math.abs(characterHB.getWidth() - whip_height) / 2, characterHB.getY() + characterHB.getHeight());
+            setHeight(whip_width);
+            setWidth(whip_height);
+            initHitBox();
 
-                batch.draw(upAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY());
-            }
+            batch.draw(upAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY());
         }
 
     }
