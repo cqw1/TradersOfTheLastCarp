@@ -21,6 +21,7 @@ public class ButtonTrigger extends ATrigger {
     private TextureAtlas buttonTextureAtlas;
     private Animation<TextureRegion> buttonAnimation;
 
+
     public ButtonTrigger(AssetManager assetManager, int x, int y){
         super(assetManager, new Rectangle(x, y, 32, 32));
 
@@ -33,9 +34,11 @@ public class ButtonTrigger extends ATrigger {
 
     public ButtonTrigger(AssetManager assetManager, Rectangle r) {
         super(assetManager, r);
-        setSpeed(200);
 
-        assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);
+        buttonTextureAtlas = assetManager.get(AssetList.PLATE_BROWN.toString());
+        buttonAnimation = new Animation<TextureRegion>(1 / 24f, buttonTextureAtlas.getRegions());
+
+        setSpeed(200);
     }
 
     public void act(float deltaTime){
