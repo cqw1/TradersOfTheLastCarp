@@ -42,6 +42,8 @@ public abstract class ALevel extends Stage {
     private float wallSize = DEFAULT_WALLSIZE;
     public static float DEFAULT_WALLSIZE = 50;
 
+    HashSet<Actor> toBeRemoved = new HashSet<Actor>();
+
     public ALevel() {}
 
     public ALevel(Player player, AssetManager assetManager) {
@@ -94,7 +96,7 @@ public abstract class ALevel extends Stage {
 
         //Now check for collisions
         Array<Actor> allActors = getActors();
-        HashSet<Actor> toBeRemoved = new HashSet<Actor>();
+        toBeRemoved.clear();
         for (int aCounter = 0; aCounter < allActors.size; aCounter++) {
             //Ignore if not an interactable object or being removed
             Actor a = allActors.get(aCounter);
