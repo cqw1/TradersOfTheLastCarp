@@ -7,21 +7,30 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.TotlcObject;
 
 public abstract class ATrap extends TotlcObject {
-    private double delay;
-
+    private long delay; // in millis
     private boolean active;
+    private boolean setup;
 
-    public ATrap(AssetManager assetManager, Rectangle r) {
+    public ATrap(AssetManager assetManager, Rectangle r, long delay) {
         super(assetManager, r);
         setDelay(delay);
         setActive(false);
     }
 
-    public void setDelay(double d) { delay = d; }
+    public void setDelay(long d) { delay = d; }
 
-    public double getDelay() { return delay; }
+    public long getDelay() { return delay; }
+
+    public void setSetup(boolean setup) {
+        this.setup = setup;
+    }
+
+    public boolean isSetup() {
+        return setup;
+    }
 
     public abstract void activate();
+    public abstract void setup();
 
     @Override
     public void draw(Batch batch, float alpha) {

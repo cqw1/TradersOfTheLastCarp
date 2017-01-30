@@ -9,7 +9,12 @@ import com.badlogic.gdx.math.Rectangle;
 public class SpiderRepository extends ATrap  {
 
     public SpiderRepository(AssetManager assetManager, Rectangle r) {
-        super(assetManager, r);
+        super(assetManager, r, 0);
+    }
+
+    @Override
+    public void setup() {
+
     }
 
     @Override

@@ -44,7 +44,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 				new FileHandle(AssetList.LOVELO_IMAGE.toString()), false);
 
 		shapeRenderer = new ShapeRenderer();
-		shapeRenderer.setProjectionMatrix(camera.combined);
+//		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.setColor(Color.RED);
 
 		// Spider

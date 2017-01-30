@@ -51,7 +51,9 @@ public abstract class ATrigger extends TotlcObject {
                 sound.play(1.0f);
 
                 for (ATrap trap : getListOfTraps()) {
-                    trap.activate();
+//                    trap.activate();
+                    trap.setup();
+                    System.out.println("called trap setup");
                 }
             }
 
