@@ -3,6 +3,7 @@ package com.totlc.Actors;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.SynchronousAssetLoader;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -234,6 +235,15 @@ public class Player extends Character {
         }
 
         return (getHpCurrent() <= 0);
+    }
+
+    @Override
+    public void setAttacking(boolean attacking){
+        super.setAttacking(attacking);
+        if (attacking){
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/whip0.mp3"));
+            sound.play(0.7f);
+        }
     }
 
     public void endCollidesWith(Actor otherActor) {}

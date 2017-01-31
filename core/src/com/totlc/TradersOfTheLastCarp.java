@@ -58,6 +58,10 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.SHADOW.toString(), Texture.class);
 
+		// Effects
+		assetManager.load(AssetList.PARTICLES.toString(), TextureAtlas.class);
+		assetManager.load(AssetList.IMPACT.toString(), TextureAtlas.class);
+
 		// BasicTileSet
 		assetManager.load(AssetList.DEFAULT_TILESET.toString(), Texture.class);
 

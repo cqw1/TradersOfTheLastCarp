@@ -19,8 +19,8 @@ public class Impact extends AEffect {
 
     public Impact(AssetManager assetManager, float x, float y) {
         super(assetManager, new Rectangle(x, y, 1, 1));
-
-        assetManager.load(AssetList.IMPACT.toString(), TextureAtlas.class);
+        impactTextureAtlas = assetManager.get(AssetList.IMPACT.toString());
+        impactAnimation = new Animation<TextureRegion>(1 / 16f, impactTextureAtlas.getRegions());
     }
 
     @Override
@@ -30,21 +30,9 @@ public class Impact extends AEffect {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        AssetManager assetManager = getAssetManager();
-
-        if (assetManager.update() && !assetsLoaded()) {
-            // Done loading. Instantiate all assets
-            setAssetsLoaded(true);
-
-            impactTextureAtlas = assetManager.get(AssetList.IMPACT.toString());
-            impactAnimation = new Animation<TextureRegion>(1 / 16f, impactTextureAtlas.getRegions());
-        }
-
-        if (assetsLoaded()) {
-            batch.draw(impactAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
-            if (impactAnimation.isAnimationFinished(getAnimationTime())){
-                remove();
-            }
+        batch.draw(impactAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
+        if (impactAnimation.isAnimationFinished(getAnimationTime())){
+            remove();
         }
     }
 
