@@ -20,7 +20,7 @@ public class Bar extends Actor {
         setY(y);
         setWidth(width);
         setHeight(height);
-        bar = new NinePatch(assetmanager.get(AssetList.UI_BAR.toString(), Texture.class), 16, 16, 8, 8);
+        bar = new NinePatch(assetmanager.get(AssetList.UI_BAR.toString(), Texture.class), 18, 18, 12, 12);
     }
 
     public void draw(Batch batch, float alpha){

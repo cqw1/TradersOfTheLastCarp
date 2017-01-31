@@ -22,11 +22,12 @@ public class Health extends APickup{
     public Health(AssetManager assetManager, int x, int y) {
         super(assetManager, new Rectangle(x, y, 64, 64));
         heart = assetManager.get(AssetList.ITEM_PACK.toString(), TextureAtlas.class).findRegion("1Heart");
+        heart.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
     @Override
     public void draw(Batch batch, float alpha) {
-        batch.draw(heart, getX(), getY(), heart.getRegionWidth() / 2, heart.getRegionHeight() / 2, heart.getRegionWidth(), heart.getRegionHeight(), scale, scale, 0);
+        batch.draw(heart, getX(), getY(), 0, 0, heart.getRegionWidth(), heart.getRegionHeight(), scale, scale, 0);
     }
 
     @Override

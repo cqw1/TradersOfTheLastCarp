@@ -2,6 +2,7 @@ package com.totlc.levels;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
@@ -82,6 +83,7 @@ public abstract class ALevel extends Stage {
                 setInfoString("DEFEAT ENEMIES");
                 break;
         }
+        objIcon.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         setMusicPlayer(new MusicPlayer());
     }
 
@@ -89,11 +91,11 @@ public abstract class ALevel extends Stage {
 
     public void endInit() {
         initWalls();
-        initUI();
 
         player.moveAbs(playerStartPosition.x, playerStartPosition.y);
         addActor(player);
         getPlayer().setZIndex(20);
+        initUI();
     }
 
     @Override
@@ -213,16 +215,16 @@ public abstract class ALevel extends Stage {
         int yOffset = 32;
         // Add health bar, inventory bar, and level information bar.
         LifeGauge hpBar = new LifeGauge(getAssetManager(), player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
-        hpBar.setZIndex(10);
+
         Inventory inventory = new Inventory(getAssetManager(), player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
-        inventory.setZIndex(10);
+
         Bar bar0 = new Bar(getAssetManager(), 0, TradersOfTheLastCarp.CONFIG_HEIGHT, (int)(hpBar.getWidth() + inventory.getWidth() + 32), 64);
-        bar0.setZIndex(10);
+
         LevelInfo info = new LevelInfo(getAssetManager(), this, TradersOfTheLastCarp.CONFIG_WIDTH, TradersOfTheLastCarp.CONFIG_HEIGHT);
-        info.setZIndex(10);
+
 
         bar0.moveBy(-xOffset, -(bar0.getHeight() + yOffset));
-        hpBar.moveBy(inventory.getWidth() - yOffset * 0.3f, -(hpBar.getHeight() + yOffset * 0.8f));
+        hpBar.moveBy(inventory.getWidth() - xOffset * 0.3f, -(hpBar.getHeight() + yOffset * 0.85f));
         inventory.moveBy(0, -(inventory.getHeight() + yOffset * 0.6f));
         info.moveBy(-(info.getWidth() - xOffset), -(info.getHeight() + yOffset));
 
