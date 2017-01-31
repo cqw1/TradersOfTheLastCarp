@@ -36,6 +36,7 @@ public class Health extends APickup{
         health = new ParticleEffect();
         health.setPosition(getX() + (float)textureDimensions.getX() * scale / 2, getY() + (float)textureDimensions.getY() * scale / 2);
         health.load(Gdx.files.internal(AssetList.REGEN.toString()), particleAtlas);
+        health.start();
     }
 
     @Override

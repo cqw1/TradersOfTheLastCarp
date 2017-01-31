@@ -44,6 +44,7 @@ public class StarShot extends Projectile {
         star_trail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
 
         star_trail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
+        star_trail.start();
     }
 
     @Override

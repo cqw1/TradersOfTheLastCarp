@@ -42,6 +42,7 @@ public enum AssetList {
     IMPACT("effects/impact.atlas"),
     PARTICLES("effects/particles.atlas"),
     REGEN("effects/regen.particle"),
+    STUN("effects/stun.particle"),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas"),
