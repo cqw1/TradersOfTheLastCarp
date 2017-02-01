@@ -18,12 +18,20 @@ public class DaredevilPangolini extends AEnemy {
 
     // Stat constants.
     private static int id = 3;
-    private static int hp = 1;
+    private static int hp = 3;
     private static int atk = 2;
+
+    private static float width = 72;
+    private static float height = 108;
 
     private static float maxVel = 100;
     private static float speed = 40;
     private static float friction = 0.8f;
+
+    public DaredevilPangolini(AssetManager assetManager, float x, float y, AMovement movement) {
+        super(assetManager, new Rectangle(x, y, width, height), movement, hp, atk);
+        initMovement(friction, maxVel, speed);
+    }
 
     public DaredevilPangolini(AssetManager assetManager, Rectangle r, AMovement movement) {
         super(assetManager, r, movement, hp, atk);

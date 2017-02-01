@@ -22,7 +22,7 @@ public class ButtonTrigger extends ATrigger {
     private Animation<TextureRegion> buttonAnimation;
 
 
-    public ButtonTrigger(AssetManager assetManager, int x, int y){
+    public ButtonTrigger(AssetManager assetManager, float x, float y){
         super(assetManager, new Rectangle(x, y, 32, 32));
 
         buttonTextureAtlas = assetManager.get(AssetList.PLATE_BROWN.toString());
