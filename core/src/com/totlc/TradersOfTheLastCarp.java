@@ -129,8 +129,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		Player player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 
 		// Initialize input processor.
-		level = new Level03(player, assetManager);
-//		level = new Level01(player, assetManager);
+//		level = new Level03(player, assetManager);
+		level = new Level01(player, assetManager);
 //		level = new SandBoxLevel(player, assetManager);
 //        level = new EndLevel(player, assetManager);
 		Gdx.input.setInputProcessor(level);
