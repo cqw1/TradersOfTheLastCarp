@@ -18,6 +18,8 @@ import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.levels.*;
 
+import java.util.ArrayList;
+
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;
@@ -31,6 +33,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static ALevel level;
 
 	public static BitmapFont systemFont0;
+
+	public static ArrayList<ALevel> LEVELS = new ArrayList<ALevel>();
 
 	@Override
 	public void create() {
@@ -130,11 +134,17 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		// Initialize input processor.
 //		level = new Level03(player, assetManager);
-		level = new Level01(player, assetManager);
+//		level = new Level01(player, assetManager);
 //		level = new SandBoxLevel(player, assetManager);
 //        level = new EndLevel(player, assetManager);
-		Gdx.input.setInputProcessor(level);
-		level.initLevel(player);
+
+		LEVELS.add(new Level01(player, assetManager));
+		LEVELS.add(new Level02(player, assetManager));
+		LEVELS.add(new Level03(player, assetManager));
+
+        level = LEVELS.get(0);
+        Gdx.input.setInputProcessor(level);
+        level.initLevel(player);
 	}
 
 	@Override
