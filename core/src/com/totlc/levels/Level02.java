@@ -20,13 +20,13 @@ public class Level02 extends ALevel {
     public Level02(Player player, AssetManager assetManager) {
         super(player, assetManager,
                 new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
-                new EndLevel(player, assetManager),
+                new Level03(player, assetManager),
                 objectives.DESTROY);
     }
 
     public void initLevel(Player player) {
         playSong("test0");
-        setNameString("TEST LEVEL");
+        setNameString("Level: 02");
 
         //REQUIRED
         setPlayer(player);

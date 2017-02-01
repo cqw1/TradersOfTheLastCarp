@@ -17,7 +17,6 @@ import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
-import com.totlc.tasks.RemoveInvincibilityTask;
 
 import java.awt.geom.Point2D;
 

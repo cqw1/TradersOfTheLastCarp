@@ -69,7 +69,7 @@ public class ArrowTrap extends ATrap{
         }
 
         increaseAnimationTime(deltaTime);
-        if (isActive() && System.currentTimeMillis() > (startTime + delay + displayEyebrows)) {
+        if (isActive() && System.currentTimeMillis() > (startTime + delay)) {
             // If the trap was active and we've already passed our delay and the allotted time for displaying eyebrows.
             setActive(false);
             setSetup(false);
@@ -79,8 +79,8 @@ public class ArrowTrap extends ATrap{
     @Override
     public void draw(Batch batch, float alpha) {
 
-        if (isActive()) {
-//            batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
+        if (isActive() && System.currentTimeMillis() < (startTime + delay + displayEyebrows)) {
+//        if (isActive()) {
             batch.draw(trapTextureAtlas.getRegions().get(1), getX(), getY());
         } else {
             batch.draw(trapTextureAtlas.getRegions().get(0), getX(), getY());
