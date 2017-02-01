@@ -45,7 +45,7 @@ public class Stun extends AEffect {
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
-        moveAbs((float)followMe.getCenter().getX() + (float)textureDimensions.getX(), (float)followMe.getCenter().getY() + followMe.getHitBoxHeight() * 2.0f);
+        moveAbs((float)followMe.getHitBoxCenter().getX() + followMe.getHitBoxWidth() / 2, (float)followMe.getHitBoxCenter().getY() + followMe.getHitBoxHeight() / 2);
         stun.setPosition(getX(), getY());
         if (System.currentTimeMillis() - startTime > (getDuration())){
             drawText = false;

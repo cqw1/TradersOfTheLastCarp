@@ -148,7 +148,7 @@ public class Stargazer extends AEnemy {
         }
         batch.draw(shadow, getX() + Math.abs(128 - shadow.getWidth() * shadowSize) / 2, getY() - 128 * 0.1f, shadow.getWidth() * shadowSize, shadow.getHeight() * shadowSize);
 
-        drawHealth(batch, alpha, (int)getWidth() / 2, 24);
+        drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
     }
 
     private void star_shot(){

@@ -44,7 +44,7 @@ public class ArrowBreak extends AEffect{
         arrowBreak.load(Gdx.files.internal(AssetList.ARROW_BREAK.toString()), particleAtlas);
         ParticleEmitter point = arrowBreak.findEmitter("arrowpoint");
         ParticleEmitter shaft = arrowBreak.findEmitter("arrowshaft");
-        
+
         // Configure effect duration.
 
         arrowBreak.start();

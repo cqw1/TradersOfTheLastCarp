@@ -78,7 +78,7 @@ public class Spider extends AEnemy {
         } else{
             batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
         }
-        drawHealth(batch, alpha, (int)getWidth() / 2, -8);
+        drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
     }
 
     @Override
