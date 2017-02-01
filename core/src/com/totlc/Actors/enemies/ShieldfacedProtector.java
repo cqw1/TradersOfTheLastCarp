@@ -18,7 +18,7 @@ public class ShieldfacedProtector extends AEnemy {
     private static int atk = 3;
 
     public ShieldfacedProtector(AssetManager assetManager, Rectangle r, AMovement movement) {
-        super(assetManager, r, movement);
+        super(assetManager, r, movement, hp, atk);
     }
 
     @Override

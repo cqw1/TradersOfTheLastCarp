@@ -24,20 +24,17 @@ public class Spider extends AEnemy {
     private static int hp = 1;
     private static int atk = 1;
 
+    private static float width = 36;
+    private static float height = 20;
+
     private static float friction = 0.8f;
     private static float speed = 100;
     private static float maxVelocity = 200;
     private static float knockback = 25;
 
     // State variables.
-    private boolean skitter = false;
-    private int skitterPeriod = 1000; // in millis
     private int waitPeriod = 1000; // in millis
     private int waitVariance = 1000; // in millis
-    private long movementTime; // Keeps track of when we switch between idle and skitter
-
-    private int counter = 0;
-    private Point2D targetVector = new Point2D.Double(0, 0);
 
     // Asset and animation constants.
     private TextureAtlas idleTextureAtlas;
@@ -47,18 +44,12 @@ public class Spider extends AEnemy {
     private Animation<TextureRegion> walkAnimation;
 
     public Spider(AssetManager assetManager, int x, int y, AMovement movement){
-        super(assetManager, new Rectangle(x, y, 36, 20), movement);
-
-        setHpMax(hp);
-        setHpCurrent(getHpMax());
-        setAttack(atk);
+        super(assetManager, new Rectangle(x, y, width, height), movement, hp, atk);
 
         //TODO: Remove after fixing hitboxes
         moveHitBox(48, 0);
 
-        setSpeed(speed);
-        setFriction(friction);
-        setMaxVel(maxVelocity);
+        initMovement(friction, maxVelocity, speed);
         setKnockback(knockback);
 
         idleTextureAtlas = assetManager.get(AssetList.SPIDER_IDLE.toString());
@@ -66,11 +57,6 @@ public class Spider extends AEnemy {
 
         walkTextureAtlas = assetManager.get(AssetList.SPIDER_WALK.toString());
         walkAnimation = new Animation<TextureRegion>(1 / 12f, walkTextureAtlas.getRegions());
-
-        // Randomize wait_cycles.
-        waitPeriod = waitPeriod + (int)(Math.random() * waitVariance);
-
-        this.setMovement(movement);
     }
 
     @Override
