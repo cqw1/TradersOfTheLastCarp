@@ -26,7 +26,7 @@ public class Health extends APickup{
     private Point2D textureDimensions;
     private float scale = 0.5f;
 
-    public Health(AssetManager assetManager, int x, int y) {
+    public Health(AssetManager assetManager, float x, float y) {
         super(assetManager, new Rectangle(x, y, 64, 64));
         heart = assetManager.get(AssetList.ITEM_PACK.toString(), TextureAtlas.class).findRegion("1Heart");
         heart.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);

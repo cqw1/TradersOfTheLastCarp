@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.effects.Stun;
+import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
@@ -39,11 +40,14 @@ public abstract class AEnemy extends Character {
     private BitmapFont font;
     GlyphLayout layout = new GlyphLayout();
 
-    public AEnemy(AssetManager assetManager, Rectangle r){
+    private AMovement movement;
+
+    public AEnemy(AssetManager assetManager, Rectangle r, AMovement movement){
         super(assetManager, r);
         TextureAtlas atlas = new TextureAtlas(AssetList.ICON_PACK.toString());
         heart = atlas.findRegion("heart_icon");
         font = TradersOfTheLastCarp.systemFont0;
+        this.movement = movement;
     }
 
     /**
@@ -146,6 +150,14 @@ public abstract class AEnemy extends Character {
 
     public long getStunPeriod() {
         return stunPeriod;
+    }
+
+    public AMovement getMovement() {
+        return movement;
+    }
+
+    public void setMovement(AMovement movement) {
+        this.movement = movement;
     }
 
     // Does all the stun checks for enemies. Returns true if they're stunned so the subclass act method knows to return

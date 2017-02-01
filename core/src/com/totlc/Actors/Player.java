@@ -116,6 +116,8 @@ public class Player extends Character {
         whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
         whippingRightAnimation = new Animation<TextureRegion>((float) (1.0/whippingRightTextureAtlas.getRegions().size * whippingAnimationLength), whippingRightTextureAtlas.getRegions());
 
+        weapon = new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.WHIP_LEFT.toString(), AssetList.WHIP_RIGHT.toString());
+
         setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
     }
 
@@ -251,6 +253,8 @@ public class Player extends Character {
     public void setInvincible(boolean invincible) {
         this.invincible = invincible;
     }
+
+    public AWeapon getWeapon() { return weapon; }
 
     public void setWeapon(Whip whip) {
         weapon = whip;

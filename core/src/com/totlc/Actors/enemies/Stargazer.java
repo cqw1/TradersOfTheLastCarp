@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.projectiles.ProjEnum;
 import com.totlc.Actors.projectiles.ProjectileFactory;
 import com.totlc.AssetList;
@@ -58,9 +59,8 @@ public class Stargazer extends AEnemy {
     private Animation<TextureRegion> gazeAnimation;
     private Animation<TextureRegion> gazeReverseAnimation;
 
-
-    public Stargazer(AssetManager assetManager, int x, int y) {
-        super(assetManager, new Rectangle(x, y, 40, 40));
+    public Stargazer(AssetManager assetManager, int x, int y, AMovement movement) {
+        super(assetManager, new Rectangle(x, y, 40, 40), movement);
 
         setHpMax(hp);
         setHpCurrent(getHpMax());
@@ -124,22 +124,14 @@ public class Stargazer extends AEnemy {
             }
         }
 
-        Point2D newAcc = getAcc();
 
-        Actor target = ((ALevel)getStage()).getPlayer();
-        Point2D targetVector = getTarget(target);
-        if(Math.signum(targetVector.getX()) > 0){
+        if(Math.signum(getMovement().getTargetVector(this).getX()) > 0){
             setIsFacing(Directionality.RIGHT);
         } else{
             setIsFacing(Directionality.LEFT);
         }
 
-        newAcc.setLocation(targetVector.getX() * getSpeed(), targetVector.getY() * getSpeed());
-        setAcc(newAcc);
-
-        updateVelocity();
-        moveUnit(deltaTime);
-        returnIntoBounds();
+        getMovement().move(this, deltaTime);
     }
 
     @Override

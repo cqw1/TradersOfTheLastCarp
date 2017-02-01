@@ -18,6 +18,7 @@ import com.totlc.Actors.UI.Inventory;
 import com.totlc.Actors.UI.LevelInfo;
 import com.totlc.Actors.UI.LifeGauge;
 import com.totlc.Actors.terrain.*;
+import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
@@ -34,7 +35,6 @@ public abstract class ALevel extends Stage {
     private AssetManager assetManager;
 
     private TextureRegion objIcon;
-    private Whip whip;
     private NextStage nextStage;
     private ALevel nextLevel;
     private Vector2 playerStartPosition = new Vector2(DEFAULT_WALLSIZE + 10, TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - 50);
@@ -65,7 +65,6 @@ public abstract class ALevel extends Stage {
         this.objective = objective;
 
         TextureAtlas atlas = assetManager.get(AssetList.ICON_PACK.toString());
-        whip = new Whip(assetManager, player, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.WHIP_LEFT.toString(), AssetList.WHIP_RIGHT.toString());
         switch (getObjective().getID()){
             case 0:
                 // Survive.
@@ -180,8 +179,7 @@ public abstract class ALevel extends Stage {
         }
 
         if (keycode == Input.Keys.SPACE) {
-            this.addActor(whip);
-            player.setWeapon(whip);
+            this.addActor(player.getWeapon());
             player.setAttacking(true);
             return true;
         }
@@ -215,14 +213,11 @@ public abstract class ALevel extends Stage {
         int yOffset = 32;
         // Add health bar, inventory bar, and level information bar.
         LifeGauge hpBar = new LifeGauge(getAssetManager(), player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
-
         Inventory inventory = new Inventory(getAssetManager(), player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
-
         Bar bar0 = new Bar(getAssetManager(), 0, TradersOfTheLastCarp.CONFIG_HEIGHT, (int)(hpBar.getWidth() + inventory.getWidth() + 32), 64);
-
         LevelInfo info = new LevelInfo(getAssetManager(), this, TradersOfTheLastCarp.CONFIG_WIDTH, TradersOfTheLastCarp.CONFIG_HEIGHT);
 
-
+        //Move them to their correct position
         bar0.moveBy(-xOffset, -(bar0.getHeight() + yOffset));
         hpBar.moveBy(inventory.getWidth() - xOffset * 0.3f, -(hpBar.getHeight() + yOffset * 0.85f));
         inventory.moveBy(0, -(inventory.getHeight() + yOffset * 0.6f));
@@ -351,27 +346,28 @@ public abstract class ALevel extends Stage {
         addActor(nextStage.getPhysicalBlock());
 
         LeftWall lw = new LeftWall(assetManager, new Rectangle(0, 0, wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT));
-        lw.setZIndex(1);
-        addActor(lw);
-
+        // two separate walls for the exit
         RightWall rwBot = new RightWall(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY()));
-        rwBot.setZIndex(1);
-        addActor(rwBot);
-
         RightWall rwTop = new RightWall(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize, nextStage.getY() + nextStage.getHeight(), wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight()));
-        rwTop.setZIndex(1);
-        addActor(rwTop);
-
         TopWall tw = new TopWall(assetManager, new Rectangle(0, TradersOfTheLastCarp.CONFIG_HEIGHT - wallSize, TradersOfTheLastCarp.CONFIG_WIDTH, wallSize));
-        tw.setZIndex(1);
-        addActor(tw);
-
         BottomWall bw = new BottomWall(assetManager, new Rectangle(0, 0, TradersOfTheLastCarp.CONFIG_WIDTH, wallSize));
-        bw.setZIndex(1);
+
+        // add actors
+        addActor(lw);
+        addActor(rwBot);
+        addActor(rwTop);
+        addActor(tw);
         addActor(bw);
+
+        bw.setZIndex(2);
+        tw.setZIndex(2);
+        rwTop.setZIndex(1);
+        rwBot.setZIndex(1);
+        lw.setZIndex(1);
     }
 
     public void initNextLevel() {
+        musicPlayer.stop();
         nextLevel.initLevel(player);
     }
 }

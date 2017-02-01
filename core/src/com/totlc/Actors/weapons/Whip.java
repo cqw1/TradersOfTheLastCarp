@@ -30,7 +30,5 @@ public class Whip extends AWeapon {
     }
 
     @Override
-    public void endCollidesWith(Actor otherActor) {
-
-    }
+    public void endCollidesWith(Actor otherActor) {}
 }

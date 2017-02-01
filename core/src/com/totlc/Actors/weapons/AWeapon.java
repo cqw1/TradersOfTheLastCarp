@@ -62,6 +62,7 @@ public abstract class AWeapon extends TotlcObject {
     @Override
     public void act(float deltaTime) {
         attackingCounter += deltaTime;
+        System.out.println(attackingCounter);
 
         if (attackingCounter > attackingAnimationLength) {
             attackingCounter = 0;
@@ -111,7 +112,6 @@ public abstract class AWeapon extends TotlcObject {
 
             batch.draw(upAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY());
         }
-
     }
 
     public void loadAnimation(String asset) {

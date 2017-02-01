@@ -18,6 +18,7 @@ import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.levels.ALevel;
 import com.totlc.levels.Level01;
+import com.totlc.levels.SandBoxLevel;
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
@@ -58,12 +59,22 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.SHADOW.toString(), Texture.class);
 
+		//Flan
+        assetManager.load(AssetList.FLAN.toString(), Texture.class);
+
+        //Pangolini
+        assetManager.load(AssetList.PANGOLINI.toString(), Texture.class);
+
 		// Effects
 		assetManager.load(AssetList.PARTICLES.toString(), TextureAtlas.class);
 		assetManager.load(AssetList.IMPACT.toString(), TextureAtlas.class);
 
-		// BasicTileSet
+		// BasicTileSet and terrain
 		assetManager.load(AssetList.DEFAULT_TILESET.toString(), Texture.class);
+		assetManager.load(AssetList.WALL_LEFT.toString(), Texture.class);
+		assetManager.load(AssetList.WALL_RIGHT.toString(), Texture.class);
+		assetManager.load(AssetList.WALL_TOP.toString(), Texture.class);
+		assetManager.load(AssetList.WALL_BOTTOM.toString(), Texture.class);
 
 		// Arrow
 		assetManager.load(AssetList.PROJECTILE_ARROW.toString(), Texture.class);
@@ -120,6 +131,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		// Initialize input processor.
 		level = new Level01(player, assetManager);
+//		level = new SandBoxLevel(player, assetManager);
 		Gdx.input.setInputProcessor(level);
 		level.initLevel(player);
 	}

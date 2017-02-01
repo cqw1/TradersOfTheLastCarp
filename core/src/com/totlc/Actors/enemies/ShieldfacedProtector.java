@@ -3,6 +3,7 @@ package com.totlc.Actors.enemies;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
+import com.totlc.Actors.enemies.movement.AMovement;
 
 /**
  * Large enemy that is shielded from the front.
@@ -16,8 +17,8 @@ public class ShieldfacedProtector extends AEnemy {
     private static int hp = 2;
     private static int atk = 3;
 
-    public ShieldfacedProtector(AssetManager assetManager, Rectangle r) {
-        super(assetManager, r);
+    public ShieldfacedProtector(AssetManager assetManager, Rectangle r, AMovement movement) {
+        super(assetManager, r, movement);
     }
 
     @Override

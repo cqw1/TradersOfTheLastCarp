@@ -1,10 +1,18 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.Player;
+import com.totlc.Actors.enemies.AEnemy;
+import com.totlc.Actors.enemies.DaredevilPangolini;
 import com.totlc.Actors.enemies.Spider;
+import com.totlc.Actors.enemies.movement.BasicMovement;
+import com.totlc.Actors.items.Health;
 import com.totlc.Actors.terrain.NextStage;
 import com.totlc.Actors.tileset.BasicTileSet;
+import com.totlc.Actors.weapons.Whip;
+import com.totlc.AssetList;
+import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.*;
 
 public class Level02 extends ALevel {
@@ -26,8 +34,13 @@ public class Level02 extends ALevel {
         BasicTileSet bts = new BasicTileSet(getAssetManager());
         addActor(bts);
 
-        Spider spider0 = new Spider(getAssetManager(), 0, 0);
-        addActor(spider0);
+        Health health = new Health(getAssetManager(), getWallSize() + 300, TradersOfTheLastCarp.CONFIG_HEIGHT / 2);
+        addActor(health);
+
+        AEnemy pangolini1 = new DaredevilPangolini(getAssetManager(), new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH * 3 / 4, TradersOfTheLastCarp.CONFIG_HEIGHT / 2,
+                72, 108),
+                new BasicMovement(getPlayer()));
+        addActor(pangolini1);
 
         //REQUIRED
         endInit();

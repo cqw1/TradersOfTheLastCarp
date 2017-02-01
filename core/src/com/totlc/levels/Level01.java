@@ -1,10 +1,12 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.totlc.Actors.effects.Stun;
+import com.badlogic.gdx.math.Rectangle;
+import com.totlc.Actors.enemies.AEnemy;
+import com.totlc.Actors.enemies.JustDessert;
 import com.totlc.Actors.enemies.Spider;
-import com.totlc.Actors.enemies.Stargazer;
-import com.totlc.Actors.items.Health;
+import com.totlc.Actors.enemies.movement.Immobile;
+import com.totlc.Actors.enemies.movement.IntervalMovement;
 import com.totlc.Actors.terrain.NextStage;
 import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ArrowTrap;
@@ -24,7 +26,7 @@ public class Level01 extends ALevel{
 
     public void initLevel(Player player) {
         playSong("test0");
-        setNameString("TEST LEVEL");
+        setNameString("Level: 01");
 
         BasicTileSet bts = new BasicTileSet(getAssetManager());
         addActor(bts);
@@ -32,29 +34,25 @@ public class Level01 extends ALevel{
         //REQUIRED
         setPlayer(player);
 
-        Health health = new Health(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, TradersOfTheLastCarp.CONFIG_HEIGHT / 2);
-        addActor(health);
+        ButtonTrigger tutorialButton = new ButtonTrigger(getAssetManager(), new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH / 4, TradersOfTheLastCarp.CONFIG_HEIGHT / 2, 32, TradersOfTheLastCarp.CONFIG_HEIGHT));
+        tutorialButton.moveHitBox(0,-1 * TradersOfTheLastCarp.CONFIG_HEIGHT / 2);
 
-        ButtonTrigger testButton = new ButtonTrigger(getAssetManager(), 400, 300);
-        ButtonTrigger testButton2 = new ButtonTrigger(getAssetManager(), 700, 200);
-        ButtonTrigger testButton3 = new ButtonTrigger(getAssetManager(), 900, 600);
-        ArrowTrap arrowTrap = new ArrowTrap(getAssetManager(), 700, 600, 1000);
-        testButton.addTrap(arrowTrap);
-        testButton2.addTrap(arrowTrap);
-        testButton3.addTrap(arrowTrap);
-        addActor(testButton);
-        addActor(testButton2);
-        addActor(testButton3);
+        ArrowTrap arrowTrap = new ArrowTrap(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, TradersOfTheLastCarp.CONFIG_HEIGHT / 2, 500);
+        arrowTrap.moveRel(-arrowTrap.getWidth() / 2, -arrowTrap.getHeight() / 2);
+
+        tutorialButton.addTrap(arrowTrap);
+        addActor(tutorialButton);
         addActor(arrowTrap);
         
-        Spider spider0 = new Spider(getAssetManager(), 0, 0);
-        Spider spider1 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, 0);
-        Spider spider2 = new Spider(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, 0);
-        Stargazer stargazer = new Stargazer(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 3, TradersOfTheLastCarp.CONFIG_HEIGHT / 3);
-        addActor(spider0);
-        addActor(spider1);
-        addActor(spider2);
-        addActor(stargazer);
+        AEnemy dummyFlan = new JustDessert(getAssetManager(),
+                new Rectangle(3 * TradersOfTheLastCarp.CONFIG_WIDTH / 4, TradersOfTheLastCarp.CONFIG_HEIGHT / 2,
+                        54, 54), new Immobile(getPlayer()));
+        dummyFlan.setHpMax(2);
+        dummyFlan.setHpCurrent(2);
+        addActor(dummyFlan);
+
+        AEnemy spider = new Spider(getAssetManager(), 300, 400, new IntervalMovement(getPlayer()));
+        addActor(spider);
 
         //REQUIRED
         endInit();

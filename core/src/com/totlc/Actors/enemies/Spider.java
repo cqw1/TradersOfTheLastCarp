@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.AssetList;
 import com.totlc.levels.ALevel;
 
@@ -45,8 +46,8 @@ public class Spider extends AEnemy {
     private TextureAtlas walkTextureAtlas;
     private Animation<TextureRegion> walkAnimation;
 
-    public Spider(AssetManager assetManager, int x, int y){
-        super(assetManager, new Rectangle(x, y, 36, 20));
+    public Spider(AssetManager assetManager, int x, int y, AMovement movement){
+        super(assetManager, new Rectangle(x, y, 36, 20), movement);
 
         setHpMax(hp);
         setHpCurrent(getHpMax());
@@ -68,44 +69,24 @@ public class Spider extends AEnemy {
 
         // Randomize wait_cycles.
         waitPeriod = waitPeriod + (int)(Math.random() * waitVariance);
+
+        this.setMovement(movement);
     }
 
     @Override
     public void act(float deltaTime) {
         increaseAnimationTime(deltaTime);
-        Point2D newAcc = getAcc();
 
         if (checkStun()) {
             return;
         }
 
-        if (skitter) {
-            if (System.currentTimeMillis() > (movementTime + skitterPeriod)) {
-                skitter = false;
-                movementTime = System.currentTimeMillis();
-            }
-
-            newAcc.setLocation(targetVector.getX() * getSpeed(), targetVector.getY() * getSpeed());
-            setAcc(newAcc);
-        } else {
-            if (System.currentTimeMillis() > (movementTime + waitPeriod)) {
-                skitter = true;
-                Actor target = ((ALevel)getStage()).getPlayer();
-                targetVector = getTarget(target);
-                movementTime = System.currentTimeMillis();
-            }
-
-            newAcc.setLocation(0, 0);
-            setAcc(newAcc);
-        }
-        updateVelocity();
-        moveUnit(deltaTime);
-        returnIntoBounds();
+        getMovement().move(this, deltaTime);
     }
 
     @Override
     public void draw(Batch batch, float alpha){
-        if (skitter){
+        if (getMovement().isMoving()){
             batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
         } else{
             batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
