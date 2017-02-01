@@ -40,10 +40,12 @@ public class Level03 extends ALevel {
         addActor(health);
 
         // Invincible spiders.
-        Spider spider0 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.75), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new IntervalMovement(getPlayer()));
+        Spider spider0 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.75), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new BasicMovement(getPlayer()));
+        spider0.setMaxVel(spider0.getMaxVel() - 40);
         spider0.setInvincible(true);
 
-        Spider spider1 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.5), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new IntervalMovement(getPlayer()));
+        Spider spider1 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.5), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new BasicMovement(getPlayer()));
+        spider1.setMaxVel(spider1.getMaxVel() - 40);
         spider1.setInvincible(true);
 
         addActor(spider0);
