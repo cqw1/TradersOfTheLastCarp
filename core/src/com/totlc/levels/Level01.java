@@ -37,7 +37,7 @@ public class Level01 extends ALevel{
         ButtonTrigger testButton = new ButtonTrigger(getAssetManager(), 400, 300);
         ButtonTrigger testButton2 = new ButtonTrigger(getAssetManager(), 700, 200);
         ButtonTrigger testButton3 = new ButtonTrigger(getAssetManager(), 900, 600);
-        ArrowTrap arrowTrap = new ArrowTrap(getAssetManager(), 700, 600, 1000);
+        ArrowTrap arrowTrap = new ArrowTrap(getAssetManager(), 700, 600, 500);
         testButton.addTrap(arrowTrap);
         testButton2.addTrap(arrowTrap);
         testButton3.addTrap(arrowTrap);
