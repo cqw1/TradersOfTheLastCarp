@@ -144,6 +144,16 @@ public class Player extends Character {
                 batch.draw(whippingLeftAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
             }
 
+        } else if (getVel().getX() == 0 && getVel().getY() == 0) {
+            if (this.getIsFacing().isFacingDown()) {
+                batch.draw(standDownTexture, getX(), getY());
+            } else if (this.getIsFacing().isFacingLeft()) {
+                batch.draw(standLeftTexture, getX(), getY());
+            } else if (this.getIsFacing().isFacingRight()) {
+                batch.draw(standRightTexture, getX(), getY());
+            } else if (this.getIsFacing().isFacingUp()) {
+                batch.draw(standUpTexture, getX(), getY());
+            }
         } else if (this.isMovingRight()) {
             batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
 
@@ -157,17 +167,6 @@ public class Player extends Character {
 
         } else if (this.isMovingUp()) {
             batch.draw(walkUpAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-
-        } else if (this.getIsFacing() != null) {
-            if (this.getIsFacing().isFacingDown()) {
-                batch.draw(standDownTexture, getX(), getY());
-            } else if (this.getIsFacing().isFacingLeft()) {
-                batch.draw(standLeftTexture, getX(), getY());
-            } else if (this.getIsFacing().isFacingRight()) {
-                batch.draw(standRightTexture, getX(), getY());
-            } else if (this.getIsFacing().isFacingUp()) {
-                batch.draw(standUpTexture, getX(), getY());
-            }
         } else {
             batch.draw(standDownTexture, getX(), getY());
         }
