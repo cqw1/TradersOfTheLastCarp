@@ -40,6 +40,8 @@ public abstract class AEnemy extends Character {
     private BitmapFont font;
     GlyphLayout layout = new GlyphLayout();
 
+    private boolean invincible = false;
+
     private AMovement movement;
 
     public AEnemy(AssetManager assetManager, Rectangle r, AMovement movement){
@@ -76,14 +78,19 @@ public abstract class AEnemy extends Character {
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Projectile && ((Projectile)otherActor).getDamageType() != 1) {
             System.out.println("collidesWith Projectile");
-            takeDamage(((Projectile)otherActor).getAttack());
+            if (!invincible) {
+                takeDamage(((Projectile)otherActor).getAttack());
+            }
 
         } else if (otherActor instanceof Whip) {
             System.out.println("collidesWith Whip");
-            if (!stunned){
-                stunned = true;
-                stunStart = System.currentTimeMillis();
-                drawStunIndicator(stunPeriod);
+            if (!invincible) {
+                // Invincible enemies can't be stunned.
+                if (!stunned) {
+                    stunned = true;
+                    stunStart = System.currentTimeMillis();
+                    drawStunIndicator(stunPeriod);
+                }
             }
 
             // Maybe save this for different weapons
@@ -170,6 +177,10 @@ public abstract class AEnemy extends Character {
             }
         }
         return stunned;
+    }
+
+    public void setInvincible(boolean invincible) {
+        this.invincible = invincible;
     }
 
 }
