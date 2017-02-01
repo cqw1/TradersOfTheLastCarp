@@ -121,6 +121,7 @@ public class Player extends Character {
     }
 
     public void draw(Batch batch, float delta) {
+        System.out.println("weapon: " + weapon);
         if (invincible) {
             if (System.currentTimeMillis() > (invincibilityStart + invincibilityPeriod)) {
                 invincible = false;
@@ -133,6 +134,8 @@ public class Player extends Character {
 
 
         if (getAttacking()) {
+            System.out.println("Player.draw - attacking True");
+
             if (this.getIsFacing().isFacingDown()) {
                 batch.draw(whippingDownAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
             } else if (this.getIsFacing().isFacingUp()) {

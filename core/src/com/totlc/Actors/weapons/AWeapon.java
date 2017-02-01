@@ -61,6 +61,7 @@ public abstract class AWeapon extends TotlcObject {
 
     @Override
     public void act(float deltaTime) {
+        System.out.println("AWeapon.act");
         attackingCounter += deltaTime;
         System.out.println(attackingCounter);
 
@@ -73,6 +74,7 @@ public abstract class AWeapon extends TotlcObject {
 
     @Override
     public void draw(Batch batch, float alpha) {
+        System.out.println("AWeapon.draw");
         Rectangle characterHB = character.getHitBox().getBoundingRectangle();
 
         if (character.getIsFacing().isFacingRight()) {

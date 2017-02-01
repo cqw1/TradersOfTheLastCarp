@@ -93,14 +93,17 @@ public abstract class ALevel extends Stage {
 
         player.moveAbs(playerStartPosition.x, playerStartPosition.y);
         addActor(player);
+        addActor(player.getWeapon());
         getPlayer().setZIndex(20);
         initUI();
     }
 
     @Override
     public void act(float delta) {
+        System.out.println("ALevel.act");
         //First let actors update themselves
         for (Actor a: getActors()) {
+            System.out.println(a);
             a.act(delta);
         }
 

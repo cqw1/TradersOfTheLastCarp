@@ -37,7 +37,7 @@ public class Level01 extends ALevel{
         ButtonTrigger tutorialButton = new ButtonTrigger(getAssetManager(), new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH / 4, TradersOfTheLastCarp.CONFIG_HEIGHT / 2, 32, TradersOfTheLastCarp.CONFIG_HEIGHT));
         tutorialButton.moveHitBox(0,-1 * TradersOfTheLastCarp.CONFIG_HEIGHT / 2);
 
-        ArrowTrap arrowTrap = new ArrowTrap(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, TradersOfTheLastCarp.CONFIG_HEIGHT / 2, 500);
+        ArrowTrap arrowTrap = new ArrowTrap(getAssetManager(), TradersOfTheLastCarp.CONFIG_WIDTH / 2, TradersOfTheLastCarp.CONFIG_HEIGHT / 2, 650);
         arrowTrap.moveRel(-arrowTrap.getWidth() / 2, -arrowTrap.getHeight() / 2);
 
         tutorialButton.addTrap(arrowTrap);
