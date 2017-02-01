@@ -19,6 +19,8 @@ public enum AssetList {
     STARGAZER_SPIN("sprites/stargazer/stargazer_spin.atlas"),
     STARGAZER_GAZE("sprites/stargazer/stargazer_gaze.atlas"),
     SHADOW("sprites/float_shadow.png"),
+    FLAN("sprites/flan/badflan.png"),
+    PANGOLINI("sprites/pangolini/pangolini.png"),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png"),
@@ -40,6 +42,9 @@ public enum AssetList {
 
     // Special Effects.
     IMPACT("effects/impact.atlas"),
+    PARTICLES("effects/particles.atlas"),
+    REGEN("effects/regen.particle"),
+    STUN("effects/stun.particle"),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas"),
@@ -52,8 +57,12 @@ public enum AssetList {
     STAR_TRAIL("sprites/starshot/star_effect.particle"),
     STAR_PARTICLES("sprites/starshot/star_particles.atlas"),
 
-    // Tilesets
-    DEFAULT_TILESET("tileset/map.png");
+    // Tilesets and terrain
+    DEFAULT_TILESET("tileset/map.png"),
+    WALL_LEFT("tileset/wall_left.png"),
+    WALL_RIGHT("tileset/wall_right.png"),
+    WALL_BOTTOM("tileset/wall_bottom.png"),
+    WALL_TOP("tileset/wall_top.png");
 
     private String pathname;
     AssetList(String s) {

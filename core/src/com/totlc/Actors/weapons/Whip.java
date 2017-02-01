@@ -13,7 +13,6 @@ import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.AssetList;
-import com.totlc.tasks.RemoveInvincibilityTask;
 
 public class Whip extends AWeapon {
     private Player player;
@@ -30,7 +29,5 @@ public class Whip extends AWeapon {
     }
 
     @Override
-    public void endCollidesWith(Actor otherActor) {
-
-    }
+    public void endCollidesWith(Actor otherActor) {}
 }

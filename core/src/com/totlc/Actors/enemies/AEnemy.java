@@ -6,10 +6,13 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
+import com.totlc.Actors.effects.Stun;
+import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
+import com.totlc.TradersOfTheLastCarp;
 
 import java.awt.geom.Point2D;
 
@@ -37,12 +40,19 @@ public abstract class AEnemy extends Character {
     private BitmapFont font;
     GlyphLayout layout = new GlyphLayout();
 
-    public AEnemy(AssetManager assetManager, Rectangle r){
+    private boolean invincible = false;
+
+    private AMovement movement;
+
+    public AEnemy(AssetManager assetManager, Rectangle r, AMovement movement, int hp, int atk){
         super(assetManager, r);
         TextureAtlas atlas = new TextureAtlas(AssetList.ICON_PACK.toString());
         heart = atlas.findRegion("heart_icon");
-        font = new BitmapFont(new FileHandle(AssetList.LOVELO_FONT.toString()),
-               new FileHandle(AssetList.LOVELO_IMAGE.toString()), false);
+        font = TradersOfTheLastCarp.systemFont0;
+        this.movement = movement;
+        setHpMax(hp);
+        setHpCurrent(hp);
+        this.attack = atk;
     }
 
     /**
@@ -59,21 +69,53 @@ public abstract class AEnemy extends Character {
         }
     }
 
+    public void initMovement(float friction, float maxVel, float speed) {
+        setFriction(friction);
+        setMaxVel(maxVel);
+        setSpeed(speed);
+    }
+
+    /**
+     * Helper that draws a stun indicator above enemy head.
+     * @param stunPeriod: Duration to stun for.
+     */
+    private void drawStunIndicator(long stunPeriod) {
+        Stun stun = new Stun(getAssetManager(), this, stunPeriod, true);
+        getStage().addActor(stun);
+    }
+
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Projectile && ((Projectile)otherActor).getDamageType() != 1) {
             System.out.println("collidesWith Projectile");
-            takeDamage(((Projectile)otherActor).getAttack());
+            if (!invincible) {
+                takeDamage(((Projectile)otherActor).getAttack());
+            }
 
         } else if (otherActor instanceof Whip) {
             System.out.println("collidesWith Whip");
-            stunned = true;
-            stunStart = System.currentTimeMillis();
+            if (!invincible) {
+                // Invincible enemies can't be stunned.
+                if (!stunned) {
+                    stunned = true;
+                    stunStart = System.currentTimeMillis();
+                    drawStunIndicator(stunPeriod);
+                }
+            }
 
             // Maybe save this for different weapons
             //takeDamage(((AWeapon)otherActor).getAttack());
         }
 
         return (getHpCurrent() <= 0);
+    }
+
+    public void act(float deltaTime) {
+        increaseAnimationTime(deltaTime);
+        if (checkStun()) {
+            return;
+        }
+
+        movement.move(this, deltaTime);
     }
 
     public void endCollidesWith(Actor otherActor) {}
@@ -135,6 +177,14 @@ public abstract class AEnemy extends Character {
         return stunPeriod;
     }
 
+    public AMovement getMovement() {
+        return movement;
+    }
+
+    public void setMovement(AMovement movement) {
+        this.movement = movement;
+    }
+
     // Does all the stun checks for enemies. Returns true if they're stunned so the subclass act method knows to return
     // early.
     public boolean checkStun() {
@@ -145,6 +195,10 @@ public abstract class AEnemy extends Character {
             }
         }
         return stunned;
+    }
+
+    public void setInvincible(boolean invincible) {
+        this.invincible = invincible;
     }
 
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.AssetList;
 import com.totlc.levels.ALevel;
 
@@ -23,20 +24,17 @@ public class Spider extends AEnemy {
     private static int hp = 1;
     private static int atk = 1;
 
+    private static float width = 36;
+    private static float height = 20;
+
     private static float friction = 0.8f;
     private static float speed = 100;
     private static float maxVelocity = 200;
     private static float knockback = 25;
 
     // State variables.
-    private boolean skitter = false;
-    private int skitterPeriod = 1000; // in millis
     private int waitPeriod = 1000; // in millis
     private int waitVariance = 1000; // in millis
-    private long movementTime; // Keeps track of when we switch between idle and skitter
-
-    private int counter = 0;
-    private Point2D targetVector = new Point2D.Double(0, 0);
 
     // Asset and animation constants.
     private TextureAtlas idleTextureAtlas;
@@ -45,19 +43,13 @@ public class Spider extends AEnemy {
     private TextureAtlas walkTextureAtlas;
     private Animation<TextureRegion> walkAnimation;
 
-    public Spider(AssetManager assetManager, int x, int y){
-        super(assetManager, new Rectangle(x, y, 36, 20));
-
-        setHpMax(hp);
-        setHpCurrent(getHpMax());
-        setAttack(atk);
+    public Spider(AssetManager assetManager, int x, int y, AMovement movement){
+        super(assetManager, new Rectangle(x, y, width, height), movement, hp, atk);
 
         //TODO: Remove after fixing hitboxes
         moveHitBox(48, 0);
 
-        setSpeed(speed);
-        setFriction(friction);
-        setMaxVel(maxVelocity);
+        initMovement(friction, maxVelocity, speed);
         setKnockback(knockback);
 
         idleTextureAtlas = assetManager.get(AssetList.SPIDER_IDLE.toString());
@@ -65,47 +57,23 @@ public class Spider extends AEnemy {
 
         walkTextureAtlas = assetManager.get(AssetList.SPIDER_WALK.toString());
         walkAnimation = new Animation<TextureRegion>(1 / 12f, walkTextureAtlas.getRegions());
-
-        // Randomize wait_cycles.
-        waitPeriod = waitPeriod + (int)(Math.random() * waitVariance);
     }
 
     @Override
     public void act(float deltaTime) {
-        increaseAnimationTime(deltaTime);
-        Point2D newAcc = getAcc();
+        super.act(deltaTime);
+//        increaseAnimationTime(deltaTime);
 
-        if (checkStun()) {
-            return;
-        }
+//        if (checkStun()) {
+//            return;
+//        }
 
-        if (skitter) {
-            if (System.currentTimeMillis() > (movementTime + skitterPeriod)) {
-                skitter = false;
-                movementTime = System.currentTimeMillis();
-            }
-
-            newAcc.setLocation(targetVector.getX() * getSpeed(), targetVector.getY() * getSpeed());
-            setAcc(newAcc);
-        } else {
-            if (System.currentTimeMillis() > (movementTime + waitPeriod)) {
-                skitter = true;
-                Actor target = ((ALevel)getStage()).getPlayer();
-                targetVector = getTarget(target);
-                movementTime = System.currentTimeMillis();
-            }
-
-            newAcc.setLocation(0, 0);
-            setAcc(newAcc);
-        }
-        updateVelocity();
-        moveUnit(deltaTime);
-        returnIntoBounds();
+//        getMovement().move(this, deltaTime);
     }
 
     @Override
     public void draw(Batch batch, float alpha){
-        if (skitter){
+        if (getMovement().isMoving()){
             batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
         } else{
             batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());

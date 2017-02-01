@@ -3,6 +3,7 @@ package com.totlc.Actors;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.SynchronousAssetLoader;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -16,7 +17,6 @@ import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
-import com.totlc.tasks.RemoveInvincibilityTask;
 
 import java.awt.geom.Point2D;
 
@@ -115,10 +115,13 @@ public class Player extends Character {
         whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
         whippingRightAnimation = new Animation<TextureRegion>((float) (1.0/whippingRightTextureAtlas.getRegions().size * whippingAnimationLength), whippingRightTextureAtlas.getRegions());
 
+        weapon = new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.WHIP_LEFT.toString(), AssetList.WHIP_RIGHT.toString());
+
         setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
     }
 
     public void draw(Batch batch, float delta) {
+        System.out.println("weapon: " + weapon);
         if (invincible) {
             if (System.currentTimeMillis() > (invincibilityStart + invincibilityPeriod)) {
                 invincible = false;
@@ -131,6 +134,8 @@ public class Player extends Character {
 
 
         if (getAttacking()) {
+            System.out.println("Player.draw - attacking True");
+
             if (this.getIsFacing().isFacingDown()) {
                 batch.draw(whippingDownAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
             } else if (this.getIsFacing().isFacingUp()) {
@@ -141,6 +146,16 @@ public class Player extends Character {
                 batch.draw(whippingLeftAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
             }
 
+        } else if (getVel().getX() == 0 && getVel().getY() == 0) {
+            if (this.getIsFacing().isFacingDown()) {
+                batch.draw(standDownTexture, getX(), getY());
+            } else if (this.getIsFacing().isFacingLeft()) {
+                batch.draw(standLeftTexture, getX(), getY());
+            } else if (this.getIsFacing().isFacingRight()) {
+                batch.draw(standRightTexture, getX(), getY());
+            } else if (this.getIsFacing().isFacingUp()) {
+                batch.draw(standUpTexture, getX(), getY());
+            }
         } else if (this.isMovingRight()) {
             batch.draw(walkRightAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
 
@@ -154,17 +169,6 @@ public class Player extends Character {
 
         } else if (this.isMovingUp()) {
             batch.draw(walkUpAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
-
-        } else if (this.getIsFacing() != null) {
-            if (this.getIsFacing().isFacingDown()) {
-                batch.draw(standDownTexture, getX(), getY());
-            } else if (this.getIsFacing().isFacingLeft()) {
-                batch.draw(standLeftTexture, getX(), getY());
-            } else if (this.getIsFacing().isFacingRight()) {
-                batch.draw(standRightTexture, getX(), getY());
-            } else if (this.getIsFacing().isFacingUp()) {
-                batch.draw(standUpTexture, getX(), getY());
-            }
         } else {
             batch.draw(standDownTexture, getX(), getY());
         }
@@ -236,11 +240,22 @@ public class Player extends Character {
         return (getHpCurrent() <= 0);
     }
 
+    @Override
+    public void setAttacking(boolean attacking){
+        super.setAttacking(attacking);
+        if (attacking){
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/whip0.mp3"));
+            sound.play(0.7f);
+        }
+    }
+
     public void endCollidesWith(Actor otherActor) {}
 
     public void setInvincible(boolean invincible) {
         this.invincible = invincible;
     }
+
+    public AWeapon getWeapon() { return weapon; }
 
     public void setWeapon(Whip whip) {
         weapon = whip;

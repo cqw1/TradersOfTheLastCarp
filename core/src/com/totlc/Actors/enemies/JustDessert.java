@@ -1,8 +1,11 @@
 package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
+import com.totlc.Actors.enemies.movement.AMovement;
+import com.totlc.AssetList;
 
 /**
  * Slime enemy that splits upon taking damage. Copies have half health.
@@ -18,17 +21,37 @@ public class JustDessert extends AEnemy{
     private static int hp = 7;
     private static int atk = 1;
 
-    public JustDessert(AssetManager assetManager, Rectangle r) {
-        super(assetManager, r);
+    //Size constants.
+    private static float width = 64, height = 64;
+
+    /**
+     * Constructor for a default slime
+     *
+     * @param assetManager
+     * @param x
+     * @param y
+     */
+    public JustDessert(AssetManager assetManager, float x, float y, AMovement movement) {
+        super(assetManager, new Rectangle(x, y, width, height), movement, hp, atk);
     }
+
+    /**
+     * Constructor for custom-sized enemy
+     *
+     * @param assetManager
+     * @param r
+     * @param movement
+     */
+    public JustDessert(AssetManager assetManager, Rectangle r, AMovement movement) {super(assetManager, r, movement, hp, atk);}
 
     @Override
     public void act(float deltaTime) {
-
+        super.act(deltaTime);
     }
 
     @Override
     public void draw(Batch batch, float alpha) {
-
+        drawHealth(batch, alpha, (int)getWidth() / 2, 12);
+        batch.draw((Texture) getAssetManager().get(AssetList.FLAN.toString()), getX(), getY(), getWidth(), getHeight());
     }
 }

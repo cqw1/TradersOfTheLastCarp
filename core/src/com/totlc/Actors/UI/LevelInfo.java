@@ -20,7 +20,7 @@ public class LevelInfo extends Actor {
 
     private BitmapFont font;
 
-    private int iconSize = 64;
+    private int iconSize = 48;
 
     // Level to display information for.
     private ALevel level;
@@ -36,6 +36,7 @@ public class LevelInfo extends Actor {
         bar = new NinePatch(assetManager.get(AssetList.UI_BAR.toString(), Texture.class), 16, 16, 8, 8);
         setObjective(level.getObjective());
         font = TradersOfTheLastCarp.systemFont0;
+        font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
     @Override
@@ -44,13 +45,13 @@ public class LevelInfo extends Actor {
         // Draw base texture.
         bar.draw(batch, getX(), getY(), getWidth(), getHeight());
         // Draw level strings.
-        font.getData().setScale(1.0f);
-        font.draw(batch, level.getNameString(), getX() + iconSize * 0.3f, getY() + getHeight() * 0.8f);
+        font.getData().setScale(1.2f);
+        font.draw(batch, level.getNameString(), getX() + iconSize * 0.36f + objPadding, getY() + getHeight() * 0.75f);
         font.getData().setScale(0.8f);
-        font.draw(batch, level.getInfoString() + " " + level.getObjectiveInfo(), getX() + iconSize * 0.3f + objPadding, getY() + getHeight() * 0.55f);
+        font.draw(batch, level.getInfoString() + " " + level.getObjectiveInfo(), getX() + iconSize * 0.42f + objPadding, getY() + getHeight() * 0.42f);
 
         // Draw Objective Icon.
-        batch.draw(level.getObjIcon(), getX() - objPadding * 0.6f, getY() - objPadding, iconSize, iconSize);
+        batch.draw(level.getObjIcon(), getX()+ iconSize * 0.2f - objPadding, getY() + iconSize * 0.2f - objPadding, iconSize, iconSize);
     }
 
     public ALevel getLevel() {

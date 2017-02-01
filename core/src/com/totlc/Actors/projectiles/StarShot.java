@@ -10,6 +10,8 @@ import com.totlc.Actors.Player;
 import com.totlc.Actors.effects.Impact;
 import com.totlc.AssetList;
 
+import java.awt.geom.Point2D;
+
 public class StarShot extends Projectile {
 
     // Asset and animation constants.
@@ -20,6 +22,7 @@ public class StarShot extends Projectile {
     // Bookkeeping variables.
     private long startTime;
     private boolean removeFlag = false;
+    private Point2D textureDimensions;
 
     public StarShot(AssetManager assetManager, float x, float y, int damageType){
         super(assetManager, new Rectangle(x, y, 24, 24));
@@ -31,13 +34,17 @@ public class StarShot extends Projectile {
         setAttack(2);
         setScaleFactor(1.0f);
 
-        star_trail = new ParticleEffect();
-        star_trail.setPosition((float)getCenter().getX(), (float)getCenter().getY());
-
         shotTextureAtlas = assetManager.get(AssetList.PROJECTILE_STAR_SHOT.toString());
         particleAtlas = assetManager.get(AssetList.STAR_PARTICLES.toString());
         shotAnimation = new Animation<TextureRegion>(1 / 16f, shotTextureAtlas.getRegions());
+
+        textureDimensions = new Point2D.Float(shotAnimation.getKeyFrame(getAnimationTime()).getRegionWidth(), shotAnimation.getKeyFrame(getAnimationTime()).getRegionHeight());
+
+        star_trail = new ParticleEffect();
+        star_trail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
+
         star_trail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
+        star_trail.start();
     }
 
     @Override
@@ -56,7 +63,7 @@ public class StarShot extends Projectile {
                 p.allowCompletion();
             }
         }
-        star_trail.setPosition((float)getCenter().getX(), (float)getCenter().getY());
+        star_trail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
     }
 
     @Override

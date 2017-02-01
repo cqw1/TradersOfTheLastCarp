@@ -22,13 +22,13 @@ public class ButtonTrigger extends ATrigger {
     private Animation<TextureRegion> buttonAnimation;
 
 
-    public ButtonTrigger(AssetManager assetManager, int x, int y){
+    public ButtonTrigger(AssetManager assetManager, float x, float y){
         super(assetManager, new Rectangle(x, y, 32, 32));
 
         buttonTextureAtlas = assetManager.get(AssetList.PLATE_BROWN.toString());
         buttonAnimation = new Animation<TextureRegion>(1 / 24f, buttonTextureAtlas.getRegions());
 
-        getHitBox().translate(48, 48);
+        moveHitBox(48, 48);
         setSpeed(200);
     }
 
@@ -38,6 +38,7 @@ public class ButtonTrigger extends ATrigger {
         buttonTextureAtlas = assetManager.get(AssetList.PLATE_BROWN.toString());
         buttonAnimation = new Animation<TextureRegion>(1 / 24f, buttonTextureAtlas.getRegions());
 
+        moveHitBox(48, 48);
         setSpeed(200);
     }
 
