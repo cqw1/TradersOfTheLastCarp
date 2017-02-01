@@ -16,10 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
-import com.totlc.levels.ALevel;
-import com.totlc.levels.Level01;
-import com.totlc.levels.Level03;
-import com.totlc.levels.SandBoxLevel;
+import com.totlc.levels.*;
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
@@ -76,6 +73,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		assetManager.load(AssetList.WALL_RIGHT.toString(), Texture.class);
 		assetManager.load(AssetList.WALL_TOP.toString(), Texture.class);
 		assetManager.load(AssetList.WALL_BOTTOM.toString(), Texture.class);
+		assetManager.load(AssetList.END_CREDITS.toString(), Texture.class);
 
 		// Arrow
 		assetManager.load(AssetList.PROJECTILE_ARROW.toString(), Texture.class);
@@ -134,6 +132,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		level = new Level03(player, assetManager);
 //		level = new Level01(player, assetManager);
 //		level = new SandBoxLevel(player, assetManager);
+//        level = new EndLevel(player, assetManager);
 		Gdx.input.setInputProcessor(level);
 		level.initLevel(player);
 	}
