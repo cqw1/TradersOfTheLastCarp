@@ -18,6 +18,7 @@ import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.levels.ALevel;
 import com.totlc.levels.Level01;
+import com.totlc.levels.Level03;
 import com.totlc.levels.SandBoxLevel;
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
@@ -130,6 +131,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		Player player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 
 		// Initialize input processor.
+//		level = new Level03(player, assetManager);
 		level = new Level01(player, assetManager);
 //		level = new SandBoxLevel(player, assetManager);
 		Gdx.input.setInputProcessor(level);

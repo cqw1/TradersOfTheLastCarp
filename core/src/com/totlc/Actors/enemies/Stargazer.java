@@ -89,11 +89,12 @@ public class Stargazer extends AEnemy {
 
     @Override
     public void act(float deltaTime) {
-        increaseAnimationTime(deltaTime);
+        super.act(deltaTime);
+//        increaseAnimationTime(deltaTime);
 
-        if (checkStun()) {
-            return;
-        }
+//        if (checkStun()) {
+//            return;
+//        }
 
         if (!spin){
             if (windDown){
@@ -125,7 +126,7 @@ public class Stargazer extends AEnemy {
             setIsFacing(Directionality.LEFT);
         }
 
-        getMovement().move(this, deltaTime);
+//        getMovement().move(this, deltaTime);
     }
 
     @Override

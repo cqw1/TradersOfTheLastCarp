@@ -110,6 +110,7 @@ public abstract class AEnemy extends Character {
     }
 
     public void act(float deltaTime) {
+        increaseAnimationTime(deltaTime);
         if (checkStun()) {
             return;
         }

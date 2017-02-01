@@ -46,11 +46,7 @@ public class JustDessert extends AEnemy{
 
     @Override
     public void act(float deltaTime) {
-        if (checkStun()) {
-            return;
-        }
-
-        getMovement().move(this, deltaTime);
+        super.act(deltaTime);
     }
 
     @Override

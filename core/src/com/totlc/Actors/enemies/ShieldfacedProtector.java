@@ -23,6 +23,7 @@ public class ShieldfacedProtector extends AEnemy {
 
     @Override
     public void act(float deltaTime) {
+        super.act(deltaTime);
 
     }
 

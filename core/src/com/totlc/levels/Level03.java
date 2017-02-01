@@ -5,8 +5,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.enemies.DaredevilPangolini;
+import com.totlc.Actors.enemies.Spider;
 import com.totlc.Actors.enemies.Stargazer;
 import com.totlc.Actors.enemies.movement.BasicMovement;
+import com.totlc.Actors.enemies.movement.IntervalMovement;
 import com.totlc.Actors.items.Health;
 import com.totlc.Actors.terrain.NextStage;
 import com.totlc.Actors.tileset.BasicTileSet;
@@ -37,21 +39,38 @@ public class Level03 extends ALevel {
         Health health = new Health(getAssetManager(), getWallSize() + 300, TradersOfTheLastCarp.CONFIG_HEIGHT / 2);
         addActor(health);
 
-        // Invincible stargazer.
-        Stargazer stargazer = new Stargazer(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.5), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new BasicMovement(getPlayer()));
-        stargazer.setInvincible(true);
-        addActor(stargazer);
+        // Invincible spiders.
+        Spider spider0 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.75), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new IntervalMovement(getPlayer()));
+        spider0.setInvincible(true);
 
-        // Arrow traps and triggers along the top wall at intervals of 0.2
-        ButtonTrigger buttonTop1 = new ButtonTrigger(getAssetManager(), new Rectangle((int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.1), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.3), 32, 32));
-        buttonTop1.moveHitBox(0,-1 * TradersOfTheLastCarp.CONFIG_HEIGHT / 2);
+        Spider spider1 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.5), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new IntervalMovement(getPlayer()));
+        spider1.setInvincible(true);
 
-        ArrowTrap arrowTrapTop1 = new ArrowTrap(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.2), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT *0.1), 500);
-        arrowTrapTop1.moveRel(-arrowTrapTop1.getWidth() / 2, -arrowTrapTop1.getHeight() / 2);
+        addActor(spider0);
+        addActor(spider1);
 
-        buttonTop1.addTrap(arrowTrapTop1);
-        addActor(buttonTop1);
-        addActor(arrowTrapTop1);
+
+        for (int i = 0; i < 3; i++) {
+            ButtonTrigger triggerTop = new ButtonTrigger(getAssetManager(), new Rectangle((int)(TradersOfTheLastCarp.CONFIG_WIDTH * (0.1 + i * 0.3)), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.4), 32, 32));
+            triggerTop.moveRel(-triggerTop.getWidth() / 2, -triggerTop.getHeight() / 2);
+
+            ButtonTrigger triggerBot = new ButtonTrigger(getAssetManager(), new Rectangle((int)(TradersOfTheLastCarp.CONFIG_WIDTH * (0.25 + i * 0.3)), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.4), 32, 32));
+            triggerBot.moveRel(-triggerBot.getWidth() / 2, -triggerBot.getHeight() / 2);
+
+            ArrowTrap arrowTrapTop = new ArrowTrap(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * ((i + 1) * 0.3)), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.8), 500);
+            arrowTrapTop.moveRel(-arrowTrapTop.getWidth() / 2, -arrowTrapTop.getHeight() / 2);
+
+            ArrowTrap arrowTrapBot = new ArrowTrap(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * (0.15 + (i + 1) * 0.3)), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.2), 500);
+            arrowTrapBot.moveRel(-arrowTrapBot.getWidth() / 2, -arrowTrapBot.getHeight() / 2);
+
+            triggerTop.addTrap(arrowTrapTop);
+            triggerBot.addTrap(arrowTrapBot);
+
+            addActor(triggerTop);
+            addActor(arrowTrapTop);
+            addActor(triggerBot);
+            addActor(arrowTrapBot);
+        }
 
         //REQUIRED
         endInit();

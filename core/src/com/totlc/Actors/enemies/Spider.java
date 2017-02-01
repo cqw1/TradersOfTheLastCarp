@@ -61,13 +61,14 @@ public class Spider extends AEnemy {
 
     @Override
     public void act(float deltaTime) {
-        increaseAnimationTime(deltaTime);
+        super.act(deltaTime);
+//        increaseAnimationTime(deltaTime);
 
-        if (checkStun()) {
-            return;
-        }
+//        if (checkStun()) {
+//            return;
+//        }
 
-        getMovement().move(this, deltaTime);
+//        getMovement().move(this, deltaTime);
     }
 
     @Override
