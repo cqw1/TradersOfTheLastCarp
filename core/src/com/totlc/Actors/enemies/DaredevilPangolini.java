@@ -45,7 +45,7 @@ public class DaredevilPangolini extends AEnemy {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        drawHealth(batch, alpha, (int)getWidth() / 2, 12);
+        drawHealth(batch, alpha, -(int)getWidth() / 2, (int)getHeight() / 2);
         batch.draw((Texture) getAssetManager().get(AssetList.PANGOLINI.toString()), getX(), getY(), getWidth(), getHeight());
     }
 }

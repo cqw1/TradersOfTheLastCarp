@@ -44,6 +44,10 @@ public abstract class ALevel extends Stage {
 
     private objectives objective;
 
+    private long startTime;
+
+    private long timeLimit = 0;
+
     private float wallSize = DEFAULT_WALLSIZE;
     public static float DEFAULT_WALLSIZE = 50;
 
@@ -63,13 +67,14 @@ public abstract class ALevel extends Stage {
         this.assetManager = assetManager;
         this.nextLevel = nextLevel;
         this.objective = objective;
+        this.startTime = System.currentTimeMillis();
 
         TextureAtlas atlas = assetManager.get(AssetList.ICON_PACK.toString());
         switch (getObjective().getID()){
             case 0:
                 // Survive.
                 objIcon = atlas.findRegion("time_icon");
-                setInfoString("SURVIVE UNTIL");
+                setInfoString("SURVIVE FOR");
                 break;
             case 1:
                 // Unlock.
@@ -107,7 +112,7 @@ public abstract class ALevel extends Stage {
             a.act(delta);
         }
 
-        if (ObjectiveVerifier.verifyDone(this) == 0.0f) {
+        if (ObjectiveVerifier.verifyDone(this) <= 0.0f) {
             nextStage.unlock();
         }
 
@@ -308,7 +313,7 @@ public abstract class ALevel extends Stage {
         switch (getObjective().getID()){
             case 0:
                 // Survive.
-                return "TIME REMAINING";
+                return " " + Math.max(Math.ceil(ObjectiveVerifier.verifyDone(this) / 100) / 10, 0);
             case 1:
                 // Unlock.
                 return "LOCKED/UNLOCKED";
@@ -326,6 +331,22 @@ public abstract class ALevel extends Stage {
 
     public void setObjective(objectives objective) {
         this.objective = objective;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public long getTimeLimit() {
+        return timeLimit;
+    }
+
+    public void setTimeLimit(long timeLimit) {
+        this.timeLimit = timeLimit;
     }
 
     public float getWallSize() {

@@ -24,6 +24,7 @@ public class Level03 extends ALevel {
                 new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
                 new EndLevel(player, assetManager),
                 objectives.SURVIVE);
+        setTimeLimit(10000);
     }
 
     public void initLevel(Player player) {
