@@ -42,12 +42,15 @@ public abstract class AEnemy extends Character {
 
     private AMovement movement;
 
-    public AEnemy(AssetManager assetManager, Rectangle r, AMovement movement){
+    public AEnemy(AssetManager assetManager, Rectangle r, AMovement movement, int hp, int atk){
         super(assetManager, r);
         TextureAtlas atlas = new TextureAtlas(AssetList.ICON_PACK.toString());
         heart = atlas.findRegion("heart_icon");
         font = TradersOfTheLastCarp.systemFont0;
         this.movement = movement;
+        setHpMax(hp);
+        setHpCurrent(hp);
+        this.attack = atk;
     }
 
     /**
@@ -62,6 +65,12 @@ public abstract class AEnemy extends Character {
                 this.showHP = false;
             }
         }
+    }
+
+    public void initMovement(float friction, float maxVel, float speed) {
+        setFriction(friction);
+        setMaxVel(maxVel);
+        setSpeed(speed);
     }
 
     /**
@@ -91,6 +100,14 @@ public abstract class AEnemy extends Character {
         }
 
         return (getHpCurrent() <= 0);
+    }
+
+    public void act(float deltaTime) {
+        if (checkStun()) {
+            return;
+        }
+
+        movement.move(this, deltaTime);
     }
 
     public void endCollidesWith(Actor otherActor) {}

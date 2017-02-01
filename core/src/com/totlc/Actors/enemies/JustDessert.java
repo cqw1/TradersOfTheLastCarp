@@ -21,7 +21,28 @@ public class JustDessert extends AEnemy{
     private static int hp = 7;
     private static int atk = 1;
 
-    public JustDessert(AssetManager assetManager, Rectangle r, AMovement movement) {super(assetManager, r, movement);}
+    //Size constants.
+    private static float width, height = 64;
+
+    /**
+     * Constructor for a default slime
+     *
+     * @param assetManager
+     * @param x
+     * @param y
+     */
+    public JustDessert(AssetManager assetManager, float x, float y, AMovement movement) {
+        super(assetManager, new Rectangle(x, y, width, height), movement, hp, atk);
+    }
+
+    /**
+     * Constructor for custom-sized enemy
+     *
+     * @param assetManager
+     * @param r
+     * @param movement
+     */
+    public JustDessert(AssetManager assetManager, Rectangle r, AMovement movement) {super(assetManager, r, movement, hp, atk);}
 
     @Override
     public void act(float deltaTime) {

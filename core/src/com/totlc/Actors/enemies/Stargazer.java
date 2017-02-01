@@ -60,20 +60,14 @@ public class Stargazer extends AEnemy {
     private Animation<TextureRegion> gazeReverseAnimation;
 
     public Stargazer(AssetManager assetManager, int x, int y, AMovement movement) {
-        super(assetManager, new Rectangle(x, y, 40, 40), movement);
-
-        setHpMax(hp);
-        setHpCurrent(getHpMax());
-        setAttack(atk);
+        super(assetManager, new Rectangle(x, y, 40, 40), movement, hp, atk);
 
         setFloating(true);
 
         //TODO: Remove after correcting hitboxes
         moveHitBox(44,44);
 
-        setSpeed(speed);
-        setFriction(friction);
-        setMaxVel(maxVelocity);
+        initMovement(friction, maxVelocity, speed);
         setKnockback(knockback);
 
         bodyTextureAtlas = getAssetManager().get(AssetList.STARGAZER_BODY.toString());

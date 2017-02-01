@@ -21,14 +21,13 @@ public class DaredevilPangolini extends AEnemy {
     private static int hp = 1;
     private static int atk = 2;
 
+    private static float maxVel = 100;
+    private static float speed = 40;
+    private static float friction = 0.8f;
+
     public DaredevilPangolini(AssetManager assetManager, Rectangle r, AMovement movement) {
-        super(assetManager, r, movement);
-        this.setMaxVel(100);
-        this.setHpMax(hp);
-        this.setHpCurrent(hp);
-        this.setAttack(atk);
-        this.setSpeed(40);
-        this.setFriction(0.99f);
+        super(assetManager, r, movement, hp, atk);
+        initMovement(friction, maxVel, speed);
     }
 
     @Override
