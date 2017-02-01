@@ -22,7 +22,7 @@ public class JustDessert extends AEnemy{
     private static int atk = 1;
 
     //Size constants.
-    private static float width, height = 64;
+    private static float width = 64, height = 64;
 
     /**
      * Constructor for a default slime

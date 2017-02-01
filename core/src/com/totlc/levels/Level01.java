@@ -45,14 +45,11 @@ public class Level01 extends ALevel{
         addActor(arrowTrap);
         
         AEnemy dummyFlan = new JustDessert(getAssetManager(),
-                new Rectangle(3 * TradersOfTheLastCarp.CONFIG_WIDTH / 4, TradersOfTheLastCarp.CONFIG_HEIGHT / 2,
-                        54, 54), new Immobile(getPlayer()));
+                3 * TradersOfTheLastCarp.CONFIG_WIDTH / 4, TradersOfTheLastCarp.CONFIG_HEIGHT / 2, new Immobile(getPlayer()));
         dummyFlan.setHpMax(2);
         dummyFlan.setHpCurrent(2);
         addActor(dummyFlan);
 
-        AEnemy spider = new Spider(getAssetManager(), 300, 400, new IntervalMovement(getPlayer()));
-        addActor(spider);
 
         //REQUIRED
         endInit();
