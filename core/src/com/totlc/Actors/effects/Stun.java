@@ -117,12 +117,4 @@ public class Stun extends AEffect {
     public void setDrawText(boolean drawText) {
         this.drawText = drawText;
     }
-
-    public Point2D getTextureDimensions() {
-        return textureDimensions;
-    }
-
-    public void setTextureDimensions(Point2D textureDimensions) {
-        this.textureDimensions = textureDimensions;
-    }
 }
