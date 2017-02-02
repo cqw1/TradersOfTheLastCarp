@@ -27,7 +27,7 @@ public class ObjectiveVerifier {
         switch(currentLevel.getObjective().getID()) {
             case 0:
                 //SURVIVE
-                break;
+                return (float)currentLevel.getTimeLimit() - (System.currentTimeMillis() - currentLevel.getStartTime());
             case 1:
                 //UNLOCK
                 break;

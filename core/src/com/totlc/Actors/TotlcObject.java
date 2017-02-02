@@ -227,7 +227,10 @@ public abstract class TotlcObject extends Actor {
 
     public Point2D getCenter() { return new Point2D.Float(getX() + getWidth() / 2, getY() + getHeight() / 2);}
 
-    public Vector2 getHitBoxCenter() { return hitBox.getBoundingRectangle().getCenter(new Vector2()); }
+    public Point2D getHitBoxCenter() {
+        Vector2 c = hitBox.getBoundingRectangle().getCenter(new Vector2());
+        return new Point2D.Float(c.x, c.y);
+    }
 
     public void setSpeed(float s) { speed = s; }
 

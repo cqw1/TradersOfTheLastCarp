@@ -24,8 +24,9 @@ public class Level02 extends ALevel {
     public Level02(Player player, AssetManager assetManager) {
         super(player, assetManager,
                 new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
-                new Level03(player, assetManager),
+                null,
                 objectives.DESTROY);
+        setNextLevel(TradersOfTheLastCarp.LEVELS.get(TradersOfTheLastCarp.LEVELS.indexOf(this) + 1));
     }
 
     public void initLevel(Player player) {

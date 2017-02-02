@@ -60,9 +60,9 @@ public abstract class AEnemy extends Character {
      */
     public void drawHealth(Batch batch, float alpha, int xOffset, int yOffset) {
         if(showHP) {
-            batch.draw(heart, (float) getCenter().getX() - (heartSize / 2) + xOffset, (float) getCenter().getY() + getHeight() - heartSize / 2 + yOffset, heartSize, heartSize);
+            batch.draw(heart, (float) getHitBoxCenter().getX() - (heartSize / 2) + xOffset, (float) getHitBoxCenter().getY() + getHitBoxHeight() + yOffset, heartSize, heartSize);
             layout.setText(font, getHpCurrent() + "/" + getHpMax());
-            font.draw(batch, getHpCurrent() + "/" + getHpMax(), (float) getCenter().getX() + xOffset - (layout.width / 2), (float) getCenter().getY() + getHeight() + yOffset + 4);
+            font.draw(batch, getHpCurrent() + "/" + getHpMax(), (float) getHitBoxCenter().getX() + xOffset - (layout.width / 2), (float) getHitBoxCenter().getY() + getHitBoxHeight() + yOffset + (heartSize / 2) + 3);
             if (System.currentTimeMillis() - this.hpTimer > 3000) {
                 this.showHP = false;
             }

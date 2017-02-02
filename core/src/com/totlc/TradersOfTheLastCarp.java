@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;
-	private boolean drawHitboxes = false;
+	private boolean drawHitboxes = true;
 
 	public AssetManager assetManager = new AssetManager();
 
@@ -141,6 +141,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		LEVELS.add(new Level01(player, assetManager));
 		LEVELS.add(new Level02(player, assetManager));
 		LEVELS.add(new Level03(player, assetManager));
+        LEVELS.add(new EndLevel(player, assetManager));
 
         level = LEVELS.get(0);
         Gdx.input.setInputProcessor(level);

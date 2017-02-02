@@ -32,3 +32,17 @@ repeat: none
   orig: 100, 100
   offset: 0, 0
   index: -1
+4arrowpoint
+  rotate: false
+  xy: 158, 57
+  size: 34, 65
+  orig: 34, 65
+  offset: 0, 0
+  index: -1
+5arrowshaft
+  rotate: false
+  xy: 194, 62
+  size: 19, 60
+  orig: 19, 60
+  offset: 0, 0
+  index: -1
