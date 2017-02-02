@@ -18,20 +18,19 @@ import com.totlc.Actors.UI.Inventory;
 import com.totlc.Actors.UI.LevelInfo;
 import com.totlc.Actors.UI.LifeGauge;
 import com.totlc.Actors.terrain.*;
-import com.totlc.Actors.weapons.AWeapon;
-import com.totlc.Actors.weapons.Whip;
+import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.audio.MusicPlayer;
-import com.totlc.levels.ObjectiveVerifier.objectives;
+import com.totlc.levels.ObjectiveVerifier.Objectives;
 
 import java.util.HashSet;
 
 public abstract class ALevel extends Stage {
 
     private Player player;
-    private MusicPlayer musicPlayer;
+
     private AssetManager assetManager;
 
     private TextureRegion objIcon;
@@ -42,7 +41,7 @@ public abstract class ALevel extends Stage {
     // Level information strings.
     private String nameString, infoString;
 
-    private objectives objective;
+    private Objectives objective;
 
     private long startTime;
 
@@ -58,16 +57,17 @@ public abstract class ALevel extends Stage {
     public ALevel(Player player, AssetManager assetManager) {
         this.player = player;
         this.assetManager = assetManager;
-        setMusicPlayer(new MusicPlayer());
     }
 
-    public ALevel(Player player, AssetManager assetManager, NextStage nextStage, ALevel nextLevel, objectives objective){
+//    public ALevel(Player player, AssetManager assetManager, NextStage nextStage, ALevel nextLevel, ObjectiveVerifier.Objectives objective) {
+    public ALevel(Player player, AssetManager assetManager, Objectives objective) {
         this.player = player;
-        this.nextStage = nextStage;
+        this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight());
         this.assetManager = assetManager;
-        this.nextLevel = nextLevel;
         this.objective = objective;
-        this.startTime = System.currentTimeMillis();
+
+        BasicTileSet bts = new BasicTileSet(getAssetManager());
+        addActor(bts);
 
         TextureAtlas atlas = assetManager.get(AssetList.ICON_PACK.toString());
         switch (getObjective().getID()){
@@ -88,17 +88,18 @@ public abstract class ALevel extends Stage {
                 break;
         }
         objIcon.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        setMusicPlayer(new MusicPlayer());
     }
 
-    public abstract void initLevel(Player player);
+    public void initLevel(Player player){
+        setStartTime(System.currentTimeMillis());
+    };
 
     public void endInit() {
         initWalls();
 
         player.moveAbs(playerStartPosition.x, playerStartPosition.y);
         addActor(player);
-        addActor(player.getWeapon());
+//        addActor(player.getWeapon());
         getPlayer().setZIndex(20);
         initUI();
     }
@@ -273,7 +274,7 @@ public abstract class ALevel extends Stage {
         return player;
     }
 
-    public void setMusicPlayer(MusicPlayer mp) { musicPlayer = mp; }
+
 
     public Vector2 getPlayerStartPosition() {
         return playerStartPosition;
@@ -290,8 +291,6 @@ public abstract class ALevel extends Stage {
     public void setAssetManager(AssetManager assetManager) {
         this.assetManager = assetManager;
     }
-
-    public void playSong(String filename) { musicPlayer.setSong(filename); musicPlayer.play(); }
 
     public String getNameString() {
         return nameString;
@@ -325,11 +324,11 @@ public abstract class ALevel extends Stage {
         }
     }
 
-    public objectives getObjective() {
+    public Objectives getObjective() {
         return objective;
     }
 
-    public void setObjective(objectives objective) {
+    public void setObjective(Objectives objective) {
         this.objective = objective;
     }
 
@@ -391,7 +390,9 @@ public abstract class ALevel extends Stage {
     }
 
     public void initNextLevel() {
-        musicPlayer.stop();
+        int index = TradersOfTheLastCarp.LEVEL_NAME.indexOf(this.getClass().getName());
+        System.out.println(index);
+        nextLevel = TradersOfTheLastCarp.LEVEL_OBJ.get(index + 1);
         nextLevel.initLevel(player);
     }
 }

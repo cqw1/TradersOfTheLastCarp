@@ -3,6 +3,7 @@ package com.totlc.levels;
 import com.badlogic.gdx.assets.AssetManager;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.tileset.EndScreen;
+import com.totlc.TradersOfTheLastCarp;
 
 public class EndLevel extends ALevel {
 
@@ -11,7 +12,11 @@ public class EndLevel extends ALevel {
     }
 
     public void initLevel(Player player) {
-        playSong("test5");
+        super.initLevel(player);
+        TradersOfTheLastCarp.musicPlayer.stop();
+        TradersOfTheLastCarp.musicPlayer.setSong("test5");
+        TradersOfTheLastCarp.musicPlayer.play();
+
         addActor(new EndScreen(getAssetManager()));
     }
 

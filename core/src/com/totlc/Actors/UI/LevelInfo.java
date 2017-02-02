@@ -1,7 +1,6 @@
 package com.totlc.Actors.UI;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -11,7 +10,7 @@ import com.totlc.levels.ALevel;
 import com.totlc.levels.ObjectiveVerifier.*;
 
 /**
- * UI Actor that displays level #, objectives, and objective information.
+ * UI Actor that displays level #, Objectives, and objective information.
  */
 public class LevelInfo extends Actor {
 
@@ -25,7 +24,7 @@ public class LevelInfo extends Actor {
     // Level to display information for.
     private ALevel level;
 
-    private objectives objective;
+    private Objectives objective;
 
     public LevelInfo(AssetManager assetManager, ALevel level, int x, int y){
         setX(x);
@@ -62,11 +61,11 @@ public class LevelInfo extends Actor {
         this.level = level;
     }
 
-    public objectives getObjective() {
+    public Objectives getObjective() {
         return objective;
     }
 
-    public void setObjective(objectives objective) {
+    public void setObjective(Objectives objective) {
         this.objective = objective;
     }
 }

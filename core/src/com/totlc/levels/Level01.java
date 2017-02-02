@@ -5,8 +5,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.enemies.JustDessert;
 import com.totlc.Actors.enemies.movement.Immobile;
-import com.totlc.Actors.terrain.NextStage;
-import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ArrowTrap;
 import com.totlc.Actors.triggers.ButtonTrigger;
 import com.totlc.TradersOfTheLastCarp;
@@ -16,18 +14,14 @@ import com.totlc.levels.ObjectiveVerifier.*;
 public class Level01 extends ALevel{
 
     public Level01(Player player, AssetManager assetManager) {
-        super(player, assetManager,
-                new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
-                new Level02(player, assetManager),
-                objectives.DESTROY);
+        super(player, assetManager, Objectives.DESTROY);
     }
 
     public void initLevel(Player player) {
-        playSong("test0");
+        super.initLevel(player);
+        TradersOfTheLastCarp.musicPlayer.setSong("test0");
+        TradersOfTheLastCarp.musicPlayer.play();
         setNameString("Level: 01");
-
-        BasicTileSet bts = new BasicTileSet(getAssetManager());
-        addActor(bts);
 
         //REQUIRED
         setPlayer(player);
@@ -36,18 +30,13 @@ public class Level01 extends ALevel{
         arrowTrap.moveRel(-arrowTrap.getWidth() / 2, -arrowTrap.getHeight() / 2);
 
         for (int i = 0; i < TradersOfTheLastCarp.CONFIG_HEIGHT / 128; i++) {
+            // Create a column of triggers so you always step on one.
             ButtonTrigger trigger = new ButtonTrigger(getAssetManager(), new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH / 4, i * 128, 32, 32));
             trigger.moveRel(-trigger.getWidth() / 2, -trigger.getHeight() / 2);
             trigger.addTrap(arrowTrap);
             addActor(trigger);
         }
 
-//        ButtonTrigger tutorialButton = new ButtonTrigger(getAssetManager(), new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH / 4, TradersOfTheLastCarp.CONFIG_HEIGHT / 2, 32, TradersOfTheLastCarp.CONFIG_HEIGHT));
-//        tutorialButton.moveHitBox(0,-1 * TradersOfTheLastCarp.CONFIG_HEIGHT / 2);
-
-
-//        tutorialButton.addTrap(arrowTrap);
-//        addActor(tutorialButton);
         addActor(arrowTrap);
         
         AEnemy dummyFlan = new JustDessert(getAssetManager(),

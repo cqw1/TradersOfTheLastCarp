@@ -5,14 +5,14 @@ import com.totlc.Actors.enemies.AEnemy;
 
 public class ObjectiveVerifier {
 
-    public enum objectives {
+    public enum Objectives {
         SURVIVE(0),
         UNLOCK(1),
         DESTROY(2);
 
         private int id;
 
-        objectives(int id) {
+        Objectives(int id) {
             this.id = id;
         }
 
