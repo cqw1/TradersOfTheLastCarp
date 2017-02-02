@@ -3,6 +3,7 @@ package com.totlc.levels;
 import com.badlogic.gdx.assets.AssetManager;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.tileset.EndScreen;
+import com.totlc.TradersOfTheLastCarp;
 
 public class EndLevel extends ALevel {
 

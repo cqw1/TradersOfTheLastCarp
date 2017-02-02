@@ -9,8 +9,6 @@ import com.totlc.Actors.terrain.NextStage;
 import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ArrowTrap;
 import com.totlc.Actors.triggers.ButtonTrigger;
-import com.totlc.Actors.weapons.Whip;
-import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.Actors.Player;
 import com.totlc.levels.ObjectiveVerifier.*;
@@ -18,10 +16,7 @@ import com.totlc.levels.ObjectiveVerifier.*;
 public class SandBoxLevel extends ALevel{
 
     public SandBoxLevel(Player player, AssetManager assetManager) {
-        super(player, assetManager,
-                new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
-                new Level02(player, assetManager),
-                objectives.DESTROY);
+        super(player, assetManager, Objectives.DESTROY);
     }
 
     public void initLevel(Player player) {

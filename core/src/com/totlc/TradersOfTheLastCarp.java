@@ -33,117 +33,40 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static ALevel level;
 
 	public static BitmapFont systemFont0;
+	private Player player;
 
-	public static ArrayList<ALevel> LEVELS = new ArrayList<ALevel>();
+	// Holds the actual level objects.
+	public static ArrayList<ALevel> LEVEL_OBJ = new ArrayList<ALevel>();
+	// Holds the class names of each level object. Must correspond with LEVEL_OBJ.
+    // Used so we can find the index of current level by finding indexOf classname.
+    public static ArrayList<String> LEVEL_NAME = new ArrayList<String>();
 
 	@Override
 	public void create() {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
-		assetManager.load("sounds/trap_activation.mp3", Sound.class);
+		loadAssets();
 
-		systemFont0 =  new BitmapFont(new FileHandle(AssetList.LOVELO_FONT.toString()),
-				new FileHandle(AssetList.LOVELO_IMAGE.toString()), false);
-
+		// For drawing hitboxes.
 		shapeRenderer = new ShapeRenderer();
 //		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.setColor(Color.RED);
 
-		// Spider
-		assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
-
-		// Stargazer
-		assetManager.load(AssetList.STARGAZER_BODY.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.STARGAZER_EYE.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.STARGAZER_SPIN.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.SHADOW.toString(), Texture.class);
-
-		//Flan
-        assetManager.load(AssetList.FLAN.toString(), Texture.class);
-
-        //Pangolini
-        assetManager.load(AssetList.PANGOLINI.toString(), Texture.class);
-
-		// Effects
-		assetManager.load(AssetList.PARTICLES.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.IMPACT.toString(), TextureAtlas.class);
-
-		// BasicTileSet and terrain
-		assetManager.load(AssetList.DEFAULT_TILESET.toString(), Texture.class);
-		assetManager.load(AssetList.WALL_LEFT.toString(), Texture.class);
-		assetManager.load(AssetList.WALL_RIGHT.toString(), Texture.class);
-		assetManager.load(AssetList.WALL_TOP.toString(), Texture.class);
-		assetManager.load(AssetList.WALL_BOTTOM.toString(), Texture.class);
-		assetManager.load(AssetList.END_CREDITS.toString(), Texture.class);
-
-		// Arrow
-		assetManager.load(AssetList.PROJECTILE_ARROW.toString(), Texture.class);
-
-		// Starshot
-		assetManager.load(AssetList.PROJECTILE_STAR_SHOT.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.STAR_PARTICLES.toString(), TextureAtlas.class);
-
-		// Arrow Trap
-		assetManager.load(AssetList.ARROW_TRAP.toString(), TextureAtlas.class);
-
-		// Button Trigger
-		assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);
-
-		// Items
-		assetManager.load(AssetList.ITEM_PACK.toString(), TextureAtlas.class);
-
-		// UI
-		assetManager.load(AssetList.ICON_PACK.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.UI_BAR.toString(), Texture.class);
-		assetManager.load(AssetList.INVENTORY_BOX.toString(), Texture.class);
-		assetManager.load(AssetList.LIFE_GAUGE.toString(), Texture.class);
-		assetManager.load(AssetList.LIFE_BAR.toString(), Texture.class);
-
-		// Player
-		// Standing assets.
-		assetManager.load(AssetList.PLAYER_STAND_UP.toString(), Texture.class);
-		assetManager.load(AssetList.PLAYER_STAND_DOWN.toString(), Texture.class);
-		assetManager.load(AssetList.PLAYER_STAND_LEFT.toString(), Texture.class);
-		assetManager.load(AssetList.PLAYER_STAND_RIGHT.toString(), Texture.class);
-
-		// Walking animations
-		assetManager.load(AssetList.PLAYER_WALK_UP.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.PLAYER_WALK_DOWN.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.PLAYER_WALK_LEFT.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.PLAYER_WALK_RIGHT.toString(), TextureAtlas.class);
-
-		// Whipping animations
-		assetManager.load(AssetList.PLAYER_WHIP_UP.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.PLAYER_WHIP_DOWN.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.PLAYER_WHIP_LEFT.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.PLAYER_WHIP_RIGHT.toString(), TextureAtlas.class);
-
-		// Whip
-		assetManager.load(AssetList.WHIP_UP.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.WHIP_DOWN.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.WHIP_LEFT.toString(), TextureAtlas.class);
-		assetManager.load(AssetList.WHIP_RIGHT.toString(), TextureAtlas.class);
-
-		assetManager.finishLoading();
 
 		// Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
-		Player player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
+		this.player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 
 		// Initialize input processor.
+
+		addLevels();
+
 //		level = new Level03(player, assetManager);
 //		level = new Level01(player, assetManager);
 //		level = new SandBoxLevel(player, assetManager);
 //        level = new EndLevel(player, assetManager);
 
-		LEVELS.add(new Level01(player, assetManager));
-		LEVELS.add(new Level02(player, assetManager));
-		LEVELS.add(new Level03(player, assetManager));
-        LEVELS.add(new EndLevel(player, assetManager));
-
-        level = LEVELS.get(0);
+        level = LEVEL_OBJ.get(0);
         Gdx.input.setInputProcessor(level);
         level.initLevel(player);
 	}
@@ -200,5 +123,104 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		level.dispose();
+	}
+
+	public void loadAssets() {
+        assetManager.load("sounds/trap_activation.mp3", Sound.class);
+
+        systemFont0 =  new BitmapFont(new FileHandle(AssetList.LOVELO_FONT.toString()),
+                new FileHandle(AssetList.LOVELO_IMAGE.toString()), false);
+
+        // Spider
+        assetManager.load(AssetList.SPIDER_IDLE.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.SPIDER_WALK.toString(), TextureAtlas.class);
+
+        // Stargazer
+        assetManager.load(AssetList.STARGAZER_BODY.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.STARGAZER_EYE.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.STARGAZER_SPIN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.STARGAZER_GAZE.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.SHADOW.toString(), Texture.class);
+
+        //Flan
+        assetManager.load(AssetList.FLAN.toString(), Texture.class);
+
+        //Pangolini
+        assetManager.load(AssetList.PANGOLINI.toString(), Texture.class);
+
+        // Effects
+        assetManager.load(AssetList.PARTICLES.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.IMPACT.toString(), TextureAtlas.class);
+
+        // BasicTileSet and terrain
+        assetManager.load(AssetList.DEFAULT_TILESET.toString(), Texture.class);
+        assetManager.load(AssetList.WALL_LEFT.toString(), Texture.class);
+        assetManager.load(AssetList.WALL_RIGHT.toString(), Texture.class);
+        assetManager.load(AssetList.WALL_TOP.toString(), Texture.class);
+        assetManager.load(AssetList.WALL_BOTTOM.toString(), Texture.class);
+        assetManager.load(AssetList.END_CREDITS.toString(), Texture.class);
+
+        // Arrow
+        assetManager.load(AssetList.PROJECTILE_ARROW.toString(), Texture.class);
+
+        // Starshot
+        assetManager.load(AssetList.PROJECTILE_STAR_SHOT.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.STAR_PARTICLES.toString(), TextureAtlas.class);
+
+        // Arrow Trap
+        assetManager.load(AssetList.ARROW_TRAP.toString(), TextureAtlas.class);
+
+        // Button Trigger
+        assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);
+
+        // Items
+        assetManager.load(AssetList.ITEM_PACK.toString(), TextureAtlas.class);
+
+        // UI
+        assetManager.load(AssetList.ICON_PACK.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.UI_BAR.toString(), Texture.class);
+        assetManager.load(AssetList.INVENTORY_BOX.toString(), Texture.class);
+        assetManager.load(AssetList.LIFE_GAUGE.toString(), Texture.class);
+        assetManager.load(AssetList.LIFE_BAR.toString(), Texture.class);
+
+        // Player
+        // Standing assets.
+        assetManager.load(AssetList.PLAYER_STAND_UP.toString(), Texture.class);
+        assetManager.load(AssetList.PLAYER_STAND_DOWN.toString(), Texture.class);
+        assetManager.load(AssetList.PLAYER_STAND_LEFT.toString(), Texture.class);
+        assetManager.load(AssetList.PLAYER_STAND_RIGHT.toString(), Texture.class);
+
+        // Walking animations
+        assetManager.load(AssetList.PLAYER_WALK_UP.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WALK_DOWN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WALK_LEFT.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WALK_RIGHT.toString(), TextureAtlas.class);
+
+        // Whipping animations
+        assetManager.load(AssetList.PLAYER_WHIP_UP.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WHIP_DOWN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WHIP_LEFT.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.PLAYER_WHIP_RIGHT.toString(), TextureAtlas.class);
+
+        // Whip
+        assetManager.load(AssetList.WHIP_UP.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.WHIP_DOWN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.WHIP_LEFT.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.WHIP_RIGHT.toString(), TextureAtlas.class);
+
+        assetManager.finishLoading();
+
+    }
+
+	public void addLevels() {
+		LEVEL_OBJ.add(new Level01(player, assetManager));
+        LEVEL_OBJ.add(new Level02(player, assetManager));
+        LEVEL_OBJ.add(new Level03(player, assetManager));
+        LEVEL_OBJ.add(new EndLevel(player, assetManager));
+
+        for (ALevel level : LEVEL_OBJ) {
+            LEVEL_NAME.add(level.getClass().getName());
+        }
+
 	}
 }

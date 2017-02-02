@@ -3,28 +3,20 @@ package com.totlc.levels;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.Player;
-import com.totlc.Actors.enemies.AEnemy;
-import com.totlc.Actors.enemies.DaredevilPangolini;
 import com.totlc.Actors.enemies.Spider;
-import com.totlc.Actors.enemies.Stargazer;
 import com.totlc.Actors.enemies.movement.BasicMovement;
-import com.totlc.Actors.enemies.movement.IntervalMovement;
 import com.totlc.Actors.items.Health;
 import com.totlc.Actors.terrain.NextStage;
 import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ArrowTrap;
 import com.totlc.Actors.triggers.ButtonTrigger;
 import com.totlc.TradersOfTheLastCarp;
-import com.totlc.levels.ObjectiveVerifier.objectives;
+import com.totlc.levels.ObjectiveVerifier.Objectives;
 
 public class Level03 extends ALevel {
 
     public Level03(Player player, AssetManager assetManager) {
-        super(player, assetManager,
-                new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
-                null,
-                objectives.SURVIVE);
-        setNextLevel(TradersOfTheLastCarp.LEVELS.get(TradersOfTheLastCarp.LEVELS.indexOf(this) + 1));
+        super(player, assetManager, Objectives.SURVIVE);
         setTimeLimit(10000);
     }
 
@@ -34,9 +26,6 @@ public class Level03 extends ALevel {
 
         //REQUIRED
         setPlayer(player);
-
-        BasicTileSet bts = new BasicTileSet(getAssetManager());
-        addActor(bts);
 
         Health health = new Health(getAssetManager(), getWallSize() + 300, TradersOfTheLastCarp.CONFIG_HEIGHT / 2);
         addActor(health);

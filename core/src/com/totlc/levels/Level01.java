@@ -16,19 +16,12 @@ import com.totlc.levels.ObjectiveVerifier.*;
 public class Level01 extends ALevel{
 
     public Level01(Player player, AssetManager assetManager) {
-        super(player, assetManager,
-                new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight()),
-                null,
-                objectives.DESTROY);
-        setNextLevel(TradersOfTheLastCarp.LEVELS.get(TradersOfTheLastCarp.LEVELS.indexOf(this) + 1));
+        super(player, assetManager, Objectives.DESTROY);
     }
 
     public void initLevel(Player player) {
         playSong("test0");
         setNameString("Level: 01");
-
-        BasicTileSet bts = new BasicTileSet(getAssetManager());
-        addActor(bts);
 
         //REQUIRED
         setPlayer(player);
