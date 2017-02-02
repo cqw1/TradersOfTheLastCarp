@@ -15,6 +15,7 @@ import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ArrowTrap;
 import com.totlc.Actors.triggers.ButtonTrigger;
 import com.totlc.TradersOfTheLastCarp;
+import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.ObjectiveVerifier.objectives;
 
 public class Level03 extends ALevel {
@@ -28,7 +29,7 @@ public class Level03 extends ALevel {
     }
 
     public void initLevel(Player player) {
-        playSong("test0");
+        playSong("test2");
         setNameString("Level: 03");
 
         //REQUIRED
@@ -41,11 +42,11 @@ public class Level03 extends ALevel {
         addActor(health);
 
         // Invincible spiders.
-        Spider spider0 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.75), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new BasicMovement(getPlayer()));
+        Spider spider0 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.75), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new IntervalMovement(getPlayer()));
         spider0.setMaxVel(spider0.getMaxVel() - 40);
         spider0.setInvincible(true);
 
-        Spider spider1 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.5), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new BasicMovement(getPlayer()));
+        Spider spider1 = new Spider(getAssetManager(), (int)(TradersOfTheLastCarp.CONFIG_WIDTH * 0.5), (int)(TradersOfTheLastCarp.CONFIG_HEIGHT * 0.5), new IntervalMovement(getPlayer()));
         spider1.setMaxVel(spider1.getMaxVel() - 40);
         spider1.setInvincible(true);
 

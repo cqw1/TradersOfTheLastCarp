@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
+import com.totlc.Actors.effects.ArrowBreak;
 import com.totlc.Actors.effects.Impact;
 import com.totlc.Actors.enemies.AEnemy;
+import com.totlc.Actors.terrain.AWall;
 import com.totlc.AssetList;
 
 public class Arrow extends Projectile {
@@ -39,12 +41,19 @@ public class Arrow extends Projectile {
 
     @Override
     public boolean collidesWith(Actor otherActor) {
-        if (otherActor instanceof Player ||
-                otherActor instanceof AEnemy) {
-            Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/punch1.mp3"));
-            impactSound.play(1.0f);
+        if (otherActor instanceof Player) {
             getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
             return true;
+        } else if (otherActor instanceof AEnemy){
+            if (((AEnemy) otherActor).isInvincible()){
+                getStage().addActor(new ArrowBreak(getAssetManager(), getX(), getY()));
+            } else{
+                getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
+            }
+            return true;
+        } else if (otherActor instanceof AWall){
+//            getStage().addActor(new ArrowBreak(getAssetManager(), getX(), getY()));
+//            return true;
         }
 
         return false;

@@ -53,5 +53,6 @@ public class JustDessert extends AEnemy{
     public void draw(Batch batch, float alpha) {
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         batch.draw((Texture) getAssetManager().get(AssetList.FLAN.toString()), getX(), getY(), getWidth(), getHeight());
+        drawStatuses(batch, alpha);
     }
 }

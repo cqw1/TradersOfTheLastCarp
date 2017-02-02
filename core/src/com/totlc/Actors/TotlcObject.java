@@ -4,7 +4,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -12,8 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.badlogic.gdx.math.Polygon;
+import com.totlc.status.AStatus;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class TotlcObject extends Actor {
 
@@ -24,12 +26,10 @@ public abstract class TotlcObject extends Actor {
     private float speed;
 
     //Image related fields
-    private TextureAtlas textureAtlas;
     private AssetManager assetManager;
 
     Texture texture;
     Animation<TextureRegion> animation;
-    String asset;
     float animationTime = 0;
 
     private boolean assetsLoaded = false;
@@ -46,6 +46,7 @@ public abstract class TotlcObject extends Actor {
 
     private float knockback = 25;
 
+    private List<AStatus> statuses = new ArrayList<AStatus>();
 
     // Orientation and movement flags.
     private Directionality isFacing = Directionality.DOWN;
@@ -119,8 +120,6 @@ public abstract class TotlcObject extends Actor {
     public void moveAbs(float x, float y) {
         float translateX = x - getX();
         float translateY = y - getY();
-
-
         setX(x);
         setY(y);
         hitBox.translate(translateX, translateY);
@@ -213,10 +212,6 @@ public abstract class TotlcObject extends Actor {
         this.assetManager = assetManager;
     }
 
-    public void setTextureAtlas(TextureAtlas textureAtlas) {
-        this.textureAtlas = textureAtlas;
-    }
-
     public void setWidth(float w) { WIDTH = w; }
 
     public float getWidth() { return WIDTH; }
@@ -250,10 +245,6 @@ public abstract class TotlcObject extends Actor {
     public void setAnimation(Animation<TextureRegion> a) { animation = a; }
 
     public Animation<TextureRegion> getAnimation() { return getAnimation(); }
-
-    public String getAsset() { return asset; }
-
-    public void setAsset(String asset) { this.asset = asset; }
 
     public void setAnimationTime(float a) { animationTime = a; }
 
@@ -294,5 +285,21 @@ public abstract class TotlcObject extends Actor {
 
     public void setAssetsLoaded(boolean assetsLoaded) {
         this.assetsLoaded = assetsLoaded;
+    }
+
+    public List<AStatus> getStatuses() {
+        return statuses;
+    }
+
+    protected void procStatuses(){
+        for (AStatus s : getStatuses()){
+            s.proc();
+        }
+    }
+
+    protected void drawStatuses(Batch batch, float alpha){
+        for (AStatus s : getStatuses()){
+           s.draw(batch, alpha);
+        }
     }
 }

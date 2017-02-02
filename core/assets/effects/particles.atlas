@@ -13,7 +13,7 @@ repeat: none
   index: -1
 1syrup
   rotate: false
-  xy: 104, 50
+  xy: 22, 4
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -34,15 +34,29 @@ repeat: none
   index: -1
 4arrowpoint
   rotate: false
-  xy: 158, 57
+  xy: 210, 57
   size: 34, 65
   orig: 34, 65
   offset: 0, 0
   index: -1
 5arrowshaft
   rotate: false
-  xy: 194, 62
+  xy: 156, 6
   size: 19, 60
   orig: 19, 60
+  offset: 0, 0
+  index: -1
+6shield
+  rotate: false
+  xy: 158, 72
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+7sparkle
+  rotate: false
+  xy: 104, 16
+  size: 50, 50
+  orig: 50, 50
   offset: 0, 0
   index: -1

@@ -14,6 +14,7 @@ import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.Actors.Player;
 import com.totlc.levels.ObjectiveVerifier.*;
+import com.totlc.status.Invulnerable;
 
 public class SandBoxLevel extends ALevel{
 

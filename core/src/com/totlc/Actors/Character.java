@@ -2,6 +2,7 @@ package com.totlc.Actors;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Rectangle;
+import com.totlc.status.AStatus;
 
 public abstract class Character extends TotlcObject {
 
@@ -19,7 +20,12 @@ public abstract class Character extends TotlcObject {
         super(assetManager, r);
     }
 
-    abstract public void act(float deltaTime);
+    public void act(float deltaTime){
+        super.act(deltaTime);
+        for (AStatus s : getStatuses()){
+            s.act(deltaTime);
+        }
+    };
 
     public int getHpMax() {
         return hpMAX;

@@ -1,7 +1,9 @@
 package com.totlc.Actors.effects;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -21,6 +23,8 @@ public class Impact extends AEffect {
         super(assetManager, new Rectangle(x, y, 1, 1));
         impactTextureAtlas = assetManager.get(AssetList.IMPACT.toString());
         impactAnimation = new Animation<TextureRegion>(1 / 16f, impactTextureAtlas.getRegions());
+        Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/punch1.mp3"));
+        impactSound.play(1.0f);
     }
 
     @Override

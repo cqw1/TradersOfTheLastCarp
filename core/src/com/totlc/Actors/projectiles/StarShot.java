@@ -77,8 +77,6 @@ public class StarShot extends Projectile {
     @Override
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player && !removeFlag) {
-            Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/punch2.mp3"));
-            impactSound.play(1.0f);
             getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
             startTime = System.currentTimeMillis();
             removeFlag = true;

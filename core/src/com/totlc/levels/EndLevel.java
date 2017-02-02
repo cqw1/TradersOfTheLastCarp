@@ -11,6 +11,7 @@ public class EndLevel extends ALevel {
     }
 
     public void initLevel(Player player) {
+        playSong("test5");
         addActor(new EndScreen(getAssetManager()));
     }
 

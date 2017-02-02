@@ -29,7 +29,7 @@ public class Level02 extends ALevel {
     }
 
     public void initLevel(Player player) {
-        playSong("test0");
+        playSong("test2");
         setNameString("Level: 02");
 
         //REQUIRED

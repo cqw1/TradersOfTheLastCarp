@@ -17,6 +17,7 @@ public class IntervalMovement extends AMovement {
 
     public IntervalMovement(Character target) {
         super(target);
+        this.waitPeriod = this.waitPeriod + (int)(Math.random() * 1000);
     }
 
     @Override

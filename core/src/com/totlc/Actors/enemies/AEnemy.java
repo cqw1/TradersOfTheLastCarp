@@ -13,6 +13,7 @@ import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
+import com.totlc.status.Invulnerable;
 
 import java.awt.geom.Point2D;
 
@@ -110,11 +111,12 @@ public abstract class AEnemy extends Character {
     }
 
     public void act(float deltaTime) {
+        super.act(deltaTime);
         increaseAnimationTime(deltaTime);
         if (checkStun()) {
             return;
         }
-
+        procStatuses();
         movement.move(this, deltaTime);
     }
 
@@ -198,7 +200,15 @@ public abstract class AEnemy extends Character {
     }
 
     public void setInvincible(boolean invincible) {
+        if(invincible){
+           getStatuses().add(new Invulnerable(getAssetManager(), this));
+        } else{
+            getStatuses().remove(new Invulnerable(getAssetManager(), this));
+        }
         this.invincible = invincible;
     }
 
+    public  boolean isInvincible(){
+        return this.invincible;
+    }
 }
