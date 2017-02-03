@@ -34,6 +34,7 @@ import com.totlc.TradersOfTheLastCarp;
 import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.ObjectiveVerifier.Objectives;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -248,7 +249,10 @@ public abstract class ALevel extends Stage {
     }
 
     public void loadFromTMX(String tmxFileName) {
+        System.out.println("tmxFileName: " + tmxFileName);
         TiledMap map = getAssetManager().get(tmxFileName);
+
+        setNameString(parseLevelString(tmxFileName));
 
         //Enemies first
         for (MapObject mo: map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
@@ -454,5 +458,20 @@ public abstract class ALevel extends Stage {
         System.out.println(index);
         nextLevel = TradersOfTheLastCarp.LEVEL_OBJ.get(index + 1);
         nextLevel.initLevel(player);
+    }
+
+    public String parseLevelString(String tmxFileName) {
+        // tmxFileName comes in the format of "tmx/level_01.tmx"
+        // Want to convert to "Level 01"
+        if (tmxFileName == "") {
+            return "NO NAME";
+        }
+
+        String[] splitString = tmxFileName.split("[\\/\\.]"); // Split based on "/" and "." (e.g. ["tmx", "level_01", "tmx"])
+        String unparsed = splitString[splitString.length - 2]; // Get the second to last element. (e.g. "level_01")
+        unparsed.replace('_', ' '); // (e.g. "level 01")
+        String parsed = unparsed.substring(0, 1).toUpperCase() + unparsed.substring(1);
+
+        return parsed;
     }
 }
