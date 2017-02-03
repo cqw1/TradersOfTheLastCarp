@@ -64,11 +64,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		addLevels();
 
-//		level = new Level03(player, assetManager);
-//		level = new Level01(player, assetManager);
-//		level = new SandBoxLevel(player, assetManager);
-//        level = new EndLevel(player, assetManager);
-
         level = LEVEL_OBJ.get(0);
         Gdx.input.setInputProcessor(level);
         level.initLevel(player);
@@ -166,8 +161,11 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.load(AssetList.WALL_BOTTOM.toString(), Texture.class);
         assetManager.load(AssetList.END_CREDITS.toString(), Texture.class);
 
+        //TMX files
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         assetManager.load(AssetList.LEVEL01_TMX.toString(), TiledMap.class);
+        assetManager.load(AssetList.LEVEL02_TMX.toString(), TiledMap.class);
+        assetManager.load(AssetList.LEVEL03_TMX.toString(), TiledMap.class);
 
         // Arrow
         assetManager.load(AssetList.PROJECTILE_ARROW.toString(), Texture.class);

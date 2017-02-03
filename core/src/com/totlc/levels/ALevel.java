@@ -20,7 +20,9 @@ import com.totlc.Actors.UI.Bar;
 import com.totlc.Actors.UI.Inventory;
 import com.totlc.Actors.UI.LevelInfo;
 import com.totlc.Actors.UI.LifeGauge;
+import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.enemies.EnemyFactory;
+import com.totlc.Actors.items.APickup;
 import com.totlc.Actors.items.PickupFactory;
 import com.totlc.Actors.terrain.*;
 import com.totlc.Actors.tileset.BasicTileSet;
@@ -250,25 +252,9 @@ public abstract class ALevel extends Stage {
 
     public void loadFromTMX(String tmxFileName) {
         TiledMap map = getAssetManager().get(tmxFileName);
-
         setNameString(parseLevelString(tmxFileName));
 
-        //Enemies first
-        for (MapObject mo: map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
-            MapProperties currentObjProp = mo.getProperties();
-            if (currentObjProp.containsKey("movement")) {
-                addActor(EnemyFactory.createDefaultEnemy(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class)));
-            } else {
-                addActor(EnemyFactory.createCustomMovementEnemy(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class),
-                        currentObjProp.get("movement", String.class)));
-            }
-        }
-
-        //Traps next
+        //Traps have least priority, load first
         HashMap<Integer, ATrap> id2Trap = new HashMap<Integer, ATrap>(10);
         for (MapObject mo: map.getLayers().get(TrapFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
@@ -291,13 +277,46 @@ public abstract class ALevel extends Stage {
             addActor(currentTrigger);
         }
 
+        //Enemies
+        for (MapObject mo: map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
+            MapProperties currentObjProp = mo.getProperties();
+            AEnemy currentEnemy;
+
+            //Customize movement
+            if (currentObjProp.containsKey("movement")) {
+                currentEnemy = EnemyFactory.createDefaultEnemy(currentObjProp.get("type", String.class), getAssetManager(),
+                        currentObjProp.get("x", Float.class),
+                        currentObjProp.get("y", Float.class));
+            } else {
+                currentEnemy = EnemyFactory.createCustomMovementEnemy(currentObjProp.get("type", String.class), getAssetManager(),
+                        currentObjProp.get("x", Float.class),
+                        currentObjProp.get("y", Float.class),
+                        currentObjProp.get("movement", String.class));
+            }
+
+            //Customize HP
+            if (currentObjProp.containsKey("hp")) {
+                currentEnemy.setHpCurrent(currentObjProp.get("hp", Integer.class));
+                currentEnemy.setHpMax(currentObjProp.get("hp", Integer.class));
+            }
+
+            //Invincibility
+            if (currentObjProp.containsKey("invincible")) {
+                currentEnemy.setInvincible(true);
+            }
+
+            addActor(currentEnemy);
+        }
+
         //Lay out items
         for (MapObject mo: map.getLayers().get(PickupFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            addActor(PickupFactory.createPickup(currentObjProp.get("type", String.class),
+            APickup currentItem = PickupFactory.createPickup(currentObjProp.get("type", String.class),
                     getAssetManager(),
                     currentObjProp.get("x", Float.class),
-                    currentObjProp.get("y", Float.class)));
+                    currentObjProp.get("y", Float.class));
+            currentItem.setZIndex(10);
+            addActor(currentItem);
         }
     }
 
