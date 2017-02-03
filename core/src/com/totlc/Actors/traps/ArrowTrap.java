@@ -21,15 +21,19 @@ public class ArrowTrap extends ATrap{
     // Asset and animation constants.
     private TextureAtlas trapTextureAtlas;
     private Animation<TextureRegion> trapAnimation;
-    private long delay; // in millis
+    private static long delay = 650; // in millis
     private long displayEyebrows = 2000;
+    private static float width = 124;
+    private static float height = 192;
 
     private long startTime;
 
+    public ArrowTrap(AssetManager assetManager, float x, float y) {
+        super(assetManager, new Rectangle(x, y, width, height), delay);
+    }
+
     public ArrowTrap(AssetManager assetManager, float x, float y, long delay) {
         super(assetManager, new Rectangle(x, y, 124, 192), delay);
-
-        this.delay = delay;
 
         trapTextureAtlas = assetManager.get(AssetList.ARROW_TRAP.toString());
         trapAnimation = new Animation<TextureRegion>(1 / 12f, trapTextureAtlas.getRegions());
@@ -48,18 +52,18 @@ public class ArrowTrap extends ATrap{
     public void activate() {
         Point2D center = getCenter();
         //Left/right-wards arrow
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(-500, 0), getAssetManager(), (float) center.getX(), (float) center.getY(), 0));
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(500, 0), getAssetManager(), (float) center.getX(), (float) center.getY(), 0));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(-500, 0), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(500, 0), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0));
 
         //Up/down arrow
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, 500), getAssetManager(), (float) center.getX(), (float) center.getY(), 0));
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, -500), getAssetManager(), (float) center.getX(), (float) center.getY(), 0));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, 500), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0));
+        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.ARROW, new Point2D.Double(0, -500), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0));
     }
 
     @Override
     public void act(float deltaTime){
         if (isSetup() && !isActive()) {
-            if (System.currentTimeMillis() < (startTime + delay)) {
+            if (System.currentTimeMillis() < (startTime + getDelay())) {
                 // Still waiting for delay.
                 return;
             } else {
@@ -69,7 +73,7 @@ public class ArrowTrap extends ATrap{
         }
 
         increaseAnimationTime(deltaTime);
-        if (isActive() && System.currentTimeMillis() > (startTime + delay)) {
+        if (isActive() && System.currentTimeMillis() > (startTime + getDelay())) {
             // If the trap was active and we've already passed our delay and the allotted time for displaying eyebrows.
             setActive(false);
             setSetup(false);
@@ -78,9 +82,7 @@ public class ArrowTrap extends ATrap{
 
     @Override
     public void draw(Batch batch, float alpha) {
-
-        if (isActive() && System.currentTimeMillis() < (startTime + delay + displayEyebrows)) {
-//        if (isActive()) {
+        if (isActive() && System.currentTimeMillis() < (startTime + getDelay() + displayEyebrows)) {
             batch.draw(trapTextureAtlas.getRegions().get(1), getX(), getY());
         } else {
             batch.draw(trapTextureAtlas.getRegions().get(0), getX(), getY());

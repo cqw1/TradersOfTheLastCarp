@@ -5,6 +5,9 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -17,19 +20,25 @@ import com.totlc.Actors.UI.Bar;
 import com.totlc.Actors.UI.Inventory;
 import com.totlc.Actors.UI.LevelInfo;
 import com.totlc.Actors.UI.LifeGauge;
+import com.totlc.Actors.enemies.EnemyFactory;
 import com.totlc.Actors.terrain.*;
 import com.totlc.Actors.tileset.BasicTileSet;
+import com.totlc.Actors.traps.ATrap;
+import com.totlc.Actors.traps.TrapFactory;
+import com.totlc.Actors.triggers.ATrigger;
+import com.totlc.Actors.triggers.TriggerFactory;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.ObjectiveVerifier.Objectives;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class ALevel extends Stage {
 
-    private Player player;
+    private Player player = TradersOfTheLastCarp.player;
 
     private AssetManager assetManager;
 
@@ -48,7 +57,7 @@ public abstract class ALevel extends Stage {
     private long timeLimit = 0;
 
     private float wallSize = DEFAULT_WALLSIZE;
-    public static float DEFAULT_WALLSIZE = 50;
+    public static float DEFAULT_WALLSIZE = 64;
 
     HashSet<Actor> toBeRemoved = new HashSet<Actor>();
 
@@ -92,7 +101,7 @@ public abstract class ALevel extends Stage {
 
     public void initLevel(Player player){
         setStartTime(System.currentTimeMillis());
-    };
+    }
 
     public void endInit() {
         initWalls();
@@ -106,10 +115,9 @@ public abstract class ALevel extends Stage {
 
     @Override
     public void act(float delta) {
-        System.out.println("ALevel.act");
+//        System.out.println("ALevel.act");
         //First let actors update themselves
         for (Actor a: getActors()) {
-            System.out.println(a);
             a.act(delta);
         }
 
@@ -236,6 +244,47 @@ public abstract class ALevel extends Stage {
         addActor(hpBar);
         addActor(inventory);
         addActor(info);
+    }
+
+    public void loadFromTMX(String tmxFileName) {
+        TiledMap map = getAssetManager().get(tmxFileName);
+
+        //Enemies first
+        for (MapObject mo: map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
+            MapProperties currentObjProp = mo.getProperties();
+            if (currentObjProp.containsKey("movement")) {
+                addActor(EnemyFactory.createDefaultEnemy(currentObjProp.get("type", String.class), getAssetManager(),
+                        currentObjProp.get("x", Float.class),
+                        currentObjProp.get("y", Float.class)));
+            } else {
+                addActor(EnemyFactory.createCustomMovementEnemy(currentObjProp.get("type", String.class), getAssetManager(),
+                        currentObjProp.get("x", Float.class),
+                        currentObjProp.get("y", Float.class),
+                        currentObjProp.get("movement", String.class)));
+            }
+        }
+
+        //Traps next
+        HashMap<Integer, ATrap> id2Trap = new HashMap<Integer, ATrap>(10);
+        for (MapObject mo: map.getLayers().get(TrapFactory.TYPE).getObjects()) {
+            MapProperties currentObjProp = mo.getProperties();
+            ATrap currentTrap = TrapFactory.createTrap(currentObjProp.get("type", String.class), getAssetManager(),
+                    currentObjProp.get("x", Float.class),
+                    currentObjProp.get("y", Float.class));
+            addActor(currentTrap);
+            id2Trap.put(currentObjProp.get("id", Integer.class), currentTrap);
+        }
+
+        for (MapObject mo: map.getLayers().get(TriggerFactory.TYPE).getObjects()) {
+            MapProperties currentObjProp = mo.getProperties();
+            ATrigger currentTrigger = TriggerFactory.createTrigger(currentObjProp.get("type", String.class), getAssetManager(),
+                    currentObjProp.get("x", Float.class),
+                    currentObjProp.get("y", Float.class));
+            for (String i: currentObjProp.get("trap_id", String.class).split(":")) {
+                currentTrigger.addTrap(id2Trap.get(Integer.parseInt(i)));
+            }
+            addActor(currentTrigger);
+        }
     }
 
     @Override

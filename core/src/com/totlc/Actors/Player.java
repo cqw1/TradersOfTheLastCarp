@@ -121,7 +121,7 @@ public class Player extends Character {
     }
 
     public void draw(Batch batch, float delta) {
-        System.out.println("weapon: " + weapon);
+//        System.out.println("weapon: " + weapon);
         if (invincible) {
             if (System.currentTimeMillis() > (invincibilityStart + invincibilityPeriod)) {
                 invincible = false;

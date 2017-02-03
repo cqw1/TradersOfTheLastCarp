@@ -2,6 +2,7 @@ package com.totlc;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.totlc.Actors.Player;
@@ -35,7 +37,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static ALevel level;
 
 	public static BitmapFont systemFont0;
-	private Player player;
+	public static Player player;
 
 	// Holds the actual level objects.
 	public static ArrayList<ALevel> LEVEL_OBJ = new ArrayList<ALevel>();
@@ -67,7 +69,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 //		level = new SandBoxLevel(player, assetManager);
 //        level = new EndLevel(player, assetManager);
 
-        level = LEVEL_OBJ.get(1);
+        level = LEVEL_OBJ.get(0);
         Gdx.input.setInputProcessor(level);
         level.initLevel(player);
 	}
@@ -89,6 +91,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 			// TODO: Update progress bar.
 
 		}
+        assetManager.finishLoading();
 
 		// Clear the screen with a white color. The
 		// arguments to glClearColor are the red, green
@@ -101,6 +104,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera.update();
 		level.act(Gdx.graphics.getDeltaTime());
 		level.draw();
+
 
 
 		if (drawHitboxes) {
@@ -160,6 +164,9 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.load(AssetList.WALL_TOP.toString(), Texture.class);
         assetManager.load(AssetList.WALL_BOTTOM.toString(), Texture.class);
         assetManager.load(AssetList.END_CREDITS.toString(), Texture.class);
+
+        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        assetManager.load(AssetList.LEVEL01_TMX.toString(), TiledMap.class);
 
         // Arrow
         assetManager.load(AssetList.PROJECTILE_ARROW.toString(), Texture.class);

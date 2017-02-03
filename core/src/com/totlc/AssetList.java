@@ -65,7 +65,8 @@ public enum AssetList {
     WALL_RIGHT("tileset/wall_right.png"),
     WALL_BOTTOM("tileset/wall_bottom.png"),
     WALL_TOP("tileset/wall_top.png"),
-    END_CREDITS("UI/wowgood.png");
+    END_CREDITS("UI/wowgood.png"),
+    LEVEL01_TMX("tmx/level_01.tmx");
 
     private String pathname;
     AssetList(String s) {

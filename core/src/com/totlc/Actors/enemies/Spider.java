@@ -43,7 +43,7 @@ public class Spider extends AEnemy {
     private TextureAtlas walkTextureAtlas;
     private Animation<TextureRegion> walkAnimation;
 
-    public Spider(AssetManager assetManager, int x, int y, AMovement movement){
+    public Spider(AssetManager assetManager, float x, float y, AMovement movement){
         super(assetManager, new Rectangle(x, y, width, height), movement, hp, atk);
 
         //TODO: Remove after fixing hitboxes
