@@ -249,7 +249,6 @@ public abstract class ALevel extends Stage {
     }
 
     public void loadFromTMX(String tmxFileName) {
-        System.out.println("tmxFileName: " + tmxFileName);
         TiledMap map = getAssetManager().get(tmxFileName);
 
         setNameString(parseLevelString(tmxFileName));
@@ -468,9 +467,8 @@ public abstract class ALevel extends Stage {
         }
 
         String[] splitString = tmxFileName.split("[\\/\\.]"); // Split based on "/" and "." (e.g. ["tmx", "level_01", "tmx"])
-        String unparsed = splitString[splitString.length - 2]; // Get the second to last element. (e.g. "level_01")
-        unparsed.replace('_', ' '); // (e.g. "level 01")
-        String parsed = unparsed.substring(0, 1).toUpperCase() + unparsed.substring(1);
+        String parsed = splitString[splitString.length - 2]; // Get the second to last element. (e.g. "level_01")
+        parsed = parsed.replaceAll("_", " "); // (e.g. "level 01") TODO I think our font displays lowercase in uppercase?
 
         return parsed;
     }

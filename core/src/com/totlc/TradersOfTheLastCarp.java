@@ -69,7 +69,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 //		level = new SandBoxLevel(player, assetManager);
 //        level = new EndLevel(player, assetManager);
 
-        level = LEVEL_OBJ.get(2);
+        level = LEVEL_OBJ.get(0);
         Gdx.input.setInputProcessor(level);
         level.initLevel(player);
 	}

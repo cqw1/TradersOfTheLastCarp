@@ -40,8 +40,6 @@ public class LevelInfo extends Actor {
 
     @Override
     public void draw(Batch batch, float alpha){
-        System.out.println("font: " + font);
-        System.out.println("level.getNameString(): " + level.getNameString());
         int objPadding = 20;
         // Draw base texture.
         bar.draw(batch, getX(), getY(), getWidth(), getHeight());
