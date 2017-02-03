@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="20">
  <tileset firstgid="1" name="TanBricks" tilewidth="32" tileheight="32" tilecount="1152" columns="24">
-  <image source="../tmx/map.png" width="768" height="1536"/>
+  <image source="../tileset/map.png" width="768" height="1536"/>
  </tileset>
  <layer name="Walls" width="50" height="28">
   <data encoding="csv">
