@@ -69,7 +69,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 //		level = new SandBoxLevel(player, assetManager);
 //        level = new EndLevel(player, assetManager);
 
-        level = LEVEL_OBJ.get(0);
+        level = LEVEL_OBJ.get(2);
         Gdx.input.setInputProcessor(level);
         level.initLevel(player);
 	}
@@ -156,6 +156,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         // Effects
         assetManager.load(AssetList.PARTICLES.toString(), TextureAtlas.class);
         assetManager.load(AssetList.IMPACT.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.EXCLAMATION.toString(), TextureAtlas.class);
 
         // BasicTileSet and terrain
         assetManager.load(AssetList.DEFAULT_TILESET.toString(), Texture.class);
