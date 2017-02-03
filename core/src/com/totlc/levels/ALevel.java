@@ -21,6 +21,7 @@ import com.totlc.Actors.UI.Inventory;
 import com.totlc.Actors.UI.LevelInfo;
 import com.totlc.Actors.UI.LifeGauge;
 import com.totlc.Actors.enemies.EnemyFactory;
+import com.totlc.Actors.items.PickupFactory;
 import com.totlc.Actors.terrain.*;
 import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ATrap;
@@ -275,6 +276,7 @@ public abstract class ALevel extends Stage {
             id2Trap.put(currentObjProp.get("id", Integer.class), currentTrap);
         }
 
+        //Triggers after
         for (MapObject mo: map.getLayers().get(TriggerFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
             ATrigger currentTrigger = TriggerFactory.createTrigger(currentObjProp.get("type", String.class), getAssetManager(),
@@ -284,6 +286,15 @@ public abstract class ALevel extends Stage {
                 currentTrigger.addTrap(id2Trap.get(Integer.parseInt(i)));
             }
             addActor(currentTrigger);
+        }
+
+        //Lay out items
+        for (MapObject mo: map.getLayers().get(PickupFactory.TYPE).getObjects()) {
+            MapProperties currentObjProp = mo.getProperties();
+            addActor(PickupFactory.createPickup(currentObjProp.get("type", String.class),
+                    getAssetManager(),
+                    currentObjProp.get("x", Float.class),
+                    currentObjProp.get("y", Float.class)));
         }
     }
 
