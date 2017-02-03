@@ -67,7 +67,7 @@
   </object>
  </objectgroup>
  <objectgroup name="TRAPS">
-  <object id="1" name="1" x="513.333" y="130.667" width="124" height="192">
+  <object id="1" name="1" x="293.333" y="124.667" width="124" height="192">
    <properties>
     <property name="type" value="ARROW_TRAP"/>
    </properties>

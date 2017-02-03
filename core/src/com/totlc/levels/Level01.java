@@ -14,14 +14,10 @@ public class Level01 extends ALevel{
         super(player, assetManager, Objectives.DESTROY);
     }
 
-    public void initLevel(Player player) {
-        super.initLevel(player);
-        super.loadFromTMX(tmxFileName);
+    public void initLevel() {
+        loadFromTMX(tmxFileName);
 
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
         TradersOfTheLastCarp.musicPlayer.play();
-
-        //REQUIRED
-        endInit();
     }
 }

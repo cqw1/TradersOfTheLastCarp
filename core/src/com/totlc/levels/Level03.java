@@ -22,14 +22,11 @@ public class Level03 extends ALevel {
         setTimeLimit(20000);
     }
 
-    public void initLevel(Player player) {
-        super.initLevel(player);
+    public void initLevel() {
         loadFromTMX(tmxFileName);
+
         TradersOfTheLastCarp.musicPlayer.stop();
         TradersOfTheLastCarp.musicPlayer.setSong("test2");
         TradersOfTheLastCarp.musicPlayer.play();
-
-        //REQUIRED
-        endInit();
     }
 }

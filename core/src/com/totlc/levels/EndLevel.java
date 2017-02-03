@@ -16,8 +16,7 @@ public class EndLevel extends ALevel {
         super(player, assetManager);
     }
 
-    public void initLevel(Player player) {
-        super.initLevel(player);
+    public void initLevel() {
         TradersOfTheLastCarp.musicPlayer.stop();
         TradersOfTheLastCarp.musicPlayer.setSong("test5");
         TradersOfTheLastCarp.musicPlayer.play();

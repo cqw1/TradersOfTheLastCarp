@@ -103,9 +103,7 @@ public abstract class ALevel extends Stage {
         objIcon.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
-    public void initLevel(Player player){
-        setStartTime(System.currentTimeMillis());
-    }
+    public abstract void initLevel();
 
     public void endInit() {
         initWalls();
@@ -318,6 +316,8 @@ public abstract class ALevel extends Stage {
             currentItem.setZIndex(10);
             addActor(currentItem);
         }
+
+        endInit();
     }
 
     @Override
@@ -475,7 +475,8 @@ public abstract class ALevel extends Stage {
         int index = TradersOfTheLastCarp.LEVEL_NAME.indexOf(this.getClass().getName());
         System.out.println(index);
         nextLevel = TradersOfTheLastCarp.LEVEL_OBJ.get(index + 1);
-        nextLevel.initLevel(player);
+        nextLevel.setStartTime(System.currentTimeMillis());
+        nextLevel.initLevel();
     }
 
     public String parseLevelString(String tmxFileName) {

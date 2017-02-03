@@ -37,7 +37,7 @@ public class ArrowTrap extends ATrap{
     }
 
     public ArrowTrap(AssetManager assetManager, float x, float y, long delay) {
-        super(assetManager, new Rectangle(x, y, 124, 192), delay);
+        super(assetManager, new Rectangle(x, y, width, height), delay);
 
         trapTextureAtlas = assetManager.get(AssetList.ARROW_TRAP.toString());
         trapAnimation = new Animation<TextureRegion>(1 / 12f, trapTextureAtlas.getRegions());

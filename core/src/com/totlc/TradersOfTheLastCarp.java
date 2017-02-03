@@ -66,7 +66,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
         level = LEVEL_OBJ.get(0);
         Gdx.input.setInputProcessor(level);
-        level.initLevel(player);
+        level.initLevel();
 	}
 
 	@Override
@@ -107,13 +107,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 			Array<Actor> actors = level.getActors();
 			for (Actor a : actors) {
 				if (a instanceof TotlcObject) {
-//					System.out.println("instanceof TotlcObject");
-//					System.out.println("class: " + a.getClass());
-//					System.out.println("hitbox: " + ((TotlcObject)a).getHitBox());
-//					System.out.println("transformed vertices: " + Arrays.toString(((TotlcObject)a).getHitBox().getTransformedVertices()));
-//				System.out.println("vertices: " + Arrays.toString(((TotlcObject)a).getHitBox().getVertices()));
 					shapeRenderer.polygon(((TotlcObject) a).getHitBox().getTransformedVertices());
-//				shapeRenderer.polygon(((TotlcObject)a).getHitBox().getVertices());
 				}
 			}
 			shapeRenderer.end();
