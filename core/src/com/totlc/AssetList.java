@@ -42,6 +42,7 @@ public enum AssetList {
 
     // Special Effects.
     IMPACT("effects/impact.atlas"),
+    EXCLAMATION("effects/exclamation_mark.atlas"),
     PARTICLES("effects/particles.atlas"),
     REGEN("effects/regen.particle"),
     STUN("effects/stun.particle"),

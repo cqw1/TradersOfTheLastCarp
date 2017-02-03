@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.effects.Exclamation;
 import com.totlc.Actors.projectiles.ProjEnum;
 import com.totlc.Actors.projectiles.ProjectileFactory;
 import com.totlc.AssetList;
@@ -43,6 +44,7 @@ public class ArrowTrap extends ATrap{
     public void setup() {
         if (!isSetup()) {
             // If someone's already triggered this trap
+            getStage().addActor(new Exclamation(getAssetManager(), (float) getHitBoxCenter().getX() + getHitBoxWidth() / 2, (float) getHitBoxCenter().getY() + getHitBoxHeight() / 3));
             startTime = System.currentTimeMillis();
             setSetup(true);
         }
