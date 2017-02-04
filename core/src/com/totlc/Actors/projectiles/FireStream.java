@@ -14,22 +14,39 @@ public abstract class FireStream extends Projectile {
 
     // Texture information
     private TextureAtlas particleAtlas;
+
     private ParticleEffect fire;
 
+    // Positioning information.
     private TotlcObject followMe;
+    private float xOffset = 0;
+    private float yOffset = 0;
 
-    public FireStream(AssetManager assetManager, TotlcObject actor, float x, float y) {
-        super(assetManager, new Rectangle(x, y, 30, 100));
+    // Particle information.
+    private long range;
+
+    public FireStream(AssetManager assetManager, TotlcObject actor, float x, float y, float width, float height, long range, int damageType) {
+        super(assetManager, new Rectangle(x, y, width, height));
+        setDamageType(damageType);
+        setAttack(1);
+        setRange(range);
         loadAssets(assetManager);
-        this.followMe = actor;
+        setFollowMe(actor);
         fire.setPosition(getX(), getY());
     }
 
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
-        moveAbs((float)followMe.getHitBoxCenter().getX() + followMe.getHitBoxWidth() / 2, (float)followMe.getHitBoxCenter().getY() + followMe.getHitBoxHeight() / 2);
+        moveRelative();
         fire.setPosition(getX(), getY());
+        if (fire.isComplete()){
+            remove();
+        }
+    }
+
+    public void moveRelative() {
+        moveAbs((float)getFollowMe().getHitBoxCenter().getX() + getxOffset(), (float)getFollowMe().getHitBoxCenter().getY() + getyOffset());
     }
 
     @Override
@@ -64,5 +81,41 @@ public abstract class FireStream extends Projectile {
 
     public void endEffect(){
         fire.allowCompletion();
+    }
+
+    public ParticleEffect getFire() {
+        return fire;
+    }
+
+    public TotlcObject getFollowMe() {
+        return followMe;
+    }
+
+    public void setFollowMe(TotlcObject followMe) {
+        this.followMe = followMe;
+    }
+
+    public float getxOffset() {
+        return xOffset;
+    }
+
+    public void setxOffset(float xOffset) {
+        this.xOffset = xOffset;
+    }
+
+    public float getyOffset() {
+        return yOffset;
+    }
+
+    public void setyOffset(float yOffset) {
+        this.yOffset = yOffset;
+    }
+
+    public long getRange() {
+        return range;
+    }
+
+    public void setRange(long range) {
+        this.range = range;
     }
 }

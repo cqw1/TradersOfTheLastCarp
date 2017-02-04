@@ -1,9 +1,8 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.totlc.Actors.TotlcObject;
-import com.totlc.Actors.effects.Smoke;
-import com.totlc.Actors.projectiles.FireStreamRight;
+import com.totlc.Actors.traps.FireTrapLeft;
+import com.totlc.Actors.traps.FireTrapRight;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.Actors.Player;
@@ -19,7 +18,6 @@ public class Level01 extends ALevel{
 
     public void initLevel() {
         loadFromTMX(tmxFileName);
-
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
         TradersOfTheLastCarp.musicPlayer.play();
     }

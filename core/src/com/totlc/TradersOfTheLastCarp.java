@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;
-	private boolean drawHitboxes = false;
+	private boolean drawHitboxes = true;
 
 	public AssetManager assetManager = new AssetManager();
 	public static MusicPlayer musicPlayer = new MusicPlayer();
@@ -170,6 +170,15 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
         // Arrow Trap
         assetManager.load(AssetList.ARROW_TRAP.toString(), TextureAtlas.class);
+
+        // Spider Trap
+        assetManager.load(AssetList.SPIDER_TRAP.toString(), TextureAtlas.class);
+
+        // Fire Trap
+        assetManager.load(AssetList.FIRE_TRAP_LEFT.toString(), Texture.class);
+        assetManager.load(AssetList.FIRE_TRAP_RIGHT.toString(), Texture.class);
+        assetManager.load(AssetList.FIRE_TRAP_LEFT.toString(), Texture.class);
+        assetManager.load(AssetList.EYE_GLOW.toString(), TextureAtlas.class);
 
         // Button Trigger
         assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);

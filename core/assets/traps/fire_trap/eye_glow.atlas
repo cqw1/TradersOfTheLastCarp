@@ -1,0 +1,27 @@
+
+eye_glow.png
+size: 64,32
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+eyeglow0
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+eyeglow1
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+eyeglow2
+  rotate: false
+  xy: 38, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

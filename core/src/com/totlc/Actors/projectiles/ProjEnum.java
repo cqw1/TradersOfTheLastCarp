@@ -3,8 +3,7 @@ package com.totlc.Actors.projectiles;
 public enum ProjEnum {
 
     ARROW(0),
-    STAR_SHOT(1),
-    FIRE_STREAM(2);
+    STAR_SHOT(1);
 
     int type;
     ProjEnum(int id) {
@@ -17,8 +16,6 @@ public enum ProjEnum {
                 return "ARROW";
             case 1:
                 return "STAR_SHOT";
-            case 2:
-                return "FIRE_STREAM";
         }
 
         return "";
