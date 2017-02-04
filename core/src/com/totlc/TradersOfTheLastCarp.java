@@ -214,7 +214,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
     }
 
 	public void addLevels() {
-		LEVEL_OBJ.add(new Level01(player, assetManager));
+//        LEVEL_OBJ.add(new SandBoxLevel(this.player, assetManager));
+        LEVEL_OBJ.add(new Level01(player, assetManager));
         LEVEL_OBJ.add(new Level02(player, assetManager));
         LEVEL_OBJ.add(new Level03(player, assetManager));
         LEVEL_OBJ.add(new EndLevel(player, assetManager));

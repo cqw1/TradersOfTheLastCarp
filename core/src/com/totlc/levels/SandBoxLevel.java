@@ -1,6 +1,7 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.totlc.Actors.effects.Smoke;
 import com.totlc.Actors.enemies.Spider;
 import com.totlc.Actors.enemies.Stargazer;
 import com.totlc.Actors.enemies.movement.BasicMovement;

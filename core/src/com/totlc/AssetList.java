@@ -48,6 +48,7 @@ public enum AssetList {
     STUN("effects/stun.particle"),
     ARROW_BREAK("effects/arrowbreak.particle"),
     SHIELD("effects/shield.particle"),
+    FLAN_PARTS_0("effects/flan_parts.particle"),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas"),
@@ -59,6 +60,8 @@ public enum AssetList {
     PROJECTILE_STAR_SHOT("sprites/starshot/star_shot.atlas"),
     STAR_TRAIL("sprites/starshot/star_effect.particle"),
     STAR_PARTICLES("sprites/starshot/star_particles.atlas"),
+    FLAMETHROWER("effects/fire0.particle"),
+    SMOKE("effects/smoke.particle"),
 
     // Tilesets and terrain
     DEFAULT_TILESET("tileset/map.png"),

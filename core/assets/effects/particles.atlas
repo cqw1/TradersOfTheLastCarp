@@ -1,62 +1,125 @@
 
 particles.png
-size: 256,128
+size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 0regen
   rotate: false
-  xy: 104, 68
+  xy: 424, 63
   size: 52, 54
   orig: 52, 54
   offset: 0, 0
   index: -1
+10fireglow
+  rotate: false
+  xy: 710, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+11firespark
+  rotate: false
+  xy: 656, 62
+  size: 31, 55
+  orig: 31, 55
+  offset: 0, 0
+  index: -1
+12embers0
+  rotate: false
+  xy: 424, 36
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+13embers1
+  rotate: false
+  xy: 451, 45
+  size: 25, 16
+  orig: 25, 16
+  offset: 0, 0
+  index: -1
+14embers2
+  rotate: false
+  xy: 710, 92
+  size: 20, 25
+  orig: 20, 25
+  offset: 0, 0
+  index: -1
+15smokelight
+  rotate: false
+  xy: 2, 2
+  size: 124, 115
+  orig: 124, 115
+  offset: 0, 0
+  index: -1
+16smokedark
+  rotate: false
+  xy: 128, 9
+  size: 108, 108
+  orig: 108, 108
+  offset: 0, 0
+  index: -1
 1syrup
   rotate: false
-  xy: 22, 4
+  xy: 732, 101
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 2flan
   rotate: false
-  xy: 2, 2
+  xy: 478, 47
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 3stun
   rotate: false
-  xy: 2, 22
+  xy: 238, 17
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 4arrowpoint
   rotate: false
-  xy: 210, 57
+  xy: 620, 52
   size: 34, 65
   orig: 34, 65
   offset: 0, 0
   index: -1
 5arrowshaft
   rotate: false
-  xy: 156, 6
+  xy: 689, 57
   size: 19, 60
   orig: 19, 60
   offset: 0, 0
   index: -1
 6shield
   rotate: false
-  xy: 158, 72
+  xy: 478, 67
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 7sparkle
   rotate: false
-  xy: 104, 16
+  xy: 530, 67
   size: 50, 50
   orig: 50, 50
+  offset: 0, 0
+  index: -1
+8fire0
+  rotate: false
+  xy: 582, 47
+  size: 36, 70
+  orig: 36, 70
+  offset: 0, 0
+  index: -1
+9fire1
+  rotate: false
+  xy: 340, 30
+  size: 82, 87
+  orig: 82, 87
   offset: 0, 0
   index: -1
