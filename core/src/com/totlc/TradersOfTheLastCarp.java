@@ -178,6 +178,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.load(AssetList.FIRE_TRAP_LEFT.toString(), Texture.class);
         assetManager.load(AssetList.FIRE_TRAP_RIGHT.toString(), Texture.class);
         assetManager.load(AssetList.FIRE_TRAP_LEFT.toString(), Texture.class);
+        assetManager.load(AssetList.FIRE_TRAP_DOWN.toString(), Texture.class);
         assetManager.load(AssetList.EYE_GLOW.toString(), TextureAtlas.class);
 
         // Button Trigger

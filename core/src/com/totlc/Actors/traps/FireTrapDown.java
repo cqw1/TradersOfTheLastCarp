@@ -11,26 +11,25 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.effects.Exclamation;
 import com.totlc.Actors.projectiles.FireStream;
-import com.totlc.Actors.projectiles.FireStreamRight;
+import com.totlc.Actors.projectiles.FireStreamDown;
 import com.totlc.AssetList;
 
-public class FireTrapRight extends ATrap {
-
+public class FireTrapDown extends ATrap {
     // Asset and animation constants.
     private Texture trapTexture;
     private TextureAtlas eyeTextureAtlas;
     private Animation<TextureRegion> trapAnimation;
     private long duration = 10000; // in millis
 
-    private Sound fireSound;
-
     // Fire Stream variables.
     private FireStream fire;
     private long range;
 
-    public FireTrapRight(AssetManager assetManager, float x, float y, long range, long delay) {
+    private Sound fireSound;
+
+    public FireTrapDown(AssetManager assetManager, float x, float y, long range, long delay) {
         super(assetManager, new Rectangle(x, y, 110, 100), delay);
-        trapTexture = assetManager.get(AssetList.FIRE_TRAP_RIGHT.toString());
+        trapTexture = assetManager.get(AssetList.FIRE_TRAP_DOWN.toString());
         eyeTextureAtlas = assetManager.get(AssetList.EYE_GLOW.toString());
         trapAnimation = new Animation<TextureRegion>(1 / 24f, eyeTextureAtlas.getRegions());
         fireSound = Gdx.audio.newSound(Gdx.files.internal("sounds/fire0.mp3"));
@@ -40,7 +39,7 @@ public class FireTrapRight extends ATrap {
 
     @Override
     public void activate() {
-        fire = new FireStreamRight(getAssetManager(), this, getX(), getY(), getRange(), 0);
+        fire = new FireStreamDown(getAssetManager(), this, getX(), getY(), getRange(), 0);
         fireSound.play();
         getStage().addActor(fire);
     }
@@ -72,7 +71,8 @@ public class FireTrapRight extends ATrap {
     public void draw(Batch batch, float alpha) {
         batch.draw(trapTexture, getX(), getY());
         if (isActive() || isSetup()) {
-            batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), true), (float)getHitBoxCenter().getX() - 10, (float)getHitBoxCenter().getY());
+            batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), true), (float)getHitBoxCenter().getX() - 43, (float)getHitBoxCenter().getY());
+            batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), true), (float)getHitBoxCenter().getX() + 25, (float)getHitBoxCenter().getY());
         }
     }
 

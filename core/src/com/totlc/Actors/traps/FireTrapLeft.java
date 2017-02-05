@@ -1,6 +1,8 @@
 package com.totlc.Actors.traps;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -23,12 +25,15 @@ public class FireTrapLeft extends ATrap{
     private FireStream fire;
     private long range;
 
+    private Sound fireSound;
+
     public FireTrapLeft(AssetManager assetManager, float x, float y, long range, long delay) {
         super(assetManager, new Rectangle(x, y, 110, 100), delay);
         trapTexture = assetManager.get(AssetList.FIRE_TRAP_LEFT.toString());
         moveHitBox(getHitBoxWidth() * 0.36f, 0);
         eyeTextureAtlas = assetManager.get(AssetList.EYE_GLOW.toString());
         trapAnimation = new Animation<TextureRegion>(1 / 24f, eyeTextureAtlas.getRegions());
+        fireSound = Gdx.audio.newSound(Gdx.files.internal("sounds/fire0.mp3"));
         setDuration(duration);
         setRange(range);
     }
@@ -36,6 +41,7 @@ public class FireTrapLeft extends ATrap{
     @Override
     public void activate() {
         fire = new FireStreamLeft(getAssetManager(), this, getX(), getY(), getRange(), 0);
+        fireSound.play();
         getStage().addActor(fire);
     }
 
@@ -58,6 +64,7 @@ public class FireTrapLeft extends ATrap{
             setActive(false);
             setSetup(false);
             fire.endEffect();
+            fireSound.stop();
         }
     }
 

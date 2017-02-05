@@ -56,6 +56,7 @@ public enum AssetList {
     SPIDER_TRAP("traps/spider_trap.atlas"),
     FIRE_TRAP_RIGHT("traps/fire_trap/fire_trap_right.png"),
     FIRE_TRAP_LEFT("traps/fire_trap/fire_trap_left.png"),
+    FIRE_TRAP_DOWN("traps/fire_trap/fire_trap_down.png"),
     EYE_GLOW("traps/fire_trap/eye_glow.atlas"),
 
     // Projectile sprites and effects.

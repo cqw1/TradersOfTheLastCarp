@@ -4,12 +4,12 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.totlc.Actors.TotlcObject;
 
-public class FireStreamLeft extends FireStream{
-    public FireStreamLeft(AssetManager assetManager, TotlcObject actor, float x, float y, long range, int damageType) {
-        super(assetManager, actor, x, y, range / 2, 50, range, damageType);
-        moveHitBox(-getHitBoxWidth(), -getHitBoxHeight() * 0.5f);
-        setxOffset(-getFollowMe().getHitBoxWidth() * 0.6f);
-        setyOffset(0);
+public class FireStreamDown extends FireStream {
+    public FireStreamDown(AssetManager assetManager, TotlcObject actor, float x, float y, long range, int damageType) {
+        super(assetManager, actor, x, y, 59, range / 2, range, damageType);
+        moveHitBox(-getHitBoxWidth() * 0.5f, -getHitBoxHeight());
+        setxOffset(0);
+        setyOffset(-getFollowMe().getHitBoxHeight() * 0.15f);
     }
 
     @Override
@@ -23,9 +23,9 @@ public class FireStreamLeft extends FireStream{
 
         // Set Direction.
         for (ParticleEmitter p : getFire().getEmitters()){
-            p.getAngle().setHighMax(p.getAngle().getHighMax() + 180);
-            p.getAngle().setHighMin(p.getAngle().getHighMin() + 180);
-            p.getAngle().setLow(p.getAngle().getLowMin() + 180, p.getAngle().getLowMax() + 180);
+            p.getAngle().setHighMax(p.getAngle().getHighMax() + 270);
+            p.getAngle().setHighMin(p.getAngle().getHighMin() + 270);
+            p.getAngle().setLow(p.getAngle().getLowMin() + 270, p.getAngle().getLowMax() + 270);
         }
     }
 }
