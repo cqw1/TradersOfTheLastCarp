@@ -1,5 +1,6 @@
 package com.totlc.levels;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,10 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
-import com.totlc.Actors.UI.Bar;
-import com.totlc.Actors.UI.Inventory;
-import com.totlc.Actors.UI.LevelInfo;
-import com.totlc.Actors.UI.LifeGauge;
+import com.totlc.Actors.UI.*;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.enemies.EnemyFactory;
 import com.totlc.Actors.items.APickup;
@@ -33,22 +31,21 @@ import com.totlc.Actors.triggers.TriggerFactory;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
-import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.ObjectiveVerifier.Objectives;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class ALevel extends Stage {
 
     private Player player = TradersOfTheLastCarp.player;
+    private TotlcObject dedScreen;
 
     private AssetManager assetManager;
 
     private TextureRegion objIcon;
     private NextStage nextStage;
-    private ALevel nextLevel;
+    private Class nextLevel;
     private Vector2 playerStartPosition = new Vector2(DEFAULT_WALLSIZE + 10, TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - 50);
 
     // Level information strings.
@@ -65,18 +62,14 @@ public abstract class ALevel extends Stage {
 
     HashSet<Actor> toBeRemoved = new HashSet<Actor>();
 
-    public ALevel() {}
-
-    public ALevel(Player player, AssetManager assetManager) {
-        this.player = player;
+    public ALevel(AssetManager assetManager) {
         this.assetManager = assetManager;
+        this.dedScreen = new DiedScreen(assetManager);
     }
 
-//    public ALevel(Player player, AssetManager assetManager, NextStage nextStage, ALevel nextLevel, ObjectiveVerifier.Objectives objective) {
-    public ALevel(Player player, AssetManager assetManager, Objectives objective) {
-        this.player = player;
+    public ALevel(AssetManager assetManager, Objectives objective) {
+        this(assetManager);
         this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight());
-        this.assetManager = assetManager;
         this.objective = objective;
 
         BasicTileSet bts = new BasicTileSet(getAssetManager());
@@ -117,20 +110,24 @@ public abstract class ALevel extends Stage {
 
     @Override
     public void act(float delta) {
-//        System.out.println("ALevel.act");
         //First let actors update themselves
         for (Actor a: getActors()) {
             a.act(delta);
         }
 
+        //Check if the player has died
+        if (player.getHpCurrent() <= 0) {
+            addActor(dedScreen);
+        }
+
+        //Check whether we should unlock the stage
         if (ObjectiveVerifier.verifyDone(this) <= 0.0f) {
             nextStage.unlock();
         }
 
+        //Check whether the player needs to move to the next level
         if (Intersector.overlapConvexPolygons(player.getHitBox(), nextStage.getHitBox())) {
             initNextLevel();
-            dispose();
-            TradersOfTheLastCarp.level = nextLevel;
             return;
         }
 
@@ -223,6 +220,12 @@ public abstract class ALevel extends Stage {
         if (keycode == Input.Keys.DOWN){
             player.setMovingDown(false);
             return true;
+        }
+        if (keycode == Input.Keys.R) {
+            if (player.getHpCurrent() <= 0) {
+                TradersOfTheLastCarp.player = new Player(assetManager, 0, 0);
+                loadLevel(LevelFactory.createLevel(TitleScreen.class, assetManager));
+            }
         }
         return false;
     }
@@ -446,6 +449,14 @@ public abstract class ALevel extends Stage {
         this.objIcon = objIcon;
     }
 
+    public Class getNextLevel() {
+        return nextLevel;
+    }
+
+    public void setNextLevel(Class nextLevel) {
+        this.nextLevel = nextLevel;
+    }
+
     public void initWalls() {
         addActor(nextStage);
         addActor(nextStage.getPhysicalBlock());
@@ -472,11 +483,15 @@ public abstract class ALevel extends Stage {
     }
 
     public void initNextLevel() {
-        int index = TradersOfTheLastCarp.LEVEL_NAME.indexOf(this.getClass().getName());
-        System.out.println(index);
-        nextLevel = TradersOfTheLastCarp.LEVEL_OBJ.get(index + 1);
-        nextLevel.setStartTime(System.currentTimeMillis());
-        nextLevel.initLevel();
+        ALevel nextLevelObject = LevelFactory.createLevel(nextLevel, assetManager);
+        loadLevel(nextLevelObject);
+    }
+
+    public void loadLevel(ALevel toBeLoaded) {
+        toBeLoaded.setStartTime(System.currentTimeMillis());
+        toBeLoaded.initLevel();
+        TradersOfTheLastCarp.level = toBeLoaded;
+        Gdx.input.setInputProcessor(TradersOfTheLastCarp.level);
     }
 
     public String parseLevelString(String tmxFileName) {
@@ -492,4 +507,5 @@ public abstract class ALevel extends Stage {
 
         return parsed;
     }
+
 }

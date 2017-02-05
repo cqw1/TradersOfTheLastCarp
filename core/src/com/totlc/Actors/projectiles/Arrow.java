@@ -13,6 +13,7 @@ import com.totlc.Actors.effects.Impact;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.terrain.AWall;
 import com.totlc.AssetList;
+import com.totlc.Directionality;
 
 public class Arrow extends Projectile {
 

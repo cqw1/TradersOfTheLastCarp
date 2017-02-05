@@ -10,6 +10,10 @@ public enum AssetList {
     LOVELO_FONT("UI/Lovelo.fnt"),
     LOVELO_IMAGE("UI/Lovelo.png"),
     ITEM_PACK("sprites/items/items.atlas"),
+    DIED_SCREEN("UI/udied.png"),
+    TITLE_SCREEN("UI/Splash.png"),
+    OPTION_QUICKPLAY("UI/splash_options_0.png"),
+    OPTION_LVLSELECT("UI/splash_options_1.png"),
 
     // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas"),

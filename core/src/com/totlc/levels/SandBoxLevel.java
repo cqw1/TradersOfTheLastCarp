@@ -1,7 +1,6 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.totlc.Actors.effects.Smoke;
 import com.totlc.Actors.enemies.Spider;
 import com.totlc.Actors.enemies.Stargazer;
 import com.totlc.Actors.enemies.movement.BasicMovement;
@@ -16,7 +15,7 @@ import com.totlc.levels.ObjectiveVerifier.*;
 public class SandBoxLevel extends ALevel{
 
     public SandBoxLevel(Player player, AssetManager assetManager) {
-        super(player, assetManager, Objectives.DESTROY);
+        super(assetManager, Objectives.DESTROY);
     }
 
     public void initLevel() {
