@@ -48,6 +48,8 @@ public enum AssetList {
     STUN("effects/stun.particle"),
     ARROW_BREAK("effects/arrowbreak.particle"),
     SHIELD("effects/shield.particle"),
+    SPARKLE("effects/sparkle.particle"),
+    SPLASH("effects/splash.particle"),
     FLAN_PARTS_0("effects/flan_parts.particle"),
 
     // Stage Element Sprites.
@@ -58,6 +60,8 @@ public enum AssetList {
     FIRE_TRAP_LEFT("traps/fire_trap/fire_trap_left.png"),
     FIRE_TRAP_DOWN("traps/fire_trap/fire_trap_down.png"),
     EYE_GLOW("traps/fire_trap/eye_glow.atlas"),
+    GOLDFISH("sprites/goldfish/goldfish_flop.atlas"),
+    GOLDFISH_GLOW("sprites/goldfish/goldfish_glow.atlas"),
 
     // Projectile sprites and effects.
     PROJECTILE_ARROW("traps/arrow.png"),

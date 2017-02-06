@@ -13,7 +13,7 @@ repeat: none
   index: -1
 10fireglow
   rotate: false
-  xy: 710, 74
+  xy: 756, 74
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -41,7 +41,7 @@ repeat: none
   index: -1
 14embers2
   rotate: false
-  xy: 710, 92
+  xy: 756, 92
   size: 20, 25
   orig: 20, 25
   offset: 0, 0
@@ -60,9 +60,23 @@ repeat: none
   orig: 108, 108
   offset: 0, 0
   index: -1
+17waterdrop
+  rotate: false
+  xy: 710, 74
+  size: 21, 43
+  orig: 21, 43
+  offset: 0, 0
+  index: -1
+18waterdropflip
+  rotate: false
+  xy: 733, 74
+  size: 21, 43
+  orig: 21, 43
+  offset: 0, 0
+  index: -1
 1syrup
   rotate: false
-  xy: 732, 101
+  xy: 778, 101
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

@@ -1,0 +1,62 @@
+
+goldfish_glow.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+goldfishglow0
+  rotate: false
+  xy: 2, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+goldfishglow4
+  rotate: false
+  xy: 2, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+goldfishglow1
+  rotate: false
+  xy: 79, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+goldfishglow3
+  rotate: false
+  xy: 79, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+goldfishglow2
+  rotate: false
+  xy: 156, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+goldfishglow5
+  rotate: false
+  xy: 233, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+goldfishglow7
+  rotate: false
+  xy: 233, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+goldfishglow6
+  rotate: false
+  xy: 310, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
