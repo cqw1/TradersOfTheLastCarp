@@ -65,7 +65,7 @@ public class ArrowTrap extends ATrap{
 
     @Override
     public void act(float deltaTime){
-       delayActivation();
+        delayActivation();
 
         increaseAnimationTime(deltaTime);
         if (isActive() && System.currentTimeMillis() > (getStartTime() + getDelay())) {

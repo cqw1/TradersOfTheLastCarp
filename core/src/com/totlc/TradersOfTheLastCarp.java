@@ -16,6 +16,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.audio.MusicPlayer;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;
-	private boolean drawHitboxes = true;
+	private boolean drawHitboxes = false;
 
 	public AssetManager assetManager = new AssetManager();
 	public static MusicPlayer musicPlayer = new MusicPlayer();
@@ -39,6 +41,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static BitmapFont systemFont0;
 	public static Player player;
 
+    public static FitViewport viewport;
+
 	// Holds the actual level objects.
 	public static ArrayList<ALevel> LEVEL_OBJ = new ArrayList<ALevel>();
 	// Holds the class names of each level object. Must correspond with LEVEL_OBJ.
@@ -47,9 +51,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	@Override
 	public void create() {
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
-
 		loadAssets();
         player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 
@@ -58,6 +59,13 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 //		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.setColor(Color.RED);
 
+        camera = new OrthographicCamera(CONFIG_WIDTH, CONFIG_HEIGHT);
+        camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
+        camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0);
+
+        viewport = new FitViewport(CONFIG_WIDTH, CONFIG_HEIGHT, camera);
+        viewport.apply();
+
         level = LevelFactory.createLevel(TitleScreen.class, assetManager);
         Gdx.input.setInputProcessor(level);
         level.initLevel();
@@ -65,7 +73,13 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	@Override
 	public void resize(int width, int height) {
+        System.out.println("width: " + width);
+        System.out.println("height: " + height);
 
+	    viewport.update(width, height);
+        camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0);
+
+	    //level.getViewport().update(width, height);
 	}
 
 	@Override

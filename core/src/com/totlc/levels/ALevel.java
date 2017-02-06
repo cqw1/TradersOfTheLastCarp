@@ -15,6 +15,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.UI.*;
@@ -36,6 +38,10 @@ import com.totlc.levels.ObjectiveVerifier.Objectives;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import static com.totlc.TradersOfTheLastCarp.CONFIG_HEIGHT;
+import static com.totlc.TradersOfTheLastCarp.CONFIG_WIDTH;
+import static com.totlc.TradersOfTheLastCarp.viewport;
+
 public abstract class ALevel extends Stage {
 
     private Player player = TradersOfTheLastCarp.player;
@@ -46,7 +52,7 @@ public abstract class ALevel extends Stage {
     private TextureRegion objIcon;
     private NextStage nextStage;
     private Class nextLevel;
-    private Vector2 playerStartPosition = new Vector2(DEFAULT_WALLSIZE + 10, TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - 50);
+    private Vector2 playerStartPosition = new Vector2(DEFAULT_WALLSIZE + 10, CONFIG_HEIGHT / 2 - 50);
 
     // Level information strings.
     private String nameString, infoString;
@@ -65,7 +71,12 @@ public abstract class ALevel extends Stage {
     public ALevel(AssetManager assetManager) {
         this.assetManager = assetManager;
         this.dedScreen = new DiedScreen(assetManager);
+
+        this.setViewport(TradersOfTheLastCarp.viewport);
+        TradersOfTheLastCarp.viewport.apply();
+        TradersOfTheLastCarp.viewport.update(CONFIG_WIDTH, CONFIG_HEIGHT);
     }
+
 
     public ALevel(AssetManager assetManager, Objectives objective) {
         this(assetManager);
@@ -234,10 +245,10 @@ public abstract class ALevel extends Stage {
         int xOffset = 32;
         int yOffset = 32;
         // Add health bar, inventory bar, and level information bar.
-        LifeGauge hpBar = new LifeGauge(getAssetManager(), player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
-        Inventory inventory = new Inventory(getAssetManager(), player, 0, TradersOfTheLastCarp.CONFIG_HEIGHT);
-        Bar bar0 = new Bar(getAssetManager(), 0, TradersOfTheLastCarp.CONFIG_HEIGHT, (int)(hpBar.getWidth() + inventory.getWidth() + 32), 64);
-        LevelInfo info = new LevelInfo(getAssetManager(), this, TradersOfTheLastCarp.CONFIG_WIDTH, TradersOfTheLastCarp.CONFIG_HEIGHT);
+        LifeGauge hpBar = new LifeGauge(getAssetManager(), player, 0, CONFIG_HEIGHT);
+        Inventory inventory = new Inventory(getAssetManager(), player, 0, CONFIG_HEIGHT);
+        Bar bar0 = new Bar(getAssetManager(), 0, CONFIG_HEIGHT, (int)(hpBar.getWidth() + inventory.getWidth() + 32), 64);
+        LevelInfo info = new LevelInfo(getAssetManager(), this, CONFIG_WIDTH, CONFIG_HEIGHT);
 
         //Move them to their correct position
         bar0.moveBy(-xOffset, -(bar0.getHeight() + yOffset));
@@ -461,12 +472,12 @@ public abstract class ALevel extends Stage {
         addActor(nextStage);
         addActor(nextStage.getPhysicalBlock());
 
-        LeftWall lw = new LeftWall(assetManager, new Rectangle(0, 0, wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT));
+        LeftWall lw = new LeftWall(assetManager, new Rectangle(0, 0, wallSize, CONFIG_HEIGHT));
         // two separate walls for the exit
-        RightWall rwBot = new RightWall(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY()));
-        RightWall rwTop = new RightWall(assetManager, new Rectangle(TradersOfTheLastCarp.CONFIG_WIDTH - wallSize, nextStage.getY() + nextStage.getHeight(), wallSize, TradersOfTheLastCarp.CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight()));
-        TopWall tw = new TopWall(assetManager, new Rectangle(0, TradersOfTheLastCarp.CONFIG_HEIGHT - wallSize, TradersOfTheLastCarp.CONFIG_WIDTH, wallSize));
-        BottomWall bw = new BottomWall(assetManager, new Rectangle(0, 0, TradersOfTheLastCarp.CONFIG_WIDTH, wallSize));
+        RightWall rwBot = new RightWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY()));
+        RightWall rwTop = new RightWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, nextStage.getY() + nextStage.getHeight(), wallSize, CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight()));
+        TopWall tw = new TopWall(assetManager, new Rectangle(0, CONFIG_HEIGHT - wallSize, CONFIG_WIDTH, wallSize));
+        BottomWall bw = new BottomWall(assetManager, new Rectangle(0, 0, CONFIG_WIDTH, wallSize));
 
         // add actors
         addActor(lw)
@@ -491,6 +502,7 @@ public abstract class ALevel extends Stage {
     public void loadLevel(ALevel toBeLoaded) {
         toBeLoaded.setStartTime(System.currentTimeMillis());
         toBeLoaded.initLevel();
+
         TradersOfTheLastCarp.level = toBeLoaded;
         Gdx.input.setInputProcessor(TradersOfTheLastCarp.level);
     }
