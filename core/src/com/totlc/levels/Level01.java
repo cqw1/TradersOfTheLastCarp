@@ -7,18 +7,19 @@ import com.totlc.Actors.traps.FireTrapLeft;
 import com.totlc.Actors.traps.FireTrapRight;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
-import com.totlc.Actors.Player;
 import com.totlc.levels.ObjectiveVerifier.*;
 
 public class Level01 extends ALevel{
 
     public final String tmxFileName = AssetList.LEVEL01_TMX.toString();
 
-    public Level01(Player player, AssetManager assetManager) {
-        super(player, assetManager, Objectives.DESTROY);
+    public Level01(AssetManager assetManager) {
+        super(assetManager, Objectives.DESTROY);
+        setNextLevel(Level02.class);
     }
 
     public void initLevel() {
+        setPlayer(TradersOfTheLastCarp.player);
         loadFromTMX(tmxFileName);
 
 //        FireTrapLeft f = new FireTrapLeft(getAssetManager(), 500, 500, 800, 500);

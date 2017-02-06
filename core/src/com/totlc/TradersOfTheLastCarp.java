@@ -51,20 +51,14 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
 		loadAssets();
+        player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 
 		// For drawing hitboxes.
 		shapeRenderer = new ShapeRenderer();
 //		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.setColor(Color.RED);
 
-		// Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
-		this.player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
-
-		// Initialize input processor.
-
-		addLevels();
-
-        level = LEVEL_OBJ.get(0);
+        level = LevelFactory.createLevel(TitleScreen.class, assetManager);
         Gdx.input.setInputProcessor(level);
         level.initLevel();
 	}
@@ -198,6 +192,10 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.load(AssetList.INVENTORY_BOX.toString(), Texture.class);
         assetManager.load(AssetList.LIFE_GAUGE.toString(), Texture.class);
         assetManager.load(AssetList.LIFE_BAR.toString(), Texture.class);
+        assetManager.load(AssetList.DIED_SCREEN.toString(), Texture.class);
+        assetManager.load(AssetList.TITLE_SCREEN.toString(), Texture.class);
+        assetManager.load(AssetList.OPTION_QUICKPLAY.toString(), Texture.class);
+        assetManager.load(AssetList.OPTION_LVLSELECT.toString(), Texture.class);
 
         // Player
         // Standing assets.
@@ -227,16 +225,4 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.finishLoading();
 
     }
-
-	public void addLevels() {
-//        LEVEL_OBJ.add(new SandBoxLevel(this.player, assetManager));
-        LEVEL_OBJ.add(new Level01(player, assetManager));
-        LEVEL_OBJ.add(new Level02(player, assetManager));
-        LEVEL_OBJ.add(new Level03(player, assetManager));
-        LEVEL_OBJ.add(new EndLevel(player, assetManager));
-
-        for (ALevel level : LEVEL_OBJ) {
-            LEVEL_NAME.add(level.getClass().getName());
-        }
-	}
 }

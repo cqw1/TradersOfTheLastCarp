@@ -17,6 +17,6 @@ public class BasicTileSet extends Image {
     }
 
     public void draw(Batch batch, float delta) {
-        batch.draw((Texture) assetManager.get(AssetList.DEFAULT_TILESET.toString()), 0f, 0f, (float) TradersOfTheLastCarp.CONFIG_WIDTH, (float) TradersOfTheLastCarp.CONFIG_HEIGHT);
+        batch.draw(assetManager.get(AssetList.DEFAULT_TILESET.toString(), Texture.class), 0f, 0f, (float) TradersOfTheLastCarp.CONFIG_WIDTH, (float) TradersOfTheLastCarp.CONFIG_HEIGHT);
     }
 }
