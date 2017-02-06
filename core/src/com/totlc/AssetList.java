@@ -10,6 +10,10 @@ public enum AssetList {
     LOVELO_FONT("UI/Lovelo.fnt"),
     LOVELO_IMAGE("UI/Lovelo.png"),
     ITEM_PACK("sprites/items/items.atlas"),
+    DIED_SCREEN("UI/udied.png"),
+    TITLE_SCREEN("UI/Splash.png"),
+    OPTION_QUICKPLAY("UI/splash_options_0.png"),
+    OPTION_LVLSELECT("UI/splash_options_1.png"),
 
     // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas"),
@@ -19,7 +23,9 @@ public enum AssetList {
     STARGAZER_SPIN("sprites/stargazer/stargazer_spin.atlas"),
     STARGAZER_GAZE("sprites/stargazer/stargazer_gaze.atlas"),
     SHADOW("sprites/float_shadow.png"),
-    FLAN("sprites/flan/badflan.png"),
+    FLAN("sprites/flan/flan_walk.atlas"),
+    MINT("sprites/flan/mint2.png"),
+    BERRY("sprites/flan/berry.png"),
     PANGOLINI("sprites/pangolini/pangolini.png"),
 
     // Player sprites.
@@ -48,17 +54,28 @@ public enum AssetList {
     STUN("effects/stun.particle"),
     ARROW_BREAK("effects/arrowbreak.particle"),
     SHIELD("effects/shield.particle"),
+    SPARKLE("effects/sparkle.particle"),
+    SPLASH("effects/splash.particle"),
+    FLAN_PARTS_0("effects/flan_parts.particle"),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas"),
     ARROW_TRAP("traps/arrow_trap.atlas"),
     SPIDER_TRAP("traps/spider_trap.atlas"),
+    FIRE_TRAP_RIGHT("traps/fire_trap/fire_trap_right.png"),
+    FIRE_TRAP_LEFT("traps/fire_trap/fire_trap_left.png"),
+    FIRE_TRAP_DOWN("traps/fire_trap/fire_trap_down.png"),
+    EYE_GLOW("traps/fire_trap/eye_glow.atlas"),
+    GOLDFISH("sprites/goldfish/goldfish_flop.atlas"),
+    GOLDFISH_GLOW("sprites/goldfish/goldfish_glow.atlas"),
 
     // Projectile sprites and effects.
     PROJECTILE_ARROW("traps/arrow.png"),
     PROJECTILE_STAR_SHOT("sprites/starshot/star_shot.atlas"),
     STAR_TRAIL("sprites/starshot/star_effect.particle"),
     STAR_PARTICLES("sprites/starshot/star_particles.atlas"),
+    FLAMETHROWER("effects/fire0.particle"),
+    SMOKE("effects/smoke.particle"),
 
     // Tilesets and terrain
     DEFAULT_TILESET("tileset/map.png"),
@@ -67,7 +84,9 @@ public enum AssetList {
     WALL_BOTTOM("tileset/wall_bottom.png"),
     WALL_TOP("tileset/wall_top.png"),
     END_CREDITS("UI/wowgood.png"),
-    LEVEL01_TMX("tmx/level_01.tmx");
+    LEVEL01_TMX("tmx/level_01.tmx"),
+    LEVEL02_TMX("tmx/level_02.tmx"),
+    LEVEL03_TMX("tmx/level_03.tmx");
 
     private String pathname;
     AssetList(String s) {

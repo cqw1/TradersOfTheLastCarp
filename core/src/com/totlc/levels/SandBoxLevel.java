@@ -15,11 +15,10 @@ import com.totlc.levels.ObjectiveVerifier.*;
 public class SandBoxLevel extends ALevel{
 
     public SandBoxLevel(Player player, AssetManager assetManager) {
-        super(player, assetManager, Objectives.DESTROY);
+        super(assetManager, Objectives.DESTROY);
     }
 
-    public void initLevel(Player player) {
-        super.initLevel(player);
+    public void initLevel() {
         TradersOfTheLastCarp.musicPlayer.stop();
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
         TradersOfTheLastCarp.musicPlayer.play();
@@ -28,9 +27,6 @@ public class SandBoxLevel extends ALevel{
 
         BasicTileSet bts = new BasicTileSet(getAssetManager());
         addActor(bts);
-
-        //REQUIRED
-        setPlayer(player);
 
         ButtonTrigger testButton = new ButtonTrigger(getAssetManager(), 400, 300);
         ButtonTrigger testButton2 = new ButtonTrigger(getAssetManager(), 700, 200);
@@ -52,8 +48,5 @@ public class SandBoxLevel extends ALevel{
         addActor(spider1);
         addActor(spider2);
         addActor(stargazer);
-
-        //REQUIRED
-        endInit();
     }
 }

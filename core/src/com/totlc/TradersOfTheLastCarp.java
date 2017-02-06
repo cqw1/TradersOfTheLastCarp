@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;
-	private boolean drawHitboxes = false;
+	private boolean drawHitboxes = true;
 
 	public AssetManager assetManager = new AssetManager();
 	public static MusicPlayer musicPlayer = new MusicPlayer();
@@ -51,27 +51,16 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
 
 		loadAssets();
+        player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 
 		// For drawing hitboxes.
 		shapeRenderer = new ShapeRenderer();
 //		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.setColor(Color.RED);
 
-		// Player player = new Player((TextureAtlas) assetManager.get("dummy/dummy.atlas"), 0, 0);
-		this.player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
-
-		// Initialize input processor.
-
-		addLevels();
-
-//		level = new Level03(player, assetManager);
-//		level = new Level01(player, assetManager);
-//		level = new SandBoxLevel(player, assetManager);
-//        level = new EndLevel(player, assetManager);
-
-        level = LEVEL_OBJ.get(0);
+        level = LevelFactory.createLevel(TitleScreen.class, assetManager);
         Gdx.input.setInputProcessor(level);
-        level.initLevel(player);
+        level.initLevel();
 	}
 
 	@Override
@@ -112,13 +101,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 			Array<Actor> actors = level.getActors();
 			for (Actor a : actors) {
 				if (a instanceof TotlcObject) {
-//					System.out.println("instanceof TotlcObject");
-//					System.out.println("class: " + a.getClass());
-//					System.out.println("hitbox: " + ((TotlcObject)a).getHitBox());
-//					System.out.println("transformed vertices: " + Arrays.toString(((TotlcObject)a).getHitBox().getTransformedVertices()));
-//				System.out.println("vertices: " + Arrays.toString(((TotlcObject)a).getHitBox().getVertices()));
 					shapeRenderer.polygon(((TotlcObject) a).getHitBox().getTransformedVertices());
-//				shapeRenderer.polygon(((TotlcObject)a).getHitBox().getVertices());
 				}
 			}
 			shapeRenderer.end();
@@ -148,10 +131,16 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.load(AssetList.SHADOW.toString(), Texture.class);
 
         //Flan
-        assetManager.load(AssetList.FLAN.toString(), Texture.class);
+        assetManager.load(AssetList.FLAN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.MINT.toString(), Texture.class);
+        assetManager.load(AssetList.BERRY.toString(), Texture.class);
 
         //Pangolini
         assetManager.load(AssetList.PANGOLINI.toString(), Texture.class);
+
+        // Goldfish
+        assetManager.load(AssetList.GOLDFISH.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.GOLDFISH_GLOW.toString(), TextureAtlas.class);
 
         // Effects
         assetManager.load(AssetList.PARTICLES.toString(), TextureAtlas.class);
@@ -166,8 +155,11 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.load(AssetList.WALL_BOTTOM.toString(), Texture.class);
         assetManager.load(AssetList.END_CREDITS.toString(), Texture.class);
 
+        //TMX files
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         assetManager.load(AssetList.LEVEL01_TMX.toString(), TiledMap.class);
+        assetManager.load(AssetList.LEVEL02_TMX.toString(), TiledMap.class);
+        assetManager.load(AssetList.LEVEL03_TMX.toString(), TiledMap.class);
 
         // Arrow
         assetManager.load(AssetList.PROJECTILE_ARROW.toString(), Texture.class);
@@ -178,6 +170,16 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
         // Arrow Trap
         assetManager.load(AssetList.ARROW_TRAP.toString(), TextureAtlas.class);
+
+        // Spider Trap
+        assetManager.load(AssetList.SPIDER_TRAP.toString(), TextureAtlas.class);
+
+        // Fire Trap
+        assetManager.load(AssetList.FIRE_TRAP_LEFT.toString(), Texture.class);
+        assetManager.load(AssetList.FIRE_TRAP_RIGHT.toString(), Texture.class);
+        assetManager.load(AssetList.FIRE_TRAP_LEFT.toString(), Texture.class);
+        assetManager.load(AssetList.FIRE_TRAP_DOWN.toString(), Texture.class);
+        assetManager.load(AssetList.EYE_GLOW.toString(), TextureAtlas.class);
 
         // Button Trigger
         assetManager.load(AssetList.PLATE_BROWN.toString(), TextureAtlas.class);
@@ -191,6 +193,10 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.load(AssetList.INVENTORY_BOX.toString(), Texture.class);
         assetManager.load(AssetList.LIFE_GAUGE.toString(), Texture.class);
         assetManager.load(AssetList.LIFE_BAR.toString(), Texture.class);
+        assetManager.load(AssetList.DIED_SCREEN.toString(), Texture.class);
+        assetManager.load(AssetList.TITLE_SCREEN.toString(), Texture.class);
+        assetManager.load(AssetList.OPTION_QUICKPLAY.toString(), Texture.class);
+        assetManager.load(AssetList.OPTION_LVLSELECT.toString(), Texture.class);
 
         // Player
         // Standing assets.
@@ -220,15 +226,4 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.finishLoading();
 
     }
-
-	public void addLevels() {
-		LEVEL_OBJ.add(new Level01(player, assetManager));
-        LEVEL_OBJ.add(new Level02(player, assetManager));
-        LEVEL_OBJ.add(new Level03(player, assetManager));
-        LEVEL_OBJ.add(new EndLevel(player, assetManager));
-
-        for (ALevel level : LEVEL_OBJ) {
-            LEVEL_NAME.add(level.getClass().getName());
-        }
-	}
 }

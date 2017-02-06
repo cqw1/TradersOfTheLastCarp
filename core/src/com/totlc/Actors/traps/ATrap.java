@@ -11,6 +11,8 @@ public abstract class ATrap extends TotlcObject {
     private boolean active;
     private boolean setup;
 
+    private long startTime;
+
     public ATrap(AssetManager assetManager, Rectangle r, long delay) {
         super(assetManager, r);
         setDelay(delay);
@@ -47,11 +49,31 @@ public abstract class ATrap extends TotlcObject {
 
     }
 
+    public void delayActivation(){
+        if (isSetup() && !isActive()) {
+            if (System.currentTimeMillis() < (startTime + getDelay())) {
+                // Still waiting for delay.
+                return;
+            } else {
+                setActive(true);
+                activate();
+            }
+        }
+    }
+
     public boolean isActive() {
         return active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 }

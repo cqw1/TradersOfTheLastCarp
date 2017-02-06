@@ -2,7 +2,10 @@ package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.AssetList;
@@ -23,6 +26,13 @@ public class JustDessert extends AEnemy{
 
     //Size constants.
     private static float width = 64, height = 64;
+    private float scale = 1;
+
+    // Asset and animation constants.
+    private TextureAtlas walkTextureAtlas;
+    private Animation<TextureRegion> walkAnimation;
+    private Texture mint;
+    private Texture berry;
 
     /**
      * Constructor for a default slime
@@ -33,6 +43,10 @@ public class JustDessert extends AEnemy{
      */
     public JustDessert(AssetManager assetManager, float x, float y, AMovement movement) {
         super(assetManager, new Rectangle(x, y, width, height), movement, hp, atk);
+        walkTextureAtlas = assetManager.get(AssetList.FLAN.toString());
+        walkAnimation = new Animation<TextureRegion>(1 / 16f, walkTextureAtlas.getRegions());
+        mint = assetManager.get(AssetList.MINT.toString());
+        berry = assetManager.get(AssetList.BERRY.toString());
     }
 
     /**
@@ -52,7 +66,13 @@ public class JustDessert extends AEnemy{
     @Override
     public void draw(Batch batch, float alpha) {
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
-        batch.draw((Texture) getAssetManager().get(AssetList.FLAN.toString()), getX(), getY(), getWidth(), getHeight());
+        batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
+        if (getHpCurrent() == 7){
+            batch.draw(mint, (float)getHitBoxCenter().getX() - mint.getWidth() * 0.5f,(float)getHitBoxCenter().getY(),
+                    mint.getWidth() * 0.8f, mint.getHeight() * 0.8f);
+            batch.draw(berry, (float)getHitBoxCenter().getX() - berry.getWidth() * 0.5f, (float)getHitBoxCenter().getY(),
+                    berry.getWidth() * 0.6f, berry.getHeight() * 0.6f);
+        }
         drawStatuses(batch, alpha);
     }
 }

@@ -1,27 +1,27 @@
 
-items.png
-size: 512,256
+eye_glow.png
+size: 64,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-0Key
-  rotate: false
-  xy: 270, 18
-  size: 70, 128
-  orig: 70, 128
-  offset: 0, 0
-  index: -1
-1Heart
-  rotate: false
-  xy: 148, 6
-  size: 120, 140
-  orig: 120, 140
-  offset: 0, 0
-  index: -1
-2c4
+eyeglow0
   rotate: false
   xy: 2, 2
-  size: 144, 144
-  orig: 144, 144
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+eyeglow1
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+eyeglow2
+  rotate: false
+  xy: 38, 2
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1

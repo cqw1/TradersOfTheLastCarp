@@ -1,0 +1,90 @@
+
+flan_walk.png
+size: 1024,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+flan
+  rotate: false
+  xy: 2, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 0
+flan
+  rotate: false
+  xy: 2, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 6
+flan
+  rotate: false
+  xy: 104, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 1
+flan
+  rotate: false
+  xy: 104, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 5
+flan
+  rotate: false
+  xy: 206, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 2
+flan
+  rotate: false
+  xy: 206, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 4
+flan
+  rotate: false
+  xy: 308, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 3
+flan
+  rotate: false
+  xy: 410, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 7
+flan
+  rotate: false
+  xy: 410, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 11
+flan
+  rotate: false
+  xy: 512, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 8
+flan
+  rotate: false
+  xy: 512, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 10
+flan
+  rotate: false
+  xy: 614, 2
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: 9
