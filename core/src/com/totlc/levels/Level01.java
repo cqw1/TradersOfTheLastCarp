@@ -34,8 +34,8 @@ public class Level01 extends ALevel{
 //        addActor(f2);
 //        f2.setup();
 
-//        Goldfish g = new Goldfish(getAssetManager(), 500 ,500);
-//        addActor(g);
+        Goldfish g = new Goldfish(getAssetManager(), 500 ,500);
+        addActor(g);
 
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
         TradersOfTheLastCarp.musicPlayer.play();

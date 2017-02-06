@@ -19,11 +19,13 @@ public class Goldfish extends APickup {
     private boolean rotate;
     private long rotateLimit = 180;
     private long timestamp;
+    private long angleDelta;
 
     public Goldfish(AssetManager assetManager,float x, float y) {
         super(assetManager, new Rectangle(x, y, 72, 72));
 
-        this.angle = -20;
+        this.angle = -10;
+        this.angleDelta = 1;
         this.rotate = false;
         this.timestamp = System.currentTimeMillis();
 
@@ -51,13 +53,20 @@ public class Goldfish extends APickup {
         super.act(deltaTime);
         increaseAnimationTime(deltaTime);
         if (rotate){
-            angle+=1;
+            angle+=angleDelta;
         } else{
-            angle-=1;
+            angle-=angleDelta;
         }
-        if (System.currentTimeMillis() - timestamp > rotateLimit){
-            timestamp = System.currentTimeMillis();
-            rotate = !rotate;
+        long timeElapsed = System.currentTimeMillis() - timestamp;
+
+        if (timeElapsed > rotateLimit * 0.3f){
+            if (timeElapsed > rotateLimit){
+                timestamp = System.currentTimeMillis();
+                rotate = !rotate;
+            }
+            angleDelta = 1;
+        } else{
+            angleDelta = 8;
         }
         sparkle.setPosition((float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY());
         splash.setPosition((float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY());
