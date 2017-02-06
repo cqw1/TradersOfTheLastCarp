@@ -32,7 +32,7 @@ public class JustDessert extends AEnemy{
     private float scale;
 
     private static float maxVel = 100;
-    private static float speed = 40;
+    private static float speed = 20;
     private static float friction = 0.8f;
 
     // Asset and animation constants.
@@ -74,6 +74,11 @@ public class JustDessert extends AEnemy{
         this.scale = (float) ((Math.log(hp + 1) / Math.log(2)) / (Math.log(basehp + 1) / Math.log(2)));
         getHitBox().setScale(scale, scale);
         initMovement(friction, maxVel, speed);
+    }
+
+    @Override
+    public void act(float deltaTime) {
+        super.act(deltaTime);
     }
 
     @Override
