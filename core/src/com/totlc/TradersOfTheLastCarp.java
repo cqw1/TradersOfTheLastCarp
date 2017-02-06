@@ -58,7 +58,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 //		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.setColor(Color.RED);
 
-        level = LevelFactory.createLevel(TitleScreen.class, assetManager);
+        level = LevelFactory.createLevel(SandBoxLevel.class, assetManager);
         Gdx.input.setInputProcessor(level);
         level.initLevel();
 	}

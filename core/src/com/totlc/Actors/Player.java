@@ -60,7 +60,7 @@ public class Player extends Character {
 
     private boolean invincible = false;
     private float whippingAnimationLength = 0.5f;
-    private int invincibilityPeriod = 500; // in millis
+    private int invincibilityPeriod = 1000; // in millis
     private long invincibilityStart;
     private AWeapon weapon;
 
