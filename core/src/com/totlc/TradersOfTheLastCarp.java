@@ -132,8 +132,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
         //Flan
         assetManager.load(AssetList.FLAN.toString(), TextureAtlas.class);
-        assetManager.load(AssetList.MINT.toString(), Texture.class);
-        assetManager.load(AssetList.BERRY.toString(), Texture.class);
+        assetManager.load(AssetList.FLAN_PRIME.toString(), TextureAtlas.class);
 
         //Pangolini
         assetManager.load(AssetList.PANGOLINI.toString(), Texture.class);

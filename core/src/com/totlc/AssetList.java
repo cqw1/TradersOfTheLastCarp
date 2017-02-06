@@ -24,8 +24,7 @@ public enum AssetList {
     STARGAZER_GAZE("sprites/stargazer/stargazer_gaze.atlas"),
     SHADOW("sprites/float_shadow.png"),
     FLAN("sprites/flan/flan_walk.atlas"),
-    MINT("sprites/flan/mint2.png"),
-    BERRY("sprites/flan/berry.png"),
+    FLAN_PRIME("sprites/flan/flan_prime.atlas"),
     PANGOLINI("sprites/pangolini/pangolini.png"),
 
     // Player sprites.
@@ -57,6 +56,7 @@ public enum AssetList {
     SPARKLE("effects/sparkle.particle"),
     SPLASH("effects/splash.particle"),
     FLAN_PARTS_0("effects/flan_parts.particle"),
+    FLAN_PARTS_1("effects/flan_parts_prime.particle"),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas"),

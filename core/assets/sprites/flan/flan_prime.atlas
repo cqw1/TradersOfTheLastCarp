@@ -1,90 +1,90 @@
 
-flan_walk.png
+flan_prime.png
 size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-flan
+flan_prime
   rotate: false
   xy: 2, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 0
-flan
+flan_prime
   rotate: false
   xy: 2, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 6
-flan
+flan_prime
   rotate: false
   xy: 124, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 1
-flan
+flan_prime
   rotate: false
   xy: 124, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 5
-flan
+flan_prime
   rotate: false
   xy: 246, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 2
-flan
+flan_prime
   rotate: false
   xy: 246, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 4
-flan
+flan_prime
   rotate: false
   xy: 368, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 3
-flan
+flan_prime
   rotate: false
   xy: 490, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 7
-flan
+flan_prime
   rotate: false
   xy: 490, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 11
-flan
+flan_prime
   rotate: false
   xy: 612, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 8
-flan
+flan_prime
   rotate: false
   xy: 612, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 10
-flan
+flan_prime
   rotate: false
   xy: 734, 2
-  size: 120, 80
-  orig: 120, 80
+  size: 120, 100
+  orig: 120, 100
   offset: 0, 0
   index: 9
