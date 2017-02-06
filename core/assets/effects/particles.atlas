@@ -13,35 +13,35 @@ repeat: none
   index: -1
 10fireglow
   rotate: false
-  xy: 756, 74
+  xy: 912, 74
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 11firespark
   rotate: false
-  xy: 656, 62
+  xy: 778, 62
   size: 31, 55
   orig: 31, 55
   offset: 0, 0
   index: -1
 12embers0
   rotate: false
-  xy: 424, 36
+  xy: 912, 92
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 13embers1
   rotate: false
-  xy: 451, 45
+  xy: 582, 71
   size: 25, 16
   orig: 25, 16
   offset: 0, 0
   index: -1
 14embers2
   rotate: false
-  xy: 756, 92
+  xy: 939, 92
   size: 20, 25
   orig: 20, 25
   offset: 0, 0
@@ -62,28 +62,28 @@ repeat: none
   index: -1
 17waterdrop
   rotate: false
-  xy: 710, 74
+  xy: 866, 74
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
   index: -1
 18waterdropflip
   rotate: false
-  xy: 733, 74
+  xy: 889, 74
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
   index: -1
 1syrup
   rotate: false
-  xy: 778, 101
+  xy: 961, 101
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 2flan
   rotate: false
-  xy: 478, 47
+  xy: 832, 57
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
@@ -97,14 +97,14 @@ repeat: none
   index: -1
 4arrowpoint
   rotate: false
-  xy: 620, 52
+  xy: 742, 52
   size: 34, 65
   orig: 34, 65
   offset: 0, 0
   index: -1
 5arrowshaft
   rotate: false
-  xy: 689, 57
+  xy: 811, 57
   size: 19, 60
   orig: 19, 60
   offset: 0, 0
@@ -125,7 +125,7 @@ repeat: none
   index: -1
 8fire0
   rotate: false
-  xy: 582, 47
+  xy: 704, 47
   size: 36, 70
   orig: 36, 70
   offset: 0, 0
@@ -135,5 +135,33 @@ repeat: none
   xy: 340, 30
   size: 82, 87
   orig: 82, 87
+  offset: 0, 0
+  index: -1
+berry
+  rotate: false
+  xy: 832, 77
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+mint0
+  rotate: false
+  xy: 582, 89
+  size: 60, 28
+  orig: 60, 28
+  offset: 0, 0
+  index: -1
+mint1
+  rotate: false
+  xy: 424, 41
+  size: 50, 20
+  orig: 50, 20
+  offset: 0, 0
+  index: -1
+mint2
+  rotate: false
+  xy: 644, 89
+  size: 58, 28
+  orig: 58, 28
   offset: 0, 0
   index: -1

@@ -63,6 +63,7 @@ public class FireTrapLeft extends ATrap{
             // If the trap was active and we've already passed our delay and the allotted time for displaying eyebrows.
             setActive(false);
             setSetup(false);
+            fire.getHitBox().setScale(0.001f, 0.001f);
             fire.endEffect();
             fireSound.stop();
         }
