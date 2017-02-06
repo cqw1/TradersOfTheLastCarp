@@ -1,6 +1,9 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.totlc.Actors.enemies.JustDessert;
+import com.totlc.Actors.enemies.movement.BasicMovement;
+import com.totlc.Actors.enemies.movement.IntervalMovement;
 import com.totlc.Actors.items.Goldfish;
 import com.totlc.Actors.traps.FireTrapDown;
 import com.totlc.Actors.traps.FireTrapLeft;
@@ -33,6 +36,11 @@ public class Level01 extends ALevel{
 //        FireTrapDown f2 = new FireTrapDown(getAssetManager(), 800, 800, 1500, 1500);
 //        addActor(f2);
 //        f2.setup();
+
+        JustDessert j = new JustDessert(getAssetManager(), 200, 500, new IntervalMovement(getPlayer()));
+        j.setHpCurrent(7);
+        j.setHpMax(7);
+        addActor(j);
 
         Goldfish g = new Goldfish(getAssetManager(), 500 ,500);
         addActor(g);

@@ -131,7 +131,9 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.load(AssetList.SHADOW.toString(), Texture.class);
 
         //Flan
-        assetManager.load(AssetList.FLAN.toString(), Texture.class);
+        assetManager.load(AssetList.FLAN.toString(), TextureAtlas.class);
+        assetManager.load(AssetList.MINT.toString(), Texture.class);
+        assetManager.load(AssetList.BERRY.toString(), Texture.class);
 
         //Pangolini
         assetManager.load(AssetList.PANGOLINI.toString(), Texture.class);
@@ -139,7 +141,6 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         // Goldfish
         assetManager.load(AssetList.GOLDFISH.toString(), TextureAtlas.class);
         assetManager.load(AssetList.GOLDFISH_GLOW.toString(), TextureAtlas.class);
-
 
         // Effects
         assetManager.load(AssetList.PARTICLES.toString(), TextureAtlas.class);
