@@ -439,7 +439,8 @@ public abstract class ALevel extends Stage {
         BottomWall bw = new BottomWall(assetManager, new Rectangle(0, 0, TradersOfTheLastCarp.CONFIG_WIDTH, wallSize));
 
         // add actors
-        addActor(lw);
+        addActor(lw)
+        ;
         addActor(rwBot);
         addActor(rwTop);
         addActor(tw);
