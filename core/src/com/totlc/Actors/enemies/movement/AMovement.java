@@ -8,6 +8,9 @@ import java.awt.geom.Point2D;
 
 public abstract class AMovement {
 
+    // Attack flag that determines aggro.
+    private boolean attack = false;
+
     private Character target;
 
     public AMovement(Character player) {
@@ -36,4 +39,12 @@ public abstract class AMovement {
     }
 
     public boolean isMoving() {return true;}
+
+    public boolean isAttack() {
+        return attack;
+    }
+
+    public void setAttack(boolean attack) {
+        this.attack = attack;
+    }
 }

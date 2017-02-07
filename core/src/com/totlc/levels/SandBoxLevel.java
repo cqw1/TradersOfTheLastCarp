@@ -2,10 +2,12 @@ package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.totlc.Actors.enemies.EnemyFactory;
+import com.totlc.Actors.enemies.JustDessert;
 import com.totlc.Actors.enemies.Spider;
 import com.totlc.Actors.enemies.Stargazer;
 import com.totlc.Actors.enemies.movement.BasicMovement;
 import com.totlc.Actors.enemies.movement.IntervalMovement;
+import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
 import com.totlc.Actors.tileset.BasicTileSet;
 import com.totlc.Actors.traps.ATrap;
 import com.totlc.Actors.traps.ArrowTrap;
@@ -26,7 +28,7 @@ public class SandBoxLevel extends ALevel{
 
     public void initLevel() {
         setPlayer(TradersOfTheLastCarp.player);
-        setNameString("SandBox Level");
+        setNameString("SandBox");
 
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
         TradersOfTheLastCarp.musicPlayer.play();
@@ -57,6 +59,9 @@ public class SandBoxLevel extends ALevel{
 //        addActor(spider1);
 //        addActor(spider2);
 //        addActor(stargazer);
+
+        JustDessert j3 = new JustDessert(getAssetManager(), 200, 450, 7, new ProximityBasedAggro(getPlayer()));
+        addActor(j3);
 
         endInit();
     }

@@ -1,9 +1,7 @@
 package com.totlc.Actors.enemies.movement;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.Character;
-import com.totlc.levels.ALevel;
 
 import java.awt.geom.Point2D;
 

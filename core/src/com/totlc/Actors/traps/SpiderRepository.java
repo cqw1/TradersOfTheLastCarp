@@ -23,10 +23,17 @@ public class SpiderRepository extends ATrap  {
     private static float height = 140;
     private static float delay = 0;
 
+    // Scaling factor for animations.
+    private float scale = 1;
+    private static float minScale = 0.9f;
+    private boolean animate, shrink;
+
     public SpiderRepository(AssetManager assetManager, float x, float y) {
         super(assetManager, new Rectangle(x, y, width, height), 0);
         trapTextureAtlas = assetManager.get(AssetList.SPIDER_TRAP.toString());
         textureNum = randomNum.nextInt(3);
+        this.animate = false;
+        this.shrink = false;
     }
 
     public SpiderRepository(AssetManager assetManager, Rectangle r) {
@@ -37,7 +44,26 @@ public class SpiderRepository extends ATrap  {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        batch.draw(trapTextureAtlas.getRegions().get(textureNum), getX(), getY());
+        batch.draw(trapTextureAtlas.getRegions().get(textureNum), getX(), getY(), trapTextureAtlas.getRegions().get(textureNum).getRegionWidth() * 0.5f, getY(),
+                trapTextureAtlas.getRegions().get(textureNum).getRegionWidth(), trapTextureAtlas.getRegions().get(textureNum).getRegionHeight(), 1, scale, 0);
+    }
+
+    @Override
+    public void act(float delta){
+        super.act(delta);
+        if (this.animate){
+            if (this.shrink){
+                this.scale = this.scale - 0.02f;
+                if (this.scale <= minScale){
+                    this.shrink = false;
+                }
+            } else{
+                this.scale = this.scale + 0.02f;
+                if (this.scale >= 1){
+                    this.animate = false;
+                }
+            }
+        }
     }
 
     @Override
@@ -52,7 +78,8 @@ public class SpiderRepository extends ATrap  {
         if (spidersGenerated >= maxNumSpiders) {
             return;
         }
-
+        this.animate = true;
+        this.shrink = true;
         int numSpiders = randomNum.nextInt(3) + 1;
         numSpiders = Math.min(numSpiders, maxNumSpiders - numSpiders);
         spidersGenerated += numSpiders;

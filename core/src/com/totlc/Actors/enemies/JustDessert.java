@@ -31,9 +31,9 @@ public class JustDessert extends AEnemy{
     private static float width = 64, height = 64;
     private float scale;
 
-    private static float maxVel = 100;
-    private static float speed = 20;
-    private static float friction = 0.8f;
+    private static float maxVel = 200;
+    private static float speed = 40;
+    private static float friction = 0.2f;
 
     // Asset and animation constants.
     private TextureAtlas walkTextureAtlas, walkTextureAtlasP;
@@ -117,4 +117,8 @@ public class JustDessert extends AEnemy{
         return returnMe;
     }
 
+    @Override
+    public void initMovement(float friction, float maxVel, float speed){
+        super.initMovement(friction, maxVel, speed);
+    }
 }
