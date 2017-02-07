@@ -24,7 +24,9 @@ public enum AssetList {
     STARGAZER_GAZE("sprites/stargazer/stargazer_gaze.atlas"),
     SHADOW("sprites/float_shadow.png"),
     FLAN("sprites/flan/flan_walk.atlas"),
+    FLAN_JUMP("sprites/flan/flan_jump.atlas"),
     FLAN_PRIME("sprites/flan/flan_prime.atlas"),
+    FLAN_JUMP_PRIME("sprites/flan/flan_prime_jump.atlas"),
     PANGOLINI("sprites/pangolini/pangolini.png"),
 
     // Player sprites.

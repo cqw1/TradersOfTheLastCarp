@@ -60,6 +60,9 @@ public class SandBoxLevel extends ALevel{
 //        addActor(spider2);
 //        addActor(stargazer);
 
+        JustDessert j = new JustDessert(getAssetManager(), 200, 450, 3, new ProximityBasedAggro(getPlayer()));
+        addActor(j);
+
         JustDessert j3 = new JustDessert(getAssetManager(), 200, 450, 7, new ProximityBasedAggro(getPlayer()));
         addActor(j3);
 

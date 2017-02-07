@@ -1,0 +1,104 @@
+
+flan_jump.png
+size: 1024,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+flan_jump
+  rotate: false
+  xy: 2, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 0
+flan_jump
+  rotate: false
+  xy: 2, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 6
+flan_jump
+  rotate: false
+  xy: 124, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 1
+flan_jump
+  rotate: false
+  xy: 124, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 5
+flan_jump
+  rotate: false
+  xy: 246, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 2
+flan_jump
+  rotate: false
+  xy: 246, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 4
+flan_jump
+  rotate: false
+  xy: 368, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 3
+flan_jump
+  rotate: false
+  xy: 490, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 7
+flan_jump
+  rotate: false
+  xy: 490, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 13
+flan_jump
+  rotate: false
+  xy: 612, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 8
+flan_jump
+  rotate: false
+  xy: 612, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 12
+flan_jump
+  rotate: false
+  xy: 734, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 9
+flan_jump
+  rotate: false
+  xy: 734, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 11
+flan_jump
+  rotate: false
+  xy: 856, 2
+  size: 120, 100
+  orig: 120, 100
+  offset: 0, 0
+  index: 10

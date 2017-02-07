@@ -7,8 +7,8 @@ import java.awt.geom.Point2D;
 
 public class ProximityBasedAggro extends AMovement {
 
-    private double attackRange = 200;
-    private float attackSpeed = 200;
+    private double attackRange = 350;
+    private float attackSpeed = 150;
 
     private AMovement random, interval;
 
@@ -27,6 +27,9 @@ public class ProximityBasedAggro extends AMovement {
         }
 
         if (new Point2D.Double(getTarget().getX(), getTarget().getY()).distance(new Point2D.Double(self.getX(), self.getY())) < attackRange){
+            if (!isAttack()){
+                self.setAnimationTime(0);
+            }
             setAttack(true);
             self.setSpeed(attackSpeed);
         } else{
