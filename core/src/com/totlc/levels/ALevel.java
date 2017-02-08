@@ -71,10 +71,6 @@ public abstract class ALevel extends Stage {
     public ALevel(AssetManager assetManager) {
         this.assetManager = assetManager;
         this.dedScreen = new DiedScreen(assetManager);
-
-        this.setViewport(TradersOfTheLastCarp.viewport);
-        TradersOfTheLastCarp.viewport.apply();
-        TradersOfTheLastCarp.viewport.update(CONFIG_WIDTH, CONFIG_HEIGHT);
     }
 
 
