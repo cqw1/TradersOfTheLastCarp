@@ -105,25 +105,25 @@ public class LevelSelect extends ALevel {
         unselectAll();
 
         if (keyCode == Input.Keys.UP) {
-            row = (row - 1) % actorGrid.length;
+            row = (((row - 1) % actorGrid.length) + actorGrid.length) % actorGrid.length;
             actorGrid[row][col].setSelected(true);
             isHandled = true;
         }
 
         if (keyCode == Input.Keys.DOWN) {
-            row = (row + 1) % actorGrid.length;
+            row = (((row + 1) % actorGrid.length) + actorGrid.length) % actorGrid.length;
             actorGrid[row][col].setSelected(true);
             isHandled = true;
         }
 
         if (keyCode == Input.Keys.LEFT) {
-            col = (col - 1) % actorGrid[0].length;
+            col = (((col - 1) % actorGrid[0].length) + actorGrid[0].length) % actorGrid[0].length;
             actorGrid[row][col].setSelected(true);
             isHandled = true;
         }
 
         if (keyCode == Input.Keys.RIGHT) {
-            col = (col + 1) % actorGrid[0].length;
+            col = (((col + 1) % actorGrid[0].length) + actorGrid[0].length) % actorGrid[0].length;
             actorGrid[row][col].setSelected(true);
             isHandled = true;
         }
