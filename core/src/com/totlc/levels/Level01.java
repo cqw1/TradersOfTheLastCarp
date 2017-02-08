@@ -26,30 +26,6 @@ public class Level01 extends ALevel{
         setPlayer(TradersOfTheLastCarp.player);
         loadFromTMX(tmxFileName);
 
-//        FireTrapLeft f = new FireTrapLeft(getAssetManager(), 500, 500, 800, 500);
-//        addActor(f);
-//        f.setup();
-//
-//        FireTrapRight f1 = new FireTrapRight(getAssetManager(), 500, 300, 2000, 1000);
-//        addActor(f1);
-//        f1.setup();
-//
-//        FireTrapDown f2 = new FireTrapDown(getAssetManager(), 800, 800, 1500, 1500);
-//        addActor(f2);
-//        f2.setup();
-
-        JustDessert j = new JustDessert(getAssetManager(), 150, 700, 3, new ProximityBasedAggro(getPlayer()));
-        addActor(j);
-
-        JustDessert j2 = new JustDessert(getAssetManager(), 100, 700, 1,new ProximityBasedAggro(getPlayer()));
-        addActor(j2);
-
-        JustDessert j3 = new JustDessert(getAssetManager(), 200, 450, 7, new ProximityBasedAggro(getPlayer()));
-        addActor(j3);
-
-        Goldfish g = new Goldfish(getAssetManager(), 500, 200);
-        addActor(g);
-
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
         TradersOfTheLastCarp.musicPlayer.play();
     }

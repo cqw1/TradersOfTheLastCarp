@@ -104,6 +104,11 @@ public class TitleScreen extends ALevel {
             isHandled = true;
         }
 
+        if (keyCode == Input.Keys.Q) {
+            setNextLevel(SandBoxLevel.class);
+            initNextLevel();
+        }
+
         return isHandled;
     }
 
