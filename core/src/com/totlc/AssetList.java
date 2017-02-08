@@ -22,6 +22,9 @@ public enum AssetList {
     TITLE_SCREEN("UI/Splash.png", Texture.class),
     OPTION_QUICKPLAY("UI/splash_options_0.png", Texture.class),
     OPTION_LVLSELECT("UI/splash_options_1.png", Texture.class),
+    LEVEL_SELECT_SCREEN("UI/LevelSelect.png", Texture.class),
+    QUESTION_MARK_SELECT("UI/QuestionMarkSelect.png", Texture.class),
+    QUESTION_MARK_SELECT_BORDER("UI/QuestionMarkSelectBorder.png", Texture.class),
 
     // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas", TextureAtlas.class),
