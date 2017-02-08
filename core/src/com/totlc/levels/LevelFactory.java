@@ -15,6 +15,10 @@ public class LevelFactory {
             return new Level02(assetManager);
         } else if (type.equals(Level03.class)) {
             return new Level03(assetManager);
+        } else if (type.equals(EndLevel.class)) {
+            return new EndLevel(assetManager);
+        } else if (type.equals(SandBoxLevel.class)) {
+            return new SandBoxLevel(assetManager);
         }
 
         return null;

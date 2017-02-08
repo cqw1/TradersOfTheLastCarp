@@ -74,6 +74,7 @@ public abstract class AEnemy extends Character {
         setFriction(friction);
         setMaxVel(maxVel);
         setSpeed(speed);
+        setBaseSpeed(speed);
     }
 
     /**

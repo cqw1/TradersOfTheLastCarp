@@ -42,16 +42,6 @@ public class ArrowTrap extends ATrap{
     }
 
     @Override
-    public void setup() {
-        if (!isSetup()) {
-            // If someone's already triggered this trap
-            getStage().addActor(new Exclamation(getAssetManager(), (float) getHitBoxCenter().getX() + getHitBoxWidth() / 2, (float) getHitBoxCenter().getY() + getHitBoxHeight() / 3));
-            setStartTime(System.currentTimeMillis());
-            setSetup(true);
-        }
-    }
-
-    @Override
     public void activate() {
         Point2D center = getCenter();
         //Left/right-wards arrow
@@ -65,14 +55,8 @@ public class ArrowTrap extends ATrap{
 
     @Override
     public void act(float deltaTime){
-        delayActivation();
-
+        super.act(deltaTime);
         increaseAnimationTime(deltaTime);
-        if (isActive() && System.currentTimeMillis() > (getStartTime() + getDelay())) {
-            // If the trap was active and we've already passed our delay and the allotted time for displaying eyebrows.
-            setActive(false);
-            setSetup(false);
-        }
     }
 
     @Override

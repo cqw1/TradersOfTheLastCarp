@@ -11,6 +11,8 @@ public class TrapFactory {
     public static ATrap createTrap(String type, AssetManager assetManager, float x, float y) {
         if (type.equals(ARROW_TRAP)) {
             return new ArrowTrap(assetManager, x, y);
+        } else if (type.equals(SPIDER_TRAP)) {
+            return new SpiderRepository(assetManager, x, y);
         }
 
         return null;

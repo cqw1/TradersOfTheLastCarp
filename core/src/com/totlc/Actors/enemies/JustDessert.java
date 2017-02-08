@@ -31,13 +31,13 @@ public class JustDessert extends AEnemy{
     private static float width = 64, height = 64;
     private float scale;
 
-    private static float maxVel = 100;
+    private static float maxVel = 200;
     private static float speed = 40;
-    private static float friction = 0.8f;
+    private static float friction = 0.2f;
 
     // Asset and animation constants.
-    private TextureAtlas walkTextureAtlas, walkTextureAtlasP;
-    private Animation<TextureRegion> walkAnimation, walkAnimationP;
+    private TextureAtlas walkTextureAtlas, walkTextureAtlasP, jumpTextureAtlas, jumpTextureAtlasP;
+    private Animation<TextureRegion> walkAnimation, walkAnimationP, jumpAnimation, jumpAnimationP;
 
     /**
      * Constructor for a default slime
@@ -52,6 +52,10 @@ public class JustDessert extends AEnemy{
         walkAnimation = new Animation<TextureRegion>(1 / 16f, walkTextureAtlas.getRegions());
         walkTextureAtlasP = assetManager.get(AssetList.FLAN_PRIME.toString());
         walkAnimationP = new Animation<TextureRegion>(1 / 16f, walkTextureAtlasP.getRegions());
+        jumpTextureAtlas = assetManager.get(AssetList.FLAN_JUMP.toString());
+        jumpAnimation = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlas.getRegions());
+        jumpTextureAtlasP = assetManager.get(AssetList.FLAN_JUMP_PRIME.toString());
+        jumpAnimationP = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlasP.getRegions());
 
         this.scale = 1;
         for (int i = 0; i < walkTextureAtlas.getRegions().size; i++){
@@ -68,8 +72,11 @@ public class JustDessert extends AEnemy{
         walkTextureAtlas = assetManager.get(AssetList.FLAN.toString());
         walkAnimation = new Animation<TextureRegion>(1 / 16f, walkTextureAtlas.getRegions());
         walkTextureAtlasP = assetManager.get(AssetList.FLAN_PRIME.toString());
-
         walkAnimationP = new Animation<TextureRegion>(1 / 16f, walkTextureAtlasP.getRegions());
+        jumpTextureAtlas = assetManager.get(AssetList.FLAN_JUMP.toString());
+        jumpAnimation = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlas.getRegions());
+        jumpTextureAtlasP = assetManager.get(AssetList.FLAN_JUMP_PRIME.toString());
+        jumpAnimationP = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlasP.getRegions());
 
         this.scale = (float) ((Math.log(hp + 1) / Math.log(2)) / (Math.log(basehp + 1) / Math.log(2)));
         getHitBox().setScale(scale, scale);
@@ -77,20 +84,41 @@ public class JustDessert extends AEnemy{
     }
 
     @Override
+    public void act(float deltaTime) {
+        super.act(deltaTime);
+    }
+
+    @Override
     public void draw(Batch batch, float alpha) {
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         if (getHpCurrent() == 7){
-            batch.draw(walkAnimationP.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                    (float) walkTextureAtlasP.getRegions().get(0).getRegionWidth() * 0.5f,
-                    (float) walkTextureAtlasP.getRegions().get(0).getRegionHeight() * 0.5f,
-                    (float) walkTextureAtlasP.getRegions().get(0).getRegionWidth(),
-                    (float) walkTextureAtlasP.getRegions().get(0).getRegionHeight(), scale, scale, 0);
+            if (getMovement().isAttack()){
+                batch.draw(jumpAnimationP.getKeyFrame(getAnimationTime(), true), getX(), getY(),
+                        (float) jumpTextureAtlasP.getRegions().get(0).getRegionWidth() * 0.5f,
+                        (float) jumpTextureAtlasP.getRegions().get(0).getRegionHeight() * 0.5f,
+                        (float) jumpTextureAtlasP.getRegions().get(0).getRegionWidth(),
+                        (float) jumpTextureAtlasP.getRegions().get(0).getRegionHeight(), scale, scale, 0);
+            } else{
+                batch.draw(walkAnimationP.getKeyFrame(getAnimationTime(), true), getX(), getY(),
+                        (float) walkTextureAtlasP.getRegions().get(0).getRegionWidth() * 0.5f,
+                        (float) walkTextureAtlasP.getRegions().get(0).getRegionHeight() * 0.5f,
+                        (float) walkTextureAtlasP.getRegions().get(0).getRegionWidth(),
+                        (float) walkTextureAtlasP.getRegions().get(0).getRegionHeight(), scale, scale, 0);
+            }
         } else{
-            batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                    (float) walkTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
-                    (float) walkTextureAtlas.getRegions().get(0).getRegionHeight() * 0.5f,
-                    (float) walkTextureAtlas.getRegions().get(0).getRegionWidth(),
-                    (float) walkTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
+            if (getMovement().isAttack()){
+                batch.draw(jumpAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
+                        (float) jumpTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
+                        (float) jumpTextureAtlas.getRegions().get(0).getRegionHeight() * 0.5f,
+                        (float) jumpTextureAtlas.getRegions().get(0).getRegionWidth(),
+                        (float) jumpTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
+            } else{
+                batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
+                        (float) walkTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
+                        (float) walkTextureAtlas.getRegions().get(0).getRegionHeight() * 0.5f,
+                        (float) walkTextureAtlas.getRegions().get(0).getRegionWidth(),
+                        (float) walkTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
+            }
         }
         drawStatuses(batch, alpha);
     }
@@ -112,4 +140,8 @@ public class JustDessert extends AEnemy{
         return returnMe;
     }
 
+    @Override
+    public void initMovement(float friction, float maxVel, float speed){
+        super.initMovement(friction, maxVel, speed);
+    }
 }

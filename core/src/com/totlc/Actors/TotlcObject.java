@@ -24,6 +24,7 @@ public abstract class TotlcObject extends Actor {
      */
 
     private float speed;
+    private float baseSpeed;
 
     //Image related fields
     private AssetManager assetManager;
@@ -230,6 +231,14 @@ public abstract class TotlcObject extends Actor {
     public void setSpeed(float s) { speed = s; }
 
     public float getSpeed() { return speed; }
+
+    public float getBaseSpeed() {
+        return baseSpeed;
+    }
+
+    public void setBaseSpeed(float baseSpeed) {
+        this.baseSpeed = baseSpeed;
+    }
 
     public float getVelocityAngle(){
         double angle = Math.atan2(getVel().getY(), getVel().getX());

@@ -9,6 +9,7 @@ import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.traps.ATrap;
+import com.totlc.AssetList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,13 +48,11 @@ public abstract class ATrigger extends TotlcObject {
                         !((AEnemy) otherActor).isFloating())) {
 
             if (!isTriggered()) {
-                Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/trap_activation.mp3"));
+                Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.TRAP_ACTIVATION.toString()));
                 sound.play(1.0f);
 
                 for (ATrap trap : getListOfTraps()) {
-//                    trap.activate();
                     trap.setup();
-                    System.out.println("called trap setup");
                 }
             }
 
