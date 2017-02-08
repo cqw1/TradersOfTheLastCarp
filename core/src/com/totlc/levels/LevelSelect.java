@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.TotlcObject;
+import com.totlc.Actors.UI.LevelOption;
 import com.totlc.Actors.UI.MenuOption;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
@@ -20,11 +21,12 @@ public class LevelSelect extends ALevel {
     private int optionFocusIndex = 0;
     private int row = 0;
     private int col = 0;
-    private Class[][] levelGrid = new Class[1][3];
+    private LevelOption [][] actorGrid = new LevelOption [1][3];
+    private Class[][] classGrid = new Class[actorGrid.length][actorGrid[0].length];
 
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
     private Point2D.Float optionsSize = new Point2D.Float(128f, 128f);
-    private Point2D.Float optionsStart = new Point2D.Float(300f, 300f);
+    private Point2D.Float gridStart = new Point2D.Float(300f, 600f);
 
     public LevelSelect(AssetManager assetManager) {
         super(assetManager);
@@ -47,12 +49,43 @@ public class LevelSelect extends ALevel {
             public void endCollidesWith(Actor otherActor) {}
         };
 
-        levelGrid[0][0] = Level01.class;
-        levelGrid[0][1] = Level02.class;
-        levelGrid[0][2] = Level03.class;
-
-
         addActor(levelSelectScreen);
+
+        instantiateGrid();
+
+        for (int r = 0; r < classGrid.length; r++) {
+            for (int c = 0; c < classGrid[0].length; c++) {
+                final int finalRow = r;
+                final int finalCol = c;
+
+                LevelOption levelOption = new LevelOption(
+                        assetManager,
+                        AssetList.QUESTION_MARK_SELECT.toString(),
+                        AssetList.QUESTION_MARK_SELECT_BORDER.toString(),
+                        classGrid[r][c],
+                        (float) (gridStart.getX() + (c * 200)),
+                        (float) (gridStart.getY() - (r * 200))) {
+
+
+                    public void execute() {
+                        setNextLevel(classGrid[finalRow][finalCol]);
+                        initNextLevel();
+                    }
+                };
+
+                actorGrid[r][c] = levelOption;
+                addActor(levelOption);
+
+            }
+        }
+
+        actorGrid[0][0].setSelected(true);
+    }
+
+    public void instantiateGrid() {
+        classGrid[0][0] = Level01.class;
+        classGrid[0][1] = Level02.class;
+        classGrid[0][2] = Level03.class;
     }
 
     @Override
@@ -69,23 +102,35 @@ public class LevelSelect extends ALevel {
     public boolean keyDown(int keyCode) {
         boolean isHandled = false;
 
+        unselectAll();
+
         if (keyCode == Input.Keys.UP) {
-            optionFocusIndex = (optionFocusIndex + 1) % menuOptions.size();
+            row = (row - 1) % actorGrid.length;
+            actorGrid[row][col].setSelected(true);
             isHandled = true;
         }
 
         if (keyCode == Input.Keys.DOWN) {
-            optionFocusIndex = Math.abs((optionFocusIndex - 1) % menuOptions.size());
+            row = (row + 1) % actorGrid.length;
+            actorGrid[row][col].setSelected(true);
             isHandled = true;
         }
 
-        for (MenuOption option: menuOptions) {
-            option.remove();
+        if (keyCode == Input.Keys.LEFT) {
+            col = (col - 1) % actorGrid[0].length;
+            actorGrid[row][col].setSelected(true);
+            isHandled = true;
         }
-        addActor(menuOptions.get(optionFocusIndex));
+
+        if (keyCode == Input.Keys.RIGHT) {
+            col = (col + 1) % actorGrid[0].length;
+            actorGrid[row][col].setSelected(true);
+            isHandled = true;
+        }
+
 
         if (keyCode == Input.Keys.SPACE) {
-            menuOptions.get(optionFocusIndex).execute();
+            actorGrid[row][col].execute();
             isHandled = true;
         }
 
@@ -97,8 +142,17 @@ public class LevelSelect extends ALevel {
         return isHandled;
     }
 
+    public void unselectAll() {
+        for (int r = 0; r < actorGrid.length; r++) {
+            for (int c = 0; c < actorGrid[0].length; c++) {
+                actorGrid[r][c].setSelected(false);
+
+            }
+        }
+    }
+
     public boolean keyUp(int keyCode) {
         return true;
     }
 
-    }
+}
