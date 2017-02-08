@@ -26,7 +26,7 @@ public class LevelSelect extends ALevel {
 
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
     private Point2D.Float optionsSize = new Point2D.Float(128f, 128f);
-    private Point2D.Float gridStart = new Point2D.Float(300f, 600f);
+    private Point2D.Float gridStart = new Point2D.Float(300f, 500f);
 
     public LevelSelect(AssetManager assetManager) {
         super(assetManager);
