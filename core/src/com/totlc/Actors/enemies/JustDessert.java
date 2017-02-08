@@ -56,6 +56,7 @@ public class JustDessert extends AEnemy{
         jumpAnimation = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlas.getRegions());
         jumpTextureAtlasP = assetManager.get(AssetList.FLAN_JUMP_PRIME.toString());
         jumpAnimationP = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlasP.getRegions());
+        moveHitBox(getWidth() * getScaleX() * 0.5f, 0);
 
         this.scale = 1;
         for (int i = 0; i < walkTextureAtlas.getRegions().size; i++){
@@ -77,6 +78,7 @@ public class JustDessert extends AEnemy{
         jumpAnimation = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlas.getRegions());
         jumpTextureAtlasP = assetManager.get(AssetList.FLAN_JUMP_PRIME.toString());
         jumpAnimationP = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlasP.getRegions());
+        moveHitBox(getWidth() * getScaleX() * 0.5f, 0);
 
         this.scale = (float) ((Math.log(hp + 1) / Math.log(2)) / (Math.log(basehp + 1) / Math.log(2)));
         getHitBox().setScale(scale, scale);

@@ -1,14 +1,6 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.totlc.Actors.enemies.JustDessert;
-import com.totlc.Actors.enemies.movement.BasicMovement;
-import com.totlc.Actors.enemies.movement.IntervalMovement;
-import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
-import com.totlc.Actors.items.Goldfish;
-import com.totlc.Actors.traps.FireTrapDown;
-import com.totlc.Actors.traps.FireTrapLeft;
-import com.totlc.Actors.traps.FireTrapRight;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.*;
