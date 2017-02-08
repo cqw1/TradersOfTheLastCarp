@@ -67,7 +67,7 @@ public abstract class ATrap extends TotlcObject {
 
     }
 
-    public void delayActivation(){
+    public void delayActivation() {
         if (isSetup() && !isActive()) {
             if (System.currentTimeMillis() < (startTime + getDelay())) {
                 // Still waiting for delay.
