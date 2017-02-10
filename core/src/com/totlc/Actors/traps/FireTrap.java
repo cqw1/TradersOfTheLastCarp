@@ -10,8 +10,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.effects.Exclamation;
-import com.totlc.Actors.projectiles.FireStream;
-import com.totlc.Actors.projectiles.FireStreamRight;
+import com.totlc.Actors.damage.FireStream;
+import com.totlc.Actors.damage.FireStreamRight;
 import com.totlc.AssetList;
 
 public class FireTrap extends ATrap {

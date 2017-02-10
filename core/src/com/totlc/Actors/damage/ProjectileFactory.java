@@ -1,4 +1,4 @@
-package com.totlc.Actors.projectiles;
+package com.totlc.Actors.damage;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.Actor;

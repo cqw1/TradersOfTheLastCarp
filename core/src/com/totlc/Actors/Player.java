@@ -2,7 +2,6 @@ package com.totlc.Actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.SynchronousAssetLoader;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -11,9 +10,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.Timer;
+import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.enemies.AEnemy;
-import com.totlc.Actors.projectiles.Projectile;
+import com.totlc.Actors.damage.Projectile;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
@@ -229,9 +228,9 @@ public class Player extends Character {
                 invincible = true;
                 invincibilityStart = System.currentTimeMillis();
             }
-        } else if (otherActor instanceof Projectile) {
-            if (!invincible && ((Projectile)otherActor).getDamageType() != 2) {
-                takeDamage(((Projectile)otherActor).getAttack());
+        } else if (otherActor instanceof Damage) {
+            if (!invincible && ((Damage)otherActor).getDamageType() != 2) {
+                takeDamage(((Damage)otherActor).getAttack());
                 invincible = true;
                 invincibilityStart = System.currentTimeMillis();
             }

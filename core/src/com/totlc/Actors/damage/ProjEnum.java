@@ -1,4 +1,4 @@
-package com.totlc.Actors.projectiles;
+package com.totlc.Actors.damage;
 
 public enum ProjEnum {
 

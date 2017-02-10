@@ -1,8 +1,7 @@
-package com.totlc.Actors.projectiles;
+package com.totlc.Actors.damage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
@@ -13,7 +12,6 @@ import com.totlc.Actors.effects.Impact;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.terrain.AWall;
 import com.totlc.AssetList;
-import com.totlc.Directionality;
 
 public class Arrow extends Projectile {
 
