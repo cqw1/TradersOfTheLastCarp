@@ -1,8 +1,6 @@
 package com.totlc.Actors.enemies;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
@@ -10,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.effects.FlanParts;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.enemies.movement.IntervalMovement;
-import com.totlc.Actors.projectiles.Projectile;
+import com.totlc.Actors.damage.Projectile;
 import com.totlc.AssetList;
 
 /**

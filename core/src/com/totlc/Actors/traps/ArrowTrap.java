@@ -1,19 +1,15 @@
 package com.totlc.Actors.traps;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.effects.Exclamation;
-import com.totlc.Actors.projectiles.ProjEnum;
-import com.totlc.Actors.projectiles.ProjectileFactory;
+import com.totlc.Actors.damage.ProjEnum;
+import com.totlc.Actors.damage.ProjectileFactory;
 import com.totlc.AssetList;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.awt.geom.Point2D;
 
@@ -28,14 +24,11 @@ public class ArrowTrap extends ATrap{
     private static float height = 192;
 
     public ArrowTrap(AssetManager assetManager, float x, float y) {
-        super(assetManager, new Rectangle(x, y, width, height), delay);
-
-        trapTextureAtlas = assetManager.get(AssetList.ARROW_TRAP.toString());
-        trapAnimation = new Animation<TextureRegion>(1 / 12f, trapTextureAtlas.getRegions());
+        this(assetManager, new Rectangle(x, y, width, height), delay);
     }
 
-    public ArrowTrap(AssetManager assetManager, float x, float y, long delay) {
-        super(assetManager, new Rectangle(x, y, width, height), delay);
+    public ArrowTrap(AssetManager assetManager, Rectangle r, long delay) {
+        super(assetManager, r, delay);
 
         trapTextureAtlas = assetManager.get(AssetList.ARROW_TRAP.toString());
         trapAnimation = new Animation<TextureRegion>(1 / 12f, trapTextureAtlas.getRegions());

@@ -21,7 +21,7 @@ public class SpiderRepository extends ATrap  {
     private static Random randomNum = new Random();
     private static float width = 128;
     private static float height = 140;
-    private static float delay = 0;
+    private static long delay = 0;
 
     // Scaling factor for animations.
     private float scale = 1;
@@ -29,17 +29,15 @@ public class SpiderRepository extends ATrap  {
     private boolean animate, shrink;
 
     public SpiderRepository(AssetManager assetManager, float x, float y) {
-        super(assetManager, new Rectangle(x, y, width, height), 0);
+        this(assetManager, new Rectangle(x, y, width, height));
+    }
+
+    public SpiderRepository(AssetManager assetManager, Rectangle r) {
+        super(assetManager, r, delay);
         trapTextureAtlas = assetManager.get(AssetList.SPIDER_TRAP.toString());
         textureNum = randomNum.nextInt(3);
         this.animate = false;
         this.shrink = false;
-    }
-
-    public SpiderRepository(AssetManager assetManager, Rectangle r) {
-        super(assetManager, r, 0);
-        trapTextureAtlas = assetManager.get(AssetList.SPIDER_TRAP.toString());
-        textureNum = randomNum.nextInt(3);
     }
 
     @Override
