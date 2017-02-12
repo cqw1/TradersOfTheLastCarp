@@ -86,11 +86,6 @@ public class JustDessert extends AEnemy{
     }
 
     @Override
-    public void act(float deltaTime) {
-        super.act(deltaTime);
-    }
-
-    @Override
     public void draw(Batch batch, float alpha) {
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         if (getHpCurrent() == 7){
@@ -132,18 +127,13 @@ public class JustDessert extends AEnemy{
             if (!isInvincible()) {
                 int newHP = (int) Math.floor(getHpCurrent() * 0.5);
                 if (newHP > 0 && getHpCurrent() > 1){
-                    getStage().addActor(new JustDessert(getAssetManager(), getX() - 16, getY(), newHP, new IntervalMovement(getMovement().getTarget())));
-                    getStage().addActor(new JustDessert(getAssetManager(), getX() + 16, getY(), newHP, new IntervalMovement(getMovement().getTarget())));
+                    getStage().addActor(new JustDessert(getAssetManager(), getX() - 16, getY(), newHP, getMovement()));
+                    getStage().addActor(new JustDessert(getAssetManager(), getX() + 16, getY(), newHP, getMovement()));
                     returnMe =  true;
                 }
             }
             getStage().addActor(new FlanParts(getAssetManager(), new Rectangle(getX(), getY(), 100, 100), getHpMax() == basehp));
         }
         return returnMe;
-    }
-
-    @Override
-    public void initMovement(float friction, float maxVel, float speed){
-        super.initMovement(friction, maxVel, speed);
     }
 }

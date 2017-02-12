@@ -39,6 +39,8 @@ public enum AssetList {
     FLAN_PRIME("sprites/flan/flan_prime.atlas", TextureAtlas.class),
     FLAN_JUMP_PRIME("sprites/flan/flan_prime_jump.atlas", TextureAtlas.class),
     PANGOLINI("sprites/pangolini/pangolini.png", Texture.class),
+    JELLYFISH("sprites/GelatinKing/jelly_fish.atlas", TextureAtlas.class),
+    GELATIN_KING("sprites/GelatinKing/gelatin_king.atlas", TextureAtlas.class),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),
