@@ -23,6 +23,7 @@ import com.totlc.Actors.TotlcObject;
 import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
@@ -67,8 +68,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         viewport.apply();
 
         level = LevelFactory.createLevel(TitleScreen.class, assetManager);
-        Gdx.input.setInputProcessor(level);
-        level.initLevel();
+		Gdx.input.setInputProcessor(level);
+		level.initLevel();
 	}
 
 	@Override

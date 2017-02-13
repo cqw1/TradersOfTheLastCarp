@@ -5,13 +5,17 @@ import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.*;
 
-public class Level01 extends ALevel{
+public class Level01 extends ALevel {
 
     public final String tmxFileName = AssetList.LEVEL01_TMX.toString();
 
     public Level01(AssetManager assetManager) {
         super(assetManager, Objectives.DESTROY);
         setNextLevel(Level02.class);
+    }
+
+    public static ALevel make(AssetManager assetManager) {
+        return new Level01(assetManager);
     }
 
     public void initLevel() {
