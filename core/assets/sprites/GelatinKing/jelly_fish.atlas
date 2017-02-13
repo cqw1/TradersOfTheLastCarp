@@ -1,0 +1,90 @@
+
+jelly_fish.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+jellyfish
+  rotate: false
+  xy: 2, 254
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 0
+jellyfish
+  rotate: false
+  xy: 2, 254
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 8
+jellyfish
+  rotate: false
+  xy: 2, 2
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 1
+jellyfish
+  rotate: false
+  xy: 2, 2
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 7
+jellyfish
+  rotate: false
+  xy: 164, 254
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 2
+jellyfish
+  rotate: false
+  xy: 164, 254
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 6
+jellyfish
+  rotate: false
+  xy: 164, 2
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 3
+jellyfish
+  rotate: false
+  xy: 164, 2
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 5
+jellyfish
+  rotate: false
+  xy: 326, 254
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 4
+jellyfish
+  rotate: false
+  xy: 326, 2
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 9
+jellyfish
+  rotate: false
+  xy: 326, 2
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 11
+jellyfish
+  rotate: false
+  xy: 488, 254
+  size: 160, 250
+  orig: 160, 250
+  offset: 0, 0
+  index: 10

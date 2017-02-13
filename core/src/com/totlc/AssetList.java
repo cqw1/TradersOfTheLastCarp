@@ -39,6 +39,8 @@ public enum AssetList {
     FLAN_PRIME("sprites/flan/flan_prime.atlas", TextureAtlas.class),
     FLAN_JUMP_PRIME("sprites/flan/flan_prime_jump.atlas", TextureAtlas.class),
     PANGOLINI("sprites/pangolini/pangolini.png", Texture.class),
+    JELLYFISH("sprites/GelatinKing/jelly_fish.atlas", TextureAtlas.class),
+    GELATIN_KING("sprites/GelatinKing/gelatin_king.atlas", TextureAtlas.class),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),
@@ -67,6 +69,7 @@ public enum AssetList {
     ARROW_BREAK("effects/arrowbreak.particle", null),
     SHIELD("effects/shield.particle", null),
     SPARKLE("effects/sparkle.particle", null),
+    ELECTRICITY("effects/lightning.particle", null),
     SPLASH("effects/splash.particle", null),
     FLAN_PARTS_0("effects/flan_parts.particle", null),
     FLAN_PARTS_1("effects/flan_parts_prime.particle", null),

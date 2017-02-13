@@ -1,8 +1,7 @@
-package com.totlc.Actors.projectiles;
+package com.totlc.Actors.damage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
@@ -13,19 +12,17 @@ import com.totlc.Actors.effects.Impact;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.terrain.AWall;
 import com.totlc.AssetList;
-import com.totlc.Directionality;
 
-public class Arrow extends Projectile {
+public class Arrow extends Damage {
 
     private static int damage = 1;
     private static float longSide = 80;
     private static float shortSide = 32;
 
     public Arrow(AssetManager assetManager, float x, float y, int damageType) {
-        super(assetManager, new Rectangle(x, y, longSide, shortSide));
+        super(assetManager, new Rectangle(x, y, longSide, shortSide), damage, damageType);
 
         setDamageType(damageType);
-        setAttack(damage);
         setScaleFactor(0.75f);
 
         setTexture(new Texture(Gdx.files.internal(AssetList.PROJECTILE_ARROW.toString())));

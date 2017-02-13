@@ -19,6 +19,20 @@ public class LevelFactory {
             return new EndLevel(assetManager);
         } else if (type.equals(SandBoxLevel.class)) {
             return new SandBoxLevel(assetManager);
+        } else if (type.equals(SpikeLevel.class)) {
+            return new SpikeLevel(assetManager);
+        } else if (type.equals(TeleporterLevel.class)) {
+            return new TeleporterLevel(assetManager);
+        } else if (type.equals(SpiderLevel.class)) {
+            return new SpiderLevel(assetManager);
+        } else if (type.equals(StargazerLevel.class)) {
+            return new StargazerLevel(assetManager);
+        } else if (type.equals(FlanLevel.class)) {
+            return new FlanLevel(assetManager);
+        } else if (type.equals(FlameLevel.class)) {
+            return new FlameLevel(assetManager);
+        } else if (type.equals(GelatinLevel.class)) {
+            return new GelatinLevel(assetManager);
         }
 
         return null;

@@ -11,8 +11,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.enemies.movement.AMovement;
-import com.totlc.Actors.projectiles.ProjEnum;
-import com.totlc.Actors.projectiles.ProjectileFactory;
+import com.totlc.Actors.damage.DamageEnum;
+import com.totlc.Actors.damage.DamageFactory;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
 import com.totlc.levels.ALevel;
@@ -59,7 +59,7 @@ public class Stargazer extends AEnemy {
     private Animation<TextureRegion> gazeAnimation;
     private Animation<TextureRegion> gazeReverseAnimation;
 
-    public Stargazer(AssetManager assetManager, int x, int y, AMovement movement) {
+    public Stargazer(AssetManager assetManager, float x, float y, AMovement movement) {
         super(assetManager, new Rectangle(x, y, 40, 40), movement, hp, atk);
 
         setFloating(true);
@@ -156,7 +156,7 @@ public class Stargazer extends AEnemy {
         Point2D targetVector = getTarget(((ALevel)getStage()).getPlayer());
         Sound starSound = Gdx.audio.newSound(Gdx.files.internal("sounds/sparkle0.mp3"));
         starSound.play(0.7f);
-        getStage().addActor(ProjectileFactory.createProjectile(ProjEnum.STAR_SHOT, new Point2D.Double(targetVector.getX() * projectileSpeed, targetVector.getY() * projectileSpeed), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
+        getStage().addActor(DamageFactory.createDamage(DamageEnum.STAR_SHOT, new Point2D.Double(targetVector.getX() * projectileSpeed, targetVector.getY() * projectileSpeed), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
     }
 
     @Override

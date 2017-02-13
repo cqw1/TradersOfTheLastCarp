@@ -1,4 +1,4 @@
-package com.totlc.Actors.projectiles;
+package com.totlc.Actors.damage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -10,25 +10,24 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.AssetList;
 
-public abstract class FireStream extends Projectile {
+public abstract class FireStream extends Damage {
 
     // Texture information
     private TextureAtlas particleAtlas;
-
     private ParticleEffect fire;
 
     // Positioning information.
     private TotlcObject followMe;
     private float xOffset = 0;
     private float yOffset = 0;
+    private static int damage = 1;
 
     // Particle information.
     private long range;
 
     public FireStream(AssetManager assetManager, TotlcObject actor, float x, float y, float width, float height, long range, int damageType) {
-        super(assetManager, new Rectangle(x, y, width, height));
+        super(assetManager, new Rectangle(x, y, width, height), 1, damageType);
         setDamageType(damageType);
-        setAttack(1);
         setRange(range);
         loadAssets(assetManager);
         setFollowMe(actor);

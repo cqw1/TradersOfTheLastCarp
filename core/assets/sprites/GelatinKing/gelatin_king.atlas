@@ -1,0 +1,90 @@
+
+gelatin_king.png
+size: 512,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+gelatinking
+  rotate: false
+  xy: 2, 606
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 0
+gelatinking
+  rotate: false
+  xy: 2, 606
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 8
+gelatinking
+  rotate: false
+  xy: 2, 304
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 1
+gelatinking
+  rotate: false
+  xy: 2, 304
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 7
+gelatinking
+  rotate: false
+  xy: 164, 606
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 2
+gelatinking
+  rotate: false
+  xy: 164, 606
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 6
+gelatinking
+  rotate: false
+  xy: 2, 2
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 3
+gelatinking
+  rotate: false
+  xy: 2, 2
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 5
+gelatinking
+  rotate: false
+  xy: 164, 304
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 4
+gelatinking
+  rotate: false
+  xy: 326, 606
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 9
+gelatinking
+  rotate: false
+  xy: 326, 606
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 11
+gelatinking
+  rotate: false
+  xy: 164, 2
+  size: 160, 300
+  orig: 160, 300
+  offset: 0, 0
+  index: 10

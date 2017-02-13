@@ -1,15 +1,13 @@
 package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
+import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.effects.Stun;
 import com.totlc.Actors.enemies.movement.AMovement;
-import com.totlc.Actors.projectiles.Projectile;
-import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
@@ -87,10 +85,10 @@ public abstract class AEnemy extends Character {
     }
 
     public boolean collidesWith(Actor otherActor) {
-        if (otherActor instanceof Projectile && ((Projectile)otherActor).getDamageType() != 1) {
-            System.out.println("collidesWith Projectile");
+        if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1) {
+            System.out.println("collidesWith DAMAGE OH ON" + ((Damage)otherActor).getDamageType());
             if (!invincible) {
-                takeDamage(((Projectile)otherActor).getAttack());
+                takeDamage(((Damage)otherActor).getAttack());
             }
 
         } else if (otherActor instanceof Whip) {

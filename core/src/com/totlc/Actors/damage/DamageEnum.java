@@ -1,12 +1,13 @@
-package com.totlc.Actors.projectiles;
+package com.totlc.Actors.damage;
 
-public enum ProjEnum {
+public enum DamageEnum {
 
     ARROW(0),
-    STAR_SHOT(1);
+    STAR_SHOT(1),
+    LIGHTNING_PATCH(2);
 
     int type;
-    ProjEnum(int id) {
+    DamageEnum(int id) {
         type = id;
     }
 
@@ -16,6 +17,8 @@ public enum ProjEnum {
                 return "ARROW";
             case 1:
                 return "STAR_SHOT";
+            case 2:
+                return "LIGHTNING_PATCH";
         }
 
         return "";
@@ -25,7 +28,7 @@ public enum ProjEnum {
         return type;
     }
 
-    public boolean equals(ProjEnum other) {
+    public boolean equals(DamageEnum other) {
         return type == other.getType();
     }
 }

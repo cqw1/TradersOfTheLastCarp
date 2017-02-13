@@ -1,16 +1,14 @@
 package com.totlc.Actors.enemies;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.effects.FlanParts;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.enemies.movement.IntervalMovement;
-import com.totlc.Actors.projectiles.Projectile;
 import com.totlc.AssetList;
 
 /**
@@ -86,11 +84,6 @@ public class JustDessert extends AEnemy{
     }
 
     @Override
-    public void act(float deltaTime) {
-        super.act(deltaTime);
-    }
-
-    @Override
     public void draw(Batch batch, float alpha) {
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         if (getHpCurrent() == 7){
@@ -128,22 +121,17 @@ public class JustDessert extends AEnemy{
     @Override
     public boolean collidesWith(Actor otherActor){
         boolean returnMe = super.collidesWith(otherActor);
-        if (otherActor instanceof Projectile && ((Projectile)otherActor).getDamageType() != 1) {
+        if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1) {
             if (!isInvincible()) {
                 int newHP = (int) Math.floor(getHpCurrent() * 0.5);
                 if (newHP > 0 && getHpCurrent() > 1){
-                    getStage().addActor(new JustDessert(getAssetManager(), getX() - 16, getY(), newHP, new IntervalMovement(getMovement().getTarget())));
-                    getStage().addActor(new JustDessert(getAssetManager(), getX() + 16, getY(), newHP, new IntervalMovement(getMovement().getTarget())));
+                    getStage().addActor(new JustDessert(getAssetManager(), getX() - 16, getY(), newHP, getMovement()));
+                    getStage().addActor(new JustDessert(getAssetManager(), getX() + 16, getY(), newHP, getMovement()));
                     returnMe =  true;
                 }
             }
             getStage().addActor(new FlanParts(getAssetManager(), new Rectangle(getX(), getY(), 100, 100), getHpMax() == basehp));
         }
         return returnMe;
-    }
-
-    @Override
-    public void initMovement(float friction, float maxVel, float speed){
-        super.initMovement(friction, maxVel, speed);
     }
 }

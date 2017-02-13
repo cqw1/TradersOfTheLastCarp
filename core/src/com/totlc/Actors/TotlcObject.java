@@ -265,6 +265,10 @@ public abstract class TotlcObject extends Actor {
         moveRel((float) vel.getX() * delta, (float) vel.getY() * delta);
     }
 
+    public boolean isInMotion() {
+        return vel.getX() == 0 && vel.getY() == 0;
+    }
+
     public void returnIntoBounds() {
         if (getX() < 0) {
             moveAbs(0, getY());
