@@ -25,8 +25,8 @@ public class LevelFactory {
             return new TeleporterLevel(assetManager);
         } else if (type.equals(SpiderLevel.class)) {
             return new SpiderLevel(assetManager);
-        } else if (type.equals(StarLevel.class)) {
-            return new StarLevel(assetManager);
+        } else if (type.equals(StargazerLevel.class)) {
+            return new StargazerLevel(assetManager);
         } else if (type.equals(FlanLevel.class)) {
             return new FlanLevel(assetManager);
         } else if (type.equals(FlameLevel.class)) {

@@ -10,7 +10,7 @@ import com.totlc.TradersOfTheLastCarp;
 public class SpiderLevel extends ALevel {
     public SpiderLevel(AssetManager assetManager) {
         super(assetManager, ObjectiveVerifier.Objectives.SURVIVE);
-        setNextLevel(StarLevel.class);
+        setNextLevel(StargazerLevel.class);
     }
 
     public void initLevel() {

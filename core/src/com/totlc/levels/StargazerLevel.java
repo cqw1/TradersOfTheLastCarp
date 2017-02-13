@@ -5,9 +5,9 @@ import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.enemies.EnemyFactory;
 import com.totlc.TradersOfTheLastCarp;
 
-public class StarLevel extends ALevel {
+public class StargazerLevel extends ALevel {
 
-    public StarLevel(AssetManager assetManager) {
+    public StargazerLevel(AssetManager assetManager) {
         super(assetManager, ObjectiveVerifier.Objectives.SURVIVE);
         setNextLevel(FlanLevel.class);
     }

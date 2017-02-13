@@ -18,21 +18,21 @@ import java.util.ArrayList;
 public class LevelSelect extends ALevel {
     public TotlcObject levelSelectScreen;
 
-    private int optionFocusIndex = 0;
     private int row = 0;
     private int col = 0;
-    private LevelOption [][] actorGrid = new LevelOption [2][6];
-    private Class[][] classGrid = new Class[actorGrid.length][actorGrid[0].length];
+    private LevelOptionInfo [][] grid = new LevelOptionInfo[2][6];
 
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
     private Point2D.Float optionsSize = new Point2D.Float(128f, 128f);
     private Point2D.Float gridStart = new Point2D.Float(236f, 500f);
+
     private AssetManager assetManager;
 
     public LevelSelect(AssetManager assetManager) {
         super(assetManager);
 
         this.assetManager = assetManager;
+
         levelSelectScreen = new TotlcObject(assetManager, new Rectangle()) {
 
             String asset = AssetList.LEVEL_SELECT_SCREEN.toString();
@@ -55,13 +55,12 @@ public class LevelSelect extends ALevel {
 
         instantiateGrid();
 
-        for (int r = 0; r < classGrid.length; r++) {
-            for (int c = 0; c < classGrid[0].length; c++) {
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[0].length; c++) {
 
-                if (classGrid[r][c] == null) {
+                if (grid[r][c] == null) {
                     // Don't draw the asset because it doesn't have a corresponding level.
                     // Allows for irregular number of levels.
-                    actorGrid[r][c] = null;
                     continue;
                 }
 
@@ -72,42 +71,42 @@ public class LevelSelect extends ALevel {
                         assetManager,
                         AssetList.QUESTION_MARK_SELECT.toString(),
                         AssetList.QUESTION_MARK_SELECT_BORDER.toString(),
-                        classGrid[r][c],
+                        grid[r][c].levelClass,
+                        grid[r][c].levelName,
                         (float) (gridStart.getX() + (c * 200)),
                         (float) (gridStart.getY() - (r * 200))) {
 
 
                     public void execute() {
-                        setNextLevel(classGrid[finalRow][finalCol]);
+                        setNextLevel(grid[finalRow][finalCol].levelClass);
                         initNextLevel();
                     }
                 };
 
-                actorGrid[r][c] = levelOption;
+                grid[r][c].levelOption = levelOption;
                 addActor(levelOption);
 
             }
         }
 
-        actorGrid[0][0].setSelected(true);
+        grid[0][0].levelOption.setSelected(true);
     }
 
     public void instantiateGrid() {
-        classGrid[0][0] = SpikeLevel.class;
-        classGrid[0][1] = TeleporterLevel.class;
-        classGrid[0][2] = SpiderLevel.class;
-        classGrid[0][3] = StarLevel.class;
-        classGrid[0][4] = FlanLevel.class;
-        classGrid[0][5] = FlameLevel.class;
+        grid[0][0] = new LevelOptionInfo(null, SpikeLevel.class, "Spikes");
+        grid[0][1] = new LevelOptionInfo(null, TeleporterLevel.class, "Teleporter");
+        grid[0][2] = new LevelOptionInfo(null, SpiderLevel.class, "Spiders");
+        grid[0][3] = new LevelOptionInfo(null, StargazerLevel.class, "Stargazer");
+        grid[0][4] = new LevelOptionInfo(null, FlanLevel.class, "Flan");
+        grid[0][5] = new LevelOptionInfo(null, FlameLevel.class, "Flame");
 
-        classGrid[1][0] = GelatinLevel.class;
+        grid[1][0] = new LevelOptionInfo(null, GelatinLevel.class, "Gelatin");
 
         // Empty
-        classGrid[1][1] = null;
-        classGrid[1][2] = null;
-        classGrid[1][3] = null;
-        classGrid[1][4] = null;
-        classGrid[1][5] = null;
+        grid[1][2] = null;
+        grid[1][3] = null;
+        grid[1][4] = null;
+        grid[1][5] = null;
     }
 
     @Override
@@ -134,18 +133,18 @@ public class LevelSelect extends ALevel {
          *  4. If we were top row and no valid level in bottom row (our matrix has unfilled rows), go up row by row until we hit a row with valid levels. Iterate through until we select the last valid level in that row.
          */
         if (keyCode == Input.Keys.UP) {
-            row = (((row - 1) % actorGrid.length) + actorGrid.length) % actorGrid.length;
+            row = (((row - 1) % grid.length) + grid.length) % grid.length;
 
-            if (row != (oldRow - 1) && actorGrid[row][col] == null) {
+            if (row != (oldRow - 1) && grid[row][col] == null) {
                 // We wrapped around, but matrix isn't fully filled and there's no level in the expected position.
                 boolean found = false;
-                int checkRow = actorGrid.length - 1;
+                int checkRow = grid.length - 1;
                 int checkCol = 1;
                 while (!found) {
-                    if (actorGrid[checkRow][0] == null) {
+                    if (grid[checkRow][0] == null) {
                         // No levels in this row. Move up a row.
                         checkRow -= 1;
-                    } else if (actorGrid[checkRow][checkCol] == null) {
+                    } else if (grid[checkRow][checkCol] == null) {
                         // Went too far, is no longer a valid level.
                         // Set selected to be previous one.
                         row = checkRow;
@@ -160,7 +159,7 @@ public class LevelSelect extends ALevel {
             }
 
             unselectAll();
-            actorGrid[row][col].setSelected(true);
+            grid[row][col].levelOption.setSelected(true);
             isHandled = true;
         }
 
@@ -173,18 +172,18 @@ public class LevelSelect extends ALevel {
          */
 
         if (keyCode == Input.Keys.DOWN) {
-            row = (((row + 1) % actorGrid.length) + actorGrid.length) % actorGrid.length;
+            row = (((row + 1) % grid.length) + grid.length) % grid.length;
 
-            if (row == (oldRow + 1) && actorGrid[row][col] == null) {
+            if (row == (oldRow + 1) && grid[row][col] == null) {
                 // Haven't wrapped around, but matrix isn't fully filled and there's no level in the expected position.
                 boolean found = false;
                 int checkCol = 1;
                 while (!found) {
-                    if (actorGrid[row][0] == null) {
+                    if (grid[row][0] == null) {
                         // No levels in this row. Manually wrap to top.
                         row = 0;
                         found = true;
-                    } else if (actorGrid[row][checkCol] == null) {
+                    } else if (grid[row][checkCol] == null) {
                         // Went too far, is no longer a valid level.
                         // Set selected to be previous one.
                         col = checkCol - 1;
@@ -198,7 +197,7 @@ public class LevelSelect extends ALevel {
             }
 
             unselectAll();
-            actorGrid[row][col].setSelected(true);
+            grid[row][col].levelOption.setSelected(true);
             isHandled = true;
         }
 
@@ -208,12 +207,12 @@ public class LevelSelect extends ALevel {
          *  2. If no valid level at the end of the same row, choose the last valid level in our row.
          */
         if (keyCode == Input.Keys.LEFT) {
-            col = (((col - 1) % actorGrid[0].length) + actorGrid[0].length) % actorGrid[0].length;
+            col = (((col - 1) % grid[0].length) + grid[0].length) % grid[0].length;
 
-            if (actorGrid[row][col] == null) {
+            if (grid[row][col] == null) {
                 // Irregular matrix. Find last valid level in this row.
-                for (int i = 0; i < actorGrid[0].length; i++) {
-                    if (actorGrid[row][i] == null) {
+                for (int i = 0; i < grid[0].length; i++) {
+                    if (grid[row][i] == null) {
                         // Went too far. Last column had valid level.
                         col = i - 1;
                         break;
@@ -222,7 +221,7 @@ public class LevelSelect extends ALevel {
             }
 
             unselectAll();
-            actorGrid[row][col].setSelected(true);
+            grid[row][col].levelOption.setSelected(true);
             isHandled = true;
         }
 
@@ -232,21 +231,21 @@ public class LevelSelect extends ALevel {
          *  2. If no valid level to the immediate right (irregular matrix), manually wrap to beginning.
          */
         if (keyCode == Input.Keys.RIGHT) {
-            col = (((col + 1) % actorGrid[0].length) + actorGrid[0].length) % actorGrid[0].length;
+            col = (((col + 1) % grid[0].length) + grid[0].length) % grid[0].length;
 
-            if (actorGrid[row][col] == null) {
+            if (grid[row][col] == null) {
                 // Irregular matrix. Manually wrap to left.
                 col = 0;
             }
 
             unselectAll();
-            actorGrid[row][col].setSelected(true);
+            grid[row][col].levelOption.setSelected(true);
             isHandled = true;
         }
 
 
         if (keyCode == Input.Keys.SPACE) {
-            actorGrid[row][col].execute();
+            grid[row][col].levelOption.execute();
             isHandled = true;
         }
 
@@ -264,10 +263,10 @@ public class LevelSelect extends ALevel {
     }
 
     public void unselectAll() {
-        for (int r = 0; r < actorGrid.length; r++) {
-            for (int c = 0; c < actorGrid[0].length; c++) {
-                if (actorGrid[r][c] != null) {
-                    actorGrid[r][c].setSelected(false);
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[0].length; c++) {
+                if (grid[r][c] != null) {
+                    grid[r][c].levelOption.setSelected(false);
                 }
             }
         }
@@ -276,5 +275,18 @@ public class LevelSelect extends ALevel {
     public boolean keyUp(int keyCode) {
         return true;
     }
-
 }
+
+class LevelOptionInfo {
+
+    public LevelOption levelOption;
+    public Class levelClass;
+    public String levelName;
+
+    public LevelOptionInfo(LevelOption levelOption, Class levelClass, String levelName) {
+        this.levelOption = levelOption;
+        this.levelClass = levelClass;
+        this.levelName = levelName;
+    }
+}
+
