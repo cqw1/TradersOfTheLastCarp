@@ -59,7 +59,7 @@ public class Stargazer extends AEnemy {
     private Animation<TextureRegion> gazeAnimation;
     private Animation<TextureRegion> gazeReverseAnimation;
 
-    public Stargazer(AssetManager assetManager, int x, int y, AMovement movement) {
+    public Stargazer(AssetManager assetManager, float x, float y, AMovement movement) {
         super(assetManager, new Rectangle(x, y, 40, 40), movement, hp, atk);
 
         setFloating(true);

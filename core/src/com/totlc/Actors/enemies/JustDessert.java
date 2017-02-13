@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.effects.FlanParts;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.enemies.movement.IntervalMovement;
-import com.totlc.Actors.damage.Projectile;
 import com.totlc.AssetList;
 
 /**
@@ -121,7 +121,7 @@ public class JustDessert extends AEnemy{
     @Override
     public boolean collidesWith(Actor otherActor){
         boolean returnMe = super.collidesWith(otherActor);
-        if (otherActor instanceof Projectile && ((Projectile)otherActor).getDamageType() != 1) {
+        if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1) {
             if (!isInvincible()) {
                 int newHP = (int) Math.floor(getHpCurrent() * 0.5);
                 if (newHP > 0 && getHpCurrent() > 1){

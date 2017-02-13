@@ -14,11 +14,22 @@ import com.totlc.Actors.triggers.TriggerFactory;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.*;
 
+/**
+ * Order of demo levels:
+ *  Sandbox
+ *  Spike trap
+ *  Teleporter
+ *  Spider repository and spiders
+ *  Stargazer
+ *  Flan + arrow trap (to exhibit splitting)
+ *  Flamethrowers
+ */
+
 public class SandBoxLevel extends ALevel{
 
     public SandBoxLevel(AssetManager assetManager) {
-        super(assetManager, Objectives.DESTROY);
-        setNextLevel(TitleScreen.class);
+        super(assetManager, Objectives.SURVIVE);
+        setNextLevel(SpikeLevel.class);
     }
 
     public void initLevel() {

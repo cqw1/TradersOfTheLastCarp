@@ -8,7 +8,6 @@ import com.totlc.Actors.Character;
 import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.effects.Stun;
 import com.totlc.Actors.enemies.movement.AMovement;
-import com.totlc.Actors.damage.Projectile;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
@@ -89,7 +88,7 @@ public abstract class AEnemy extends Character {
         if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1) {
             System.out.println("collidesWith Projectile");
             if (!invincible) {
-                takeDamage(((Projectile)otherActor).getAttack());
+                takeDamage(((Damage)otherActor).getAttack());
             }
 
         } else if (otherActor instanceof Whip) {

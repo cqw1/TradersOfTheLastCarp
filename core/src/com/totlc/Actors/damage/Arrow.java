@@ -13,17 +13,16 @@ import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.terrain.AWall;
 import com.totlc.AssetList;
 
-public class Arrow extends Projectile {
+public class Arrow extends Damage {
 
     private static int damage = 1;
     private static float longSide = 80;
     private static float shortSide = 32;
 
     public Arrow(AssetManager assetManager, float x, float y, int damageType) {
-        super(assetManager, new Rectangle(x, y, longSide, shortSide));
+        super(assetManager, new Rectangle(x, y, longSide, shortSide), damage);
 
         setDamageType(damageType);
-        setAttack(damage);
         setScaleFactor(0.75f);
 
         setTexture(new Texture(Gdx.files.internal(AssetList.PROJECTILE_ARROW.toString())));

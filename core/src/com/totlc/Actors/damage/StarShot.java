@@ -11,7 +11,7 @@ import com.totlc.AssetList;
 
 import java.awt.geom.Point2D;
 
-public class StarShot extends Projectile {
+public class StarShot extends Damage {
 
     // Asset and animation constants.
     private TextureAtlas shotTextureAtlas, particleAtlas;
@@ -22,15 +22,15 @@ public class StarShot extends Projectile {
     private long startTime;
     private boolean removeFlag = false;
     private Point2D textureDimensions;
+    private static int damage = 2;
 
     public StarShot(AssetManager assetManager, float x, float y, int damageType){
-        super(assetManager, new Rectangle(x, y, 24, 24));
+        super(assetManager, new Rectangle(x, y, 24, 24), damage);
 
         //TODO: Correct hitboxes?
         moveHitBox(20, 20);
 
         setDamageType(damageType);
-        setAttack(2);
         setScaleFactor(1.0f);
 
         shotTextureAtlas = assetManager.get(AssetList.PROJECTILE_STAR_SHOT.toString());

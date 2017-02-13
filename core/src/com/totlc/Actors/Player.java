@@ -12,7 +12,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.enemies.AEnemy;
-import com.totlc.Actors.damage.Projectile;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;

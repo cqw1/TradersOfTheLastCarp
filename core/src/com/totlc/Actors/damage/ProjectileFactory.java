@@ -8,8 +8,8 @@ import java.awt.geom.Point2D;
 
 public class ProjectileFactory {
 
-    public static Actor createProjectile(ProjEnum type, Point2D vel, AssetManager assetManager, float x, float y, int damageType) {
-        TotlcObject returnMe;
+    public static Damage createProjectile(ProjEnum type, Point2D vel, AssetManager assetManager, float x, float y, int damageType) {
+        Damage returnMe;
 
         //Handle the type
         if (type.equals(ProjEnum.ARROW)) {
