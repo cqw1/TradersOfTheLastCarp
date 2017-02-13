@@ -22,7 +22,7 @@ public class SpikeTrap extends ATrap {
 
     public SpikeTrap(AssetManager assetManager, Rectangle r, long delay) {
         super(assetManager, r, delay);
-        damageArea = new Damage(assetManager, r, damage) {
+        damageArea = new Damage(assetManager, r, damage, 0) {
             @Override
             public void draw(Batch batch, float alpha) {
 

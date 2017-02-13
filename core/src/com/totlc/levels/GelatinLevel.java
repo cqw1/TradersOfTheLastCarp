@@ -1,6 +1,8 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.totlc.Actors.enemies.GelatinKing;
+import com.totlc.Actors.enemies.movement.RandomMovement;
 import com.totlc.Actors.traps.ATrap;
 import com.totlc.Actors.traps.FireTrap;
 import com.totlc.Actors.triggers.ATrigger;
@@ -21,6 +23,12 @@ public class GelatinLevel extends ALevel {
     public void initLevel() {
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("gelatin");
+
+        GelatinKing g = new GelatinKing(getAssetManager(), 1000, 300, new RandomMovement(getPlayer()));
+        addActor(g);
+
+        GelatinKing og = new GelatinKing(getAssetManager(), 1000, 500, new RandomMovement(getPlayer()), true);
+        addActor(og);
 
         endInit();
     }

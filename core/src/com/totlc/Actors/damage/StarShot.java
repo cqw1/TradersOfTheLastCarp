@@ -25,7 +25,7 @@ public class StarShot extends Damage {
     private static int damage = 2;
 
     public StarShot(AssetManager assetManager, float x, float y, int damageType){
-        super(assetManager, new Rectangle(x, y, 24, 24), damage);
+        super(assetManager, new Rectangle(x, y, 24, 24), damage, damageType);
 
         //TODO: Correct hitboxes?
         moveHitBox(20, 20);

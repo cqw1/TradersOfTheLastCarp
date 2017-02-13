@@ -14,7 +14,6 @@ public abstract class FireStream extends Damage {
 
     // Texture information
     private TextureAtlas particleAtlas;
-
     private ParticleEffect fire;
 
     // Positioning information.
@@ -27,7 +26,7 @@ public abstract class FireStream extends Damage {
     private long range;
 
     public FireStream(AssetManager assetManager, TotlcObject actor, float x, float y, float width, float height, long range, int damageType) {
-        super(assetManager, new Rectangle(x, y, width, height), 1);
+        super(assetManager, new Rectangle(x, y, width, height), 1, damageType);
         setDamageType(damageType);
         setRange(range);
         loadAssets(assetManager);

@@ -20,7 +20,7 @@ public class Arrow extends Damage {
     private static float shortSide = 32;
 
     public Arrow(AssetManager assetManager, float x, float y, int damageType) {
-        super(assetManager, new Rectangle(x, y, longSide, shortSide), damage);
+        super(assetManager, new Rectangle(x, y, longSide, shortSide), damage, damageType);
 
         setDamageType(damageType);
         setScaleFactor(0.75f);

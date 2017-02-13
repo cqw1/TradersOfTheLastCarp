@@ -69,6 +69,7 @@ public enum AssetList {
     ARROW_BREAK("effects/arrowbreak.particle", null),
     SHIELD("effects/shield.particle", null),
     SPARKLE("effects/sparkle.particle", null),
+    ELECTRICITY("effects/lightning.particle", null),
     SPLASH("effects/splash.particle", null),
     FLAN_PARTS_0("effects/flan_parts.particle", null),
     FLAN_PARTS_1("effects/flan_parts_prime.particle", null),

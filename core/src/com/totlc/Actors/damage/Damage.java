@@ -13,9 +13,10 @@ public abstract class Damage extends TotlcObject {
     // Damage type. 0 - Damages all; 1 - Damages Player; 2 - Damages enemies.
     private int damageType;
 
-    public Damage(AssetManager assetManager, Rectangle r, int attack) {
+    public Damage(AssetManager assetManager, Rectangle r, int attack, int damageType) {
         super(assetManager, r);
         this.attack = attack;
+        this.damageType = damageType;
     }
 
     public void act(float delta) {
