@@ -11,7 +11,7 @@ public abstract class ATrap extends TotlcObject {
     private long delay; // in millis
     private boolean active;
     private boolean setup;
-
+    private TotlcObject targetActor;
     private long startTime;
 
     public ATrap(AssetManager assetManager, Rectangle r, long delay) {
@@ -41,6 +41,11 @@ public abstract class ATrap extends TotlcObject {
             setStartTime(System.currentTimeMillis());
             setSetup(true);
         }
+    }
+
+    public void setup(TotlcObject otherActor) {
+        this.setup();
+        targetActor = otherActor;
     }
 
     public void act(float delta) {
@@ -93,5 +98,13 @@ public abstract class ATrap extends TotlcObject {
 
     public void setStartTime(long startTime) {
         this.startTime = startTime;
+    }
+
+    public TotlcObject getTargetActor() {
+        return targetActor;
+    }
+
+    public void setTargetActor(TotlcObject targetActor) {
+        this.targetActor = targetActor;
     }
 }
