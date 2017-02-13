@@ -82,6 +82,7 @@ public enum AssetList {
     FIRE_TRAP_LEFT("traps/fire_trap/fire_trap_left.png", Texture.class),
     FIRE_TRAP_DOWN("traps/fire_trap/fire_trap_down.png", Texture.class),
     EYE_GLOW("traps/fire_trap/eye_glow.atlas", TextureAtlas.class),
+    SPIKE_TRAP("traps/spike_trap.atlas", TextureAtlas.class),
     GOLDFISH("sprites/goldfish/goldfish_flop.atlas", TextureAtlas.class),
     GOLDFISH_GLOW("sprites/goldfish/goldfish_glow.atlas", TextureAtlas.class),
 

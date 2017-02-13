@@ -1,0 +1,90 @@
+
+spike_trap.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+spike0
+  rotate: false
+  xy: 2, 184
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike1
+  rotate: false
+  xy: 2, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike11
+  rotate: false
+  xy: 2, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike2
+  rotate: false
+  xy: 154, 184
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike10
+  rotate: false
+  xy: 154, 184
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike3
+  rotate: false
+  xy: 154, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike9
+  rotate: false
+  xy: 154, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike4
+  rotate: false
+  xy: 306, 184
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike8
+  rotate: false
+  xy: 306, 184
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike5
+  rotate: false
+  xy: 306, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike7
+  rotate: false
+  xy: 306, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
+spike6
+  rotate: false
+  xy: 458, 184
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: -1
