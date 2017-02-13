@@ -207,6 +207,11 @@ public abstract class ALevel extends Stage {
             return true;
         }
 
+        if (keycode == Input.Keys.ESCAPE) {
+            ALevel nextLevelObject = LevelFactory.createLevel(LevelSelect.class, assetManager);
+            loadLevel(nextLevelObject);
+        }
+
         return false;
     }
 

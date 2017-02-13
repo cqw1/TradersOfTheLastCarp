@@ -23,6 +23,7 @@ import com.totlc.levels.ObjectiveVerifier.*;
  *  Stargazer
  *  Flan + arrow trap (to exhibit splitting)
  *  Flamethrowers
+ *  GelatinLevel
  */
 
 public class SandBoxLevel extends ALevel{

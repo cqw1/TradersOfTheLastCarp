@@ -7,24 +7,20 @@ import com.totlc.Actors.triggers.ATrigger;
 import com.totlc.Actors.triggers.TriggerFactory;
 import com.totlc.TradersOfTheLastCarp;
 
-public class FlameLevel extends ALevel {
+/**
+ * Created by cwang on 2/12/17.
+ */
+public class GelatinLevel extends ALevel {
 
-    public FlameLevel(AssetManager assetManager) {
+    public GelatinLevel(AssetManager assetManager) {
         super(assetManager, ObjectiveVerifier.Objectives.SURVIVE);
-        setNextLevel(GelatinLevel.class);
+        setNextLevel(TitleScreen.class);
     }
 
     @Override
     public void initLevel() {
         setPlayer(TradersOfTheLastCarp.player);
-        setNameString("flame");
-
-        ATrap trap = new FireTrap(getAssetManager(), 500, 500, 800, 200);
-        addActor(trap);
-
-        ATrigger trigger = TriggerFactory.createTrigger(TriggerFactory.BUTTON, getAssetManager(), 300, 500);
-        trigger.addTrap(trap);
-        addActor(trigger);
+        setNameString("gelatin");
 
         endInit();
     }

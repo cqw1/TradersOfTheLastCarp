@@ -31,6 +31,8 @@ public class LevelFactory {
             return new FlanLevel(assetManager);
         } else if (type.equals(FlameLevel.class)) {
             return new FlameLevel(assetManager);
+        } else if (type.equals(GelatinLevel.class)) {
+            return new GelatinLevel(assetManager);
         }
 
         return null;
