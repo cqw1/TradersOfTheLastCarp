@@ -78,8 +78,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	    viewport.update(width, height, true);
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0);
-
-	    //level.getViewport().update(width, height);
+		//level.getViewport().update(width, height);
 	}
 
 	@Override

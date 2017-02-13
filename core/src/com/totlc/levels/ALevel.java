@@ -47,6 +47,8 @@ public abstract class ALevel extends Stage {
     private Player player = TradersOfTheLastCarp.player;
     private TotlcObject dedScreen;
 
+    private FitViewport viewport = new FitViewport(CONFIG_WIDTH, CONFIG_HEIGHT);
+
     private AssetManager assetManager;
 
     private TextureRegion objIcon;
