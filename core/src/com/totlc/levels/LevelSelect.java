@@ -103,6 +103,7 @@ public class LevelSelect extends ALevel {
         grid[0][5] = new LevelOptionInfo(null, FlameLevel.class, "Flame");
 
         grid[1][0] = new LevelOptionInfo(null, GelatinLevel.class, "Gelatin");
+        grid[1][1] = new LevelOptionInfo(null, GoldfishLevel.class, "Goldfish");
 
         // Empty
         grid[1][2] = null;

@@ -42,6 +42,7 @@ public abstract class ATrigger extends TotlcObject {
 
     public void handleTrigger(boolean b, Actor a) { setTriggered(b); setActorThatTriggered(a);}
 
+    @Override
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player ||
                 (otherActor instanceof AEnemy &&
@@ -62,6 +63,7 @@ public abstract class ATrigger extends TotlcObject {
         return false;
     }
 
+    @Override
     public void endCollidesWith(Actor otherActor) {
         if (isTriggered() && otherActor == getActorThatTriggered()) {
             setTriggered(false);

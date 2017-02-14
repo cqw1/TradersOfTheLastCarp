@@ -108,6 +108,13 @@ public abstract class ALevel extends Stage {
         this.getViewport().update(TradersOfTheLastCarp.SCREEN_WIDTH, TradersOfTheLastCarp.SCREEN_HEIGHT, true);
 //        camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0);
 
+        // Prevents the case where the user holds down a key and exits the level, then we don't ever set the moving
+        // direction back to false. The player automatically starts walking once the next level loads then.
+        player.setMovingLeft(false);
+        player.setMovingRight(false);
+        player.setMovingUp(false);
+        player.setMovingDown(false);
+
         initOtherLevelStuff();
     }
 
@@ -150,7 +157,7 @@ public abstract class ALevel extends Stage {
         Array<Actor> allActors = getActors();
         toBeRemoved.clear();
         for (int aCounter = 0; aCounter < allActors.size; aCounter++) {
-            //Ignore if not an interactable object or being removed
+            // Ignore if not an interactable object or being removed
             Actor a = allActors.get(aCounter);
 //            System.out.println(a.getClass());
             if (!(a instanceof TotlcObject) || toBeRemoved.contains(a)) {
@@ -159,7 +166,7 @@ public abstract class ALevel extends Stage {
 
             TotlcObject objA = (TotlcObject) a;
             for (int bCounter = aCounter; bCounter < allActors.size; bCounter++) {
-                //Ignore again, except add that we ignore references to ourselves, or objects being removed
+                // Ignore again, except add that we ignore references to ourselves, or objects being removed
                 Actor b = allActors.get(bCounter);
                 if (!(b instanceof TotlcObject) || a == b || toBeRemoved.contains(b)) { // || toBeRemoved.contains(b)
                     continue;
@@ -182,6 +189,14 @@ public abstract class ALevel extends Stage {
 
         //Remove any actors that need to disappear
         for (Actor beingRemoved: toBeRemoved) {
+            for (Actor actor: allActors) {
+                // If actor is being removed, then it should endCollidesWith all other objects (e.g. an enemy got killed
+                // on a trigger, the trigger should know that it is no longer colliding with the enemy being removed.)
+                if (actor instanceof TotlcObject) {
+                    ((TotlcObject) actor).endCollidesWith(beingRemoved);
+                }
+            }
+
             beingRemoved.remove();
         }
     }

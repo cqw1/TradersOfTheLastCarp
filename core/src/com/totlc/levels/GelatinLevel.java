@@ -16,7 +16,7 @@ public class GelatinLevel extends ALevel {
 
     public GelatinLevel(AssetManager assetManager) {
         super(assetManager, ObjectiveVerifier.Objectives.SURVIVE);
-        setNextLevel(TitleScreen.class);
+        setNextLevel(GoldfishLevel.class);
     }
 
     @Override
