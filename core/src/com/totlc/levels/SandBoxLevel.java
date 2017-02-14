@@ -7,10 +7,10 @@ import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
 import com.totlc.Actors.enemies.movement.RandomMovement;
 import com.totlc.Actors.traps.ATrap;
 import com.totlc.Actors.traps.FireTrap;
-import com.totlc.Actors.traps.FireTrapDown;
 import com.totlc.Actors.traps.TrapFactory;
 import com.totlc.Actors.triggers.ATrigger;
 import com.totlc.Actors.triggers.TriggerFactory;
+import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.*;
 
@@ -41,8 +41,8 @@ public class SandBoxLevel extends ALevel{
         TradersOfTheLastCarp.musicPlayer.play();
 
         ATrap atrap = TrapFactory.createTrap(TrapFactory.SPIDER_TRAP, getAssetManager(), 700, 400);
-        ATrap btrap = new FireTrap(getAssetManager(), 200, 50, 800, 200);
-        ATrap ctrap = new FireTrapDown(getAssetManager(), 800, 700, 1200, 200);
+        ATrap btrap = new FireTrap(getAssetManager(), 200, 50, 800, 200, Directionality.RIGHT);
+        ATrap ctrap = new FireTrap(getAssetManager(), 800, 700, 1200, 200,Directionality.LEFT);
         addActor(atrap);
         addActor(btrap);
         addActor(ctrap);

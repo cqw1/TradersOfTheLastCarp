@@ -11,8 +11,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.effects.Exclamation;
 import com.totlc.Actors.damage.FireStream;
-import com.totlc.Actors.damage.FireStreamRight;
 import com.totlc.AssetList;
+import com.totlc.Directionality;
 
 public class FireTrap extends ATrap {
 
@@ -30,7 +30,26 @@ public class FireTrap extends ATrap {
 
     public FireTrap(AssetManager assetManager, float x, float y, long range, long delay) {
         super(assetManager, new Rectangle(x, y, 110, 100), delay);
+        setIsFacing(Directionality.RIGHT);
         trapTexture = assetManager.get(AssetList.FIRE_TRAP_RIGHT.toString());
+        eyeTextureAtlas = assetManager.get(AssetList.EYE_GLOW.toString());
+        trapAnimation = new Animation<TextureRegion>(1 / 24f, eyeTextureAtlas.getRegions());
+        fireSound = Gdx.audio.newSound(Gdx.files.internal("sounds/fire0.mp3"));
+        setDuration(duration);
+        setRange(range);
+    }
+
+    public FireTrap(AssetManager assetManager, float x, float y, long range, long delay, Directionality facing) {
+        super(assetManager, new Rectangle(x, y, 110, 100), delay);
+        setIsFacing(facing);
+        if (getIsFacing().isFacingLeft()){
+            trapTexture = assetManager.get(AssetList.FIRE_TRAP_LEFT.toString());
+            moveHitBox(getHitBoxWidth() * 0.35f, 0);
+        } else if (getIsFacing().isFacingDown()){
+            trapTexture = assetManager.get(AssetList.FIRE_TRAP_DOWN.toString());
+        } else {
+            trapTexture = assetManager.get(AssetList.FIRE_TRAP_RIGHT.toString());
+        }
         eyeTextureAtlas = assetManager.get(AssetList.EYE_GLOW.toString());
         trapAnimation = new Animation<TextureRegion>(1 / 24f, eyeTextureAtlas.getRegions());
         fireSound = Gdx.audio.newSound(Gdx.files.internal("sounds/fire0.mp3"));
@@ -40,7 +59,7 @@ public class FireTrap extends ATrap {
 
     @Override
     public void activate() {
-        fire = new FireStreamRight(getAssetManager(), this, getX(), getY(), getRange(), 0);
+        fire = new FireStream(getAssetManager(), this, getX(), getY(), getRange(), 0, getIsFacing());
         fireSound.play();
         getStage().addActor(fire);
     }
@@ -73,7 +92,14 @@ public class FireTrap extends ATrap {
     public void draw(Batch batch, float alpha) {
         batch.draw(trapTexture, getX(), getY());
         if (isActive() || isSetup()) {
-            batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), true), (float)getHitBoxCenter().getX() - 10, (float)getHitBoxCenter().getY());
+            if (getIsFacing().isFacingLeft()){
+                batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), true), (float)getHitBoxCenter().getX() - 4, (float)getHitBoxCenter().getY());
+            } else if (getIsFacing().isFacingDown()){
+                batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), true), (float)getHitBoxCenter().getX() - 43, (float)getHitBoxCenter().getY());
+                batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), true), (float)getHitBoxCenter().getX() + 25, (float)getHitBoxCenter().getY());
+            } else {
+                batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), true), (float)getHitBoxCenter().getX() - 10, (float)getHitBoxCenter().getY());
+            }
         }
     }
 
