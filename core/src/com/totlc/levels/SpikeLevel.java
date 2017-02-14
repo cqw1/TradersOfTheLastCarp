@@ -14,7 +14,7 @@ public class SpikeLevel extends ALevel {
     }
 
     @Override
-    public void initLevel() {
+    public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("Spike Traps");
 

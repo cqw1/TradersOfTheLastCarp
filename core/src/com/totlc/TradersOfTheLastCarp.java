@@ -3,28 +3,21 @@ package com.totlc;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.*;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
@@ -44,11 +37,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
     public static FitViewport viewport;
 
-	// Holds the actual level objects.
-	public static ArrayList<ALevel> LEVEL_OBJ = new ArrayList<ALevel>();
-	// Holds the class names of each level object. Must correspond with LEVEL_OBJ.
-    // Used so we can find the index of current level by finding indexOf classname.
-    public static ArrayList<String> LEVEL_NAME = new ArrayList<String>();
+    public static int SCREEN_WIDTH = CONFIG_WIDTH;
+    public static int SCREEN_HEIGHT = CONFIG_HEIGHT;
 
 	@Override
 	public void create() {
@@ -57,29 +47,33 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 		// For drawing hitboxes.
 		shapeRenderer = new ShapeRenderer();
-//		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.setColor(Color.RED);
 
         camera = new OrthographicCamera(CONFIG_WIDTH, CONFIG_HEIGHT);
         camera.setToOrtho(false, CONFIG_WIDTH, CONFIG_HEIGHT);
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0);
 
+		shapeRenderer.setProjectionMatrix(camera.combined);
+
         viewport = new FitViewport(CONFIG_WIDTH, CONFIG_HEIGHT, camera);
         viewport.apply();
 
         level = LevelFactory.createLevel(TitleScreen.class, assetManager);
 		Gdx.input.setInputProcessor(level);
-		level.initLevel();
+//		level.initOtherLevelStuff();
+        level.initLevel();
 	}
 
 	@Override
 	public void resize(int width, int height) {
         System.out.println("width: " + width);
         System.out.println("height: " + height);
+        SCREEN_WIDTH = width;
+        SCREEN_HEIGHT = height;
 
 	    viewport.update(width, height, true);
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0);
-		//level.getViewport().update(width, height);
+		level.getViewport().update(width, height);
 	}
 
 	@Override

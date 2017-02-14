@@ -17,7 +17,7 @@ public class Level03 extends ALevel {
         setNextLevel(EndLevel.class);
     }
 
-    public void initLevel() {
+    public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         loadFromTMX(tmxFileName);
 

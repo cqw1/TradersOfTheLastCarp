@@ -20,7 +20,7 @@ public class GelatinLevel extends ALevel {
     }
 
     @Override
-    public void initLevel() {
+    public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("gelatin");
 

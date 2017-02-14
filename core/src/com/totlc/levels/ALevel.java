@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.UI.*;
@@ -35,13 +34,11 @@ import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.Objectives;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.HashSet;
 
 import static com.totlc.TradersOfTheLastCarp.CONFIG_HEIGHT;
 import static com.totlc.TradersOfTheLastCarp.CONFIG_WIDTH;
-import static com.totlc.TradersOfTheLastCarp.viewport;
 
 public abstract class ALevel extends Stage {
 
@@ -106,7 +103,15 @@ public abstract class ALevel extends Stage {
         objIcon.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
-    public abstract void initLevel();
+    public void initLevel() {
+        this.setViewport(TradersOfTheLastCarp.viewport);
+        this.getViewport().update(TradersOfTheLastCarp.SCREEN_WIDTH, TradersOfTheLastCarp.SCREEN_HEIGHT, true);
+//        camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0);
+
+        initOtherLevelStuff();
+    }
+
+    public abstract void initOtherLevelStuff();
 
     public void endInit() {
         initWalls();

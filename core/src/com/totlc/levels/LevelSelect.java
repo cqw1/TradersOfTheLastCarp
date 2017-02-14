@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.UI.LevelOption;
 import com.totlc.Actors.UI.MenuOption;
@@ -111,7 +112,7 @@ public class LevelSelect extends ALevel {
     }
 
     @Override
-    public void initLevel() {
+    public void initOtherLevelStuff() {
 
     }
 
@@ -278,6 +279,9 @@ public class LevelSelect extends ALevel {
     }
 }
 
+/**
+ * Only used in this file to encapsulate all the info for one level select item.
+ */
 class LevelOptionInfo {
 
     public LevelOption levelOption;

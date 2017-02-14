@@ -12,7 +12,7 @@ public class StargazerLevel extends ALevel {
         setNextLevel(FlanLevel.class);
     }
 
-    public void initLevel() {
+    public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("Stargazer");
 

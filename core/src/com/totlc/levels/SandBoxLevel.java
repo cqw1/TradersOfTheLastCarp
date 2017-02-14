@@ -33,7 +33,7 @@ public class SandBoxLevel extends ALevel{
         setNextLevel(SpikeLevel.class);
     }
 
-    public void initLevel() {
+    public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("SandBox");
 
