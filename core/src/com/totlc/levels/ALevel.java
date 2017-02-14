@@ -545,4 +545,9 @@ public abstract class ALevel extends Stage {
         return parsed;
     }
 
+    // Full restore of the player's health.
+    public void restorePlayerHealth() {
+        player.setHpCurrent(player.getHpMax());
+    }
+
 }
