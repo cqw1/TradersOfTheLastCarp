@@ -85,12 +85,10 @@ public class SpikeTrap extends ATrap {
     @Override
     public void draw(Batch batch, float alpha) {
         if (isActive()){
-            System.out.println("SPIKES OUT");
             batch.draw(trapAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
         } else {
             batch.draw(trapTextureAtlas.getRegions().get(0), getX(), getY());
             if(this.reverse){
-                System.out.println("RETRACT");
                 batch.draw(trapReverseAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());
             }
         }
