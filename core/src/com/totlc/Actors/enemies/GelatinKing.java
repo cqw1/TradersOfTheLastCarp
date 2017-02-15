@@ -87,6 +87,7 @@ public class GelatinKing extends AEnemy {
 
     @Override
     public void draw(Batch batch, float alpha) {
+        drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         if(this.king){
             batch.draw(kingAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
                     (float) kingTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
