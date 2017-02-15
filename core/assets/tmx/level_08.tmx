@@ -41,7 +41,7 @@
   <object id="11" x="1434.67" y="321.333" width="64" height="64">
    <properties>
     <property name="invincible" type="bool" value="true"/>
-    <property name="movement" value="BASIC"/>
+    <property name="movement" value="INTERVAL"/>
     <property name="type" value="SPIDER"/>
    </properties>
    <ellipse/>

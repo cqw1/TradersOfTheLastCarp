@@ -48,9 +48,9 @@
     <property name="type" value="SPIDER_TRAP"/>
    </properties>
   </object>
-  <object id="7" name="7" x="352.667" y="258.667" width="124" height="192">
+  <object id="7" name="7" x="371.333" y="313.333" width="110" height="100">
    <properties>
-    <property name="type" value="ARROW_TRAP"/>
+    <property name="type" value="FIRE_TRAP"/>
    </properties>
   </object>
   <object id="8" name="8" x="592.667" y="576" width="110" height="100">
@@ -80,18 +80,18 @@
   </object>
   <object id="11" x="622.667" y="368" width="32" height="32">
    <properties>
-    <property name="trap_id" value="8"/>
+    <property name="trap_id" value="7:8"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="ENEMIES">
-  <object id="3" x="830.667" y="255" width="160" height="250">
+  <object id="3" x="1116" y="348.333" width="32" height="32">
    <properties>
-    <property name="type" value="GELATIN_KING"/>
+    <property name="type" value="SPIDER"/>
    </properties>
   </object>
-  <object id="6" x="1109.33" y="673.333" width="40" height="40">
+  <object id="6" x="961.333" y="244" width="40" height="40">
    <properties>
     <property name="type" value="STAR"/>
    </properties>

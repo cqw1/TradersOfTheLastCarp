@@ -24,6 +24,7 @@ public class TitleScreen extends ALevel {
 
     public TitleScreen(AssetManager assetManager) {
         super(assetManager);
+        TradersOfTheLastCarp.musicPlayer.stop();
         titleScreen = new TotlcObject(assetManager, new Rectangle()) {
 
             String asset = AssetList.TITLE_SCREEN.toString();

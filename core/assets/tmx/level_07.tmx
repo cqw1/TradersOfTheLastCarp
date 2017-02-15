@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="48">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="49">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -36,13 +36,19 @@
 </data>
  </layer>
  <objectgroup name="ITEMS">
-  <object id="46" x="703.667" y="515.333" width="62" height="60">
+  <object id="46" x="702.333" y="472.667" width="62" height="60">
    <properties>
     <property name="type" value="HEALTH"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="47" x="1349" y="182" width="62" height="60">
+  <object id="47" x="1058.33" y="378" width="62" height="60">
+   <properties>
+    <property name="type" value="HEALTH"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="48" x="354.333" y="588.667" width="62" height="60">
    <properties>
     <property name="type" value="HEALTH"/>
    </properties>

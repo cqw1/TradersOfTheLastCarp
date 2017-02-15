@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="14">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="17">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -43,11 +43,6 @@
   </object>
  </objectgroup>
  <objectgroup name="TRAPS">
-  <object id="1" name="1" x="448.667" y="318.667" width="124" height="192">
-   <properties>
-    <property name="type" value="ARROW_TRAP"/>
-   </properties>
-  </object>
   <object id="5" name="5" x="1086.67" y="320" width="128" height="128">
    <properties>
     <property name="type" value="SPIKE_TRAP"/>
@@ -63,17 +58,28 @@
     <property name="type" value="SPIKE_TRAP"/>
    </properties>
   </object>
+  <object id="14" name="14" x="513.333" y="321.333" width="128" height="128">
+   <properties>
+    <property name="type" value="SPIKE_TRAP"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="TRIGGERS">
-  <object id="7" x="333.333" y="385.333" width="32" height="32">
+  <object id="9" x="560" y="369.333" width="32" height="32">
    <properties>
-    <property name="trap_id" value="1"/>
+    <property name="trap_id" value="5:10:11:14"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="9" x="717.333" y="385.333" width="32" height="32">
+  <object id="15" x="849.333" y="592" width="32" height="32">
    <properties>
-    <property name="trap_id" value="5:10:11"/>
+    <property name="trap_id" value="5:10"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="16" x="848" y="144" width="32" height="32">
+   <properties>
+    <property name="trap_id" value="11:5"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
