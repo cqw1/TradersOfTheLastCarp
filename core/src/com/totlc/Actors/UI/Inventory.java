@@ -18,6 +18,8 @@ public class Inventory extends Actor{
     private Texture uiComponent, itemIcon;
     private TextureRegion scoreIcon;
     private BitmapFont font;
+    GlyphLayout layout = new GlyphLayout();
+    private int scoreOffset = 60;
 
     // Reference to actor to draw for.
     private Player player;
@@ -54,10 +56,10 @@ public class Inventory extends Actor{
     }
 
     private void drawScore(Batch batch, float alpha){
-        font.draw(batch, "SCORE: " + ((ALevel)getStage()).getPlayer().getGoldFishCount(), getX()+ uiComponent.getWidth(), getY() + uiComponent.getHeight() * 0.2f);
-        batch.draw(scoreIcon, getX() + uiComponent.getWidth() * 2.0f, getY(), (float) scoreIcon.getRegionWidth() * 0.5f,
-                (float) scoreIcon.getRegionHeight() * 0.5f,
-                (float) scoreIcon.getRegionWidth(),
-                (float) scoreIcon.getRegionHeight(), 0.5f, 0.5f, 0);
+        layout.setText(font, "SCORE: " + ((ALevel)getStage()).getPlayer().getGoldfishCount());
+        font.draw(batch, "SCORE: " + ((ALevel)getStage()).getPlayer().getGoldfishCount(), getX()+ uiComponent.getWidth() + scoreOffset, getY() + uiComponent.getHeight() * 0.53f);
+//        batch.draw(scoreIcon, getX() + uiComponent.getWidth() + scoreOffset + layout.width + 5, getY() + uiComponent.getHeight() * 0.53f - scoreIcon.getRegionHeight() * 0.5f * 0.36f - 5, 0, 0,
+//                (float) scoreIcon.getRegionWidth(),
+//                (float) scoreIcon.getRegionHeight(), 0.36f, 0.36f, 0);
     }
 }
