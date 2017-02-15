@@ -26,10 +26,24 @@ public class FireTrap extends ATrap {
 
     // Fire Stream variables.
     private FireStream fire;
-    private long range;
+    private long range; //TODO: FireRange should be included in fire stream no?
+
+    // Trap defaults
+    public static float width = 110;
+    public static float height = 100;
+    public static long defaultRange = 750;
+    public static long delay = 500;
+
+    public FireTrap(AssetManager assetManager, float x, float y) {
+        this(assetManager, x, y, defaultRange, delay);
+    }
+
+    public FireTrap(AssetManager assetManager, float x, float y, Directionality facing) {
+        this(assetManager, x, y, defaultRange, delay, facing);
+    }
 
     public FireTrap(AssetManager assetManager, float x, float y, long range, long delay) {
-        super(assetManager, new Rectangle(x, y, 110, 100), delay);
+        super(assetManager, new Rectangle(x, y, width, height), delay);
         setIsFacing(Directionality.RIGHT);
         trapTexture = assetManager.get(AssetList.FIRE_TRAP_RIGHT.toString());
         eyeTextureAtlas = assetManager.get(AssetList.EYE_GLOW.toString());
@@ -40,7 +54,7 @@ public class FireTrap extends ATrap {
     }
 
     public FireTrap(AssetManager assetManager, float x, float y, long range, long delay, Directionality facing) {
-        super(assetManager, new Rectangle(x, y, 110, 100), delay);
+        super(assetManager, new Rectangle(x, y, width, height), delay);
         setIsFacing(facing);
         if (getIsFacing().isFacingLeft()){
             trapTexture = assetManager.get(AssetList.FIRE_TRAP_LEFT.toString());

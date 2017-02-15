@@ -25,6 +25,8 @@ public class Player extends Character {
     private Texture standLeftTexture;
     private Texture standRightTexture;
 
+    private int goldfishCount = 0;
+
 
     // Player info.
     private float acc = 300;
@@ -257,5 +259,13 @@ public class Player extends Character {
 
     public void setWeapon(Whip whip) {
         weapon = whip;
+    }
+
+    public void setGoldfishCount(int count) {
+        goldfishCount = count;
+    }
+
+    public int getGoldfishCount() {
+        return goldfishCount;
     }
 }

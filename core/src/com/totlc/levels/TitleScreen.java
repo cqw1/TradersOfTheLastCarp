@@ -24,6 +24,7 @@ public class TitleScreen extends ALevel {
 
     public TitleScreen(AssetManager assetManager) {
         super(assetManager);
+        TradersOfTheLastCarp.musicPlayer.stop();
         titleScreen = new TotlcObject(assetManager, new Rectangle()) {
 
             String asset = AssetList.TITLE_SCREEN.toString();
@@ -79,7 +80,7 @@ public class TitleScreen extends ALevel {
     }
 
     @Override
-    public void initLevel() {}
+    public void initOtherLevelStuff() {}
 
     public boolean keyDown(int keyCode) {
         boolean isHandled = false;

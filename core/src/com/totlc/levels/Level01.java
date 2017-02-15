@@ -10,7 +10,7 @@ public class Level01 extends ALevel {
     public final String tmxFileName = AssetList.LEVEL01_TMX.toString();
 
     public Level01(AssetManager assetManager) {
-        super(assetManager, Objectives.DESTROY);
+        super(assetManager);
         setNextLevel(Level02.class);
     }
 
@@ -18,8 +18,9 @@ public class Level01 extends ALevel {
         return new Level01(assetManager);
     }
 
-    public void initLevel() {
+    public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
+        restorePlayerHealth();
         loadFromTMX(tmxFileName);
 
         TradersOfTheLastCarp.musicPlayer.setSong("test0");

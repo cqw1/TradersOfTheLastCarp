@@ -19,8 +19,8 @@ public class SpikeTrap extends ATrap {
     public static float width = 128;
     public static float height = 128;
     public static long duration = 1000;
-    public static long delay = 500;
-    private static Damage damageArea;
+    public static long delay = 750;
+    private Damage damageArea;
     private static int damage = 1;
 
     private boolean reverse;

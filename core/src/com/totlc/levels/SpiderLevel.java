@@ -13,7 +13,7 @@ public class SpiderLevel extends ALevel {
         setNextLevel(StargazerLevel.class);
     }
 
-    public void initLevel() {
+    public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("Spiders");
 

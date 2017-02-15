@@ -5,6 +5,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Player;
+import com.totlc.Actors.effects.Impact;
 import com.totlc.AssetList;
 
 public class Goldfish extends APickup {
@@ -52,20 +54,20 @@ public class Goldfish extends APickup {
     public void act(float deltaTime){
         super.act(deltaTime);
         increaseAnimationTime(deltaTime);
-        if (rotate){
-            angle+=angleDelta;
+        if (rotate) {
+            angle += angleDelta;
         } else{
-            angle-=angleDelta;
+            angle -= angleDelta;
         }
         long timeElapsed = System.currentTimeMillis() - timestamp;
 
-        if (timeElapsed > rotateLimit * 0.3f){
-            if (timeElapsed > rotateLimit){
+        if (timeElapsed > rotateLimit * 0.3f) {
+            if (timeElapsed > rotateLimit) {
                 timestamp = System.currentTimeMillis();
                 rotate = !rotate;
             }
             angleDelta = 1;
-        } else{
+        } else {
             angleDelta = 8;
         }
         sparkle.setPosition((float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY());
@@ -83,6 +85,11 @@ public class Goldfish extends APickup {
 
     @Override
     public boolean collidesWith(Actor otherActor) {
+        if (otherActor instanceof Player) {
+            ((Player) otherActor).setGoldfishCount(((Player) otherActor).getGoldfishCount() + 1);
+            return true;
+        }
+
         return false;
     }
 

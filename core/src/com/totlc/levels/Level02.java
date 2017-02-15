@@ -11,11 +11,11 @@ public class Level02 extends ALevel {
     public final String tmxFileName = AssetList.LEVEL02_TMX.toString();
 
     public Level02(AssetManager assetManager) {
-        super(assetManager, Objectives.DESTROY);
+        super(assetManager);
         setNextLevel(Level03.class);
     }
 
-    public void initLevel() {
+    public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         loadFromTMX(tmxFileName);
 

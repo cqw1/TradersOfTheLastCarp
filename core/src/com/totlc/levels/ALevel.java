@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.UI.*;
@@ -35,13 +34,11 @@ import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.Objectives;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.HashSet;
 
 import static com.totlc.TradersOfTheLastCarp.CONFIG_HEIGHT;
 import static com.totlc.TradersOfTheLastCarp.CONFIG_WIDTH;
-import static com.totlc.TradersOfTheLastCarp.viewport;
 
 public abstract class ALevel extends Stage {
 
@@ -74,17 +71,20 @@ public abstract class ALevel extends Stage {
     public ALevel(AssetManager assetManager) {
         this.assetManager = assetManager;
         this.dedScreen = new DiedScreen(assetManager);
+        this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight());
+        setStartTime(System.currentTimeMillis());
+        BasicTileSet bts = new BasicTileSet(getAssetManager());
+        addActor(bts);
     }
 
 
     public ALevel(AssetManager assetManager, Objectives objective) {
         this(assetManager);
-        this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight());
         this.objective = objective;
+        drawObjectives();
+    }
 
-        BasicTileSet bts = new BasicTileSet(getAssetManager());
-        addActor(bts);
-
+    public void drawObjectives() {
         TextureAtlas atlas = assetManager.get(AssetList.ICON_PACK.toString());
         switch (getObjective().getID()){
             case 0:
@@ -106,7 +106,22 @@ public abstract class ALevel extends Stage {
         objIcon.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
-    public abstract void initLevel();
+    public void initLevel() {
+        this.setViewport(TradersOfTheLastCarp.viewport);
+        this.getViewport().update(TradersOfTheLastCarp.SCREEN_WIDTH, TradersOfTheLastCarp.SCREEN_HEIGHT, true);
+//        camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0);
+
+        // Prevents the case where the user holds down a key and exits the level, then we don't ever set the moving
+        // direction back to false. The player automatically starts walking once the next level loads then.
+        player.setMovingLeft(false);
+        player.setMovingRight(false);
+        player.setMovingUp(false);
+        player.setMovingDown(false);
+
+        initOtherLevelStuff();
+    }
+
+    public abstract void initOtherLevelStuff();
 
     public void endInit() {
         initWalls();
@@ -145,7 +160,7 @@ public abstract class ALevel extends Stage {
         Array<Actor> allActors = getActors();
         toBeRemoved.clear();
         for (int aCounter = 0; aCounter < allActors.size; aCounter++) {
-            //Ignore if not an interactable object or being removed
+            // Ignore if not an interactable object or being removed
             Actor a = allActors.get(aCounter);
 //            System.out.println(a.getClass());
             if (!(a instanceof TotlcObject) || toBeRemoved.contains(a)) {
@@ -154,7 +169,7 @@ public abstract class ALevel extends Stage {
 
             TotlcObject objA = (TotlcObject) a;
             for (int bCounter = aCounter; bCounter < allActors.size; bCounter++) {
-                //Ignore again, except add that we ignore references to ourselves, or objects being removed
+                // Ignore again, except add that we ignore references to ourselves, or objects being removed
                 Actor b = allActors.get(bCounter);
                 if (!(b instanceof TotlcObject) || a == b || toBeRemoved.contains(b)) { // || toBeRemoved.contains(b)
                     continue;
@@ -177,6 +192,14 @@ public abstract class ALevel extends Stage {
 
         //Remove any actors that need to disappear
         for (Actor beingRemoved: toBeRemoved) {
+            for (Actor actor: allActors) {
+                // If actor is being removed, then it should endCollidesWith all other objects (e.g. an enemy got killed
+                // on a trigger, the trigger should know that it is no longer colliding with the enemy being removed.)
+                if (actor instanceof TotlcObject) {
+                    ((TotlcObject) actor).endCollidesWith(beingRemoved);
+                }
+            }
+
             beingRemoved.remove();
         }
     }
@@ -270,13 +293,36 @@ public abstract class ALevel extends Stage {
         TiledMap map = getAssetManager().get(tmxFileName);
         setNameString(parseLevelString(tmxFileName));
 
+        MapProperties mapProperties = map.getProperties();
+        switch(mapProperties.get("objective", Integer.class)) {
+            case 0:
+                this.objective = Objectives.SURVIVE;
+                setTimeLimit(mapProperties.get("time", Integer.class));
+                break;
+            case 1:
+                this.objective = Objectives.UNLOCK;
+                break;
+            case 2:
+                this.objective = Objectives.DESTROY;
+                break;
+        }
+        drawObjectives();
+
         //Traps have least priority, load first
         HashMap<Integer, ATrap> id2Trap = new HashMap<Integer, ATrap>(10);
         for (MapObject mo: map.getLayers().get(TrapFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            ATrap currentTrap = TrapFactory.createTrap(currentObjProp.get("type", String.class), getAssetManager(),
-                    currentObjProp.get("x", Float.class),
-                    currentObjProp.get("y", Float.class));
+            ATrap currentTrap;
+            if (currentObjProp.containsKey("delay")) {
+                currentTrap = TrapFactory.createCustomDelayTrap(currentObjProp.get("type", String.class), getAssetManager(),
+                        currentObjProp.get("x", Float.class),
+                        currentObjProp.get("y", Float.class),
+                        currentObjProp.get("delay", Integer.class));
+            } else {
+                currentTrap = TrapFactory.createTrap(currentObjProp.get("type", String.class), getAssetManager(),
+                        currentObjProp.get("x", Float.class),
+                        currentObjProp.get("y", Float.class));
+            }
             addActor(currentTrap);
             id2Trap.put(currentObjProp.get("id", Integer.class), currentTrap);
         }
@@ -299,7 +345,7 @@ public abstract class ALevel extends Stage {
             AEnemy currentEnemy;
 
             //Customize movement
-            if (currentObjProp.containsKey("movement")) {
+            if (!currentObjProp.containsKey("movement")) {
                 currentEnemy = EnemyFactory.createDefaultEnemy(currentObjProp.get("type", String.class), getAssetManager(),
                         currentObjProp.get("x", Float.class),
                         currentObjProp.get("y", Float.class));
@@ -504,7 +550,6 @@ public abstract class ALevel extends Stage {
     }
 
     public void loadLevel(ALevel toBeLoaded) {
-        toBeLoaded.setStartTime(System.currentTimeMillis());
         toBeLoaded.initLevel();
 
         TradersOfTheLastCarp.level = toBeLoaded;
@@ -523,6 +568,11 @@ public abstract class ALevel extends Stage {
         parsed = parsed.replaceAll("_", " "); // (e.g. "level 01") TODO I think our font displays lowercase in uppercase?
 
         return parsed;
+    }
+
+    // Full restore of the player's health.
+    public void restorePlayerHealth() {
+        player.setHpCurrent(player.getHpMax());
     }
 
 }

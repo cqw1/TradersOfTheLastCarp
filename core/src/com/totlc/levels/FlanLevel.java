@@ -16,7 +16,7 @@ public class FlanLevel extends ALevel {
         setNextLevel(FlameLevel.class);
     }
 
-    public void initLevel() {
+    public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("Flan");
 

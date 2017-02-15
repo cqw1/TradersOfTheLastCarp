@@ -39,8 +39,8 @@ public enum AssetList {
     FLAN_PRIME("sprites/flan/flan_prime.atlas", TextureAtlas.class),
     FLAN_JUMP_PRIME("sprites/flan/flan_prime_jump.atlas", TextureAtlas.class),
     PANGOLINI("sprites/pangolini/pangolini.png", Texture.class),
-    JELLYFISH("sprites/GelatinKing/jelly_fish.atlas", TextureAtlas.class),
-    GELATIN_KING("sprites/GelatinKing/gelatin_king.atlas", TextureAtlas.class),
+    JELLYFISH("sprites/gelatin_king/jelly_fish.atlas", TextureAtlas.class),
+    GELATIN_KING("sprites/gelatin_king/gelatin_king.atlas", TextureAtlas.class),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),
@@ -101,9 +101,17 @@ public enum AssetList {
     WALL_BOTTOM("tileset/wall_bottom.png", Texture.class),
     WALL_TOP("tileset/wall_top.png", Texture.class),
     END_CREDITS("UI/wowgood.png", Texture.class),
+
+    // TMX for levels
     LEVEL01_TMX("tmx/level_01.tmx", TiledMap.class),
     LEVEL02_TMX("tmx/level_02.tmx", TiledMap.class),
-    LEVEL03_TMX("tmx/level_03.tmx", TiledMap.class);
+    LEVEL03_TMX("tmx/level_03.tmx", TiledMap.class),
+    LEVEL04_TMX("tmx/level_04.tmx", TiledMap.class),
+    LEVEL05_TMX("tmx/level_05.tmx", TiledMap.class),
+    LEVEL06_TMX("tmx/level_06.tmx", TiledMap.class),
+    LEVEL07_TMX("tmx/level_07.tmx", TiledMap.class),
+    LEVEL08_TMX("tmx/level_08.tmx", TiledMap.class),
+    LEVEL09_TMX("tmx/level_09.tmx", TiledMap.class);
 
     private String pathname;
     private Class type;

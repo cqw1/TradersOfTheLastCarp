@@ -10,6 +10,7 @@ public class TrapFactory {
     public static final String TELEPORTER = "TELEPORTER";
     public static final String SPIKE_TRAP = "SPIKE_TRAP";
     public static final String EXIT_PORTAL = "EXIT_PORTAL";
+    public static final String FIRE_TRAP = "FIRE_TRAP";
 
     public static ATrap createTrap(String type, AssetManager assetManager, float x, float y) {
         if (type.equals(ARROW_TRAP)) {
@@ -22,8 +23,18 @@ public class TrapFactory {
             return new SpikeTrap(assetManager, x, y);
         } else if (type.equals(EXIT_PORTAL)) {
             return new ExitPortal(assetManager, x, y);
+        } else if (type.equals(FIRE_TRAP)) {
+            return new FireTrap(assetManager, x, y);
         }
 
+        System.out.println("ERROR: RECEIVED TYPE - " + type);
         return null;
+    }
+
+    public static ATrap createCustomDelayTrap(String type, AssetManager assetManager, float x, float y, long delay) {
+        ATrap trap = createTrap(type, assetManager, x, y);
+        trap.setDelay(delay);
+
+        return trap;
     }
 }

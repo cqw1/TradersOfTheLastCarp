@@ -6,7 +6,7 @@ import com.totlc.TradersOfTheLastCarp;
 
 public class Teleporter extends ATrap {
 
-    private static long delay = 500;
+    private static long delay = 250;
 
     public Teleporter(AssetManager assetManager, float x, float y) {
         super(assetManager, new Rectangle(x, y, 0, 0), delay);
