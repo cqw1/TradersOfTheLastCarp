@@ -71,17 +71,20 @@ public abstract class ALevel extends Stage {
     public ALevel(AssetManager assetManager) {
         this.assetManager = assetManager;
         this.dedScreen = new DiedScreen(assetManager);
+        this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight());
+        setStartTime(System.currentTimeMillis());
+        BasicTileSet bts = new BasicTileSet(getAssetManager());
+        addActor(bts);
     }
 
 
     public ALevel(AssetManager assetManager, Objectives objective) {
         this(assetManager);
-        this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight());
         this.objective = objective;
+        drawObjectives();
+    }
 
-        BasicTileSet bts = new BasicTileSet(getAssetManager());
-        addActor(bts);
-
+    public void drawObjectives() {
         TextureAtlas atlas = assetManager.get(AssetList.ICON_PACK.toString());
         switch (getObjective().getID()){
             case 0:
@@ -290,13 +293,36 @@ public abstract class ALevel extends Stage {
         TiledMap map = getAssetManager().get(tmxFileName);
         setNameString(parseLevelString(tmxFileName));
 
+        MapProperties mapProperties = map.getProperties();
+        switch(mapProperties.get("objective", Integer.class)) {
+            case 0:
+                this.objective = Objectives.SURVIVE;
+                setTimeLimit(mapProperties.get("time", Integer.class));
+                break;
+            case 1:
+                this.objective = Objectives.UNLOCK;
+                break;
+            case 2:
+                this.objective = Objectives.DESTROY;
+                break;
+        }
+        drawObjectives();
+
         //Traps have least priority, load first
         HashMap<Integer, ATrap> id2Trap = new HashMap<Integer, ATrap>(10);
         for (MapObject mo: map.getLayers().get(TrapFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            ATrap currentTrap = TrapFactory.createTrap(currentObjProp.get("type", String.class), getAssetManager(),
-                    currentObjProp.get("x", Float.class),
-                    currentObjProp.get("y", Float.class));
+            ATrap currentTrap;
+            if (currentObjProp.containsKey("delay")) {
+                currentTrap = TrapFactory.createCustomDelayTrap(currentObjProp.get("type", String.class), getAssetManager(),
+                        currentObjProp.get("x", Float.class),
+                        currentObjProp.get("y", Float.class),
+                        currentObjProp.get("delay", Integer.class));
+            } else {
+                currentTrap = TrapFactory.createTrap(currentObjProp.get("type", String.class), getAssetManager(),
+                        currentObjProp.get("x", Float.class),
+                        currentObjProp.get("y", Float.class));
+            }
             addActor(currentTrap);
             id2Trap.put(currentObjProp.get("id", Integer.class), currentTrap);
         }
@@ -319,7 +345,7 @@ public abstract class ALevel extends Stage {
             AEnemy currentEnemy;
 
             //Customize movement
-            if (currentObjProp.containsKey("movement")) {
+            if (!currentObjProp.containsKey("movement")) {
                 currentEnemy = EnemyFactory.createDefaultEnemy(currentObjProp.get("type", String.class), getAssetManager(),
                         currentObjProp.get("x", Float.class),
                         currentObjProp.get("y", Float.class));
@@ -524,7 +550,6 @@ public abstract class ALevel extends Stage {
     }
 
     public void loadLevel(ALevel toBeLoaded) {
-        toBeLoaded.setStartTime(System.currentTimeMillis());
         toBeLoaded.initLevel();
 
         TradersOfTheLastCarp.level = toBeLoaded;

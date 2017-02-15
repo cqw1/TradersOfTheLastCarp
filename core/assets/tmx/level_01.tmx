@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="39">
+ <properties>
+  <property name="objective" type="int" value="2"/>
+ </properties>
  <layer name="Walls" width="50" height="28">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -33,11 +36,11 @@
 </data>
  </layer>
  <objectgroup name="ENEMIES">
-  <object id="1" name="Flan" x="1408" y="380" width="62.6667" height="65.3333">
+  <object id="1" name="Pangolini" x="1408" y="380" width="62.6667" height="65.3333">
    <properties>
     <property name="hp" type="int" value="2"/>
     <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="FLAN"/>
+    <property name="type" value="PANGOLINI"/>
    </properties>
   </object>
  </objectgroup>

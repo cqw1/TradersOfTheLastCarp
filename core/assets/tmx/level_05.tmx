@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="36">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="14">
  <properties>
-  <property name="objective" type="int" value="0"/>
-  <property name="time" type="int" value="15000"/>
+  <property name="objective" type="int" value="2"/>
  </properties>
  <layer name="WALLS" width="50" height="28">
   <data encoding="csv">
@@ -36,62 +35,65 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="ITEMS"/>
- <objectgroup name="ENEMIES">
-  <object id="34" x="1084" y="416" width="64" height="64">
+ <objectgroup name="ITEMS">
+  <object id="12" x="1393.33" y="340" width="33.3333" height="37.3333">
    <properties>
-    <property name="invincible" type="bool" value="true"/>
-    <property name="type" value="SPIDER"/>
-   </properties>
-   <ellipse/>
-  </object>
- </objectgroup>
- <objectgroup name="TRIGGERS">
-  <object id="24" x="784" y="430.667" width="32" height="32">
-   <properties>
-    <property name="trap_id" value="27:28:29"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="30" x="366.667" y="418.667" width="32" height="32">
-   <properties>
-    <property name="trap_id" value="29"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="31" x="369.333" y="178.667" width="32" height="32">
-   <properties>
-    <property name="trap_id" value="28:29"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="32" x="786.667" y="712" width="32" height="32">
-   <properties>
-    <property name="trap_id" value="28:29"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="33" x="1297.33" y="142.667" width="32" height="32">
-   <properties>
-    <property name="trap_id" value="27:28"/>
-    <property name="type" value="BUTTON"/>
+    <property name="type" value="HEALTH"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="TRAPS">
-  <object id="27" name="27" x="1247.33" y="346.667" width="124" height="192">
+  <object id="1" name="1" x="1152" y="318.667" width="128" height="140">
+   <properties>
+    <property name="type" value="SPIDER_TRAP"/>
+   </properties>
+  </object>
+  <object id="7" name="7" x="352.667" y="258.667" width="124" height="192">
    <properties>
     <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
-  <object id="28" name="28" x="739.333" y="96" width="124" height="192">
+  <object id="8" name="8" x="592.667" y="576" width="110" height="100">
    <properties>
-    <property name="type" value="ARROW_TRAP"/>
+    <property name="type" value="FIRE_TRAP"/>
    </properties>
   </object>
-  <object id="29" name="29" x="320.667" y="606.667" width="124" height="192">
+ </objectgroup>
+ <objectgroup name="TRIGGERS">
+  <object id="5" x="1070.67" y="366.667" width="32" height="32">
    <properties>
-    <property name="type" value="ARROW_TRAP"/>
+    <property name="trap_id" value="1"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="9" x="253.333" y="341.333" width="32" height="32">
+   <properties>
+    <property name="trap_id" value="7"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="10" x="782.667" y="609.333" width="32" height="32">
+   <properties>
+    <property name="trap_id" value="8"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="11" x="622.667" y="368" width="32" height="32">
+   <properties>
+    <property name="trap_id" value="8"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="ENEMIES">
+  <object id="3" x="830.667" y="255" width="160" height="250">
+   <properties>
+    <property name="type" value="GELATIN_KING"/>
+   </properties>
+  </object>
+  <object id="6" x="1109.33" y="673.333" width="40" height="40">
+   <properties>
+    <property name="type" value="STAR"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="48">
+ <properties>
+  <property name="objective" type="int" value="2"/>
+ </properties>
+ <layer name="WALLS" width="50" height="28">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="ITEMS">
+  <object id="46" x="703.667" y="515.333" width="62" height="60">
+   <properties>
+    <property name="type" value="HEALTH"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="47" x="1349" y="182" width="62" height="60">
+   <properties>
+    <property name="type" value="HEALTH"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="TRAPS">
+  <object id="1" name="1" x="125.333" y="354.667" width="128" height="128">
+   <properties>
+    <property name="delay" type="int" value="1250"/>
+    <property name="type" value="SPIKE_TRAP"/>
+   </properties>
+  </object>
+  <object id="3" name="3" x="174.667" y="400" width="32" height="32">
+   <properties>
+    <property name="type" value="TELEPORTER"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="TRIGGERS">
+  <object id="5" x="367" y="78.6667" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="7" x="365.667" y="397.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="8" x="367" y="333.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="9" x="365.667" y="273.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="10" x="365.667" y="205.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="11" x="367" y="141.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="15" x="363" y="776" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="16" x="716.333" y="714.667" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="17" x="719" y="273.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="18" x="720.333" y="78.6667" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="19" x="717.667" y="336" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="21" x="716.333" y="653.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="23" x="720.333" y="141.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="24" x="716.333" y="776" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="25" x="719" y="205.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="26" x="1068.33" y="649.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="28" x="1072.33" y="74.6667" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="29" x="1071" y="585.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="30" x="1068.33" y="772" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="32" x="1068.33" y="710.667" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="33" x="1073.67" y="140" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="34" x="1068.33" y="649.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="35" x="1072.33" y="204" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="36" x="1359" y="588" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="37" x="1356.33" y="774.667" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="38" x="1356.33" y="652" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="39" x="1357.67" y="392" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="40" x="1356.33" y="652" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="42" x="1360.33" y="524" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="43" x="1356.33" y="713.333" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="45" x="1357.67" y="460" width="34" height="36">
+   <properties>
+    <property name="trap_id" value="1:3"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="ENEMIES"/>
+</map>

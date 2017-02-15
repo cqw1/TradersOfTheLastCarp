@@ -39,8 +39,11 @@ public class GelatinKing extends AEnemy {
     private float scale;
     private float shadowSize = 0.8f;
 
+    private static float width = 160;
+    private static float height = 250;
+
     public GelatinKing(AssetManager assetManager, float x, float y, AMovement movement) {
-        super(assetManager, new Rectangle(x, y, 160, 250), movement, basehp, atk);
+        super(assetManager, new Rectangle(x, y, width, height), movement, basehp, atk);
         jellyTextureAtlas = assetManager.get(AssetList.JELLYFISH.toString());
         jellyAnimation = new Animation<TextureRegion>(1 / 16f, jellyTextureAtlas.getRegions());
         kingTextureAtlas = assetManager.get(AssetList.GELATIN_KING.toString());
@@ -55,7 +58,7 @@ public class GelatinKing extends AEnemy {
     }
 
     public GelatinKing(AssetManager assetManager, float x, float y, AMovement movement, boolean crownMe) {
-        super(assetManager, new Rectangle(x, y, 160, 250), movement, basehp, atk);
+        super(assetManager, new Rectangle(x, y, width, height), movement, basehp, atk);
         jellyTextureAtlas = assetManager.get(AssetList.JELLYFISH.toString());
         jellyAnimation = new Animation<TextureRegion>(1 / 16f,jellyTextureAtlas.getRegions());
         kingTextureAtlas = assetManager.get(AssetList.GELATIN_KING.toString());
