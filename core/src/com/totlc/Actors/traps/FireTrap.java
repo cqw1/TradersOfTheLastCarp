@@ -20,7 +20,7 @@ public class FireTrap extends ATrap {
     private Texture trapTexture;
     private TextureAtlas eyeTextureAtlas;
     private Animation<TextureRegion> trapAnimation;
-    private long duration = 10000; // in millis
+    private long duration = 3000; // in millis
 
     private Sound fireSound;
 

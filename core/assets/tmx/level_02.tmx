@@ -95,7 +95,7 @@
   </object>
   <object id="7" x="1312" y="224" width="58" height="60">
    <properties>
-    <property name="type" value="PANGOLINI"/>
+    <property name="type" value="SPIDER"/>
    </properties>
   </object>
  </objectgroup>
