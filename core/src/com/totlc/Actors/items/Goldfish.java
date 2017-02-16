@@ -31,7 +31,7 @@ public class Goldfish extends APickup {
         this.rotate = false;
         this.timestamp = System.currentTimeMillis();
 
-        flopTextureAtlas = assetManager.get(AssetList.GOLDFISH_GLOW.toString());
+        flopTextureAtlas = assetManager.get(AssetList.GOLDFISH.toString());
         flopAnimation = new Animation<TextureRegion>(1/16f, flopTextureAtlas.getRegions());
         particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
         sparkle = new ParticleEffect();
