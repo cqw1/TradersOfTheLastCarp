@@ -100,7 +100,7 @@ public enum AssetList {
     WALL_RIGHT("tileset/wall_right.png", Texture.class),
     WALL_BOTTOM("tileset/wall_bottom.png", Texture.class),
     WALL_TOP("tileset/wall_top.png", Texture.class),
-    END_CREDITS("UI/wowgood.png", Texture.class),
+    END_CREDITS("UI/Victory.png", Texture.class),
 
     // TMX for levels
     LEVEL01_TMX("tmx/level_01.tmx", TiledMap.class),

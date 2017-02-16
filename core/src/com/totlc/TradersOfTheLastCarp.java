@@ -58,8 +58,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         viewport = new FitViewport(CONFIG_WIDTH, CONFIG_HEIGHT, camera);
         viewport.apply();
 
-//        level = LevelFactory.createLevel(TitleScreen.class, assetManager);
-		level = LevelFactory.createLevel(Level06.class, assetManager);
+        level = LevelFactory.createLevel(TitleScreen.class, assetManager);
 		Gdx.input.setInputProcessor(level);
         level.initLevel();
 	}
