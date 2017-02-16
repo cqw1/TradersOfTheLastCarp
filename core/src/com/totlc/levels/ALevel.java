@@ -522,16 +522,15 @@ public abstract class ALevel extends Stage {
         addActor(nextStage);
         addActor(nextStage.getPhysicalBlock());
 
-        LeftWall lw = new LeftWall(assetManager, new Rectangle(0, 0, wallSize, CONFIG_HEIGHT));
+        AWall lw = new AWall(assetManager, new Rectangle(0, 0, wallSize, CONFIG_HEIGHT));
         // two separate walls for the exit
-        RightWall rwBot = new RightWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY()));
-        RightWall rwTop = new RightWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, nextStage.getY() + nextStage.getHeight(), wallSize, CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight()));
-        TopWall tw = new TopWall(assetManager, new Rectangle(0, CONFIG_HEIGHT - wallSize, CONFIG_WIDTH, wallSize));
-        BottomWall bw = new BottomWall(assetManager, new Rectangle(0, 0, CONFIG_WIDTH, wallSize));
+        AWall rwBot = new AWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY()));
+        AWall rwTop = new AWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, nextStage.getY() + nextStage.getHeight(), wallSize, CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight()));
+        AWall tw = new AWall(assetManager, new Rectangle(0, CONFIG_HEIGHT - wallSize, CONFIG_WIDTH, wallSize));
+        AWall bw = new AWall(assetManager, new Rectangle(0, 0, CONFIG_WIDTH, wallSize));
 
         // add actors
-        addActor(lw)
-        ;
+        addActor(lw);
         addActor(rwBot);
         addActor(rwTop);
         addActor(tw);

@@ -22,7 +22,7 @@ import com.totlc.levels.*;
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;
-	private boolean drawHitboxes = false;
+	private boolean drawHitboxes = true;
 
 	public AssetManager assetManager = new AssetManager();
 	public static MusicPlayer musicPlayer = new MusicPlayer();
@@ -58,8 +58,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         viewport = new FitViewport(CONFIG_WIDTH, CONFIG_HEIGHT, camera);
         viewport.apply();
 
-//        level = LevelFactory.createLevel(TitleScreen.class, assetManager);
-		level = LevelFactory.createLevel(Level06.class, assetManager);
+        level = LevelFactory.createLevel(TitleScreen.class, assetManager);
+//		level = LevelFactory.createLevel(Level06.class, assetManager);
 		Gdx.input.setInputProcessor(level);
         level.initLevel();
 	}
