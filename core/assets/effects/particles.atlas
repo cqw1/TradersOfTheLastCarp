@@ -20,14 +20,14 @@ repeat: none
   index: -1
 11firespark
   rotate: false
-  xy: 858, 71
+  xy: 855, 71
   size: 31, 55
   orig: 31, 55
   offset: 0, 0
   index: -1
 12embers0
   rotate: false
-  xy: 586, 71
+  xy: 823, 39
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
@@ -41,7 +41,7 @@ repeat: none
   index: -1
 14embers2
   rotate: false
-  xy: 659, 71
+  xy: 632, 71
   size: 20, 25
   orig: 20, 25
   offset: 0, 0
@@ -62,28 +62,28 @@ repeat: none
   index: -1
 17waterdrop
   rotate: false
-  xy: 613, 53
+  xy: 586, 53
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
   index: -1
 18waterdropflip
   rotate: false
-  xy: 636, 53
+  xy: 609, 53
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
   index: -1
 19elec0
   rotate: false
-  xy: 826, 66
+  xy: 823, 66
   size: 30, 60
   orig: 30, 60
   offset: 0, 0
   index: -1
 1syrup
   rotate: false
-  xy: 946, 88
+  xy: 654, 80
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -111,7 +111,7 @@ repeat: none
   index: -1
 2flan
   rotate: false
-  xy: 912, 66
+  xy: 955, 86
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
@@ -125,16 +125,16 @@ repeat: none
   index: -1
 4arrowpoint
   rotate: false
-  xy: 790, 61
-  size: 34, 65
-  orig: 34, 65
+  xy: 922, 86
+  size: 31, 40
+  orig: 31, 40
   offset: 0, 0
   index: -1
 5arrowshaft
   rotate: false
-  xy: 891, 66
-  size: 19, 60
-  orig: 19, 60
+  xy: 790, 43
+  size: 31, 83
+  orig: 31, 83
   offset: 0, 0
   index: -1
 6shield
@@ -167,7 +167,7 @@ repeat: none
   index: -1
 berry
   rotate: false
-  xy: 912, 86
+  xy: 888, 86
   size: 32, 40
   orig: 32, 40
   offset: 0, 0
@@ -181,7 +181,7 @@ mint0
   index: -1
 mint1
   rotate: false
-  xy: 946, 106
+  xy: 955, 106
   size: 50, 20
   orig: 50, 20
   offset: 0, 0
