@@ -1,6 +1,8 @@
 package com.totlc.Actors.traps;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -67,6 +69,8 @@ public class SpikeTrap extends ATrap {
         damageArea.setExpirationTime(System.currentTimeMillis() + duration);
         setAnimationTime(0);
         this.reverse = false;
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/sword0.mp3"));
+        sound.play(1.0f);
     }
 
     @Override

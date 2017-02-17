@@ -3,7 +3,9 @@ package com.totlc.levels;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
@@ -143,6 +145,20 @@ public abstract class ALevel extends Stage {
         //Check if the player has died
         if (player.getHpCurrent() <= 0) {
             addActor(dedScreen);
+            //Button Prompt
+            addActor(new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * 0.5f - 50, 50) {
+                private float baseY = getY();
+
+                @Override
+                public void draw(Batch batch, float alpha) {
+                    batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * 0.5f, 120 * 0.5f);
+                }
+
+                @Override
+                public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+                }
+            });
         }
 
         //Check whether we should unlock the stage
@@ -228,15 +244,25 @@ public abstract class ALevel extends Stage {
         }
 
         if (keycode == Input.Keys.SPACE) {
-            this.addActor(player.getWeapon());
-            player.setAttacking(true);
-            return true;
+           if (player.getHpCurrent() > 0){
+               this.addActor(player.getWeapon());
+               player.setAttacking(true);
+           } else{
+               ALevel nextLevelObject = LevelFactory.createLevel(LevelSelect.class, assetManager);
+               loadLevel(nextLevelObject);
+               Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
+               sound.play(1.0f);
+           }
+           return true;
         }
 
         if (keycode == Input.Keys.ESCAPE) {
             ALevel nextLevelObject = LevelFactory.createLevel(LevelSelect.class, assetManager);
             loadLevel(nextLevelObject);
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
+            sound.play(1.0f);
         }
+
 
         return false;
     }

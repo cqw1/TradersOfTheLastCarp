@@ -20,6 +20,8 @@ public enum AssetList {
     ITEM_PACK("sprites/items/items.atlas", TextureAtlas.class),
     DIED_SCREEN("UI/udied.png", Texture.class),
     TITLE_SCREEN("UI/Splash.png", Texture.class),
+    BUTTON_PROMPT_ESC("UI/ButtonPromptESC.png", Texture.class),
+    BUTTON_PROMPT_SPACE("UI/ButtonPRomptSpace.png", Texture.class),
     OPTION_QUICKPLAY("UI/splash_options_0.png", Texture.class),
     OPTION_LVLSELECT("UI/splash_options_1.png", Texture.class),
     LEVEL_SELECT_SCREEN("UI/LevelSelect.png", Texture.class),

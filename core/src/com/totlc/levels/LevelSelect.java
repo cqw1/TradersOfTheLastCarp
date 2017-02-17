@@ -1,7 +1,9 @@
 package com.totlc.levels;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
@@ -180,6 +182,8 @@ public class LevelSelect extends ALevel {
             unselectAll();
             grid[row][col].levelOption.setSelected(true);
             isHandled = true;
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
+            sound.play(1.0f);
         }
 
         /**
@@ -218,6 +222,8 @@ public class LevelSelect extends ALevel {
             unselectAll();
             grid[row][col].levelOption.setSelected(true);
             isHandled = true;
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
+            sound.play(1.0f);
         }
 
         /**
@@ -242,6 +248,8 @@ public class LevelSelect extends ALevel {
             unselectAll();
             grid[row][col].levelOption.setSelected(true);
             isHandled = true;
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
+            sound.play(1.0f);
         }
 
         /**
@@ -260,12 +268,16 @@ public class LevelSelect extends ALevel {
             unselectAll();
             grid[row][col].levelOption.setSelected(true);
             isHandled = true;
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
+            sound.play(1.0f);
         }
 
 
         if (keyCode == Input.Keys.SPACE) {
             grid[row][col].levelOption.execute();
             isHandled = true;
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/positive0.wav"));
+            sound.play(1.0f);
         }
 
         if (keyCode == Input.Keys.Q) {
@@ -276,6 +288,8 @@ public class LevelSelect extends ALevel {
         if (keyCode == Input.Keys.ESCAPE) {
             ALevel nextLevelObject = LevelFactory.createLevel(TitleScreen.class, assetManager);
             loadLevel(nextLevelObject);
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
+            sound.play(1.0f);
         }
 
         return isHandled;
