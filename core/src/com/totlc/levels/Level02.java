@@ -18,9 +18,5 @@ public class Level02 extends ALevel {
     public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         loadFromTMX(tmxFileName);
-
-        TradersOfTheLastCarp.musicPlayer.stop();
-        TradersOfTheLastCarp.musicPlayer.setSong("test2");
-        TradersOfTheLastCarp.musicPlayer.play();
     }
 }

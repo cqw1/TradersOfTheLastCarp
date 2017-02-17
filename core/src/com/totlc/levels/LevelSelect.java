@@ -32,7 +32,7 @@ public class LevelSelect extends ALevel {
 
     public LevelSelect(AssetManager assetManager) {
         super(assetManager);
-
+        TradersOfTheLastCarp.musicPlayer.stop();
         this.assetManager = assetManager;
 
         levelSelectScreen = new TotlcObject(assetManager, new Rectangle()) {
@@ -80,6 +80,8 @@ public class LevelSelect extends ALevel {
 
 
                     public void execute() {
+                        TradersOfTheLastCarp.musicPlayer.setSong("test6");
+                        TradersOfTheLastCarp.musicPlayer.play();
                         setNextLevel(grid[finalRow][finalCol].levelClass);
                         initNextLevel();
                     }
