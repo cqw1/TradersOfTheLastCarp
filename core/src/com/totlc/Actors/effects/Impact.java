@@ -24,7 +24,7 @@ public class Impact extends AEffect {
         impactTextureAtlas = assetManager.get(AssetList.IMPACT.toString());
         impactAnimation = new Animation<TextureRegion>(1 / 16f, impactTextureAtlas.getRegions());
         Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/punch1.mp3"));
-        impactSound.play(1.0f);
+        impactSound.play(0.7f);
     }
 
     @Override
