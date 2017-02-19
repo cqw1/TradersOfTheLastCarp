@@ -75,9 +75,11 @@ public enum AssetList {
     SPLASH("effects/splash.particle", null),
     FLAN_PARTS_0("effects/flan_parts.particle", null),
     FLAN_PARTS_1("effects/flan_parts_prime.particle", null),
+    TELEPORT_BEAM("effects/teleport0.particle", null),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas", TextureAtlas.class),
+    TELEPORT_PAD("traps/teleport_pad.atlas", TextureAtlas.class),
     ARROW_TRAP("traps/arrow_trap.atlas", TextureAtlas.class),
     SPIDER_TRAP("traps/spider_trap.atlas", TextureAtlas.class),
     FIRE_TRAP_RIGHT("traps/fire_trap/fire_trap_right.png", Texture.class),
