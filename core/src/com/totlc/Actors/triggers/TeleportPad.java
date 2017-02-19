@@ -16,7 +16,7 @@ public class TeleportPad extends ATrigger {
     private TextureAtlas buttonTextureAtlas;
     private Animation<TextureRegion> padAnimation;
 
-    private static long hideDelay = 1000;
+    private static long hideDelay = 2000;
     private long triggerTime;
 
     private static float width = 76;

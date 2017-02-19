@@ -14,7 +14,7 @@ public class TeleportBeam extends AEffect {
     // Texture information.
     private ParticleEffect beam;
     private TextureAtlas particleAtlas;
-    private static long duration = 300;
+    private static long duration = 200;
     private long startTime;
 
     public TeleportBeam(AssetManager assetManager, float x, float y) {

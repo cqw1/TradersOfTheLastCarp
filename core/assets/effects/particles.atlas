@@ -123,6 +123,13 @@ repeat: none
   orig: 16, 96
   offset: 0, 0
   index: -1
+25glowparticle
+  rotate: false
+  xy: 542, 77
+  size: 11, 11
+  orig: 11, 11
+  offset: 0, 0
+  index: -1
 2flan
   rotate: false
   xy: 367, 19
