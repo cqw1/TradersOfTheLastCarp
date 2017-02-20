@@ -43,14 +43,7 @@ public class FireTrap extends ATrap {
     }
 
     public FireTrap(AssetManager assetManager, float x, float y, long range, long delay) {
-        super(assetManager, new Rectangle(x, y, width, height), delay);
-        setIsFacing(Directionality.RIGHT);
-        trapTexture = assetManager.get(AssetList.FIRE_TRAP_RIGHT.toString());
-        eyeTextureAtlas = assetManager.get(AssetList.EYE_GLOW.toString());
-        trapAnimation = new Animation<TextureRegion>(1 / 24f, eyeTextureAtlas.getRegions());
-        fireSound = Gdx.audio.newSound(Gdx.files.internal("sounds/fire0.mp3"));
-        setDuration(duration);
-        setRange(range);
+        this(assetManager, x, y, range, delay, Directionality.RIGHT);
     }
 
     public FireTrap(AssetManager assetManager, float x, float y, long range, long delay, Directionality facing) {

@@ -178,7 +178,6 @@ public abstract class ALevel extends Stage {
         for (int aCounter = 0; aCounter < allActors.size; aCounter++) {
             // Ignore if not an interactable object or being removed
             Actor a = allActors.get(aCounter);
-//            System.out.println(a.getClass());
             if (!(a instanceof TotlcObject) || toBeRemoved.contains(a)) {
                 continue;
             }
@@ -338,72 +337,37 @@ public abstract class ALevel extends Stage {
         HashMap<Integer, ATrap> id2Trap = new HashMap<Integer, ATrap>(10);
         for (MapObject mo: map.getLayers().get(TrapFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            ATrap currentTrap;
-            if (currentObjProp.containsKey("delay")) {
-                currentTrap = TrapFactory.createCustomDelayTrap(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class),
-                        currentObjProp.get("delay", Integer.class));
-            } else {
-                currentTrap = TrapFactory.createTrap(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class));
-            }
+            ATrap currentTrap = TrapFactory.createTrapFromMP(currentObjProp, getAssetManager());
             addActor(currentTrap);
+
+            // Update mapping so triggers can use it
             id2Trap.put(currentObjProp.get("id", Integer.class), currentTrap);
         }
 
         //Triggers after
         for (MapObject mo: map.getLayers().get(TriggerFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            ATrigger currentTrigger = TriggerFactory.createTrigger(currentObjProp.get("type", String.class), getAssetManager(),
-                    currentObjProp.get("x", Float.class),
-                    currentObjProp.get("y", Float.class));
+            ATrigger currentTrigger = TriggerFactory.createTriggerFromMP(currentObjProp, getAssetManager());
+
+            // Map triggers tp traps
             for (String i: currentObjProp.get("trap_id", String.class).split(":")) {
                 currentTrigger.addTrap(id2Trap.get(Integer.parseInt(i)));
             }
+
             addActor(currentTrigger);
         }
 
         //Enemies
         for (MapObject mo: map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            AEnemy currentEnemy;
-
-            //Customize movement
-            if (!currentObjProp.containsKey("movement")) {
-                currentEnemy = EnemyFactory.createDefaultEnemy(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class));
-            } else {
-                currentEnemy = EnemyFactory.createCustomMovementEnemy(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class),
-                        currentObjProp.get("movement", String.class));
-            }
-
-            //Customize HP
-            if (currentObjProp.containsKey("hp")) {
-                currentEnemy.setHpCurrent(currentObjProp.get("hp", Integer.class));
-                currentEnemy.setHpMax(currentObjProp.get("hp", Integer.class));
-            }
-
-            //Invincibility
-            if (currentObjProp.containsKey("invincible")) {
-                currentEnemy.setInvincible(true);
-            }
-
+            AEnemy currentEnemy = EnemyFactory.createEnemyFromMP(currentObjProp, getAssetManager());
             addActor(currentEnemy);
         }
 
         //Lay out items
         for (MapObject mo: map.getLayers().get(PickupFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            APickup currentItem = PickupFactory.createPickup(currentObjProp.get("type", String.class),
-                    getAssetManager(),
-                    currentObjProp.get("x", Float.class),
-                    currentObjProp.get("y", Float.class));
-            currentItem.setZIndex(10);
+            APickup currentItem = PickupFactory.createPickupFromMP(currentObjProp, getAssetManager());
             addActor(currentItem);
         }
 
