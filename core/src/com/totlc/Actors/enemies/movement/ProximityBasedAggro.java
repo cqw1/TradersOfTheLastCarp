@@ -7,7 +7,7 @@ import java.awt.geom.Point2D;
 
 public class ProximityBasedAggro extends AMovement {
 
-    private double attackRange = 350;
+    private double attackRange = 500;
     private float attackSpeed = 150;
 
     private AMovement random, interval;

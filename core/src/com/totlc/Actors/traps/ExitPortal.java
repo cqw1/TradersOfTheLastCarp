@@ -4,6 +4,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Directionality;
 
+import java.awt.geom.Point2D;
+
 public class ExitPortal extends ATrap {
 
     private static float width = 64;
@@ -26,5 +28,17 @@ public class ExitPortal extends ATrap {
     @Override
     public void activate() {
         getTargetActor().moveAbs(getX(), getY());
+        Point2D vel = getTargetActor().getVel();
+        if (modifiedDirection != null) {
+            if (modifiedDirection.isFacingDown()) {
+
+            } else if (modifiedDirection.isFacingLeft()) {
+
+            } else if (modifiedDirection.isFacingRight()) {
+
+            } else if (modifiedDirection.isFacingUp()) {
+
+            }
+        }
     }
 }

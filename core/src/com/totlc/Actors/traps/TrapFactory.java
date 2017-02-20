@@ -2,6 +2,7 @@ package com.totlc.Actors.traps;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.maps.MapProperties;
+import com.totlc.Directionality;
 
 public class TrapFactory {
 
@@ -41,6 +42,12 @@ public class TrapFactory {
         if (mp.containsKey("delay")) {
             // Set the delay
             returnMe.setDelay(mp.get("delay", Integer.class));
+        }
+
+        if (mp.get("type", String.class).equals(FIRE_TRAP)) {
+            if (mp.containsKey("direction")) {
+                ((FireTrap)returnMe).initDirection(Directionality.valueOf(mp.get("direction", String.class)));
+            }
         }
 
         return returnMe;

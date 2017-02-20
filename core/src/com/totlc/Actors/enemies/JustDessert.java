@@ -125,8 +125,8 @@ public class JustDessert extends AEnemy{
             if (!isInvincible()) {
                 int newHP = (int) Math.floor(getHpCurrent() * 0.5);
                 if (newHP > 0 && getHpCurrent() > 1){
-                    getStage().addActor(new JustDessert(getAssetManager(), getX() - 16, getY(), newHP, getMovement()));
-                    getStage().addActor(new JustDessert(getAssetManager(), getX() + 16, getY(), newHP, getMovement()));
+                    getStage().addActor(new JustDessert(getAssetManager(), getX() - 48, getY(), newHP, getMovement()));
+                    getStage().addActor(new JustDessert(getAssetManager(), getX() + 48, getY(), newHP, getMovement()));
                     returnMe =  true;
                 }
             }
