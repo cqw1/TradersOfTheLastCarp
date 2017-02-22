@@ -1,0 +1,62 @@
+
+teleport_pad.png
+size: 1024,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+teleporter_pad
+  rotate: false
+  xy: 2, 2
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: 0
+teleporter_pad
+  rotate: false
+  xy: 80, 2
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: 1
+teleporter_pad
+  rotate: false
+  xy: 158, 2
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: 2
+teleporter_pad
+  rotate: false
+  xy: 236, 2
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: 3
+teleporter_pad
+  rotate: false
+  xy: 314, 2
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: 4
+teleporter_pad
+  rotate: false
+  xy: 392, 2
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: 5
+teleporter_pad
+  rotate: false
+  xy: 470, 2
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: 6
+teleporter_pad
+  rotate: false
+  xy: 548, 2
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: 7

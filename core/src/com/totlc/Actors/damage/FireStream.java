@@ -50,6 +50,9 @@ public class FireStream extends Damage {
 
     @Override
     public void act(float deltaTime){
+        if (getTimeToApplyDamage() < System.currentTimeMillis()) {
+            setTimeToApplyDamage(getTimeToApplyDamage() + getDamageInterval());
+        }
         increaseAnimationTime(deltaTime);
         moveRelative();
         fire.setPosition(getX(), getY());

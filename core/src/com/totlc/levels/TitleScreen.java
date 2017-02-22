@@ -1,12 +1,15 @@
 package com.totlc.levels;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.TotlcObject;
+import com.totlc.Actors.UI.ButtonPrompt;
 import com.totlc.Actors.UI.MenuOption;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
@@ -17,9 +20,11 @@ import java.util.ArrayList;
 public class TitleScreen extends ALevel {
 
     private final TotlcObject titleScreen;
+    private ButtonPrompt cursor;
+    private float cursorScale = 0.5f;
     private int optionFocusIndex = 0;
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
-    private Point2D.Float optionsSize = new Point2D.Float(280f, 120f);
+    private Point2D.Float optionsSize = new Point2D.Float(330f, 120f);
     private Point2D.Float optionsStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH / 2 - optionsSize.getX() / 2), (float) (TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - optionsSize.getY() - 180f));
 
     public TitleScreen(AssetManager assetManager) {
@@ -47,7 +52,7 @@ public class TitleScreen extends ALevel {
         menuOptions.add(new MenuOption(assetManager, AssetList.OPTION_QUICKPLAY.toString()) {
             @Override
             public void draw(Batch batch, float alpha) {
-                batch.draw(getAssetManager().get(asset, Texture.class), (float) optionsStart.getX(), (float) optionsStart.getY(), 280f, 120f);
+                batch.draw(getAssetManager().get(asset, Texture.class), (float) optionsStart.getX(), (float) optionsStart.getY(), (float)optionsSize.getX(), (float)optionsSize.getY());
             }
 
             public void execute() {
@@ -62,7 +67,7 @@ public class TitleScreen extends ALevel {
         menuOptions.add(new MenuOption(assetManager, AssetList.OPTION_LVLSELECT.toString()) {
             @Override
             public void draw(Batch batch, float alpha) {
-                batch.draw(getAssetManager().get(asset, Texture.class), (float) optionsStart.getX(), (float) optionsStart.getY(), 280f, 120f);
+                batch.draw(getAssetManager().get(asset, Texture.class), (float) optionsStart.getX(), (float) optionsStart.getY(), (float)optionsSize.getX(), (float)optionsSize.getY());
             }
 
             public void execute() {
@@ -72,6 +77,24 @@ public class TitleScreen extends ALevel {
         });
 
         addActor(titleScreen);
+
+        //Button Prompt
+        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * cursorScale - 50, 50) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        };
+
+        cursor.update();
+        addActor(cursor);
         addActor(menuOptions.get(optionFocusIndex));
     }
 
@@ -90,12 +113,18 @@ public class TitleScreen extends ALevel {
         if (keyCode == Input.Keys.UP) {
             optionFocusIndex = (optionFocusIndex + 1) % menuOptions.size();
             isHandled = true;
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
+            sound.play(1.0f);
         }
 
         if (keyCode == Input.Keys.DOWN) {
             optionFocusIndex = Math.abs((optionFocusIndex - 1) % menuOptions.size());
             isHandled = true;
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
+            sound.play(1.0f);
         }
+
+        cursor.update();
 
         for (MenuOption option: menuOptions) {
             option.remove();
@@ -105,6 +134,8 @@ public class TitleScreen extends ALevel {
         if (keyCode == Input.Keys.SPACE) {
             menuOptions.get(optionFocusIndex).execute();
             isHandled = true;
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch5.wav"));
+            sound.play(1.0f);
         }
 
         if (keyCode == Input.Keys.Q) {

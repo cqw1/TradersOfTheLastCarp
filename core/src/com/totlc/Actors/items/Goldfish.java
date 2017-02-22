@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Character;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.effects.Impact;
 import com.totlc.AssetList;
@@ -46,8 +47,8 @@ public class Goldfish extends APickup {
     }
 
     @Override
-    public void pickup() {
-
+    public void pickup(Character p) {
+        ((Player) p).setGoldfishCount(((Player) p).getGoldfishCount() + 1);
     }
 
     @Override
@@ -86,7 +87,7 @@ public class Goldfish extends APickup {
     @Override
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player) {
-            ((Player) otherActor).setGoldfishCount(((Player) otherActor).getGoldfishCount() + 1);
+            pickup((Character) otherActor);
             return true;
         }
 

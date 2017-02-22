@@ -2,7 +2,10 @@ package com.totlc.Actors.items;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
+import com.totlc.Actors.Character;
 
 /**
  * Abstract class for items that can be picked up by the player.
@@ -14,5 +17,13 @@ public abstract class APickup extends TotlcObject {
         super(assetManager, r);
     }
 
-    public abstract void pickup();
+    public abstract void pickup(Character p);
+
+    public boolean collidesWith(Actor otherActor) {
+        if (otherActor instanceof Player){
+            pickup((Character) otherActor);
+            return true;
+        }
+        return false;
+    }
 }

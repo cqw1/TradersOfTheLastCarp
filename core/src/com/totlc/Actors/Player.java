@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.enemies.AEnemy;
+import com.totlc.Actors.items.Key;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
@@ -121,7 +122,6 @@ public class Player extends Character {
     }
 
     public void draw(Batch batch, float delta) {
-//        System.out.println("weapon: " + weapon);
         if (invincible) {
             if (System.currentTimeMillis() > (invincibilityStart + invincibilityPeriod)) {
                 invincible = false;
@@ -134,7 +134,6 @@ public class Player extends Character {
 
 
         if (getAttacking()) {
-            System.out.println("Player.draw - attacking True");
 
             if (this.getIsFacing().isFacingDown()) {
                 batch.draw(whippingDownAnimation.getKeyFrame(weapon.getAttackingCounter(), false), getX(), getY());
@@ -229,7 +228,8 @@ public class Player extends Character {
                 invincible = true;
                 invincibilityStart = System.currentTimeMillis();
             }
-        } else if (otherActor instanceof Damage) {
+        } else
+            if (otherActor instanceof Damage) {
             if (!invincible && ((Damage)otherActor).getDamageType() != 2) {
                 takeDamage(((Damage)otherActor).getAttack());
                 invincible = true;
@@ -267,5 +267,13 @@ public class Player extends Character {
 
     public int getGoldfishCount() {
         return goldfishCount;
+    }
+
+    public boolean isInvincible() {
+        return invincible;
+    }
+
+    public void setInvincibilityStart(long start) {
+        invincibilityStart = start;
     }
 }

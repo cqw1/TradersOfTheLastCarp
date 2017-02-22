@@ -43,9 +43,12 @@ public class FireTrap extends ATrap {
     }
 
     public FireTrap(AssetManager assetManager, float x, float y, long range, long delay) {
+        this(assetManager, x, y, range, delay, Directionality.RIGHT);
+    }
+
+    public FireTrap(AssetManager assetManager, float x, float y, long range, long delay, Directionality facing) {
         super(assetManager, new Rectangle(x, y, width, height), delay);
-        setIsFacing(Directionality.RIGHT);
-        trapTexture = assetManager.get(AssetList.FIRE_TRAP_RIGHT.toString());
+        initDirection(facing);
         eyeTextureAtlas = assetManager.get(AssetList.EYE_GLOW.toString());
         trapAnimation = new Animation<TextureRegion>(1 / 24f, eyeTextureAtlas.getRegions());
         fireSound = Gdx.audio.newSound(Gdx.files.internal("sounds/fire0.mp3"));
@@ -53,22 +56,17 @@ public class FireTrap extends ATrap {
         setRange(range);
     }
 
-    public FireTrap(AssetManager assetManager, float x, float y, long range, long delay, Directionality facing) {
-        super(assetManager, new Rectangle(x, y, width, height), delay);
+    public void initDirection(Directionality facing) {
         setIsFacing(facing);
         if (getIsFacing().isFacingLeft()){
-            trapTexture = assetManager.get(AssetList.FIRE_TRAP_LEFT.toString());
+            // TODO: Reinitialize the moving hit-box.
+            trapTexture = getAssetManager().get(AssetList.FIRE_TRAP_LEFT.toString());
             moveHitBox(getHitBoxWidth() * 0.35f, 0);
         } else if (getIsFacing().isFacingDown()){
-            trapTexture = assetManager.get(AssetList.FIRE_TRAP_DOWN.toString());
+            trapTexture = getAssetManager().get(AssetList.FIRE_TRAP_DOWN.toString());
         } else {
-            trapTexture = assetManager.get(AssetList.FIRE_TRAP_RIGHT.toString());
+            trapTexture = getAssetManager().get(AssetList.FIRE_TRAP_RIGHT.toString());
         }
-        eyeTextureAtlas = assetManager.get(AssetList.EYE_GLOW.toString());
-        trapAnimation = new Animation<TextureRegion>(1 / 24f, eyeTextureAtlas.getRegions());
-        fireSound = Gdx.audio.newSound(Gdx.files.internal("sounds/fire0.mp3"));
-        setDuration(duration);
-        setRange(range);
     }
 
     @Override

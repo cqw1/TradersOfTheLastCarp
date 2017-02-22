@@ -55,7 +55,7 @@ public class Arrow extends Damage {
             return true;
         } else if (otherActor instanceof AWall){
 //            getStage().addActor(new ArrowBreak(getAssetManager(), getX(), getY()));
-//            return true;
+            return true;
         }
 
         return false;

@@ -26,6 +26,9 @@ public class LightningPatch extends Damage{
 
     @Override
     public void act(float deltaTime){
+        if (getTimeToApplyDamage() > System.currentTimeMillis()) {
+            setTimeToApplyDamage(getTimeToApplyDamage() + getDamageInterval());
+        }
         increaseAnimationTime(deltaTime);
         if (System.currentTimeMillis() - startTime > lifeSpan){
             electricity.allowCompletion();

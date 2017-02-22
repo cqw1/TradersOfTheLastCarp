@@ -44,13 +44,6 @@ public class ButtonTrigger extends ATrigger {
         setSpeed(200);
     }
 
-    public void act(float deltaTime){
-        increaseAnimationTime(deltaTime);
-        if (!isTriggered()) {
-            setAnimationTime(0);
-        }
-    }
-
     public void draw(Batch batch, float delta) {
         if (isTriggered()) {
             batch.draw(buttonAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY());

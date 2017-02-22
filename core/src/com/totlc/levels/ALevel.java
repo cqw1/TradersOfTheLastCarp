@@ -3,7 +3,9 @@ package com.totlc.levels;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
@@ -50,6 +52,7 @@ public abstract class ALevel extends Stage {
     private AssetManager assetManager;
 
     private TextureRegion objIcon;
+
     private NextStage nextStage;
     private Class nextLevel;
     private Vector2 playerStartPosition = new Vector2(DEFAULT_WALLSIZE + 10, CONFIG_HEIGHT / 2 - 50);
@@ -143,6 +146,20 @@ public abstract class ALevel extends Stage {
         //Check if the player has died
         if (player.getHpCurrent() <= 0) {
             addActor(dedScreen);
+            //Button Prompt
+            addActor(new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * 0.5f - 50, 50) {
+                private float baseY = getY();
+
+                @Override
+                public void draw(Batch batch, float alpha) {
+                    batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * 0.5f, 120 * 0.5f);
+                }
+
+                @Override
+                public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+                }
+            });
         }
 
         //Check whether we should unlock the stage
@@ -162,7 +179,6 @@ public abstract class ALevel extends Stage {
         for (int aCounter = 0; aCounter < allActors.size; aCounter++) {
             // Ignore if not an interactable object or being removed
             Actor a = allActors.get(aCounter);
-//            System.out.println(a.getClass());
             if (!(a instanceof TotlcObject) || toBeRemoved.contains(a)) {
                 continue;
             }
@@ -228,15 +244,25 @@ public abstract class ALevel extends Stage {
         }
 
         if (keycode == Input.Keys.SPACE) {
-            this.addActor(player.getWeapon());
-            player.setAttacking(true);
-            return true;
+           if (player.getHpCurrent() > 0){
+               this.addActor(player.getWeapon());
+               player.setAttacking(true);
+           } else{
+               ALevel nextLevelObject = LevelFactory.createLevel(LevelSelect.class, assetManager);
+               loadLevel(nextLevelObject);
+               Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
+               sound.play(1.0f);
+           }
+           return true;
         }
 
         if (keycode == Input.Keys.ESCAPE) {
             ALevel nextLevelObject = LevelFactory.createLevel(LevelSelect.class, assetManager);
             loadLevel(nextLevelObject);
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
+            sound.play(1.0f);
         }
+
 
         return false;
     }
@@ -312,72 +338,37 @@ public abstract class ALevel extends Stage {
         HashMap<Integer, ATrap> id2Trap = new HashMap<Integer, ATrap>(10);
         for (MapObject mo: map.getLayers().get(TrapFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            ATrap currentTrap;
-            if (currentObjProp.containsKey("delay")) {
-                currentTrap = TrapFactory.createCustomDelayTrap(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class),
-                        currentObjProp.get("delay", Integer.class));
-            } else {
-                currentTrap = TrapFactory.createTrap(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class));
-            }
+            ATrap currentTrap = TrapFactory.createTrapFromMP(currentObjProp, getAssetManager());
             addActor(currentTrap);
+
+            // Update mapping so triggers can use it
             id2Trap.put(currentObjProp.get("id", Integer.class), currentTrap);
         }
 
         //Triggers after
         for (MapObject mo: map.getLayers().get(TriggerFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            ATrigger currentTrigger = TriggerFactory.createTrigger(currentObjProp.get("type", String.class), getAssetManager(),
-                    currentObjProp.get("x", Float.class),
-                    currentObjProp.get("y", Float.class));
+            ATrigger currentTrigger = TriggerFactory.createTriggerFromMP(currentObjProp, getAssetManager());
+
+            // Map triggers tp traps
             for (String i: currentObjProp.get("trap_id", String.class).split(":")) {
                 currentTrigger.addTrap(id2Trap.get(Integer.parseInt(i)));
             }
+
             addActor(currentTrigger);
         }
 
         //Enemies
         for (MapObject mo: map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            AEnemy currentEnemy;
-
-            //Customize movement
-            if (!currentObjProp.containsKey("movement")) {
-                currentEnemy = EnemyFactory.createDefaultEnemy(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class));
-            } else {
-                currentEnemy = EnemyFactory.createCustomMovementEnemy(currentObjProp.get("type", String.class), getAssetManager(),
-                        currentObjProp.get("x", Float.class),
-                        currentObjProp.get("y", Float.class),
-                        currentObjProp.get("movement", String.class));
-            }
-
-            //Customize HP
-            if (currentObjProp.containsKey("hp")) {
-                currentEnemy.setHpCurrent(currentObjProp.get("hp", Integer.class));
-                currentEnemy.setHpMax(currentObjProp.get("hp", Integer.class));
-            }
-
-            //Invincibility
-            if (currentObjProp.containsKey("invincible")) {
-                currentEnemy.setInvincible(true);
-            }
-
+            AEnemy currentEnemy = EnemyFactory.createEnemyFromMP(currentObjProp, getAssetManager());
             addActor(currentEnemy);
         }
 
         //Lay out items
         for (MapObject mo: map.getLayers().get(PickupFactory.TYPE).getObjects()) {
             MapProperties currentObjProp = mo.getProperties();
-            APickup currentItem = PickupFactory.createPickup(currentObjProp.get("type", String.class),
-                    getAssetManager(),
-                    currentObjProp.get("x", Float.class),
-                    currentObjProp.get("y", Float.class));
-            currentItem.setZIndex(10);
+            APickup currentItem = PickupFactory.createPickupFromMP(currentObjProp, getAssetManager());
             addActor(currentItem);
         }
 
@@ -522,12 +513,34 @@ public abstract class ALevel extends Stage {
         addActor(nextStage);
         addActor(nextStage.getPhysicalBlock());
 
-        AWall lw = new AWall(assetManager, new Rectangle(0, 0, wallSize, CONFIG_HEIGHT));
+        AWall lw = new AWall(assetManager, new Rectangle(0, 0, wallSize, CONFIG_HEIGHT)) {
+
+            public void draw(Batch batch, float delta) {
+                batch.draw((Texture) getAssetManager().get(AssetList.WALL_LEFT.toString()), getX(), getY(), getWidth(), getHeight());
+            }
+        };
         // two separate walls for the exit
-        AWall rwBot = new AWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY()));
-        AWall rwTop = new AWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, nextStage.getY() + nextStage.getHeight(), wallSize, CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight()));
-        AWall tw = new AWall(assetManager, new Rectangle(0, CONFIG_HEIGHT - wallSize, CONFIG_WIDTH, wallSize));
-        AWall bw = new AWall(assetManager, new Rectangle(0, 0, CONFIG_WIDTH, wallSize));
+        AWall rwBot = new AWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY())) {
+            public void draw(Batch batch, float delta) {
+                batch.draw((Texture) getAssetManager().get(AssetList.WALL_RIGHT.toString()), getX(), getY(), getWidth(), getHeight());
+            }
+        };
+        AWall rwTop = new AWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, nextStage.getY() + nextStage.getHeight(),
+                wallSize, CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight())) {
+            public void draw(Batch batch, float delta) {
+                batch.draw((Texture) getAssetManager().get(AssetList.WALL_RIGHT.toString()), getX(), getY(), getWidth(), getHeight());
+            }
+        };
+        AWall tw = new AWall(assetManager, new Rectangle(0, CONFIG_HEIGHT - wallSize, CONFIG_WIDTH, wallSize)) {
+            public void draw(Batch batch, float delta) {
+                batch.draw((Texture) getAssetManager().get(AssetList.WALL_TOP.toString()), getX(), getY(), getWidth(), getHeight());
+            }
+        };
+        AWall bw = new AWall(assetManager, new Rectangle(0, 0, CONFIG_WIDTH, wallSize)) {
+            public void draw(Batch batch, float delta) {
+                batch.draw((Texture) getAssetManager().get(AssetList.WALL_BOTTOM.toString()), getX(), getY(), getWidth(), getHeight());
+            }
+        };
 
         // add actors
         addActor(lw);
@@ -558,7 +571,7 @@ public abstract class ALevel extends Stage {
     public String parseLevelString(String tmxFileName) {
         // tmxFileName comes in the format of "tmx/level_01.tmx"
         // Want to convert to "Level 01"
-        if (tmxFileName == "") {
+        if (tmxFileName.equals("")) {
             return "NO NAME";
         }
 
@@ -572,6 +585,14 @@ public abstract class ALevel extends Stage {
     // Full restore of the player's health.
     public void restorePlayerHealth() {
         player.setHpCurrent(player.getHpMax());
+    }
+
+    public NextStage getNextStage() {
+        return nextStage;
+    }
+
+    public void setNextStage(NextStage nextStage) {
+        this.nextStage = nextStage;
     }
 
 }

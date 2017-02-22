@@ -86,13 +86,13 @@ public abstract class AEnemy extends Character {
 
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1) {
-            System.out.println("collidesWith DAMAGE OH ON" + ((Damage)otherActor).getDamageType());
+            Damage damage = (Damage) otherActor;
             if (!invincible) {
-                takeDamage(((Damage)otherActor).getAttack());
+//                if (System.currentTimeMillis() > damage.getTimeToApplyDamage()) {
+                    takeDamage(damage.getAttack());
+//                }
             }
-
         } else if (otherActor instanceof Whip) {
-            System.out.println("collidesWith Whip");
             if (!invincible) {
                 // Invincible enemies can't be stunned.
                 if (!stunned) {

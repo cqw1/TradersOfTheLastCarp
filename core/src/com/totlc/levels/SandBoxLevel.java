@@ -5,10 +5,14 @@ import com.totlc.Actors.enemies.GelatinKing;
 import com.totlc.Actors.enemies.JustDessert;
 import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
 import com.totlc.Actors.enemies.movement.RandomMovement;
+import com.totlc.Actors.items.APickup;
+import com.totlc.Actors.items.Key;
 import com.totlc.Actors.traps.ATrap;
 import com.totlc.Actors.traps.FireTrap;
+import com.totlc.Actors.traps.Teleporter;
 import com.totlc.Actors.traps.TrapFactory;
 import com.totlc.Actors.triggers.ATrigger;
+import com.totlc.Actors.triggers.TeleportPad;
 import com.totlc.Actors.triggers.TriggerFactory;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
@@ -40,31 +44,15 @@ public class SandBoxLevel extends ALevel{
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
         TradersOfTheLastCarp.musicPlayer.play();
 
-        ATrap atrap = TrapFactory.createTrap(TrapFactory.SPIDER_TRAP, getAssetManager(), 700, 400);
-        ATrap btrap = new FireTrap(getAssetManager(), 200, 50, 800, 200, Directionality.RIGHT);
-        ATrap ctrap = new FireTrap(getAssetManager(), 800, 700, 1200, 200,Directionality.LEFT);
-        addActor(atrap);
-        addActor(btrap);
-        addActor(ctrap);
+        ATrigger trigger = new TeleportPad(getAssetManager(), 500, 500);
+        Teleporter t = new Teleporter(getAssetManager(), 100, 100);
 
+        trigger.addTrap(t);
+        addActor(trigger);
+        addActor(t);
 
-        ATrigger bt = TriggerFactory.createTrigger(TriggerFactory.BUTTON, getAssetManager(), 300, 300);
-        bt.addTrap(atrap);
-        bt.addTrap(btrap);
-        bt.addTrap(ctrap);
-        addActor(bt);
-
-        JustDessert j = new JustDessert(getAssetManager(), 800, 450, 3, new ProximityBasedAggro(getPlayer()));
-        addActor(j);
-
-        JustDessert j3 = new JustDessert(getAssetManager(), 600, 450, 7, new ProximityBasedAggro(getPlayer()));
-        addActor(j3);
-
-        GelatinKing g = new GelatinKing(getAssetManager(), 1000, 300, new RandomMovement(getPlayer()));
-        addActor(g);
-
-        GelatinKing og = new GelatinKing(getAssetManager(), 1000, 500, new RandomMovement(getPlayer()), true);
-        addActor(og);
+        APickup key = new Key(getAssetManager(), 700, 700);
+        addActor(key);
 
         endInit();
     }

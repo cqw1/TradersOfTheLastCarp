@@ -20,11 +20,15 @@ public enum AssetList {
     ITEM_PACK("sprites/items/items.atlas", TextureAtlas.class),
     DIED_SCREEN("UI/udied.png", Texture.class),
     TITLE_SCREEN("UI/Splash.png", Texture.class),
+    BUTTON_PROMPT_ESC("UI/ButtonPromptESC.png", Texture.class),
+    BUTTON_PROMPT_SPACE("UI/ButtonPRomptSpace.png", Texture.class),
     OPTION_QUICKPLAY("UI/splash_options_0.png", Texture.class),
     OPTION_LVLSELECT("UI/splash_options_1.png", Texture.class),
     LEVEL_SELECT_SCREEN("UI/LevelSelect.png", Texture.class),
     QUESTION_MARK_SELECT("UI/QuestionMarkSelect.png", Texture.class),
     QUESTION_MARK_SELECT_BORDER("UI/QuestionMarkSelectBorder.png", Texture.class),
+    CRYSTAL_CARP_TURN("sprites/CrystalCarp/carp_turn.atlas", TextureAtlas.class),
+    CRYSTAL_CARP_TALK("sprites/CrystalCarp/carp_talk.atlas", TextureAtlas.class),
 
     // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas", TextureAtlas.class),
@@ -73,9 +77,11 @@ public enum AssetList {
     SPLASH("effects/splash.particle", null),
     FLAN_PARTS_0("effects/flan_parts.particle", null),
     FLAN_PARTS_1("effects/flan_parts_prime.particle", null),
+    TELEPORT_BEAM("effects/teleport0.particle", null),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas", TextureAtlas.class),
+    TELEPORT_PAD("traps/teleport_pad.atlas", TextureAtlas.class),
     ARROW_TRAP("traps/arrow_trap.atlas", TextureAtlas.class),
     SPIDER_TRAP("traps/spider_trap.atlas", TextureAtlas.class),
     FIRE_TRAP_RIGHT("traps/fire_trap/fire_trap_right.png", Texture.class),

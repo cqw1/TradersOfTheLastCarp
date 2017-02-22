@@ -1,45 +1,34 @@
 package com.totlc;
 
 public enum Directionality {
-    LEFT(0),
-    UP(1),
-    RIGHT(2),
-    DOWN(3);
+    LEFT("LEFT"),
+    UP("UP"),
+    RIGHT("RIGHT"),
+    DOWN("DOWN");
 
-    private int direction;
+    private String direction;
 
-    Directionality(int direction) {
+    Directionality(String direction) {
         this.direction = direction;
     }
 
     public String toString() {
-        switch (direction) {
-            case 0:
-                return "LEFT";
-            case 1:
-                return "UP";
-            case 2:
-                return "RIGHT";
-            case 3:
-                return "DOWN";
-            default:
-                return "";
-        }
+        return direction;
     }
 
     public boolean isFacingLeft() {
-        return direction == 0;
+        return direction.equals("LEFT");
     }
 
     public boolean isFacingUp() {
-        return direction == 1;
+        return direction.equals("UP");
     }
 
     public boolean isFacingRight() {
-        return direction == 2;
+        return direction.equals("RIGHT");
     }
 
     public boolean isFacingDown() {
-        return direction == 3;
+        return direction.equals("DOWN");
     }
 }

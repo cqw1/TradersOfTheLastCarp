@@ -1,6 +1,7 @@
 package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.maps.MapProperties;
 import com.totlc.Actors.enemies.movement.*;
 import com.totlc.TradersOfTheLastCarp;
 
@@ -14,7 +15,7 @@ public class EnemyFactory {
     public static final String GELATIN = "GELATIN";
     public static final String GELATIN_KING = "GELATIN_KING";
 
-    public static AEnemy createDefaultEnemy(String type, AssetManager assetManager, float x, float y) {
+    public static AEnemy createDefaultEnemy(String type, AssetManager assetManager, float x, float y) throws NullPointerException {
         if (type.equals(SPIDER)) {
             return new Spider(assetManager, x, y, new IntervalMovement(TradersOfTheLastCarp.player));
         } else if (type.equals(FLAN)) {
@@ -29,12 +30,32 @@ public class EnemyFactory {
             return new GelatinKing(assetManager, x, y, new RandomMovement(TradersOfTheLastCarp.player));
         }
 
-        return null;
+        throw new NullPointerException("Received type: " + type);
     }
 
-    public static AEnemy createCustomMovementEnemy(String type, AssetManager assetManager, float x, float y, String movement) {
-        AEnemy returnMe = createDefaultEnemy(type, assetManager, x, y);
-        returnMe.setMovement(MovementFactory.createMovement(movement));
+    public static AEnemy createEnemyFromMP(MapProperties mp, AssetManager assetManager) {
+        AEnemy returnMe = createDefaultEnemy(mp.get("type", String.class), assetManager,
+                mp.get("x", Float.class),
+                mp.get("y", Float.class));
+
+
+        // Customization done here
+        if (mp.containsKey("movement")) {
+            // Movement
+            returnMe.setMovement(MovementFactory.createMovement(mp.get("movement", String.class)));
+        }
+
+        if (mp.containsKey("hp")) {
+            // HP
+            returnMe.setHpCurrent(mp.get("hp", Integer.class));
+            returnMe.setHpMax(mp.get("hp", Integer.class));
+        }
+
+        if (mp.containsKey("invincible")) {
+            // Invincibility
+            returnMe.setInvincible(true);
+        }
+
         return returnMe;
     }
 }

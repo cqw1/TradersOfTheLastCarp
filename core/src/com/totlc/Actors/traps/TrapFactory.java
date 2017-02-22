@@ -1,6 +1,8 @@
 package com.totlc.Actors.traps;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.maps.MapProperties;
+import com.totlc.Directionality;
 
 public class TrapFactory {
 
@@ -12,7 +14,7 @@ public class TrapFactory {
     public static final String EXIT_PORTAL = "EXIT_PORTAL";
     public static final String FIRE_TRAP = "FIRE_TRAP";
 
-    public static ATrap createTrap(String type, AssetManager assetManager, float x, float y) {
+    public static ATrap createTrap(String type, AssetManager assetManager, float x, float y) throws NullPointerException {
         if (type.equals(ARROW_TRAP)) {
             return new ArrowTrap(assetManager, x, y);
         } else if (type.equals(SPIDER_TRAP)) {
@@ -27,14 +29,27 @@ public class TrapFactory {
             return new FireTrap(assetManager, x, y);
         }
 
-        System.out.println("ERROR: RECEIVED TYPE - " + type);
-        return null;
+        throw new NullPointerException("Received type: " + type);
     }
 
-    public static ATrap createCustomDelayTrap(String type, AssetManager assetManager, float x, float y, long delay) {
-        ATrap trap = createTrap(type, assetManager, x, y);
-        trap.setDelay(delay);
+    public static ATrap createTrapFromMP(MapProperties mp, AssetManager assetManager) {
+        // Create the basic trap
+        ATrap returnMe = createTrap(mp.get("type", String.class), assetManager,
+                mp.get("x", Float.class),
+                mp.get("y", Float.class));
 
-        return trap;
+        // Customization
+        if (mp.containsKey("delay")) {
+            // Set the delay
+            returnMe.setDelay(mp.get("delay", Integer.class));
+        }
+
+        if (mp.get("type", String.class).equals(FIRE_TRAP)) {
+            if (mp.containsKey("direction")) {
+                ((FireTrap)returnMe).initDirection(Directionality.valueOf(mp.get("direction", String.class)));
+            }
+        }
+
+        return returnMe;
     }
 }
