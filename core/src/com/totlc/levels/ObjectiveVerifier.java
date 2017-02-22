@@ -1,5 +1,6 @@
 package com.totlc.levels;
 
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.enemies.AEnemy;
 
@@ -30,7 +31,12 @@ public class ObjectiveVerifier {
                 return (float)currentLevel.getTimeLimit() - (System.currentTimeMillis() - currentLevel.getStartTime());
             case 1:
                 //UNLOCK
-                break;
+                if (!(//currentLevel.getPlayer().hasKey() &&
+                        Intersector.overlapConvexPolygons(currentLevel.getNextStage().physicalBlock.getHitBox(),
+                                currentLevel.getPlayer().getHitBox()))) {
+                    //currentLevel.getPlayer().removeKey();
+                    returnValue++;
+                }
             case 2:
                 //DESTROY
                 for (Actor actor: currentLevel.getActors()) {

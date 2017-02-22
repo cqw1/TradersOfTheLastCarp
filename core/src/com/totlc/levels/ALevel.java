@@ -52,6 +52,7 @@ public abstract class ALevel extends Stage {
     private AssetManager assetManager;
 
     private TextureRegion objIcon;
+
     private NextStage nextStage;
     private Class nextLevel;
     private Vector2 playerStartPosition = new Vector2(DEFAULT_WALLSIZE + 10, CONFIG_HEIGHT / 2 - 50);
@@ -570,7 +571,7 @@ public abstract class ALevel extends Stage {
     public String parseLevelString(String tmxFileName) {
         // tmxFileName comes in the format of "tmx/level_01.tmx"
         // Want to convert to "Level 01"
-        if (tmxFileName == "") {
+        if (tmxFileName.equals("")) {
             return "NO NAME";
         }
 
@@ -584,6 +585,14 @@ public abstract class ALevel extends Stage {
     // Full restore of the player's health.
     public void restorePlayerHealth() {
         player.setHpCurrent(player.getHpMax());
+    }
+
+    public NextStage getNextStage() {
+        return nextStage;
+    }
+
+    public void setNextStage(NextStage nextStage) {
+        this.nextStage = nextStage;
     }
 
 }

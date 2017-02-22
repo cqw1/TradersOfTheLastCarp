@@ -5,6 +5,8 @@ import com.totlc.Actors.enemies.GelatinKing;
 import com.totlc.Actors.enemies.JustDessert;
 import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
 import com.totlc.Actors.enemies.movement.RandomMovement;
+import com.totlc.Actors.items.APickup;
+import com.totlc.Actors.items.Key;
 import com.totlc.Actors.traps.ATrap;
 import com.totlc.Actors.traps.FireTrap;
 import com.totlc.Actors.traps.Teleporter;
@@ -48,6 +50,9 @@ public class SandBoxLevel extends ALevel{
         trigger.addTrap(t);
         addActor(trigger);
         addActor(t);
+
+        APickup key = new Key(getAssetManager(), 700, 700);
+        addActor(key);
 
         endInit();
     }

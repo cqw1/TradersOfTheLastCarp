@@ -20,7 +20,7 @@ public class SpikeTrap extends ATrap {
 
     public static float width = 128;
     public static float height = 128;
-    public static long duration = 1000;
+    public static long duration = 2000;
     public static long delay = 750;
     private Damage damageArea;
     private static int damage = 1;
@@ -41,9 +41,7 @@ public class SpikeTrap extends ATrap {
         super(assetManager, r, delay);
         damageArea = new Damage(assetManager, r, damage, 0) {
             @Override
-            public void draw(Batch batch, float alpha) {
-
-            }
+            public void draw(Batch batch, float alpha) {}
 
             @Override
             public boolean collidesWith(Actor otherActor) {
@@ -67,6 +65,7 @@ public class SpikeTrap extends ATrap {
     public void activate() {
         getStage().addActor(damageArea);
         damageArea.setExpirationTime(System.currentTimeMillis() + duration);
+        damageArea.setTimeToApplyDamage(System.currentTimeMillis());
         setAnimationTime(0);
         this.reverse = false;
         Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/sword0.mp3"));
