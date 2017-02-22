@@ -16,13 +16,15 @@ public class StarShot extends Damage {
     // Asset and animation constants.
     private TextureAtlas shotTextureAtlas, particleAtlas;
     private Animation<TextureRegion> shotAnimation;
-    private ParticleEffect star_trail;
+    private ParticleEffect starTrail = new ParticleEffect();
 
     // Bookkeeping variables.
     private long startTime;
     private boolean removeFlag = false;
     private Point2D textureDimensions;
     private static int damage = 2;
+
+    private static ParticleEffectPool starShotPool = new ParticleEffectPool()
 
     public StarShot(AssetManager assetManager, float x, float y, int damageType){
         super(assetManager, new Rectangle(x, y, 24, 24), damage, damageType);
@@ -39,11 +41,11 @@ public class StarShot extends Damage {
 
         textureDimensions = new Point2D.Float(shotAnimation.getKeyFrame(getAnimationTime()).getRegionWidth(), shotAnimation.getKeyFrame(getAnimationTime()).getRegionHeight());
 
-        star_trail = new ParticleEffect();
-        star_trail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
+        starTrail = new ParticleEffect();
+        starTrail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
 
-        star_trail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
-        star_trail.start();
+        starTrail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
+        starTrail.start();
     }
 
     @Override
@@ -58,11 +60,11 @@ public class StarShot extends Damage {
             delayRemove();
         }
         if (removeFlag){
-            for (ParticleEmitter p : star_trail.getEmitters()){
+            for (ParticleEmitter p : starTrail.getEmitters()){
                 p.allowCompletion();
             }
         }
-        star_trail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
+        starTrail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
     }
 
     @Override
@@ -70,7 +72,7 @@ public class StarShot extends Damage {
         if (!removeFlag) {
             batch.draw(shotAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY());
         }
-        star_trail.draw(batch, Gdx.graphics.getDeltaTime());
+        starTrail.draw(batch, Gdx.graphics.getDeltaTime());
     }
 
     @Override
