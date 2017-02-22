@@ -27,6 +27,8 @@ public enum AssetList {
     LEVEL_SELECT_SCREEN("UI/LevelSelect.png", Texture.class),
     QUESTION_MARK_SELECT("UI/QuestionMarkSelect.png", Texture.class),
     QUESTION_MARK_SELECT_BORDER("UI/QuestionMarkSelectBorder.png", Texture.class),
+    CRYSTAL_CARP_TURN("sprites/CrystalCarp/carp_turn.atlas", TextureAtlas.class),
+    CRYSTAL_CARP_TALK("sprites/CrystalCarp/carp_talk.atlas", TextureAtlas.class),
 
     // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas", TextureAtlas.class),
