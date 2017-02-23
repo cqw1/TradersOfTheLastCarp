@@ -63,6 +63,8 @@ public enum AssetList {
     WHIP_RIGHT("sprites/whip/right.atlas", TextureAtlas.class),
     WHIP_DOWN("sprites/whip/front.atlas", TextureAtlas.class),
     WHIP_UP("sprites/whip/back.atlas", TextureAtlas.class),
+    JACK_HEAD("sprites/Louisiana/jack_head.atlas", TextureAtlas.class),
+    JANE_HEAD("sprites/Colorado/jane_head.atlas", TextureAtlas.class),
 
     // Special Effects.
     IMPACT("effects/impact.atlas", TextureAtlas.class),
