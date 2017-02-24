@@ -93,6 +93,7 @@ public enum AssetList {
     SPIKE_TRAP("traps/spike_trap.atlas", TextureAtlas.class),
     GOLDFISH("sprites/goldfish/goldfish_glow.atlas", TextureAtlas.class),
     GOLDFISH_UI("sprites/goldfish/goldfish_ui.atlas", TextureAtlas.class),
+    ROCKS("sprites/rocks/rocks.atlas", TextureAtlas.class),
 
     // Projectile sprites and effects.
     PROJECTILE_ARROW("traps/arrow.png", Texture.class),
