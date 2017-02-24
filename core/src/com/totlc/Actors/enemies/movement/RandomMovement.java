@@ -18,7 +18,7 @@ public class RandomMovement extends AMovement {
     }
 
     @Override
-    public void move(AEnemy self, float deltaTime) {
+    public void specializedMove(AEnemy self, float deltaTime) {
         Point2D newAcc = self.getAcc();
         Point2D targetVector = getTargetVector(self);
         if (System.currentTimeMillis() > (movementTime + waitPeriod)) {

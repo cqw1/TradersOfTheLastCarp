@@ -19,7 +19,7 @@ public class IntervalMovement extends AMovement {
     }
 
     @Override
-    public void move(AEnemy self, float deltaTime) {
+    public void specializedMove(AEnemy self, float deltaTime) {
         Point2D newAcc = self.getAcc();
 
         if (skitter) {
@@ -42,7 +42,6 @@ public class IntervalMovement extends AMovement {
         }
         self.updateVelocity();
         self.moveUnit(deltaTime);
-        self.returnIntoBounds();
     }
 
     public boolean isMoving() {return skitter;}

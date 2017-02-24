@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
+import com.totlc.Actors.Player;
 import com.totlc.AssetList;
 
 public class Key extends APickup {
@@ -26,7 +27,7 @@ public class Key extends APickup {
     @Override
     public void pickup(Character p) {
         // Add self to player inventory?
-        System.out.println("Picked up a key!");
+        ((Player)p).giveKey();
     }
 
     @Override

@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.totlc.Actors.Character;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.UI.*;
@@ -36,6 +37,7 @@ import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.Objectives;
 
+import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.HashSet;
 

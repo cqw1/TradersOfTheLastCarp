@@ -1,10 +1,15 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.enemies.AEnemy;
 
+import java.awt.geom.Point2D;
+
 public class ObjectiveVerifier {
+
+    private static float unlockThreshold = 100;
 
     public enum Objectives {
         SURVIVE(0),
@@ -28,15 +33,19 @@ public class ObjectiveVerifier {
         switch(currentLevel.getObjective().getID()) {
             case 0:
                 //SURVIVE
-                return (float)currentLevel.getTimeLimit() - (System.currentTimeMillis() - currentLevel.getStartTime());
+                returnValue = (float)currentLevel.getTimeLimit() - (System.currentTimeMillis() - currentLevel.getStartTime());
+                break;
             case 1:
                 //UNLOCK
-                if (!(//currentLevel.getPlayer().hasKey() &&
-                        Intersector.overlapConvexPolygons(currentLevel.getNextStage().physicalBlock.getHitBox(),
-                                currentLevel.getPlayer().getHitBox()))) {
-                    //currentLevel.getPlayer().removeKey();
+                Point2D doorCenter = currentLevel.getNextStage().physicalBlock.getCenter();
+                Point2D playerCenter = currentLevel.getPlayer().getCenter();
+                if (currentLevel.getPlayer().hasKey() &&
+                        Math.hypot(doorCenter.getX() - playerCenter.getX(), doorCenter.getY() - playerCenter.getY()) < unlockThreshold) {
+                    currentLevel.getPlayer().removeKey();
+                } else {
                     returnValue++;
                 }
+                break;
             case 2:
                 //DESTROY
                 for (Actor actor: currentLevel.getActors()) {

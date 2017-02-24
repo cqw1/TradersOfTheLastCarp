@@ -1,8 +1,10 @@
 package com.totlc.Actors.enemies.movement;
 
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.Character;
+import com.totlc.Actors.terrain.AWall;
 
 import java.awt.geom.Point2D;
 
@@ -17,7 +19,18 @@ public abstract class AMovement {
         target = player;
     }
 
-    public abstract void move(AEnemy self, float deltaTime);
+    public void move(AEnemy self, float deltaTime) {
+        float formerX = self.getX();
+        float formerY = self.getY();
+        self.updateVelocity();
+        self.moveUnit(deltaTime);
+        if (!self.returnIntoBounds(formerX, formerY)) {
+            self.moveAbs(formerX, formerY);
+            specializedMove(self, deltaTime);
+        }
+    }
+
+    public abstract void specializedMove(AEnemy self, float deltaTime);
 
     public Character getTarget() {
         return target;

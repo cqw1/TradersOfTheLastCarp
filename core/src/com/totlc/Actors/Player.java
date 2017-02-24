@@ -8,11 +8,13 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.items.Key;
+import com.totlc.Actors.terrain.AWall;
 import com.totlc.Actors.weapons.AWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
@@ -64,6 +66,7 @@ public class Player extends Character {
     private int invincibilityPeriod = 1000; // in millis
     private long invincibilityStart;
     private AWeapon weapon;
+    private boolean hasKey = false;
 
     public Player(AssetManager assetManager, float x, float y){
         super(assetManager, new Rectangle(x, y, 72, 100));
@@ -182,43 +185,55 @@ public class Player extends Character {
             return;
         }
 
-        Point2D newAcc = getAcc();
-        if (this.isMovingDown()) {
-            newAcc.setLocation(newAcc.getX(), -getSpeed());
-            setAcc(newAcc);
-        }
-        if (this.isMovingUp()) {
-            newAcc.setLocation(newAcc.getX(), getSpeed());
-            setAcc(newAcc);
-        }
-        if ((this.isMovingDown() && this.isMovingUp()) ||
-                !(this.isMovingDown() || this.isMovingUp())){
-            newAcc.setLocation(newAcc.getX(), 0);
-            setAcc(newAcc);
-        }
-
-        if (this.isMovingRight()) {
-            newAcc.setLocation(getSpeed(), newAcc.getY());
-            setAcc(newAcc);
-        }
-        if (this.isMovingLeft()) {
-            newAcc.setLocation(-getSpeed(), newAcc.getY());
-            setAcc(newAcc);
-        }
-        if (this.isMovingRight() && this.isMovingLeft()||
-                !(this.isMovingRight() || this.isMovingLeft())){
-            newAcc.setLocation(0, newAcc.getY());
-            setAcc(newAcc);
-        }
-
         if (!(this.isMovingDown() || this.isMovingLeft() ||
                 this.isMovingRight() || this.isMovingUp())) {
             setAnimationTime(0);
         }
 
+
+        float formerX = getX();
+        float formerY = getY();
+        setAcc(getNewAcceleration());
         updateVelocity();
         moveUnit(deltaTime);
-        returnIntoBounds();
+        float afterX = getX();
+        float afterY = getY();
+
+        // First check the new Y
+        moveAbs(formerX, afterY);
+        returnIntoBounds(formerX, formerY);
+
+        // Now check the new X
+        moveAbs(afterX, getY());
+        returnIntoBounds(formerX, getY());
+    }
+
+    public Point2D getNewAcceleration() {
+        Point2D newAcc = getAcc();
+
+        if (this.isMovingDown()) {
+            newAcc.setLocation(newAcc.getX(), -getSpeed());
+        }
+        if (this.isMovingUp()) {
+            newAcc.setLocation(newAcc.getX(), getSpeed());
+        }
+        if ((this.isMovingDown() && this.isMovingUp()) ||
+                !(this.isMovingDown() || this.isMovingUp())){
+            newAcc.setLocation(newAcc.getX(), 0);
+        }
+
+        if (this.isMovingRight()) {
+            newAcc.setLocation(getSpeed(), newAcc.getY());
+        }
+        if (this.isMovingLeft()) {
+            newAcc.setLocation(-getSpeed(), newAcc.getY());
+        }
+        if (this.isMovingRight() && this.isMovingLeft()||
+                !(this.isMovingRight() || this.isMovingLeft())){
+            newAcc.setLocation(0, newAcc.getY());
+        }
+
+        return newAcc;
     }
 
     public boolean collidesWith(Actor otherActor) {
@@ -230,11 +245,11 @@ public class Player extends Character {
             }
         } else
             if (otherActor instanceof Damage) {
-            if (!invincible && ((Damage)otherActor).getDamageType() != 2) {
-                takeDamage(((Damage)otherActor).getAttack());
-                invincible = true;
-                invincibilityStart = System.currentTimeMillis();
-            }
+                if (!invincible && ((Damage)otherActor).getDamageType() != 2) {
+                    takeDamage(((Damage)otherActor).getAttack());
+                    invincible = true;
+                    invincibilityStart = System.currentTimeMillis();
+                }
         }
 
         return (getHpCurrent() <= 0);
@@ -275,5 +290,17 @@ public class Player extends Character {
 
     public void setInvincibilityStart(long start) {
         invincibilityStart = start;
+    }
+
+    public boolean hasKey() {
+        return hasKey;
+    }
+
+    public void removeKey() {
+        this.hasKey = false;
+    }
+
+    public void giveKey() {
+        this.hasKey = true;
     }
 }
