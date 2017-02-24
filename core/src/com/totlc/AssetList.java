@@ -120,7 +120,8 @@ public enum AssetList {
     LEVEL06_TMX("tmx/level_06.tmx", TiledMap.class),
     LEVEL07_TMX("tmx/level_07.tmx", TiledMap.class),
     LEVEL08_TMX("tmx/level_08.tmx", TiledMap.class),
-    LEVEL09_TMX("tmx/level_09.tmx", TiledMap.class);
+    LEVEL09_TMX("tmx/level_09.tmx", TiledMap.class),
+    LEVEL10_TMX("tmx/level_10.tmx", TiledMap.class);
 
     private String pathname;
     private Class type;

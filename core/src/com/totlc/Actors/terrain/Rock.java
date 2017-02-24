@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class Rock extends AWall {
 
-    final private static float width = 48;
-    final private static float height = 64;
+    final private static float width = 70;
+    final private static float height = 48;
     private TextureAtlas textureAtlas;
     private float scale = 0.3f;
     private int textureNum;
@@ -25,7 +25,7 @@ public class Rock extends AWall {
 
     @Override
     public void draw(Batch batch, float delta) {
-        batch.draw(textureAtlas.getRegions().get(textureNum), getX(), getY(), textureAtlas.getRegions().get(textureNum).getRegionWidth() * 0.5f, getY(),
+        batch.draw(textureAtlas.getRegions().get(textureNum), getX(), getY(), 0, 0,
                 textureAtlas.getRegions().get(textureNum).getRegionWidth(), textureAtlas.getRegions().get(textureNum).getRegionHeight(), scale, scale, 0);
     }
 }

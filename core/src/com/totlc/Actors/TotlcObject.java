@@ -275,17 +275,26 @@ public abstract class TotlcObject extends Actor {
         return vel.getX() == 0 && vel.getY() == 0;
     }
 
-    public boolean returnIntoBounds(float formerX, float formerY) {
+    public void returnIntoBounds(float formerX, float formerY) {
         for (Actor act: getStage().getActors().toArray()) {
             if (act instanceof AWall) {
-                if (Intersector.overlapConvexPolygons(((AWall)act).getHitBox(), getHitBox())) {
-                    moveAbs(formerX, formerY);
-                    return true;
+                AWall wall = (AWall) act;
+
+                Polygon horHitBox = new Polygon(wall.getHitBox().getVertices());
+                horHitBox.translate(0, formerY - getY());
+
+                Polygon verHitBox = new Polygon(wall.getHitBox().getVertices());
+                verHitBox.translate(formerX - getX(), 0);
+
+                if (Intersector.overlapConvexPolygons(horHitBox, getHitBox())) {
+                    moveRel(formerX - getX(), 0);
+                }
+
+                if (Intersector.overlapConvexPolygons(verHitBox, getHitBox())) {
+                    moveRel(0, formerY - getY());
                 }
             }
         }
-
-        return false;
     }
 
     public boolean isOutOfBounds() {

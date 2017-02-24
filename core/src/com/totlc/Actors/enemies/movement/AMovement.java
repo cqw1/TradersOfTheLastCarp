@@ -22,12 +22,8 @@ public abstract class AMovement {
     public void move(AEnemy self, float deltaTime) {
         float formerX = self.getX();
         float formerY = self.getY();
-        self.updateVelocity();
-        self.moveUnit(deltaTime);
-        if (!self.returnIntoBounds(formerX, formerY)) {
-            self.moveAbs(formerX, formerY);
-            specializedMove(self, deltaTime);
-        }
+        specializedMove(self, deltaTime);
+        self.returnIntoBounds(formerX, formerY);
     }
 
     public abstract void specializedMove(AEnemy self, float deltaTime);
