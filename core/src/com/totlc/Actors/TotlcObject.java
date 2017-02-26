@@ -280,17 +280,17 @@ public abstract class TotlcObject extends Actor {
             if (act instanceof AWall) {
                 AWall wall = (AWall) act;
 
-                Polygon horHitBox = new Polygon(wall.getHitBox().getVertices());
-                horHitBox.translate(0, formerY - getY());
+                Polygon horizontal = new Polygon(getHitBox().getTransformedVertices());
+                horizontal.translate(0, formerY - getY());
 
-                Polygon verHitBox = new Polygon(wall.getHitBox().getVertices());
-                verHitBox.translate(formerX - getX(), 0);
+                Polygon vertical = new Polygon(getHitBox().getTransformedVertices());
+                vertical.translate(formerX - getX(), 0);
 
-                if (Intersector.overlapConvexPolygons(horHitBox, getHitBox())) {
+                if (Intersector.overlapConvexPolygons(horizontal, wall.getHitBox())) {
                     moveRel(formerX - getX(), 0);
                 }
 
-                if (Intersector.overlapConvexPolygons(verHitBox, getHitBox())) {
+                if (Intersector.overlapConvexPolygons(vertical, wall.getHitBox())) {
                     moveRel(0, formerY - getY());
                 }
             }

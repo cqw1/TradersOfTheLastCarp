@@ -197,16 +197,6 @@ public class Player extends Character {
         updateVelocity();
         moveUnit(deltaTime);
         returnIntoBounds(formerX, formerY);
-//        float afterX = getX();
-//        float afterY = getY();
-//
-//        // First check the new Y
-//        moveAbs(formerX, afterY);
-//        returnIntoBounds(formerX, formerY);
-//
-//        // Now check the new X
-//        moveAbs(afterX, getY());
-//        returnIntoBounds(formerX, getY());
     }
 
     public Point2D getNewAcceleration() {

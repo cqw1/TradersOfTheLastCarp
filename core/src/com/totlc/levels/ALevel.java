@@ -469,7 +469,7 @@ public abstract class ALevel extends Stage {
                 return " " + Math.max(Math.ceil(ObjectiveVerifier.verifyDone(this) / 100) / 10, 0);
             case 1:
                 // Unlock.
-                return "LOCKED/UNLOCKED";
+                return "";
             case 2:
                 // Destroy.
                 return "x " + (int)ObjectiveVerifier.verifyDone(this);

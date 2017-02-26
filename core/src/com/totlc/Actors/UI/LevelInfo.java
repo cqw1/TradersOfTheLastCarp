@@ -30,7 +30,7 @@ public class LevelInfo extends Actor {
         setX(x);
         setY(y);
         setWidth(200);
-        setHeight(64);
+        setHeight(96);
         setLevel(level);
         bar = new NinePatch(assetManager.get(AssetList.UI_BAR.toString(), Texture.class), 16, 16, 8, 8);
         setObjective(level.getObjective());

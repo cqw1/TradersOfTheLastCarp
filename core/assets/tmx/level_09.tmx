@@ -46,7 +46,7 @@
  <objectgroup name="TRAPS"/>
  <objectgroup name="TRIGGERS"/>
  <objectgroup name="ENEMIES">
-  <object id="1" x="586.667" y="73.3333" width="40" height="40">
+  <object id="1" x="613.333" y="112" width="40" height="40">
    <properties>
     <property name="type" value="STAR"/>
    </properties>
@@ -81,7 +81,7 @@
     <property name="type" value="STAR"/>
    </properties>
   </object>
-  <object id="8" x="362.667" y="76" width="40" height="40">
+  <object id="8" x="389.333" y="114.667" width="40" height="40">
    <properties>
     <property name="type" value="STAR"/>
    </properties>

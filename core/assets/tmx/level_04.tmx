@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="17">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="7">
  <properties>
-  <property name="objective" type="int" value="2"/>
+  <property name="objective" type="int" value="1"/>
  </properties>
  <layer name="WALLS" width="50" height="28">
   <data encoding="csv">
@@ -36,63 +36,38 @@
 </data>
  </layer>
  <objectgroup name="ITEMS">
-  <object id="12" x="838.667" y="373.333" width="53.3333" height="57.3333">
+  <object id="1" name="key" x="1452" y="414.667" width="40" height="64">
+   <properties>
+    <property name="type" value="KEY"/>
+   </properties>
+  </object>
+  <object id="5" name="health" x="249.333" y="200" width="40" height="64">
    <properties>
     <property name="type" value="HEALTH"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="TRAPS">
-  <object id="5" name="5" x="1086.67" y="320" width="128" height="128">
-   <properties>
-    <property name="type" value="SPIKE_TRAP"/>
-   </properties>
-  </object>
-  <object id="10" name="10" x="1086.67" y="453.333" width="128" height="128">
-   <properties>
-    <property name="type" value="SPIKE_TRAP"/>
-   </properties>
-  </object>
-  <object id="11" name="11" x="1085.33" y="186.667" width="128" height="128">
-   <properties>
-    <property name="type" value="SPIKE_TRAP"/>
-   </properties>
-  </object>
-  <object id="14" name="14" x="513.333" y="321.333" width="128" height="128">
-   <properties>
-    <property name="type" value="SPIKE_TRAP"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="TRIGGERS">
-  <object id="9" x="560" y="369.333" width="32" height="32">
-   <properties>
-    <property name="trap_id" value="5:10:11:14"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="15" x="849.333" y="592" width="32" height="32">
-   <properties>
-    <property name="trap_id" value="5:10"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="16" x="848" y="144" width="32" height="32">
-   <properties>
-    <property name="trap_id" value="11:5"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="TRAPS"/>
+ <objectgroup name="TRIGGERS"/>
  <objectgroup name="ENEMIES">
-  <object id="3" name="Flan1" x="998.667" y="346.667" width="64" height="64">
+  <object id="2" x="758.667" y="438.667" width="98.6667" height="121.333">
    <properties>
-    <property name="type" value="FLAN"/>
+    <property name="type" value="GELATIN_KING"/>
    </properties>
   </object>
-  <object id="4" name="Flan1" x="1252" y="346.667" width="64" height="64">
+  <object id="3" x="612" y="592" width="98.6667" height="121.333">
    <properties>
-    <property name="type" value="FLAN"/>
+    <property name="type" value="GELATIN"/>
+   </properties>
+  </object>
+  <object id="4" x="770.667" y="596" width="98.6667" height="121.333">
+   <properties>
+    <property name="type" value="GELATIN"/>
+   </properties>
+  </object>
+  <object id="6" x="624" y="296" width="98.6667" height="121.333">
+   <properties>
+    <property name="type" value="GELATIN_KING"/>
    </properties>
   </object>
  </objectgroup>
