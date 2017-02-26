@@ -1,41 +1,41 @@
 
 jane_head.png
-size: 1024,1024
+size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 head_back_base
   rotate: false
-  xy: 2, 518
-  size: 256, 256
-  orig: 256, 256
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: 0
 head_back_top
   rotate: false
-  xy: 2, 260
-  size: 256, 256
-  orig: 256, 256
+  xy: 132, 2
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: 0
 head_forward
   rotate: false
-  xy: 260, 518
-  size: 256, 256
-  orig: 256, 256
+  xy: 262, 2
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: 0
 head_left
   rotate: false
-  xy: 2, 2
-  size: 256, 256
-  orig: 256, 256
+  xy: 392, 2
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: 0
 head_right
   rotate: false
-  xy: 260, 260
-  size: 256, 256
-  orig: 256, 256
+  xy: 522, 2
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: 0
