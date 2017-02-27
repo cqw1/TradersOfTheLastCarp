@@ -16,7 +16,7 @@ public abstract class Damage extends TotlcObject {
 
     // Damage type. 0 - Damages all; 1 - Damages Player; 2 - Damages enemies.
     private int damageType;
-    private long damageInterval = 500;
+    private long damageInterval = 2000;
 
     public Damage(AssetManager assetManager, Rectangle r, int attack, int damageType) {
         super(assetManager, r);

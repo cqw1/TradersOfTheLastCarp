@@ -7,6 +7,8 @@ import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
 import com.totlc.Actors.enemies.movement.RandomMovement;
 import com.totlc.Actors.items.APickup;
 import com.totlc.Actors.items.Key;
+import com.totlc.Actors.terrain.AWall;
+import com.totlc.Actors.terrain.Rock;
 import com.totlc.Actors.traps.ATrap;
 import com.totlc.Actors.traps.FireTrap;
 import com.totlc.Actors.traps.Teleporter;
@@ -33,7 +35,7 @@ import com.totlc.levels.ObjectiveVerifier.*;
 public class SandBoxLevel extends ALevel{
 
     public SandBoxLevel(AssetManager assetManager) {
-        super(assetManager, Objectives.SURVIVE);
+        super(assetManager, Objectives.UNLOCK);
         setNextLevel(SpikeLevel.class);
     }
 
@@ -53,6 +55,9 @@ public class SandBoxLevel extends ALevel{
 
         APickup key = new Key(getAssetManager(), 700, 700);
         addActor(key);
+
+        AWall rock = new Rock(getAssetManager(), 800, 300);
+        addActor(rock);
 
         endInit();
     }

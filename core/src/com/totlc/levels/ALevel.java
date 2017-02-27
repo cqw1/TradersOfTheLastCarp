@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.totlc.Actors.Character;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.UI.*;
@@ -36,6 +37,7 @@ import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.Objectives;
 
+import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -334,42 +336,57 @@ public abstract class ALevel extends Stage {
         }
         drawObjectives();
 
-        //Traps have least priority, load first
-        HashMap<Integer, ATrap> id2Trap = new HashMap<Integer, ATrap>(10);
-        for (MapObject mo: map.getLayers().get(TrapFactory.TYPE).getObjects()) {
-            MapProperties currentObjProp = mo.getProperties();
-            ATrap currentTrap = TrapFactory.createTrapFromMP(currentObjProp, getAssetManager());
-            addActor(currentTrap);
+        try {
+            //Traps have least priority, load first
+            HashMap<Integer, ATrap> id2Trap = new HashMap<Integer, ATrap>(10);
+            for (MapObject mo : map.getLayers().get(TrapFactory.TYPE).getObjects()) {
+                MapProperties currentObjProp = mo.getProperties();
+                ATrap currentTrap = TrapFactory.createTrapFromMP(currentObjProp, getAssetManager());
+                addActor(currentTrap);
 
-            // Update mapping so triggers can use it
-            id2Trap.put(currentObjProp.get("id", Integer.class), currentTrap);
-        }
-
-        //Triggers after
-        for (MapObject mo: map.getLayers().get(TriggerFactory.TYPE).getObjects()) {
-            MapProperties currentObjProp = mo.getProperties();
-            ATrigger currentTrigger = TriggerFactory.createTriggerFromMP(currentObjProp, getAssetManager());
-
-            // Map triggers tp traps
-            for (String i: currentObjProp.get("trap_id", String.class).split(":")) {
-                currentTrigger.addTrap(id2Trap.get(Integer.parseInt(i)));
+                // Update mapping so triggers can use it
+                id2Trap.put(currentObjProp.get("id", Integer.class), currentTrap);
             }
 
-            addActor(currentTrigger);
+            //Triggers after
+            for (MapObject mo : map.getLayers().get(TriggerFactory.TYPE).getObjects()) {
+                MapProperties currentObjProp = mo.getProperties();
+                ATrigger currentTrigger = TriggerFactory.createTriggerFromMP(currentObjProp, getAssetManager());
+
+                // Map triggers tp traps
+                for (String i : currentObjProp.get("trap_id", String.class).split(":")) {
+                    currentTrigger.addTrap(id2Trap.get(Integer.parseInt(i)));
+                }
+
+                addActor(currentTrigger);
+            }
+        } catch (NullPointerException n) {
+            System.err.print("Error setting up traps and triggers.");
+            n.printStackTrace();
         }
 
-        //Enemies
-        for (MapObject mo: map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
-            MapProperties currentObjProp = mo.getProperties();
-            AEnemy currentEnemy = EnemyFactory.createEnemyFromMP(currentObjProp, getAssetManager());
-            addActor(currentEnemy);
+        try {
+            //Enemies
+            for (MapObject mo : map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
+                MapProperties currentObjProp = mo.getProperties();
+                AEnemy currentEnemy = EnemyFactory.createEnemyFromMP(currentObjProp, getAssetManager());
+                addActor(currentEnemy);
+            }
+        } catch (NullPointerException n) {
+            System.err.print("Error setting up enemies.");
+            n.printStackTrace();
         }
 
-        //Lay out items
-        for (MapObject mo: map.getLayers().get(PickupFactory.TYPE).getObjects()) {
-            MapProperties currentObjProp = mo.getProperties();
-            APickup currentItem = PickupFactory.createPickupFromMP(currentObjProp, getAssetManager());
-            addActor(currentItem);
+        try {
+            //Lay out items
+            for (MapObject mo : map.getLayers().get(PickupFactory.TYPE).getObjects()) {
+                MapProperties currentObjProp = mo.getProperties();
+                APickup currentItem = PickupFactory.createPickupFromMP(currentObjProp, getAssetManager());
+                addActor(currentItem);
+            }
+        } catch (NullPointerException n) {
+            System.err.print("Error setting up items.");
+            n.printStackTrace();
         }
 
         endInit();
@@ -452,7 +469,7 @@ public abstract class ALevel extends Stage {
                 return " " + Math.max(Math.ceil(ObjectiveVerifier.verifyDone(this) / 100) / 10, 0);
             case 1:
                 // Unlock.
-                return "LOCKED/UNLOCKED";
+                return "";
             case 2:
                 // Destroy.
                 return "x " + (int)ObjectiveVerifier.verifyDone(this);

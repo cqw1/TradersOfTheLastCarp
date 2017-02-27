@@ -19,7 +19,7 @@ public class ProximityBasedAggro extends AMovement {
     }
 
     @Override
-    public void move(AEnemy self, float deltaTime) {
+    public void specializedMove(AEnemy self, float deltaTime) {
         if (isAttack()) {
             interval.move(self, deltaTime);
         } else {

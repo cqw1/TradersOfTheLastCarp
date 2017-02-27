@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.terrain.AWall;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.badlogic.gdx.math.Polygon;
@@ -130,17 +132,21 @@ public abstract class TotlcObject extends Actor {
         hitBox.translate(x, y);
     }
 
-    public void updateVelocity(){
+    public Point2D.Double getUpdatedVelocity(Point2D acc) {
         Point2D newVelocity = getVel();
-        double newX = newVelocity.getX() * getFriction() + getAcc().getX();
-        double newY = newVelocity.getY() * getFriction() + getAcc().getY();
+        double newX = newVelocity.getX() * getFriction() + acc.getX();
+        double newY = newVelocity.getY() * getFriction() + acc.getY();
         if (Math.abs(newX)  > getMaxVel()){
             newX = getMaxVel() * Math.signum(newX);
         }
         if (Math.abs(newY) > getMaxVel()){
             newY = getMaxVel() * Math.signum(newY);
         }
-        setVel(new Point2D.Double(newX, newY));
+        return new Point2D.Double(newX, newY);
+    }
+
+    public void updateVelocity() {
+        setVel(getUpdatedVelocity(getAcc()));
     }
 
     public Polygon getHitBox() { return hitBox; }
@@ -165,7 +171,7 @@ public abstract class TotlcObject extends Actor {
                 getX() + getWidth(), getY(),
                 getX() + getWidth(), getY() + getHeight(),
                 getX(), getY() + getHeight()
-                });
+        });
         hitBox.setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
     }
 
@@ -269,21 +275,25 @@ public abstract class TotlcObject extends Actor {
         return vel.getX() == 0 && vel.getY() == 0;
     }
 
-    public void returnIntoBounds() {
-        if (getX() < 0) {
-            moveAbs(0, getY());
-        }
+    public void returnIntoBounds(float formerX, float formerY) {
+        for (Actor act: getStage().getActors().toArray()) {
+            if (act instanceof AWall) {
+                AWall wall = (AWall) act;
 
-        if (getX() + WIDTH > TradersOfTheLastCarp.CONFIG_WIDTH) {
-            moveAbs(TradersOfTheLastCarp.CONFIG_WIDTH - WIDTH, getY());
-        }
+                Polygon horizontal = new Polygon(getHitBox().getTransformedVertices());
+                horizontal.translate(0, formerY - getY());
 
-        if (getY() < 0) {
-            moveAbs(getX(), 0);
-        }
+                Polygon vertical = new Polygon(getHitBox().getTransformedVertices());
+                vertical.translate(formerX - getX(), 0);
 
-        if (getY() + HEIGHT > TradersOfTheLastCarp.CONFIG_HEIGHT) {
-            moveAbs(getX(), TradersOfTheLastCarp.CONFIG_HEIGHT - HEIGHT);
+                if (Intersector.overlapConvexPolygons(horizontal, wall.getHitBox())) {
+                    moveRel(formerX - getX(), 0);
+                }
+
+                if (Intersector.overlapConvexPolygons(vertical, wall.getHitBox())) {
+                    moveRel(0, formerY - getY());
+                }
+            }
         }
     }
 
@@ -314,5 +324,21 @@ public abstract class TotlcObject extends Actor {
         for (AStatus s : getStatuses()){
            s.draw(batch, alpha);
         }
+    }
+
+    public boolean isTravelingLeft() {
+        return vel.getX() < 0 && Math.abs(vel.getX()) > Math.abs(vel.getY());
+    }
+
+    public boolean isTravelingRight() {
+        return vel.getX() > 0 && Math.abs(vel.getX()) > Math.abs(vel.getY());
+    }
+
+    public boolean isTravelingDown() {
+        return vel.getY() < 0 && Math.abs(vel.getX()) < Math.abs(vel.getY());
+    }
+
+    public boolean isTravelingUp() {
+        return vel.getY() > 0 && Math.abs(vel.getX()) < Math.abs(vel.getY());
     }
 }

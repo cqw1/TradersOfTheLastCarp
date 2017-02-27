@@ -15,7 +15,7 @@ public class BasicMovement extends AMovement{
     }
 
     @Override
-    public void move(AEnemy self, float deltaTime) {
+    public void specializedMove(AEnemy self, float deltaTime) {
         Point2D newAcc = self.getAcc();
         Point2D targetVector = getTargetVector(self);
         newAcc.setLocation(targetVector.getX() * self.getSpeed(), targetVector.getY() * self.getSpeed());

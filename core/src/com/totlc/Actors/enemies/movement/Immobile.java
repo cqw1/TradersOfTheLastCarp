@@ -9,5 +9,5 @@ public class Immobile extends AMovement {
         super(player);
     }
 
-    public void move(AEnemy self, float delta) {}
+    public void specializedMove(AEnemy self, float delta) {}
 }

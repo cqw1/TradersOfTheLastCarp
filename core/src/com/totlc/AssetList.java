@@ -63,6 +63,8 @@ public enum AssetList {
     WHIP_RIGHT("sprites/whip/right.atlas", TextureAtlas.class),
     WHIP_DOWN("sprites/whip/front.atlas", TextureAtlas.class),
     WHIP_UP("sprites/whip/back.atlas", TextureAtlas.class),
+    JACK_HEAD("sprites/Louisiana/jack_head.atlas", TextureAtlas.class),
+    JANE_HEAD("sprites/Colorado/jane_head.atlas", TextureAtlas.class),
 
     // Special Effects.
     IMPACT("effects/impact.atlas", TextureAtlas.class),
@@ -91,6 +93,7 @@ public enum AssetList {
     SPIKE_TRAP("traps/spike_trap.atlas", TextureAtlas.class),
     GOLDFISH("sprites/goldfish/goldfish_glow.atlas", TextureAtlas.class),
     GOLDFISH_UI("sprites/goldfish/goldfish_ui.atlas", TextureAtlas.class),
+    ROCKS("sprites/rocks/rocks.atlas", TextureAtlas.class),
 
     // Projectile sprites and effects.
     PROJECTILE_ARROW("traps/arrow.png", Texture.class),
@@ -117,7 +120,8 @@ public enum AssetList {
     LEVEL06_TMX("tmx/level_06.tmx", TiledMap.class),
     LEVEL07_TMX("tmx/level_07.tmx", TiledMap.class),
     LEVEL08_TMX("tmx/level_08.tmx", TiledMap.class),
-    LEVEL09_TMX("tmx/level_09.tmx", TiledMap.class);
+    LEVEL09_TMX("tmx/level_09.tmx", TiledMap.class),
+    LEVEL10_TMX("tmx/level_10.tmx", TiledMap.class);
 
     private String pathname;
     private Class type;

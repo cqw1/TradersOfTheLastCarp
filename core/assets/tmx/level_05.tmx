@@ -91,7 +91,7 @@
     <property name="type" value="SPIDER"/>
    </properties>
   </object>
-  <object id="6" x="961.333" y="244" width="40" height="40">
+  <object id="6" x="772" y="217.333" width="40" height="40">
    <properties>
     <property name="type" value="STAR"/>
    </properties>
