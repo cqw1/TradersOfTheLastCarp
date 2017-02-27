@@ -21,8 +21,12 @@ public class GoldfishLevel extends ALevel {
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("goldfish");
 
-        Goldfish goldfish = new Goldfish(getAssetManager(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-        addActor(goldfish);
+
+        Goldfish goldfish1 = new Goldfish(getAssetManager(), SCREEN_WIDTH / 4, SCREEN_HEIGHT / 2);
+        addActor(goldfish1);
+
+        Goldfish goldfish2 = new Goldfish(getAssetManager(), (3 * SCREEN_WIDTH) / 4, SCREEN_HEIGHT / 2);
+        addActor(goldfish2);
 
 
         endInit();
