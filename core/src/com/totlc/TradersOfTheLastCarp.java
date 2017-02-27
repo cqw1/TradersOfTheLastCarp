@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -40,6 +43,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
     public static int SCREEN_WIDTH = CONFIG_WIDTH;
     public static int SCREEN_HEIGHT = CONFIG_HEIGHT;
 
+	public static ParticleEffectPool starTrailPool;
+
 	@Override
 	public void create() {
 		loadAssets();
@@ -57,6 +62,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
         viewport = new FitViewport(CONFIG_WIDTH, CONFIG_HEIGHT, camera);
         viewport.apply();
+
+        initParticleEffectPools();
 
         level = LevelFactory.createLevel(TitleScreen.class, assetManager);
 		Gdx.input.setInputProcessor(level);
@@ -136,4 +143,13 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
         assetManager.finishLoading();
 
     }
+
+    public void initParticleEffectPools() {
+		TextureAtlas particleAtlas = assetManager.get(AssetList.STAR_PARTICLES.toString());
+		ParticleEffect starTrail = new ParticleEffect();
+		starTrail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
+		starTrail.start();
+		starTrailPool = new ParticleEffectPool(starTrail, 10, 20);
+
+	}
 }

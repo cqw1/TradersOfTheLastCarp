@@ -1,6 +1,7 @@
 package com.totlc.Actors.damage;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 
 import java.awt.geom.Point2D;
 

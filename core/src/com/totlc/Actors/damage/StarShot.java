@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.effects.Impact;
 import com.totlc.AssetList;
+import com.totlc.TradersOfTheLastCarp;
 
 import java.awt.geom.Point2D;
 
@@ -16,15 +17,13 @@ public class StarShot extends Damage {
     // Asset and animation constants.
     private TextureAtlas shotTextureAtlas, particleAtlas;
     private Animation<TextureRegion> shotAnimation;
-    private ParticleEffect starTrail = new ParticleEffect();
+    private ParticleEffectPool.PooledEffect starTrail;
 
     // Bookkeeping variables.
     private long startTime;
     private boolean removeFlag = false;
     private Point2D textureDimensions;
     private static int damage = 2;
-
-    private static ParticleEffectPool starShotPool = new ParticleEffectPool()
 
     public StarShot(AssetManager assetManager, float x, float y, int damageType){
         super(assetManager, new Rectangle(x, y, 24, 24), damage, damageType);
@@ -36,22 +35,28 @@ public class StarShot extends Damage {
         setScaleFactor(1.0f);
 
         shotTextureAtlas = assetManager.get(AssetList.PROJECTILE_STAR_SHOT.toString());
-        particleAtlas = assetManager.get(AssetList.STAR_PARTICLES.toString());
         shotAnimation = new Animation<TextureRegion>(1 / 16f, shotTextureAtlas.getRegions());
 
         textureDimensions = new Point2D.Float(shotAnimation.getKeyFrame(getAnimationTime()).getRegionWidth(), shotAnimation.getKeyFrame(getAnimationTime()).getRegionHeight());
 
-        starTrail = new ParticleEffect();
+//        particleAtlas = assetManager.get(AssetList.STAR_PARTICLES.toString());
+//        starTrail = new ParticleEffect();
+//        starTrail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
+//
+//        starTrail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
+//        starTrail.start();
+
+        starTrail = TradersOfTheLastCarp.starTrailPool.obtain();
+//        TradersOfTheLastCarp.starTrailPool.
         starTrail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
 
-        starTrail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
-        starTrail.start();
     }
 
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
         moveUnit(deltaTime);
+
         if (isOutOfBounds()) {
             if(!removeFlag){
                 startTime = System.currentTimeMillis();
@@ -59,6 +64,7 @@ public class StarShot extends Damage {
             }
             delayRemove();
         }
+
         if (removeFlag){
             for (ParticleEmitter p : starTrail.getEmitters()){
                 p.allowCompletion();
@@ -81,13 +87,19 @@ public class StarShot extends Damage {
             getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
             startTime = System.currentTimeMillis();
             removeFlag = true;
-            return false;
+//            return false;
         }
         return false;
     }
 
     private boolean delayRemove() {
-        return System.currentTimeMillis() - startTime > 8000 && super.remove();
+        //boolean done = (System.currentTimeMillis() - startTime) > 8000;
+        if (starTrail.isComplete()) {
+            System.out.println("starTrail freed");
+            starTrail.free();
+        }
+
+        return starTrail.isComplete() && super.remove();
     }
 
     @Override
