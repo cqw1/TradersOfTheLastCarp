@@ -47,6 +47,7 @@ public class StarShot extends Damage {
 //        starTrail.start();
 
         starTrail = TradersOfTheLastCarp.starTrailPool.obtain();
+        System.out.println("starTrail obtained");
 //        TradersOfTheLastCarp.starTrailPool.
         starTrail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
 

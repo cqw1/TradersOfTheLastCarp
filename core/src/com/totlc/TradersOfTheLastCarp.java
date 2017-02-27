@@ -149,7 +149,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		ParticleEffect starTrail = new ParticleEffect();
 		starTrail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
 		starTrail.start();
-		starTrailPool = new ParticleEffectPool(starTrail, 10, 20);
+		starTrailPool = new ParticleEffectPool(starTrail, 20, 20);
 
 	}
 }
