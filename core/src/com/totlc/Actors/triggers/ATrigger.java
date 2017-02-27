@@ -58,7 +58,7 @@ public abstract class ATrigger extends TotlcObject {
 
             if (!isTriggered()) {
                 Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.TRAP_ACTIVATION.toString()));
-                sound.play(1.0f);
+                sound.play(0.5f);
 
                 for (ATrap trap : getListOfTraps()) {
                     trap.setup();

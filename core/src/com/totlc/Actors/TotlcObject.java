@@ -325,20 +325,4 @@ public abstract class TotlcObject extends Actor {
            s.draw(batch, alpha);
         }
     }
-
-    public boolean isTravelingLeft() {
-        return vel.getX() < 0 && Math.abs(vel.getX()) > Math.abs(vel.getY());
-    }
-
-    public boolean isTravelingRight() {
-        return vel.getX() > 0 && Math.abs(vel.getX()) > Math.abs(vel.getY());
-    }
-
-    public boolean isTravelingDown() {
-        return vel.getY() < 0 && Math.abs(vel.getX()) < Math.abs(vel.getY());
-    }
-
-    public boolean isTravelingUp() {
-        return vel.getY() > 0 && Math.abs(vel.getX()) < Math.abs(vel.getY());
-    }
 }

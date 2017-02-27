@@ -1,6 +1,8 @@
 package com.totlc.Actors.terrain;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -50,6 +52,9 @@ public class NextStage extends TotlcObject {
     }
 
     public void unlock() {
-        physicalBlock.remove();
+        if (physicalBlock.remove()) {
+            Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/door_unlock.mp3"));
+            impactSound.play(1f);
+        }
     }
 }

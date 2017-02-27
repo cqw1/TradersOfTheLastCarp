@@ -38,6 +38,7 @@ public class MusicPlayer {
         trackListByName.put("test4", "music/Tremble.mp3");
         trackListByName.put("test5", "music/Shop1.mp3");
         trackListByName.put("test6", "music/Zanzibar.mp3");
+        trackListByName.put("test7", "music/title-screen.mp3");
 
         int count = 0;
         for (String name : trackListByName.keySet()){
@@ -54,10 +55,13 @@ public class MusicPlayer {
     }
 
     // Load and lay a non-tracklist song.
-    public void playSong(String pathname){
+    public void playSong(String name, float volume){
         if (currentSong != null){
-            currentSong = Gdx.audio.newMusic(Gdx.files.internal(pathname));
+            currentSong.stop();
         }
+        currentSong = Gdx.audio.newMusic(Gdx.files.internal(trackListByName.get(name)));
+        currentSong.setVolume(volume);
+        currentSong.play();
     }
 
     // Play next song.
@@ -100,6 +104,12 @@ public class MusicPlayer {
     public void stop(){
         if (currentSong != null){
             currentSong.stop();
+        }
+    }
+
+    public void setVolume(float vol) {
+        if (currentSong != null) {
+            currentSong.setVolume(vol);
         }
     }
 

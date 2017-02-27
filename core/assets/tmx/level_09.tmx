@@ -48,41 +48,49 @@
  <objectgroup name="ENEMIES">
   <object id="1" x="613.333" y="112" width="40" height="40">
    <properties>
+    <property name="movement" value="IMMOBILE"/>
     <property name="type" value="STAR"/>
    </properties>
   </object>
-  <object id="2" x="906.667" y="114.667" width="40" height="40">
+  <object id="2" x="909.334" y="109.334" width="40" height="40">
    <properties>
+    <property name="movement" value="IMMOBILE"/>
     <property name="type" value="STAR"/>
    </properties>
   </object>
-  <object id="3" x="905.333" y="718.667" width="40" height="40">
+  <object id="3" x="894.666" y="750.667" width="40" height="40">
    <properties>
+    <property name="movement" value="IMMOBILE"/>
     <property name="type" value="STAR"/>
    </properties>
   </object>
-  <object id="4" x="1158.67" y="620" width="40" height="40">
+  <object id="4" x="1177.34" y="749.333" width="40" height="40">
    <properties>
+    <property name="movement" value="IMMOBILE"/>
     <property name="type" value="STAR"/>
    </properties>
   </object>
-  <object id="5" x="1164" y="204" width="40" height="40">
+  <object id="5" x="1189.33" y="113.333" width="40" height="40">
    <properties>
+    <property name="movement" value="IMMOBILE"/>
     <property name="type" value="STAR"/>
    </properties>
   </object>
   <object id="6" x="588" y="750.667" width="40" height="40">
    <properties>
+    <property name="movement" value="IMMOBILE"/>
     <property name="type" value="STAR"/>
    </properties>
   </object>
   <object id="7" x="366.667" y="750.667" width="40" height="40">
    <properties>
+    <property name="movement" value="IMMOBILE"/>
     <property name="type" value="STAR"/>
    </properties>
   </object>
   <object id="8" x="389.333" y="114.667" width="40" height="40">
    <properties>
+    <property name="movement" value="IMMOBILE"/>
     <property name="type" value="STAR"/>
    </properties>
   </object>

@@ -19,7 +19,7 @@ public class DaredevilPangolini extends AEnemy {
     // Stat constants.
     private static int id = 3;
     private static int hp = 3;
-    private static int atk = 2;
+    private static int atk = 1;
 
     private static float width = 72;
     private static float height = 108;

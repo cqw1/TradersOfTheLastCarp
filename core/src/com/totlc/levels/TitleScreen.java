@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.UI.ButtonPrompt;
 import com.totlc.Actors.UI.MenuOption;
@@ -29,7 +30,7 @@ public class TitleScreen extends ALevel {
 
     public TitleScreen(AssetManager assetManager) {
         super(assetManager);
-        TradersOfTheLastCarp.musicPlayer.stop();
+        TradersOfTheLastCarp.musicPlayer.playSong("test7", 1f);
         titleScreen = new TotlcObject(assetManager, new Rectangle()) {
 
             String asset = AssetList.TITLE_SCREEN.toString();
@@ -57,8 +58,7 @@ public class TitleScreen extends ALevel {
 
             public void execute() {
                 setNextLevel(Level01.class);
-                TradersOfTheLastCarp.musicPlayer.setSong("test6");
-                TradersOfTheLastCarp.musicPlayer.play();
+                TradersOfTheLastCarp.musicPlayer.playSong("test6", 0.3f);
                 initNextLevel();
             }
         });
