@@ -20,8 +20,8 @@ public abstract class AWeapon extends TotlcObject {
     private Character character;
     private int attack = 1;
 
-    private float whip_width = 128;
-    private float whip_height = 64;
+    private static float whip_width = 144;
+    private static float whip_height = 72;
 
     private String upAsset;
     private String downAsset;
@@ -39,7 +39,7 @@ public abstract class AWeapon extends TotlcObject {
     private Animation<TextureRegion> rightAnimation;
 
     public AWeapon(AssetManager assetManager, Character character, int attack, float attackingAnimationLength, String upAsset, String downAsset, String leftAsset, String rightAsset) {
-        super(assetManager, new Rectangle(character.getX(), character.getY(), 128, 64));
+        super(assetManager, new Rectangle(character.getX(), character.getY(), whip_width, whip_height));
 
         this.character = character;
         this.attack = attack;

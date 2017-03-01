@@ -250,7 +250,8 @@ public abstract class ALevel extends Stage {
                this.addActor(player.getWeapon());
                player.setAttacking(true);
            } else{
-               ALevel nextLevelObject = LevelFactory.createLevel(LevelSelect.class, assetManager);
+               TradersOfTheLastCarp.player = new Player(assetManager, 0, 0);
+               ALevel nextLevelObject = LevelFactory.createLevel(TitleScreen.class, assetManager);
                loadLevel(nextLevelObject);
                Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
                sound.play(1.0f);
@@ -259,10 +260,12 @@ public abstract class ALevel extends Stage {
         }
 
         if (keycode == Input.Keys.ESCAPE) {
-            ALevel nextLevelObject = LevelFactory.createLevel(LevelSelect.class, assetManager);
+            TradersOfTheLastCarp.player = new Player(assetManager, 0, 0);
+            ALevel nextLevelObject = LevelFactory.createLevel(TitleScreen.class, assetManager);
             loadLevel(nextLevelObject);
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
             sound.play(1.0f);
+            return true;
         }
 
 
@@ -286,12 +289,6 @@ public abstract class ALevel extends Stage {
         if (keycode == Input.Keys.DOWN){
             player.setMovingDown(false);
             return true;
-        }
-        if (keycode == Input.Keys.R) {
-            if (player.getHpCurrent() <= 0) {
-                TradersOfTheLastCarp.player = new Player(assetManager, 0, 0);
-                loadLevel(LevelFactory.createLevel(TitleScreen.class, assetManager));
-            }
         }
         return false;
     }

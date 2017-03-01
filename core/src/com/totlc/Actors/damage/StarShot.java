@@ -39,16 +39,7 @@ public class StarShot extends Damage {
 
         textureDimensions = new Point2D.Float(shotAnimation.getKeyFrame(getAnimationTime()).getRegionWidth(), shotAnimation.getKeyFrame(getAnimationTime()).getRegionHeight());
 
-//        particleAtlas = assetManager.get(AssetList.STAR_PARTICLES.toString());
-//        starTrail = new ParticleEffect();
-//        starTrail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
-//
-//        starTrail.load(Gdx.files.internal(AssetList.STAR_TRAIL.toString()), particleAtlas);
-//        starTrail.start();
-
         starTrail = TradersOfTheLastCarp.starTrailPool.obtain();
-        System.out.println("starTrail obtained");
-//        TradersOfTheLastCarp.starTrailPool.
         starTrail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
 
     }
@@ -88,15 +79,12 @@ public class StarShot extends Damage {
             getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
             startTime = System.currentTimeMillis();
             removeFlag = true;
-//            return false;
         }
         return false;
     }
 
     private boolean delayRemove() {
-        //boolean done = (System.currentTimeMillis() - startTime) > 8000;
         if (starTrail.isComplete()) {
-            System.out.println("starTrail freed");
             starTrail.free();
         }
 
