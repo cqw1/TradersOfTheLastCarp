@@ -112,15 +112,15 @@ public enum AssetList {
     END_CREDITS("UI/Victory.png", Texture.class),
 
     // TMX for levels
-    LEVEL01_TMX("tmx/level_01.tmx", TiledMap.class),
-    LEVEL02_TMX("tmx/level_02.tmx", TiledMap.class),
-    LEVEL03_TMX("tmx/level_03.tmx", TiledMap.class),
-    LEVEL04_TMX("tmx/level_04.tmx", TiledMap.class),
-    LEVEL05_TMX("tmx/level_05.tmx", TiledMap.class),
-    LEVEL06_TMX("tmx/level_06.tmx", TiledMap.class),
-    LEVEL07_TMX("tmx/level_07.tmx", TiledMap.class),
-    LEVEL08_TMX("tmx/level_08.tmx", TiledMap.class),
-    LEVEL09_TMX("tmx/level_09.tmx", TiledMap.class),
+    LEVEL01_TMX("tmx/tutorial.tmx", TiledMap.class),
+    LEVEL02_TMX("tmx/basics.tmx", TiledMap.class),
+    LEVEL03_TMX("tmx/evasion.tmx", TiledMap.class),
+    LEVEL04_TMX("tmx/weaving.tmx", TiledMap.class),
+    LEVEL05_TMX("tmx/fire.tmx", TiledMap.class),
+    LEVEL06_TMX("tmx/spikes.tmx", TiledMap.class),
+    LEVEL07_TMX("tmx/patterns.tmx", TiledMap.class),
+    LEVEL08_TMX("tmx/twinkle.tmx", TiledMap.class),
+    LEVEL09_TMX("tmx/arrow_hell.tmx", TiledMap.class),
     LEVEL10_TMX("tmx/level_10.tmx", TiledMap.class);
 
     private String pathname;

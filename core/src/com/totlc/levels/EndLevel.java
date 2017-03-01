@@ -44,10 +44,6 @@ public class EndLevel extends ALevel {
 
         cursor.update();
         addActor(cursor);
-
-//        float unitScale = 1 / 64f;
-//        OrthogonalTiledMapRenderer renderer = new OrthogonalTiledMapRenderer(map, unitScale);
-//        renderer.render();
     }
 
     public void act(float deltaTime) {}
@@ -55,10 +51,8 @@ public class EndLevel extends ALevel {
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.SPACE) {
-            ALevel nextLevelObject = LevelFactory.createLevel(LevelSelect.class, getAssetManager());
+            ALevel nextLevelObject = LevelFactory.createLevel(TitleScreen.class, getAssetManager());
             loadLevel(nextLevelObject);
-            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
-            sound.play(1.0f);
         }
 
         return false;
