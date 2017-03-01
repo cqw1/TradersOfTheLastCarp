@@ -30,11 +30,13 @@ public class Level01 extends ALevel {
 
         ToolTip objectiveToolTip = new ToolTip(
                 getAssetManager(),
-                CONFIG_WIDTH - 400,
-                CONFIG_HEIGHT - 200,
+                CONFIG_WIDTH - 500,
+                CONFIG_HEIGHT - 250,
                 "Check each level's objective \nto complete the level.",
-                5,
-                5);
+                2,
+                6,
+                12,
+                false);
 
         addActor(objectiveToolTip);
     }

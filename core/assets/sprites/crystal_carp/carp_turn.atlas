@@ -1,48 +1,48 @@
 
 carp_turn.png
-size: 1024,128
+size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 carp_turn
   rotate: false
-  xy: 2, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 2, 518
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 0
 carp_turn
   rotate: false
-  xy: 158, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 2, 260
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 1
 carp_turn
   rotate: false
-  xy: 314, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 260, 518
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 2
 carp_turn
   rotate: false
-  xy: 470, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 2, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 3
 carp_turn
   rotate: false
-  xy: 626, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 260, 260
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 4
 carp_turn
   rotate: false
-  xy: 782, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 518, 518
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 5

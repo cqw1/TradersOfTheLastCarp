@@ -1,55 +1,55 @@
 
 carp_talk.png
-size: 512,128
+size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 carp_talk
   rotate: false
   xy: 2, 2
-  size: 154, 90
-  orig: 154, 90
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 0
 carp_talk
   rotate: false
-  xy: 158, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 260, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 1
 carp_talk
   rotate: false
-  xy: 158, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 260, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 3
 carp_talk
   rotate: false
-  xy: 158, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 260, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 5
 carp_talk
   rotate: false
-  xy: 314, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 518, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 2
 carp_talk
   rotate: false
-  xy: 314, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 518, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 6
 carp_talk
   rotate: false
-  xy: 314, 2
-  size: 154, 90
-  orig: 154, 90
+  xy: 518, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 4
