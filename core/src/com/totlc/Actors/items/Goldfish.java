@@ -18,6 +18,9 @@ public class Goldfish extends APickup {
     private ParticleEffect sparkle;
     private ParticleEffect splash;
 
+    private static float width = 72;
+    private static float height = 72;
+
     private float angle;
     private boolean rotate;
     private long rotateLimit = 180;
@@ -25,7 +28,7 @@ public class Goldfish extends APickup {
     private long angleDelta;
 
     public Goldfish(AssetManager assetManager,float x, float y) {
-        super(assetManager, new Rectangle(x, y, 72, 72));
+        super(assetManager, new Rectangle(x, y, width, height));
 
         this.angle = -10;
         this.angleDelta = 1;

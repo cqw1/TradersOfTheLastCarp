@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="39">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="40">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -36,7 +36,7 @@
 </data>
  </layer>
  <objectgroup name="ENEMIES">
-  <object id="1" name="Pangolini" x="1408" y="380" width="62.6667" height="65.3333">
+  <object id="1" name="Pangolini" x="1285.33" y="385.333" width="62.6667" height="65.3333">
    <properties>
     <property name="hp" type="int" value="2"/>
     <property name="movement" value="IMMOBILE"/>
@@ -131,5 +131,11 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="ITEMS"/>
+ <objectgroup name="ITEMS">
+  <object id="39" x="1448" y="440" width="38.6667" height="41.3333">
+   <properties>
+    <property name="type" value="GOLDFISH"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

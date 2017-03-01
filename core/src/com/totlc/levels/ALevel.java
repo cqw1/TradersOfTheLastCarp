@@ -358,8 +358,7 @@ public abstract class ALevel extends Stage {
                 addActor(currentTrigger);
             }
         } catch (NullPointerException n) {
-            System.err.print("Error setting up traps and triggers.");
-            n.printStackTrace();
+            System.err.print("No trap or trigger layer detected.\n");
         }
 
         try {
@@ -370,8 +369,7 @@ public abstract class ALevel extends Stage {
                 addActor(currentEnemy);
             }
         } catch (NullPointerException n) {
-            System.err.print("Error setting up enemies.");
-            n.printStackTrace();
+            System.err.print("No enemy layer detected.\n");
         }
 
         try {
@@ -382,8 +380,18 @@ public abstract class ALevel extends Stage {
                 addActor(currentItem);
             }
         } catch (NullPointerException n) {
-            System.err.print("Error setting up items.");
-            n.printStackTrace();
+            System.err.print("No item layer detected.\n");
+        }
+
+        try {
+            //Lay down terrain
+            for (MapObject mo: map.getLayers().get(TerrainFactory.TYPE).getObjects()) {
+                MapProperties currentObjProp = mo.getProperties();
+                AWall currentTerrain = TerrainFactory.createTerrainFromMP(currentObjProp, getAssetManager());
+                addActor(currentTerrain);
+            }
+        } catch ( NullPointerException n) {
+            System.err.print("No terrain layer detected.\n");
         }
 
         endInit();

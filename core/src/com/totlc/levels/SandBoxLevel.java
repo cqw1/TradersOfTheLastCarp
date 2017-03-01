@@ -6,6 +6,7 @@ import com.totlc.Actors.enemies.JustDessert;
 import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
 import com.totlc.Actors.enemies.movement.RandomMovement;
 import com.totlc.Actors.items.APickup;
+import com.totlc.Actors.items.Goldfish;
 import com.totlc.Actors.items.Key;
 import com.totlc.Actors.terrain.AWall;
 import com.totlc.Actors.terrain.Rock;
@@ -56,7 +57,7 @@ public class SandBoxLevel extends ALevel{
         APickup key = new Key(getAssetManager(), 700, 700);
         addActor(key);
 
-        AWall rock = new Rock(getAssetManager(), 800, 300);
+        APickup rock = new Goldfish(getAssetManager(), 800, 300);
         addActor(rock);
 
         endInit();

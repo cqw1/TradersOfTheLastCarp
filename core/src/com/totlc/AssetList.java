@@ -119,8 +119,8 @@ public enum AssetList {
     LEVEL05_TMX("tmx/fire.tmx", TiledMap.class),
     LEVEL06_TMX("tmx/spikes.tmx", TiledMap.class),
     LEVEL07_TMX("tmx/patterns.tmx", TiledMap.class),
-    LEVEL08_TMX("tmx/twinkle.tmx", TiledMap.class),
-    LEVEL09_TMX("tmx/arrow_hell.tmx", TiledMap.class),
+    LEVEL08_TMX("tmx/arrow_hell.tmx", TiledMap.class),
+    LEVEL09_TMX("tmx/twinkle.tmx", TiledMap.class),
     LEVEL10_TMX("tmx/level_10.tmx", TiledMap.class);
 
     private String pathname;

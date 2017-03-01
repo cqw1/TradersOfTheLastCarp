@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="17">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="18">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -39,6 +39,11 @@
   <object id="12" x="838.667" y="373.333" width="53.3333" height="57.3333">
    <properties>
     <property name="type" value="HEALTH"/>
+   </properties>
+  </object>
+  <object id="17" x="1122.67" y="362.667" width="45.3333" height="45.3333">
+   <properties>
+    <property name="type" value="GOLDFISH"/>
    </properties>
   </object>
  </objectgroup>

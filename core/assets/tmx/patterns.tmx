@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="89">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="92">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -36,21 +36,39 @@
 </data>
  </layer>
  <objectgroup name="ITEMS">
-  <object id="48" x="351.667" y="710" width="62" height="60">
+  <object id="48" x="112.667" y="203" width="62" height="60">
    <properties>
     <property name="type" value="HEALTH"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="87" x="989" y="680.667" width="62" height="60">
+  <object id="87" x="169" y="111.667" width="62" height="60">
    <properties>
     <property name="type" value="HEALTH"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="88" x="671.667" y="144.667" width="62" height="60">
+  <object id="88" x="230.667" y="207.667" width="62" height="60">
    <properties>
     <property name="type" value="HEALTH"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="89" x="351.667" y="677.667" width="62" height="60">
+   <properties>
+    <property name="type" value="GOLDFISH"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="90" x="991.667" y="680.667" width="62" height="60">
+   <properties>
+    <property name="type" value="GOLDFISH"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="91" x="669.667" y="135.667" width="62" height="60">
+   <properties>
+    <property name="type" value="GOLDFISH"/>
    </properties>
    <ellipse/>
   </object>
