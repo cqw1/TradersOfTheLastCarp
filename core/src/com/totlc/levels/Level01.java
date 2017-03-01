@@ -1,9 +1,13 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.totlc.Actors.UI.ToolTip;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.*;
+
+import static com.totlc.TradersOfTheLastCarp.CONFIG_HEIGHT;
+import static com.totlc.TradersOfTheLastCarp.CONFIG_WIDTH;
 
 public class Level01 extends ALevel {
 
@@ -22,5 +26,16 @@ public class Level01 extends ALevel {
         setPlayer(TradersOfTheLastCarp.player);
         restorePlayerHealth();
         loadFromTMX(tmxFileName);
+
+
+        ToolTip objectiveToolTip = new ToolTip(
+                getAssetManager(),
+                CONFIG_WIDTH - 400,
+                CONFIG_HEIGHT - 200,
+                "Check each level's objective \nto complete the level.",
+                5,
+                5);
+
+        addActor(objectiveToolTip);
     }
 }
