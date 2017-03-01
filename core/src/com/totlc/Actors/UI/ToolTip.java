@@ -71,6 +71,7 @@ public class ToolTip extends Actor {
 
         carpTurnAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TURN.toString());
         carpTurnAnimation = new Animation<TextureRegion>(1 / 10f, carpTurnAtlas.getRegions());
+        carpTurnAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
         status = TALKING;
         currentAnimation = carpTalkAnimation;
@@ -89,7 +90,8 @@ public class ToolTip extends Actor {
 
         if (time > delay) {
             animationTime += deltaTime;
-            /*
+
+            // Start commenting out here to stop the turn/talk switching animation.
             if (status == TALKING) {
                 if (animationTime > talkTime) {
                     animationTime = 0;
@@ -106,7 +108,7 @@ public class ToolTip extends Actor {
                     status = (status + 1) % 2;
                 }
             }
-            */
+            // Stop commenting out here.
         }
 
 
