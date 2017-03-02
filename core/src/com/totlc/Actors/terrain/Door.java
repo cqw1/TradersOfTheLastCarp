@@ -19,7 +19,7 @@ public class Door extends AWall {
     private Animation<TextureRegion> doorAnimation;
 
     private float textureWidth, textureHeight;
-    private static float scaleX = 1.4f;
+    private static float scaleX = 1.5f;
     private static float scaleY = 0.5f;
     private float xOffset, yOffset ;
     private float rotation = 0;
@@ -39,7 +39,7 @@ public class Door extends AWall {
             doorAtlas = assetManager.get(AssetList.DOOR_LOCK.toString());
         }
 
-        doorAnimation = new Animation<TextureRegion>(1 / 128f, doorAtlas.getRegions());
+        doorAnimation = new Animation<TextureRegion>(1 / 80f, doorAtlas.getRegions());
         textureWidth = doorAnimation.getKeyFrame(0).getRegionWidth();
         textureHeight = doorAnimation.getKeyFrame(0).getRegionHeight();
 
@@ -50,7 +50,7 @@ public class Door extends AWall {
         } else if (d.isFacingLeft()){
             rotation = 270;
             xOffset = -(textureHeight / 2) * (1 - scaleY);
-            yOffset = (28) * (1 - scaleX);
+            yOffset = (1 - scaleX) - 28;
         } else if (d.isFacingUp()) {
             rotation = 180;
             xOffset = 0;
