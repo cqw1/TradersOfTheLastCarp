@@ -94,6 +94,9 @@ public enum AssetList {
     GOLDFISH("sprites/goldfish/goldfish_glow.atlas", TextureAtlas.class),
     GOLDFISH_UI("sprites/goldfish/goldfish_ui.atlas", TextureAtlas.class),
     ROCKS("sprites/rocks/rocks.atlas", TextureAtlas.class),
+    DOOR_SKULL("sprites/door/door_skull.atlas", TextureAtlas.class),
+    DOOR_TIME("sprites/door/door_time.atlas", TextureAtlas.class),
+    DOOR_LOCK("sprites/door/door_lock.atlas", TextureAtlas.class),
 
     // Projectile sprites and effects.
     PROJECTILE_ARROW("traps/arrow.png", Texture.class),
