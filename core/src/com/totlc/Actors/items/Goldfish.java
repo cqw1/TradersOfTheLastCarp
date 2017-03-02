@@ -2,6 +2,7 @@ package com.totlc.Actors.items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -21,6 +22,8 @@ public class Goldfish extends APickup {
     private static float width = 72;
     private static float height = 72;
 
+    private static float scale = 0.5f;
+
     private float angle;
     private boolean rotate;
     private long rotateLimit = 180;
@@ -28,8 +31,8 @@ public class Goldfish extends APickup {
     private long angleDelta;
 
     public Goldfish(AssetManager assetManager,float x, float y) {
-        super(assetManager, new Rectangle(x, y, width, height));
-
+        super(assetManager, new Rectangle(x, y, width * scale, height * scale));
+        this.moveHitBox(width * scale * 0.5f, height * scale * 0.5f);
         this.angle = -10;
         this.angleDelta = 1;
         this.rotate = false;
@@ -44,6 +47,10 @@ public class Goldfish extends APickup {
         splash = new ParticleEffect();
         splash.setPosition((float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY());
         splash.load(Gdx.files.internal(AssetList.SPLASH.toString()), particleAtlas);
+
+        for (int i = 0; i < flopTextureAtlas.getRegions().size; i++){
+           flopTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
 
         sparkle.start();
         splash.start();
@@ -82,7 +89,7 @@ public class Goldfish extends APickup {
     public void draw(Batch batch, float alpha) {
         batch.draw(flopAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
                 flopTextureAtlas.getRegions().get(0).getRegionWidth() / 2, flopTextureAtlas.getRegions().get(0).getRegionHeight() / 2,
-                flopTextureAtlas.getRegions().get(0).getRegionWidth(), flopTextureAtlas.getRegions().get(0).getRegionHeight(), 1, 1, angle);
+                flopTextureAtlas.getRegions().get(0).getRegionWidth(), flopTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, angle);
         sparkle.draw(batch, Gdx.graphics.getDeltaTime());
         splash.draw(batch, Gdx.graphics.getDeltaTime());
     }

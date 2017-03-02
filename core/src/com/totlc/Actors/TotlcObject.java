@@ -277,7 +277,7 @@ public abstract class TotlcObject extends Actor {
 
     public void returnIntoBounds(float formerX, float formerY) {
         for (Actor act: getStage().getActors().toArray()) {
-            if (act instanceof AWall) {
+            if (act instanceof AWall && !((AWall)act).isOpen()) {
                 AWall wall = (AWall) act;
 
                 Polygon horizontal = new Polygon(getHitBox().getTransformedVertices());

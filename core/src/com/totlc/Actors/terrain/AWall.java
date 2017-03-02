@@ -15,6 +15,8 @@ import java.util.Arrays;
 
 public class AWall extends TotlcObject {
 
+    private boolean open = false;
+
     public AWall(AssetManager assetManager, Rectangle r) {
         super(assetManager, r);
     }
@@ -29,5 +31,13 @@ public class AWall extends TotlcObject {
     @Override
     public void endCollidesWith(Actor otherActor) {
 
+    }
+
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
     }
 }

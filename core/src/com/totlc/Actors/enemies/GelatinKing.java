@@ -55,6 +55,11 @@ public class GelatinKing extends AEnemy {
         getHitBox().setScale(this.scale, this.scale);
         initMovement(friction, maxVel, speed);
         setFloating(true);
+
+        for (int i = 0; i < jellyTextureAtlas.getRegions().size; i++){
+           jellyTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+           kingTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
     }
 
     public GelatinKing(AssetManager assetManager, float x, float y, AMovement movement, boolean crownMe) {
@@ -77,6 +82,11 @@ public class GelatinKing extends AEnemy {
         getHitBox().setScale(this.scale, this.scale);
         initMovement(friction, maxVel, speed);
         setFloating(true);
+
+        for (int i = 0; i < jellyTextureAtlas.getRegions().size; i++){
+            jellyTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            kingTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
     }
 
     @Override
