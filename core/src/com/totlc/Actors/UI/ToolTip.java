@@ -42,7 +42,7 @@ public class ToolTip extends Actor {
     // Seconds to delay until animating the tooltip. Should delay tooltip creation in constructor.
     private int delay;
 
-    private float scale = 0.75f;
+    private static float scale = 0.75f;
     private int horizontalPadding = 25;
     private static float carpVerticalOffset = 5;
     private static float carpHorizontalOffset = 60;
@@ -69,16 +69,22 @@ public class ToolTip extends Actor {
         this.delay = delay;
         loop = repeat;
 
-        carpTalkAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TALK.toString());
+        carpTalkAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TALK_BORDER.toString());
         carpTalkAnimation = new Animation<TextureRegion>(1 / 10f, carpTalkAtlas.getRegions(), Animation.PlayMode.LOOP);
 
-        carpTurnAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TURN.toString());
-        carpTurnAnimation = new Animation<TextureRegion>(1 / 10f, carpTurnAtlas.getRegions(), Animation.PlayMode.NORMAL);
+        carpTurnAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TURN_BORDER.toString());
+        carpTurnAnimation = new Animation<TextureRegion>(1 / 16f, carpTurnAtlas.getRegions(), Animation.PlayMode.NORMAL);
+
+        for (int i = 0; i < carpTurnAtlas.getRegions().size; i++){
+            carpTurnAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
+        for (int i = 0; i < carpTalkAtlas.getRegions().size; i++){
+            carpTalkAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
 
         status = TURNING;
         currentAnimation = carpTurnAnimation;
         currentAtlas = carpTurnAtlas;
-
 
         bar = new NinePatch(assetManager.get(AssetList.UI_BAR.toString(), Texture.class), 16, 16, 8, 8);
         font = TradersOfTheLastCarp.systemFont0;

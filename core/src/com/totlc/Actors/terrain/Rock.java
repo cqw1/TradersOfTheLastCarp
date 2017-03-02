@@ -11,27 +11,27 @@ import java.util.Random;
 
 public class Rock extends AWall {
 
-    final private static float width = 120;
+    final private static float width = 136;
     final private static float height = 100;
     private TextureAtlas textureAtlas;
-    private float scale = 1;
+    private float scale;
     private int textureNum;
 
     public Rock(AssetManager assetManager, float x, float y, float scale) {
-        this(assetManager, x, y);
-        this.scale = scale;
-    }
-
-    public Rock(AssetManager assetManager, float x, float y) {
         super(assetManager, new Rectangle(x, y, width, height));
+        this.scale = scale;
+        getHitBox().setScale(scale, scale);
+        moveHitBox(getWidth() * 0.5f * scale, 0);
         Random rand = new Random();
         textureNum = rand.nextInt(3);
         textureAtlas = getAssetManager().get(AssetList.ROCKS.toString(), TextureAtlas.class);
         for (int i = 0; i < textureAtlas.getRegions().size; i++){
             textureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         }
-        getHitBox().setScale(scale, scale);
-        moveHitBox(getWidth() * 0.5f * scale, 0);
+    }
+
+    public Rock(AssetManager assetManager, float x, float y) {
+        this(assetManager, x, y, 1);
     }
 
     @Override

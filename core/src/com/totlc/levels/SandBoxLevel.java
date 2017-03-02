@@ -50,7 +50,7 @@ public class SandBoxLevel extends ALevel{
 
         AWall rock = new Rock(getAssetManager(), 800, 300, 1);
         AWall rock1 = new Rock(getAssetManager(), 500, 300, 0.5f);
-        AWall rock2= new Rock(getAssetManager(), 1000, 300, 1.5f);
+        AWall rock2= new Rock(getAssetManager(), 1000, 300, 0.8f);
         addActor(rock);
         addActor(rock1);
         addActor(rock2);

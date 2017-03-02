@@ -29,6 +29,8 @@ public enum AssetList {
     QUESTION_MARK_SELECT_BORDER("UI/QuestionMarkSelectBorder.png", Texture.class),
     CRYSTAL_CARP_TURN("sprites/crystal_carp/carp_turn.atlas", TextureAtlas.class),
     CRYSTAL_CARP_TALK("sprites/crystal_carp/carp_talk.atlas", TextureAtlas.class),
+    CRYSTAL_CARP_TURN_BORDER("sprites/crystal_carp/carp_turn_border.atlas", TextureAtlas.class),
+    CRYSTAL_CARP_TALK_BORDER("sprites/crystal_carp/carp_talk_Border.atlas", TextureAtlas.class),
 
     // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas", TextureAtlas.class),
