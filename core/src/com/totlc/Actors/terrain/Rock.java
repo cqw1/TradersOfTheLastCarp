@@ -20,8 +20,6 @@ public class Rock extends AWall {
     public Rock(AssetManager assetManager, float x, float y, float scale) {
         this(assetManager, x, y);
         this.scale = scale;
-        getHitBox().setScale(scale, scale);
-        moveHitBox(getWidth() * 0.5f * scale, 0);
     }
 
     public Rock(AssetManager assetManager, float x, float y) {
@@ -32,6 +30,8 @@ public class Rock extends AWall {
         for (int i = 0; i < textureAtlas.getRegions().size; i++){
             textureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         }
+        getHitBox().setScale(scale, scale);
+        moveHitBox(getWidth() * 0.5f * scale, 0);
     }
 
     @Override

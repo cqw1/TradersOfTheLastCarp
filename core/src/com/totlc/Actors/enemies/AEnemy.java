@@ -99,6 +99,8 @@ public abstract class AEnemy extends Character {
                     stunned = true;
                     stunStart = System.currentTimeMillis();
                     drawStunIndicator(stunPeriod);
+                    this.hpTimer = System.currentTimeMillis();
+                    this.showHP = true;
                 }
             }
 

@@ -63,29 +63,16 @@ public class GelatinKing extends AEnemy {
     }
 
     public GelatinKing(AssetManager assetManager, float x, float y, AMovement movement, boolean crownMe) {
-        super(assetManager, new Rectangle(x, y, width, height), movement, basehp, atk);
-        jellyTextureAtlas = assetManager.get(AssetList.JELLYFISH.toString());
-        jellyAnimation = new Animation<TextureRegion>(1 / 16f,jellyTextureAtlas.getRegions());
-        kingTextureAtlas = assetManager.get(AssetList.GELATIN_KING.toString());
-        kingAnimation = new Animation<TextureRegion>(1 / 16f, kingTextureAtlas.getRegions());
-        shadow = getAssetManager().get(AssetList.SHADOW.toString());
+        this(assetManager, x, y, movement);
         this.king = crownMe;
         if (crownMe){
             this.scale = 1;
             setHpMax(getHpMax() + 2);
             setHpCurrent(getHpCurrent() + 2);
             setAttack(getAttack() + 1);
+            getHitBox().setScale(this.scale, this.scale);
         } else{
             this.scale = 0.5f;
-        }
-        this.timeStamp = System.currentTimeMillis();
-        getHitBox().setScale(this.scale, this.scale);
-        initMovement(friction, maxVel, speed);
-        setFloating(true);
-
-        for (int i = 0; i < jellyTextureAtlas.getRegions().size; i++){
-            jellyTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-            kingTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         }
     }
 
