@@ -103,14 +103,14 @@ public class GelatinKing extends AEnemy {
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         if(this.king){
             batch.draw(kingAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                    (float) kingTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
-                    (float) kingTextureAtlas.getRegions().get(0).getRegionHeight() * 0.5f,
+                    0,
+                    0,
                     (float) kingTextureAtlas.getRegions().get(0).getRegionWidth(),
                     (float) kingTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
         } else{
             batch.draw(jellyAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                    (float) jellyTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
-                    (float) jellyTextureAtlas.getRegions().get(0).getRegionHeight() * 0.5f,
+                    0,
+                    0,
                     (float) jellyTextureAtlas.getRegions().get(0).getRegionWidth(),
                     (float) jellyTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
         }

@@ -72,7 +72,6 @@ public class Player extends Character {
         super(assetManager, new Rectangle(x, y, 72, 100));
 
         setSpeed(acc);
-        setZIndex(10);
 
         setMaxVel(maxVelocity);
 
@@ -85,7 +84,7 @@ public class Player extends Character {
         setHpCurrent(getHpMax());
 
         //TODO: Correct the hitbox?
-        moveHitBox(24, 12);
+        moveHitBox(28, 0);
 
         // Standing
         standDownTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());

@@ -19,7 +19,7 @@ public class Door extends AWall {
     private Animation<TextureRegion> doorAnimation;
 
     private float textureWidth, textureHeight;
-    private static float scaleX = 1.5f;
+    private static float scaleX = 1.2f;
     private static float scaleY = 0.5f;
     private float xOffset, yOffset ;
     private float rotation = 0;

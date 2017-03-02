@@ -172,7 +172,7 @@ public abstract class TotlcObject extends Actor {
                 getX() + getWidth(), getY() + getHeight(),
                 getX(), getY() + getHeight()
         });
-        hitBox.setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
+        hitBox.setOrigin(getX(), getY());
     }
 
     public float getFriction() {

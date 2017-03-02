@@ -1,6 +1,7 @@
 package com.totlc.Actors.terrain;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
@@ -10,17 +11,27 @@ import java.util.Random;
 
 public class Rock extends AWall {
 
-    final private static float width = 70;
-    final private static float height = 48;
+    final private static float width = 120;
+    final private static float height = 100;
     private TextureAtlas textureAtlas;
-    private float scale = 0.3f;
+    private float scale = 1;
     private int textureNum;
+
+    public Rock(AssetManager assetManager, float x, float y, float scale) {
+        this(assetManager, x, y);
+        this.scale = scale;
+        getHitBox().setScale(scale, scale);
+        moveHitBox(getWidth() * 0.5f * scale, 0);
+    }
 
     public Rock(AssetManager assetManager, float x, float y) {
         super(assetManager, new Rectangle(x, y, width, height));
         Random rand = new Random();
         textureNum = rand.nextInt(3);
         textureAtlas = getAssetManager().get(AssetList.ROCKS.toString(), TextureAtlas.class);
+        for (int i = 0; i < textureAtlas.getRegions().size; i++){
+            textureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
     }
 
     @Override

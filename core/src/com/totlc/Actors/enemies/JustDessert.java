@@ -46,20 +46,9 @@ public class JustDessert extends AEnemy{
      */
     public JustDessert(AssetManager assetManager, float x, float y, AMovement movement) {
         super(assetManager, new Rectangle(x, y, width, height), movement, basehp, atk);
-        walkTextureAtlas = assetManager.get(AssetList.FLAN.toString());
-        walkAnimation = new Animation<TextureRegion>(1 / 16f, walkTextureAtlas.getRegions());
-        walkTextureAtlasP = assetManager.get(AssetList.FLAN_PRIME.toString());
-        walkAnimationP = new Animation<TextureRegion>(1 / 16f, walkTextureAtlasP.getRegions());
-        jumpTextureAtlas = assetManager.get(AssetList.FLAN_JUMP.toString());
-        jumpAnimation = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlas.getRegions());
-        jumpTextureAtlasP = assetManager.get(AssetList.FLAN_JUMP_PRIME.toString());
-        jumpAnimationP = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlasP.getRegions());
-        moveHitBox(getWidth() * getScaleX() * 0.5f, 0);
+        initTextures(assetManager);
 
         this.scale = 1;
-        for (int i = 0; i < walkTextureAtlas.getRegions().size; i++){
-            walkTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        }
         initMovement(friction, maxVel, speed);
     }
 
@@ -68,18 +57,11 @@ public class JustDessert extends AEnemy{
      */
     public JustDessert(AssetManager assetManager, float x, float y, int hp, AMovement movement) {
         super(assetManager, new Rectangle(x, y, width, height), movement, hp, atk);
-        walkTextureAtlas = assetManager.get(AssetList.FLAN.toString());
-        walkAnimation = new Animation<TextureRegion>(1 / 16f, walkTextureAtlas.getRegions());
-        walkTextureAtlasP = assetManager.get(AssetList.FLAN_PRIME.toString());
-        walkAnimationP = new Animation<TextureRegion>(1 / 16f, walkTextureAtlasP.getRegions());
-        jumpTextureAtlas = assetManager.get(AssetList.FLAN_JUMP.toString());
-        jumpAnimation = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlas.getRegions());
-        jumpTextureAtlasP = assetManager.get(AssetList.FLAN_JUMP_PRIME.toString());
-        jumpAnimationP = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlasP.getRegions());
-        moveHitBox(getWidth() * getScaleX() * 0.5f, 0);
+        initTextures(assetManager);
 
         this.scale = (float) ((Math.log(hp + 1) / Math.log(2)) / (Math.log(basehp + 1) / Math.log(2)));
         getHitBox().setScale(scale, scale);
+        moveHitBox(getWidth() * 0.5f * scale, 0);
         initMovement(friction, maxVel, speed);
     }
 
@@ -89,28 +71,28 @@ public class JustDessert extends AEnemy{
         if (getHpCurrent() == 7){
             if (getMovement().isAttack()){
                 batch.draw(jumpAnimationP.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                        (float) jumpTextureAtlasP.getRegions().get(0).getRegionWidth() * 0.5f,
-                        (float) jumpTextureAtlasP.getRegions().get(0).getRegionHeight() * 0.5f,
+                        0,
+                        0,
                         (float) jumpTextureAtlasP.getRegions().get(0).getRegionWidth(),
                         (float) jumpTextureAtlasP.getRegions().get(0).getRegionHeight(), scale, scale, 0);
             } else{
                 batch.draw(walkAnimationP.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                        (float) walkTextureAtlasP.getRegions().get(0).getRegionWidth() * 0.5f,
-                        (float) walkTextureAtlasP.getRegions().get(0).getRegionHeight() * 0.5f,
+                        0,
+                        0,
                         (float) walkTextureAtlasP.getRegions().get(0).getRegionWidth(),
                         (float) walkTextureAtlasP.getRegions().get(0).getRegionHeight(), scale, scale, 0);
             }
         } else{
             if (getMovement().isAttack()){
                 batch.draw(jumpAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                        (float) jumpTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
-                        (float) jumpTextureAtlas.getRegions().get(0).getRegionHeight() * 0.5f,
+                        0,
+                        0,
                         (float) jumpTextureAtlas.getRegions().get(0).getRegionWidth(),
                         (float) jumpTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
             } else{
                 batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                        (float) walkTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
-                        (float) walkTextureAtlas.getRegions().get(0).getRegionHeight() * 0.5f,
+                        0,
+                        0,
                         (float) walkTextureAtlas.getRegions().get(0).getRegionWidth(),
                         (float) walkTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
             }
@@ -133,5 +115,19 @@ public class JustDessert extends AEnemy{
             getStage().addActor(new FlanParts(getAssetManager(), new Rectangle(getX(), getY(), 100, 100), getHpMax() == basehp));
         }
         return returnMe;
+    }
+
+    private void initTextures(AssetManager assetManager){
+        walkTextureAtlas = assetManager.get(AssetList.FLAN.toString());
+        walkAnimation = new Animation<TextureRegion>(1 / 16f, walkTextureAtlas.getRegions());
+        walkTextureAtlasP = assetManager.get(AssetList.FLAN_PRIME.toString());
+        walkAnimationP = new Animation<TextureRegion>(1 / 16f, walkTextureAtlasP.getRegions());
+        jumpTextureAtlas = assetManager.get(AssetList.FLAN_JUMP.toString());
+        jumpAnimation = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlas.getRegions());
+        jumpTextureAtlasP = assetManager.get(AssetList.FLAN_JUMP_PRIME.toString());
+        jumpAnimationP = new Animation<TextureRegion>(1 / 20f, jumpTextureAtlasP.getRegions());
+        for (int i = 0; i < walkTextureAtlas.getRegions().size; i++){
+            walkTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
     }
 }
