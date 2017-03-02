@@ -86,6 +86,7 @@ public abstract class ALevel extends Stage {
     public ALevel(AssetManager assetManager, Objectives objective) {
         this(assetManager);
         this.objective = objective;
+        this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight(), objective);
         drawObjectives();
     }
 
@@ -331,6 +332,7 @@ public abstract class ALevel extends Stage {
                 this.objective = Objectives.DESTROY;
                 break;
         }
+        this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight(), getObjective());
         drawObjectives();
 
         try {
