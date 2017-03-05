@@ -26,7 +26,7 @@ public class TitleScreen extends ALevel {
     private int optionFocusIndex = 0;
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
     private Point2D.Float optionsSize = new Point2D.Float(330f, 120f);
-    private Point2D.Float optionsStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH / 2 - optionsSize.getX() / 2), (float) (TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - optionsSize.getY() - 180f));
+    private Point2D.Float optionsStart = new Point2D.Float((float) (4 * TradersOfTheLastCarp.CONFIG_WIDTH / 5 - optionsSize.getX() / 2), (float) (TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - optionsSize.getY() - 180f));
 
     public TitleScreen(AssetManager assetManager) {
         super(assetManager);
