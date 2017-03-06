@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
 
 public class ObjectiveVerifier {
 
-    private static float unlockThreshold = 100;
+    private static float unlockThreshold = 150;
 
     public enum Objectives {
         SURVIVE(0),
