@@ -63,6 +63,7 @@ public class Player extends Character {
 
     private boolean invincible = false;
     private float whippingAnimationLength = 0.5f;
+
     private int invincibilityPeriod = 1000; // in millis
     private long invincibilityStart;
     private AWeapon weapon;
@@ -86,41 +87,7 @@ public class Player extends Character {
         //TODO: Correct the hitbox?
         moveHitBox(28, 0);
 
-        // Standing
-        standDownTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
-        standUpTexture = assetManager.get(AssetList.PLAYER_STAND_UP.toString());
-        standLeftTexture = assetManager.get(AssetList.PLAYER_STAND_LEFT.toString());
-        standRightTexture = assetManager.get(AssetList.PLAYER_STAND_RIGHT.toString());
-
-        // Walking
-        walkDownTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_DOWN.toString());
-        walkDownAnimation = new Animation<TextureRegion>(1 / 12f, walkDownTextureAtlas.getRegions());
-
-        walkUpTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_UP.toString());
-        walkUpAnimation = new Animation<TextureRegion>(1 / 12f, walkUpTextureAtlas.getRegions());
-
-        walkLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_LEFT.toString());
-        walkLeftAnimation = new Animation<TextureRegion>(1 / 12f, walkLeftTextureAtlas.getRegions());
-
-        walkRightTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_RIGHT.toString());
-        walkRightAnimation = new Animation<TextureRegion>(1 / 12f, walkRightTextureAtlas.getRegions());
-
-        // Whipping
-        whippingDownTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_DOWN.toString());
-        whippingDownAnimation = new Animation<TextureRegion>((float) (1.0/whippingDownTextureAtlas.getRegions().size * whippingAnimationLength), whippingDownTextureAtlas.getRegions());
-
-        whippingUpTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_UP.toString());
-        whippingUpAnimation = new Animation<TextureRegion>((float) (1.0/whippingUpTextureAtlas.getRegions().size * whippingAnimationLength), whippingUpTextureAtlas.getRegions());
-
-        whippingLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_LEFT.toString());
-        whippingLeftAnimation = new Animation<TextureRegion>((float) (1.0/whippingLeftTextureAtlas.getRegions().size * whippingAnimationLength), whippingLeftTextureAtlas.getRegions());
-
-        whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
-        whippingRightAnimation = new Animation<TextureRegion>((float) (1.0/whippingRightTextureAtlas.getRegions().size * whippingAnimationLength), whippingRightTextureAtlas.getRegions());
-
-        weapon = new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.WHIP_LEFT.toString(), AssetList.WHIP_RIGHT.toString());
-
-        setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
+       initTextures(assetManager);
     }
 
     public void draw(Batch batch, float delta) {
@@ -133,7 +100,6 @@ public class Player extends Character {
                 }
             }
         }
-
 
         if (getAttacking()) {
 
@@ -254,10 +220,60 @@ public class Player extends Character {
         }
     }
 
+    protected void initTextures(AssetManager assetManager){
+        // Standing
+        standDownTexture = assetManager.get(AssetList.PLAYER_STAND_DOWN.toString());
+        standUpTexture = assetManager.get(AssetList.PLAYER_STAND_UP.toString());
+        standLeftTexture = assetManager.get(AssetList.PLAYER_STAND_LEFT.toString());
+        standRightTexture = assetManager.get(AssetList.PLAYER_STAND_RIGHT.toString());
+
+        // Walking
+        walkDownTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_DOWN.toString());
+        walkDownAnimation = new Animation<TextureRegion>(1 / 12f, walkDownTextureAtlas.getRegions());
+
+        walkUpTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_UP.toString());
+        walkUpAnimation = new Animation<TextureRegion>(1 / 12f, walkUpTextureAtlas.getRegions());
+
+        walkLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_LEFT.toString());
+        walkLeftAnimation = new Animation<TextureRegion>(1 / 12f, walkLeftTextureAtlas.getRegions());
+
+        walkRightTextureAtlas = assetManager.get(AssetList.PLAYER_WALK_RIGHT.toString());
+        walkRightAnimation = new Animation<TextureRegion>(1 / 12f, walkRightTextureAtlas.getRegions());
+
+        // Whipping
+        whippingDownTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_DOWN.toString());
+        whippingDownAnimation = new Animation<TextureRegion>((float) (1.0/whippingDownTextureAtlas.getRegions().size * whippingAnimationLength), whippingDownTextureAtlas.getRegions());
+
+        whippingUpTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_UP.toString());
+        whippingUpAnimation = new Animation<TextureRegion>((float) (1.0/whippingUpTextureAtlas.getRegions().size * whippingAnimationLength), whippingUpTextureAtlas.getRegions());
+
+        whippingLeftTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_LEFT.toString());
+        whippingLeftAnimation = new Animation<TextureRegion>((float) (1.0/whippingLeftTextureAtlas.getRegions().size * whippingAnimationLength), whippingLeftTextureAtlas.getRegions());
+
+        whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
+        whippingRightAnimation = new Animation<TextureRegion>((float) (1.0/whippingRightTextureAtlas.getRegions().size * whippingAnimationLength), whippingRightTextureAtlas.getRegions());
+
+        weapon = new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.WHIP_LEFT.toString(), AssetList.WHIP_RIGHT.toString());
+
+        setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
+    }
+
     public void endCollidesWith(Actor otherActor) {}
 
-    public void setInvincible(boolean invincible) {
-        this.invincible = invincible;
+    public int getInvincibilityPeriod() {
+        return invincibilityPeriod;
+    }
+
+    public void setInvincibilityPeriod(int invincibilityPeriod) {
+        this.invincibilityPeriod = invincibilityPeriod;
+    }
+
+    public long getInvincibilityStart() {
+        return invincibilityStart;
+    }
+
+    public void setInvincibilityStart(long start) {
+        invincibilityStart = start;
     }
 
     public AWeapon getWeapon() { return weapon; }
@@ -276,10 +292,6 @@ public class Player extends Character {
 
     public boolean isInvincible() {
         return invincible;
-    }
-
-    public void setInvincibilityStart(long start) {
-        invincibilityStart = start;
     }
 
     public boolean hasKey() {
