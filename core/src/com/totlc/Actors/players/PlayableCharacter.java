@@ -17,6 +17,7 @@ public abstract class PlayableCharacter extends Player {
     Animation<TextureRegion> walk_animation_side;
 
     private float textureWidth, textureHeight;
+    private float headXOffset, headYOffset;
 
     public PlayableCharacter(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
@@ -28,30 +29,24 @@ public abstract class PlayableCharacter extends Player {
     protected abstract void initTextures(AssetManager assetManager);
 
     @Override
-    public void draw(Batch batch, float delta){
+    public void draw(Batch batch, float delta) {
         if (isInvincible()) {
             if (System.currentTimeMillis() > (getInvincibilityStart() + getInvincibilityPeriod())) {
                 setInvincible(false);
             } else {
-                if (System.currentTimeMillis() % 2 == 0){
+                if (System.currentTimeMillis() % 2 == 0) {
                     return;
                 }
             }
         }
 
         // Draw Head, part 1.
-        if (this.getIsFacing().isFacingDown()) {
-            batch.draw(head.getRegions().get(2), getX(), getY(), getTextureWidth(), getTextureHeight());
-        } else if (this.getIsFacing().isFacingLeft()) {
-            batch.draw(head.getRegions().get(3), getX(), getY(), getTextureWidth(), getTextureHeight());
-        } else if (this.getIsFacing().isFacingRight()) {
-            batch.draw(head.getRegions().get(4), getX(), getY(), getTextureWidth(), getTextureHeight());
-        } else if (this.getIsFacing().isFacingUp()) {
+        if (this.getIsFacing().isFacingUp()) {
             batch.draw(head.getRegions().get(0), getX(), getY(), getTextureWidth(), getTextureHeight());
         }
 
         // Draw body.
-        if (getAttacking()){
+        if (getAttacking()) {
 
         } else if (getVel().getX() == 0 && getVel().getY() == 0) {
             if (this.getIsFacing().isFacingDown()) {
@@ -59,12 +54,12 @@ public abstract class PlayableCharacter extends Player {
             } else if (this.getIsFacing().isFacingLeft()) {
                 batch.draw(stand, getX(), getY(), getTextureWidth(), getTextureHeight());
             } else if (this.getIsFacing().isFacingRight()) {
-                batch.draw(stand, getX(), getY(), -getTextureWidth(), getTextureHeight());
+                batch.draw(stand, getX() + getTextureWidth(), getY(), -getTextureWidth(), getTextureHeight());
             } else if (this.getIsFacing().isFacingUp()) {
 
             }
         } else if (this.isMovingRight()) {
-            batch.draw(walk_animation_side.getKeyFrame(getAnimationTime(), true), getX(), getY(), -getTextureWidth(), getTextureHeight());
+            batch.draw(walk_animation_side.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidth(), getY(), -getTextureWidth(), getTextureHeight());
 
         } else if (this.isMovingLeft()) {
             batch.draw(walk_animation_side.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidth(), getTextureHeight());
@@ -78,7 +73,13 @@ public abstract class PlayableCharacter extends Player {
         }
 
         // Draw Head, part 2.
-        if (this.getIsFacing().isFacingUp()) {
+        if (this.getIsFacing().isFacingDown()) {
+            batch.draw(head.getRegions().get(2), getX(), getY(), getTextureWidth(), getTextureHeight());
+        } else if (this.getIsFacing().isFacingLeft()) {
+            batch.draw(head.getRegions().get(3), getX(), getY(), getTextureWidth(), getTextureHeight());
+        } else if (this.getIsFacing().isFacingRight()) {
+            batch.draw(head.getRegions().get(4), getX(), getY(), getTextureWidth(), getTextureHeight());
+        } else if (this.getIsFacing().isFacingUp()) {
             batch.draw(head.getRegions().get(1), getX(), getY(), getTextureWidth(), getTextureHeight());
         }
     }
@@ -97,5 +98,21 @@ public abstract class PlayableCharacter extends Player {
 
     public void setTextureHeight(float textureHeight) {
         this.textureHeight = textureHeight;
+    }
+
+    public float getHeadXOffset() {
+        return headXOffset;
+    }
+
+    public void setHeadXOffset(float headXOffset) {
+        this.headXOffset = headXOffset;
+    }
+
+    public float getHeadYOffset() {
+        return headYOffset;
+    }
+
+    public void setHeadYOffset(float headYOffset) {
+        this.headYOffset = headYOffset;
     }
 }
