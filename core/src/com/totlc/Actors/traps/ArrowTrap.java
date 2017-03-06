@@ -54,7 +54,7 @@ public class ArrowTrap extends ATrap{
 
     @Override
     public void draw(Batch batch, float alpha) {
-        if (isActive() && System.currentTimeMillis() < (getStartTime() + getDelay() + displayEyebrows)) {
+        if (isActive() || isSetup()) {
             batch.draw(trapTextureAtlas.getRegions().get(1), getX(), getY());
         } else {
             batch.draw(trapTextureAtlas.getRegions().get(0), getX(), getY());

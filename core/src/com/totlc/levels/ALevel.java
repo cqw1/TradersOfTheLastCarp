@@ -71,6 +71,9 @@ public abstract class ALevel extends Stage {
     private float wallSize = DEFAULT_WALLSIZE;
     public static float DEFAULT_WALLSIZE = 64;
 
+    // LEvel entity z-indices.
+    private static int terrainIndex = 1;
+
     HashSet<Actor> toBeRemoved = new HashSet<Actor>();
 
     public ALevel(AssetManager assetManager) {
@@ -86,6 +89,7 @@ public abstract class ALevel extends Stage {
     public ALevel(AssetManager assetManager, Objectives objective) {
         this(assetManager);
         this.objective = objective;
+        this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight(), objective);
         drawObjectives();
     }
 
@@ -331,6 +335,7 @@ public abstract class ALevel extends Stage {
                 this.objective = Objectives.DESTROY;
                 break;
         }
+        this.nextStage = new NextStage(assetManager, ALevel.DEFAULT_WALLSIZE, player.getHeight(), getObjective());
         drawObjectives();
 
         try {
@@ -389,6 +394,7 @@ public abstract class ALevel extends Stage {
                 MapProperties currentObjProp = mo.getProperties();
                 AWall currentTerrain = TerrainFactory.createTerrainFromMP(currentObjProp, getAssetManager());
                 addActor(currentTerrain);
+                currentTerrain.setZIndex(terrainIndex);
             }
         } catch ( NullPointerException n) {
             System.err.print("No terrain layer detected.\n");
@@ -534,6 +540,7 @@ public abstract class ALevel extends Stage {
     public void initWalls() {
         addActor(nextStage);
         addActor(nextStage.getPhysicalBlock());
+        nextStage.getPhysicalBlock().setZIndex(terrainIndex);
 
         AWall lw = new AWall(assetManager, new Rectangle(0, 0, wallSize, CONFIG_HEIGHT)) {
 
@@ -571,11 +578,11 @@ public abstract class ALevel extends Stage {
         addActor(tw);
         addActor(bw);
 
-        bw.setZIndex(2);
-        tw.setZIndex(2);
-        rwTop.setZIndex(1);
-        rwBot.setZIndex(1);
-        lw.setZIndex(1);
+        bw.setZIndex(terrainIndex + 1);
+        tw.setZIndex(terrainIndex + 1);
+        rwTop.setZIndex(terrainIndex);
+        rwBot.setZIndex(terrainIndex);
+        lw.setZIndex(terrainIndex);
     }
 
     public void initNextLevel() {

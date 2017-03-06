@@ -14,6 +14,7 @@ public abstract class Character extends TotlcObject {
     private int hpMAX;
     private int hpCURRENT;
     private boolean attacking = false;
+
     private boolean invincible = false;
 
     public Character(AssetManager assetManager, Rectangle r) {
@@ -53,5 +54,11 @@ public abstract class Character extends TotlcObject {
         return attacking;
     }
 
+    public boolean isInvincible() {
+        return invincible;
+    }
 
+    public void setInvincible(boolean invincible) {
+        this.invincible = invincible;
+    }
 }

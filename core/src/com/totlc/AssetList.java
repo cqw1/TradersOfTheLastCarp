@@ -19,7 +19,7 @@ public enum AssetList {
     LOVELO_IMAGE("UI/Lovelo.png", Texture.class),
     ITEM_PACK("sprites/items/items.atlas", TextureAtlas.class),
     DIED_SCREEN("UI/udied.png", Texture.class),
-    TITLE_SCREEN("UI/Splash.png", Texture.class),
+    TITLE_SCREEN("UI/Splash2.png", Texture.class),
     BUTTON_PROMPT_ESC("UI/ButtonPromptESC.png", Texture.class),
     BUTTON_PROMPT_SPACE("UI/ButtonPromptSpace.png", Texture.class),
     OPTION_QUICKPLAY("UI/splash_options_0.png", Texture.class),
@@ -29,6 +29,8 @@ public enum AssetList {
     QUESTION_MARK_SELECT_BORDER("UI/QuestionMarkSelectBorder.png", Texture.class),
     CRYSTAL_CARP_TURN("sprites/crystal_carp/carp_turn.atlas", TextureAtlas.class),
     CRYSTAL_CARP_TALK("sprites/crystal_carp/carp_talk.atlas", TextureAtlas.class),
+    CRYSTAL_CARP_TURN_BORDER("sprites/crystal_carp/carp_turn_border.atlas", TextureAtlas.class),
+    CRYSTAL_CARP_TALK_BORDER("sprites/crystal_carp/carp_talk_Border.atlas", TextureAtlas.class),
 
     // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas", TextureAtlas.class),
@@ -64,7 +66,11 @@ public enum AssetList {
     WHIP_DOWN("sprites/whip/front.atlas", TextureAtlas.class),
     WHIP_UP("sprites/whip/back.atlas", TextureAtlas.class),
     JACK_HEAD("sprites/Louisiana/jack_head.atlas", TextureAtlas.class),
+    JACK_STAND("sprites/Louisiana/stand_side.png", Texture.class),
+    JACK_WALK_SIDE("sprites/Louisiana/jack_walk_side.atlas", TextureAtlas.class),
     JANE_HEAD("sprites/Colorado/jane_head.atlas", TextureAtlas.class),
+    JANE_STAND("sprites/Colorado/stand_side.png", Texture.class),
+    JANE_WALK_SIDE("sprites/Colorado/jane_walk_side.atlas", TextureAtlas.class),
 
     // Special Effects.
     IMPACT("effects/impact.atlas", TextureAtlas.class),
@@ -94,6 +100,9 @@ public enum AssetList {
     GOLDFISH("sprites/goldfish/goldfish_glow.atlas", TextureAtlas.class),
     GOLDFISH_UI("sprites/goldfish/goldfish_ui.atlas", TextureAtlas.class),
     ROCKS("sprites/rocks/rocks.atlas", TextureAtlas.class),
+    DOOR_SKULL("sprites/door/door_skull.atlas", TextureAtlas.class),
+    DOOR_TIME("sprites/door/door_time.atlas", TextureAtlas.class),
+    DOOR_LOCK("sprites/door/door_lock.atlas", TextureAtlas.class),
 
     // Projectile sprites and effects.
     PROJECTILE_ARROW("traps/arrow.png", Texture.class),

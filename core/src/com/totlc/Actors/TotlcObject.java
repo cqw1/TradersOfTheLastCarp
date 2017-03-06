@@ -172,7 +172,7 @@ public abstract class TotlcObject extends Actor {
                 getX() + getWidth(), getY() + getHeight(),
                 getX(), getY() + getHeight()
         });
-        hitBox.setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
+        hitBox.setOrigin(getX(), getY());
     }
 
     public float getFriction() {
@@ -277,7 +277,7 @@ public abstract class TotlcObject extends Actor {
 
     public void returnIntoBounds(float formerX, float formerY) {
         for (Actor act: getStage().getActors().toArray()) {
-            if (act instanceof AWall) {
+            if (act instanceof AWall && !((AWall)act).isOpen()) {
                 AWall wall = (AWall) act;
 
                 Polygon horizontal = new Polygon(getHitBox().getTransformedVertices());

@@ -1,6 +1,7 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.enemies.GelatinKing;
 import com.totlc.Actors.enemies.JustDessert;
 import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
@@ -47,18 +48,19 @@ public class SandBoxLevel extends ALevel{
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
         TradersOfTheLastCarp.musicPlayer.play();
 
-        ATrigger trigger = new TeleportPad(getAssetManager(), 500, 500);
-        Teleporter t = new Teleporter(getAssetManager(), 100, 100);
-
-        trigger.addTrap(t);
-        addActor(trigger);
-        addActor(t);
-
-        APickup key = new Key(getAssetManager(), 700, 700);
-        addActor(key);
-
-        APickup rock = new Goldfish(getAssetManager(), 800, 300);
+        AWall rock = new Rock(getAssetManager(), 800, 300, 1);
+        AWall rock1 = new Rock(getAssetManager(), 500, 300, 0.5f);
+        AWall rock2= new Rock(getAssetManager(), 1000, 300, 0.8f);
         addActor(rock);
+        addActor(rock1);
+        addActor(rock2);
+
+        AEnemy flan = new JustDessert(getAssetManager(), 300, 300, 1, new ProximityBasedAggro(getPlayer()));
+        AEnemy flan1 = new JustDessert(getAssetManager(), 300, 300, 3, new ProximityBasedAggro(getPlayer()));
+        AEnemy flan2 = new JustDessert(getAssetManager(), 300, 300, 7, new ProximityBasedAggro(getPlayer()));
+        addActor(flan);
+        addActor(flan1);
+        addActor(flan2);
 
         endInit();
     }

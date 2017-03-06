@@ -15,16 +15,10 @@ import java.util.Arrays;
 
 public class AWall extends TotlcObject {
 
-    public Directionality priority;
+    private boolean open = false;
 
     public AWall(AssetManager assetManager, Rectangle r) {
         super(assetManager, r);
-        priority = Directionality.RIGHT;
-    }
-
-    public AWall(AssetManager assetManager, Rectangle r, Directionality d) {
-        this(assetManager, r);
-        priority = d;
     }
 
     public void draw(Batch batch, float alpha) {}
@@ -37,5 +31,13 @@ public class AWall extends TotlcObject {
     @Override
     public void endCollidesWith(Actor otherActor) {
 
+    }
+
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
     }
 }

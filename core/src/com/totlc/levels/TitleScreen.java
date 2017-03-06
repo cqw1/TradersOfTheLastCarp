@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.UI.ButtonPrompt;
 import com.totlc.Actors.UI.MenuOption;
@@ -26,12 +25,13 @@ public class TitleScreen extends ALevel {
     private int optionFocusIndex = 0;
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
     private Point2D.Float optionsSize = new Point2D.Float(330f, 120f);
-    private Point2D.Float optionsStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH / 2 - optionsSize.getX() / 2), (float) (TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - optionsSize.getY() - 180f));
+    private Point2D.Float optionsStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * 0.8 - optionsSize.getX() / 2 + 10), (float) (TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - optionsSize.getY() - 190f));
 
     public TitleScreen(AssetManager assetManager) {
         super(assetManager);
         TradersOfTheLastCarp.musicPlayer.playSong("test7", 1f);
-        titleScreen = new TotlcObject(assetManager, new Rectangle()) {
+        TradersOfTheLastCarp.musicPlayer.getCurrentSong().setLooping(true);
+                titleScreen = new TotlcObject(assetManager, new Rectangle()) {
 
             String asset = AssetList.TITLE_SCREEN.toString();
 
@@ -79,7 +79,7 @@ public class TitleScreen extends ALevel {
         addActor(titleScreen);
 
         //Button Prompt
-        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * cursorScale - 50, 50) {
+        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 20) {
             private float baseY = getY();
 
             @Override

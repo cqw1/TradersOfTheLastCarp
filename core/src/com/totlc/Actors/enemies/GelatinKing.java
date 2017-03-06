@@ -55,28 +55,25 @@ public class GelatinKing extends AEnemy {
         getHitBox().setScale(this.scale, this.scale);
         initMovement(friction, maxVel, speed);
         setFloating(true);
+
+        for (int i = 0; i < jellyTextureAtlas.getRegions().size; i++){
+           jellyTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+           kingTextureAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
     }
 
     public GelatinKing(AssetManager assetManager, float x, float y, AMovement movement, boolean crownMe) {
-        super(assetManager, new Rectangle(x, y, width, height), movement, basehp, atk);
-        jellyTextureAtlas = assetManager.get(AssetList.JELLYFISH.toString());
-        jellyAnimation = new Animation<TextureRegion>(1 / 16f,jellyTextureAtlas.getRegions());
-        kingTextureAtlas = assetManager.get(AssetList.GELATIN_KING.toString());
-        kingAnimation = new Animation<TextureRegion>(1 / 16f, kingTextureAtlas.getRegions());
-        shadow = getAssetManager().get(AssetList.SHADOW.toString());
+        this(assetManager, x, y, movement);
         this.king = crownMe;
         if (crownMe){
             this.scale = 1;
             setHpMax(getHpMax() + 2);
             setHpCurrent(getHpCurrent() + 2);
             setAttack(getAttack() + 1);
+            getHitBox().setScale(this.scale, this.scale);
         } else{
             this.scale = 0.5f;
         }
-        this.timeStamp = System.currentTimeMillis();
-        getHitBox().setScale(this.scale, this.scale);
-        initMovement(friction, maxVel, speed);
-        setFloating(true);
     }
 
     @Override
@@ -93,14 +90,14 @@ public class GelatinKing extends AEnemy {
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         if(this.king){
             batch.draw(kingAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                    (float) kingTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
-                    (float) kingTextureAtlas.getRegions().get(0).getRegionHeight() * 0.5f,
+                    0,
+                    0,
                     (float) kingTextureAtlas.getRegions().get(0).getRegionWidth(),
                     (float) kingTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
         } else{
             batch.draw(jellyAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
-                    (float) jellyTextureAtlas.getRegions().get(0).getRegionWidth() * 0.5f,
-                    (float) jellyTextureAtlas.getRegions().get(0).getRegionHeight() * 0.5f,
+                    0,
+                    0,
                     (float) jellyTextureAtlas.getRegions().get(0).getRegionWidth(),
                     (float) jellyTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
         }

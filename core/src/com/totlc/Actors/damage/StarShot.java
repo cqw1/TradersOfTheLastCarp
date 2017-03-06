@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.effects.Impact;
+import com.totlc.Actors.terrain.AWall;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 
@@ -48,21 +49,8 @@ public class StarShot extends Damage {
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
         moveUnit(deltaTime);
-
-        if (isOutOfBounds()) {
-            if(!removeFlag){
-                startTime = System.currentTimeMillis();
-                removeFlag = !removeFlag;
-            }
-            delayRemove();
-        }
-
-        if (removeFlag){
-            for (ParticleEmitter p : starTrail.getEmitters()){
-                p.allowCompletion();
-            }
-        }
         starTrail.setPosition(getX() + (float)textureDimensions.getX() / 2, getY() + (float)textureDimensions.getY() / 2);
+        delayRemove();
     }
 
     @Override
@@ -77,10 +65,20 @@ public class StarShot extends Damage {
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player && !removeFlag) {
             getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
-            startTime = System.currentTimeMillis();
-            removeFlag = true;
+            allowRemoval();
+        } else if (otherActor instanceof AWall){
+            allowRemoval();
         }
         return false;
+    }
+
+    private void allowRemoval(){
+        startTime = System.currentTimeMillis();
+        removeFlag = true;
+        getHitBox().setScale(0, 0);
+        for (ParticleEmitter p : starTrail.getEmitters()){
+            p.allowCompletion();
+        }
     }
 
     private boolean delayRemove() {
