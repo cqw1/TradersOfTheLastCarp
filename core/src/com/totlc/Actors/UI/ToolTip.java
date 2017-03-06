@@ -43,12 +43,13 @@ public class ToolTip extends Actor {
     private int delay;
 
     private float scale = 0.75f;
+    // Padding for the text within the black background.
     private int horizontalPadding = 25;
     private static float carpVerticalOffset = 5;
     private static float carpHorizontalOffset = 60;
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
-    public ToolTip(AssetManager assetManager, int x, int y, String message, int delay, int talkTime, int duration, boolean repeat){
+    public ToolTip(AssetManager assetManager, int x, int y, String message, int delay, int talkTime, int duration, boolean loop){
         setX(x);
         setY(y);
 
@@ -67,7 +68,7 @@ public class ToolTip extends Actor {
         this.duration = Math.max(duration, delay + talkTime);
         this.talkTime = talkTime;
         this.delay = delay;
-        loop = repeat;
+        this.loop = loop;
 
         carpTalkAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TALK.toString());
         carpTalkAnimation = new Animation<TextureRegion>(1 / 10f, carpTalkAtlas.getRegions(), Animation.PlayMode.LOOP);
