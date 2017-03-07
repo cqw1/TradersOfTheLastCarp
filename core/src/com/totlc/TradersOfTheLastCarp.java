@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
+import com.totlc.Actors.players.Colorado;
 import com.totlc.Actors.players.Louisiana;
 import com.totlc.audio.MusicPlayer;
 import com.totlc.levels.*;
@@ -50,7 +51,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public void create() {
 		loadAssets();
         player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
-//		player = new Louisiana(assetManager, 0, CONFIG_HEIGHT / 2);
+		player = new Louisiana(assetManager, 0, CONFIG_HEIGHT / 2);
+//		player = new Colorado(assetManager, 0, CONFIG_HEIGHT / 2);
 
 		// For drawing hitboxes.
 		shapeRenderer = new ShapeRenderer();

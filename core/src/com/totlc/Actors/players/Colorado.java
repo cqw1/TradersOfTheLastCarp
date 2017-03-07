@@ -4,12 +4,17 @@ import com.badlogic.gdx.assets.AssetManager;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 
 public class Colorado extends PlayableCharacter {
 
     public Colorado(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
+        setHeadXOffset(8);
+        setHeadYOffset(32);
+        setSway(2);
+        setBob(2);
     }
 
     @Override
@@ -19,7 +24,7 @@ public class Colorado extends PlayableCharacter {
 
         //Walking Textures and Animations.
         walk_side = assetManager.get(AssetList.JANE_WALK_SIDE.toString());
-        walk_animation_side = new Animation<TextureRegion>(1 / 12f, walk_side.getRegions());
+        walk_animation_side = new Animation<TextureRegion>(1 / 12f, walk_side.getRegions(), Animation.PlayMode.LOOP);
 
         // Cheer Textures and Animation.
 
@@ -29,6 +34,6 @@ public class Colorado extends PlayableCharacter {
         head = assetManager.get(AssetList.JANE_HEAD.toString());
 
         // Whip initialization.
-
+        setWeapon(new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.WHIP_LEFT.toString(), AssetList.WHIP_RIGHT.toString()));
     }
 }
