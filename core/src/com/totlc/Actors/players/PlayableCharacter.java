@@ -210,4 +210,3 @@ public abstract class PlayableCharacter extends Player {
         this.bob = bob;
     }
 }
-

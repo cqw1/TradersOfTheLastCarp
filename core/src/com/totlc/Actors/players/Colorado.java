@@ -11,10 +11,10 @@ public class Colorado extends PlayableCharacter {
 
     public Colorado(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
-        setHeadXOffset(8);
-        setHeadYOffset(32);
+        setHeadXOffset(10);
+        setHeadYOffset(33);
         setSway(2);
-        setBob(2);
+        setBob(3);
     }
 
     @Override
