@@ -29,6 +29,8 @@ public class Colorado extends PlayableCharacter {
         // Cheer Textures and Animation.
 
         // Attacking Textures and Animation.
+        whip_side = assetManager.get(AssetList.JANE_WHIP_SIDE.toString());
+        whip_animation_side = new Animation<TextureRegion>(1 / 12f, whip_side.getRegions());
 
         // Head Textures.
         head = assetManager.get(AssetList.JANE_HEAD.toString());

@@ -52,7 +52,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 		loadAssets();
         player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 		player = new Louisiana(assetManager, 0, CONFIG_HEIGHT / 2);
-//		player = new Colorado(assetManager, 0, CONFIG_HEIGHT / 2);
+		player = new Colorado(assetManager, 0, CONFIG_HEIGHT / 2);
 
 		// For drawing hitboxes.
 		shapeRenderer = new ShapeRenderer();
