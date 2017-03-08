@@ -34,6 +34,6 @@ public class Colorado extends PlayableCharacter {
         head = assetManager.get(AssetList.JANE_HEAD.toString());
 
         // Whip initialization.
-        setWeapon(new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.WHIP_LEFT.toString(), AssetList.WHIP_RIGHT.toString()));
+        setWeapon(new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.BLUE_WHIP_LEFT.toString(), AssetList.BLUE_WHIP_RIGHT.toString()));
     }
 }

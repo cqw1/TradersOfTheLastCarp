@@ -251,8 +251,7 @@ public abstract class ALevel extends Stage {
 
         if (keycode == Input.Keys.SPACE) {
            if (player.getHpCurrent() > 0){
-               this.addActor(player.getWeapon());
-               player.setAttacking(true);
+                player.createWeapon();
            } else{
                TradersOfTheLastCarp.player = new Player(assetManager, 0, 0);
                ALevel nextLevelObject = LevelFactory.createLevel(TitleScreen.class, assetManager);

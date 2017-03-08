@@ -73,6 +73,12 @@ public enum AssetList {
     JANE_STAND("sprites/Colorado/stand_side.png", Texture.class),
     JANE_WALK_SIDE("sprites/Colorado/walk/jane_walk_side.atlas", TextureAtlas.class),
 
+    // Weapon Sprites
+    ORANGE_WHIP_LEFT("sprites/whip/orange/orange_whip_left.atlas", TextureAtlas.class),
+    ORANGE_WHIP_RIGHT("sprites/whip/orange/orange_whip_right.atlas", TextureAtlas.class),
+    BLUE_WHIP_LEFT("sprites/whip/blue/blue_whip_left.atlas", TextureAtlas.class),
+    BLUE_WHIP_RIGHT("sprites/whip/blue/blue_whip_right.atlas", TextureAtlas.class),
+
     // Special Effects.
     IMPACT("effects/impact.atlas", TextureAtlas.class),
     EXCLAMATION("effects/exclamation_mark.atlas", TextureAtlas.class),

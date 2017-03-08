@@ -73,9 +73,9 @@ public abstract class PlayableCharacter extends Player {
             } else if (this.isMovingRight() || this.getIsFacing().isFacingRight()) {
                 batch.draw(head.getRegions().get(4), getX() + getHeadXOffset() - (float)getHeadBob(getAnimationTime()).getX(), getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
             } else if (this.isMovingUp() || this.getIsFacing().isFacingUp()) {
-                batch.draw(head.getRegions().get(1), getX() - getHorizontalHeadSway(getAnimationTime()) * 0.5f, getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
+                batch.draw(head.getRegions().get(1), getX(), getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
             } else if (this.isMovingDown() || this.getIsFacing().isFacingDown()) {
-                batch.draw(head.getRegions().get(2), getX() + getHorizontalHeadSway(getAnimationTime()) * 0.5f, getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
+                batch.draw(head.getRegions().get(2), getX(), getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
             }
 
         } else {
