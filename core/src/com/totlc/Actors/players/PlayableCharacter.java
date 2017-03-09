@@ -1,7 +1,6 @@
 package com.totlc.Actors.players;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,9 +12,7 @@ import java.awt.geom.Point2D;
 public abstract class PlayableCharacter extends Player {
 
     // Textures and Dimensions.
-    Texture stand;
-
-    TextureAtlas walk_side, whip_side, head;
+    TextureAtlas stand, walk_side, whip_side, head;
     Animation<TextureRegion> walk_animation_side, whip_animation_side;
 
     private float textureWidth, textureHeight;
@@ -89,13 +86,13 @@ public abstract class PlayableCharacter extends Player {
             if (getVel().getX() == 0 && getVel().getY() == 0) {
 
                 if (this.getIsFacing().isFacingLeft()) {
-                    batch.draw(stand, getX(), getY(), getTextureWidth(), getTextureHeight());
+                    batch.draw(stand.findRegion("stand_side"), getX(), getY(), getTextureWidth(), getTextureHeight());
                 } else if (this.getIsFacing().isFacingRight()) {
-                    batch.draw(stand, getX() + getTextureWidth(), getY(), -getTextureWidth(), getTextureHeight());
+                    batch.draw(stand.findRegion("stand_side"), getX() + getTextureWidth(), getY(), -getTextureWidth(), getTextureHeight());
                 } else if (this.getIsFacing().isFacingUp()) {
-
+                    batch.draw(stand.findRegion("stand_back"), getX(), getY(), getTextureWidth(), getTextureHeight());
                 } else if (this.getIsFacing().isFacingDown()) {
-
+                    batch.draw(stand.findRegion("stand_front"), getX(), getY(), getTextureWidth(), getTextureHeight());
                 }
             } else if (this.isMovingRight()) {
                 batch.draw(walk_animation_side.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidth(), getY(), -getTextureWidth(), getTextureHeight());
@@ -108,7 +105,7 @@ public abstract class PlayableCharacter extends Player {
             } else if (this.isMovingDown()) {
 
             } else {
-                batch.draw(stand, getX(), getY());
+                batch.draw(stand.findRegion("stand_front"), getX(), getY(), getTextureWidth(), getTextureHeight());
             }
             // Draw Head, part 2.
             if (this.isMovingLeft() || this.getIsFacing().isFacingLeft()) {

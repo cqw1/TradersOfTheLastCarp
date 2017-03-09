@@ -66,11 +66,11 @@ public enum AssetList {
     WHIP_DOWN("sprites/whip/front.atlas", TextureAtlas.class),
     WHIP_UP("sprites/whip/back.atlas", TextureAtlas.class),
     JACK_HEAD("sprites/Louisiana/jack_head.atlas", TextureAtlas.class),
-    JACK_STAND("sprites/Louisiana/stand_side.png", Texture.class),
+    JACK_STAND("sprites/Louisiana/jack_stand.atlas", TextureAtlas.class),
     JACK_WALK_SIDE("sprites/Louisiana/walk/jack_walk_side.atlas", TextureAtlas.class),
     JACK_WHIP_SIDE("sprites/Louisiana/whip/jack_whip_side.atlas", TextureAtlas.class),
     JANE_HEAD("sprites/Colorado/jane_head.atlas", TextureAtlas.class),
-    JANE_STAND("sprites/Colorado/stand_side.png", Texture.class),
+    JANE_STAND("sprites/Colorado/jane_stand.atlas", TextureAtlas.class),
     JANE_WALK_SIDE("sprites/Colorado/walk/jane_walk_side.atlas", TextureAtlas.class),
     JANE_WHIP_SIDE("sprites/Colorado/whip/jane_whip_side.atlas", TextureAtlas.class),
 
