@@ -12,8 +12,8 @@ import java.awt.geom.Point2D;
 public abstract class PlayableCharacter extends Player {
 
     // Textures and Dimensions.
-    TextureAtlas stand, walk_side, whip_side, head;
-    Animation<TextureRegion> walk_animation_side, whip_animation_side;
+    TextureAtlas stand, walk_side, walk_front, walk_back, whip_side, whip_front, whip_back, head;
+    Animation<TextureRegion> walk_animation_side, walk_animation_front, walk_animation_back, whip_animation_side, whip_animation_front, whip_animation_back;
 
     private float textureWidth, textureHeight;
     private float headXOffset;
@@ -84,7 +84,6 @@ public abstract class PlayableCharacter extends Player {
 
             // Draw Body
             if (getVel().getX() == 0 && getVel().getY() == 0) {
-
                 if (this.getIsFacing().isFacingLeft()) {
                     batch.draw(stand.findRegion("stand_side"), getX(), getY(), getTextureWidth(), getTextureHeight());
                 } else if (this.getIsFacing().isFacingRight()) {
@@ -96,14 +95,12 @@ public abstract class PlayableCharacter extends Player {
                 }
             } else if (this.isMovingRight()) {
                 batch.draw(walk_animation_side.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidth(), getY(), -getTextureWidth(), getTextureHeight());
-
             } else if (this.isMovingLeft()) {
                 batch.draw(walk_animation_side.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidth(), getTextureHeight());
-
             } else if (this.isMovingUp()) {
-
+                batch.draw(walk_animation_back.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidth(), getTextureHeight());
             } else if (this.isMovingDown()) {
-
+                batch.draw(walk_animation_front.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidth(), getTextureHeight());
             } else {
                 batch.draw(stand.findRegion("stand_front"), getX(), getY(), getTextureWidth(), getTextureHeight());
             }

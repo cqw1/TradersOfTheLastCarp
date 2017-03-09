@@ -68,6 +68,8 @@ public enum AssetList {
     JACK_HEAD("sprites/Louisiana/jack_head.atlas", TextureAtlas.class),
     JACK_STAND("sprites/Louisiana/jack_stand.atlas", TextureAtlas.class),
     JACK_WALK_SIDE("sprites/Louisiana/walk/jack_walk_side.atlas", TextureAtlas.class),
+    JACK_WALK_FRONT("sprites/Louisiana/walk/jack_walk_front.atlas", TextureAtlas.class),
+    JACK_WALK_BACK("sprites/Louisiana/walk/jack_walk_back.atlas", TextureAtlas.class),
     JACK_WHIP_SIDE("sprites/Louisiana/whip/jack_whip_side.atlas", TextureAtlas.class),
     JANE_HEAD("sprites/Colorado/jane_head.atlas", TextureAtlas.class),
     JANE_STAND("sprites/Colorado/jane_stand.atlas", TextureAtlas.class),
