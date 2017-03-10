@@ -124,8 +124,7 @@ public class LevelSelect extends ALevel {
         grid[1][0] = new LevelOptionInfo(null, Level07.class, "Level 7");
         grid[1][1] = new LevelOptionInfo(null, Level08.class, "Level 8");
         grid[1][2] = new LevelOptionInfo(null, Level09.class, "Level 9");
-//        grid[1][3] = new LevelOptionInfo(null, Level10.class, "Level 10");
-        grid[1][3] = null;
+        grid[1][3] = new LevelOptionInfo(null, Level10.class, "Level 10");
         grid[1][4] = null;
         grid[1][5] = null;
     }
