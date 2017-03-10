@@ -45,11 +45,7 @@ public class JustDessert extends AEnemy{
      * @param y
      */
     public JustDessert(AssetManager assetManager, float x, float y, AMovement movement) {
-        super(assetManager, new Rectangle(x, y, width, height), movement, basehp, atk);
-        initTextures(assetManager);
-
-        this.scale = 1;
-        initMovement(friction, maxVel, speed);
+        this(assetManager, x, y, basehp, movement);
     }
 
     /**
