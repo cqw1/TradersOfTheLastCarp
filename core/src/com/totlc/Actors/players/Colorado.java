@@ -15,6 +15,11 @@ public class Colorado extends PlayableCharacter {
         setHeadYOffset(33);
         setSway(2);
         setBob(3);
+
+        setHpMax(8);
+        setHpCurrent(getHpMax());
+        setSpeed(240);
+        setMaxVel(240);
     }
 
     @Override
@@ -24,9 +29,11 @@ public class Colorado extends PlayableCharacter {
 
         //Walking Textures and Animations.
         walk_side = assetManager.get(AssetList.JANE_WALK_SIDE.toString());
-        walk_animation_side = new Animation<TextureRegion>(1 / 12f, walk_side.getRegions(), Animation.PlayMode.LOOP);
-
-        // Cheer Textures and Animation.
+        walk_animation_side = new Animation<TextureRegion>(1 / 10f, walk_side.getRegions(), Animation.PlayMode.LOOP);
+        walk_front = assetManager.get(AssetList.JANE_WALK_FRONT.toString());
+        walk_animation_front = new Animation<TextureRegion>(1 / 10f, walk_front.getRegions(), Animation.PlayMode.LOOP);
+        walk_back = assetManager.get(AssetList.JANE_WALK_BACK.toString());
+        walk_animation_back = new Animation<TextureRegion>(1 / 10f, walk_back.getRegions(), Animation.PlayMode.LOOP);
 
         // Attacking Textures and Animation.
         whip_side = assetManager.get(AssetList.JANE_WHIP_SIDE.toString());

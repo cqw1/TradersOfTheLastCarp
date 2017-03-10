@@ -48,8 +48,7 @@ public abstract class PlayableCharacter extends Player {
 
         if (getAttacking()) {
             // Draw Head, part 1.
-            if (this.getIsFacing().isFacingUp() &&
-                    !(this.isMovingRight() || this.isMovingLeft())) {
+            if (this.getIsFacing().isFacingUp()) {
                 batch.draw(head.getRegions().get(0), getX(), getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
             }
 
@@ -65,20 +64,19 @@ public abstract class PlayableCharacter extends Player {
            }
 
             // Draw Head, part 2.
-            if (this.isMovingLeft() || this.getIsFacing().isFacingLeft()) {
+            if (this.getIsFacing().isFacingLeft()) {
                 batch.draw(head.getRegions().get(3), getX() - getHeadXOffset() + (float)getHeadBob(getAnimationTime()).getX(), getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
-            } else if (this.isMovingRight() || this.getIsFacing().isFacingRight()) {
+            } else if (this.getIsFacing().isFacingRight()) {
                 batch.draw(head.getRegions().get(4), getX() + getHeadXOffset() - (float)getHeadBob(getAnimationTime()).getX(), getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
-            } else if (this.isMovingUp() || this.getIsFacing().isFacingUp()) {
+            } else if (this.getIsFacing().isFacingUp()) {
                 batch.draw(head.getRegions().get(1), getX(), getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
-            } else if (this.isMovingDown() || this.getIsFacing().isFacingDown()) {
+            } else if (this.getIsFacing().isFacingDown()) {
                 batch.draw(head.getRegions().get(2), getX(), getY() + getHeadYOffset() + (float)getHeadBob(getAnimationTime()).getY(), getTextureWidth(), getTextureHeight());
             }
 
         } else {
             // Draw Head, part 1.
-            if (this.getIsFacing().isFacingUp() &&
-                    !(this.isMovingRight() || this.isMovingLeft())) {
+            if (this.getIsFacing().isFacingUp()) {
                 batch.draw(head.getRegions().get(0), getX() - getHorizontalHeadSway(getAnimationTime()) * 0.5f, getY() + getHeadYOffset(), getTextureWidth(), getTextureHeight());
             }
 
@@ -93,25 +91,25 @@ public abstract class PlayableCharacter extends Player {
                 } else if (this.getIsFacing().isFacingDown()) {
                     batch.draw(stand.findRegion("stand_front"), getX(), getY(), getTextureWidth(), getTextureHeight());
                 }
-            } else if (this.isMovingRight()) {
+            } else if (this.getIsFacing().isFacingRight()) {
                 batch.draw(walk_animation_side.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidth(), getY(), -getTextureWidth(), getTextureHeight());
-            } else if (this.isMovingLeft()) {
+            } else if (this.getIsFacing().isFacingLeft()) {
                 batch.draw(walk_animation_side.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidth(), getTextureHeight());
-            } else if (this.isMovingUp()) {
+            } else if (this.getIsFacing().isFacingUp()) {
                 batch.draw(walk_animation_back.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidth(), getTextureHeight());
-            } else if (this.isMovingDown()) {
+            } else if (this.getIsFacing().isFacingDown()) {
                 batch.draw(walk_animation_front.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidth(), getTextureHeight());
             } else {
                 batch.draw(stand.findRegion("stand_front"), getX(), getY(), getTextureWidth(), getTextureHeight());
             }
             // Draw Head, part 2.
-            if (this.isMovingLeft() || this.getIsFacing().isFacingLeft()) {
+            if (this.getIsFacing().isFacingLeft()) {
                 batch.draw(head.getRegions().get(3), getX() - getHeadXOffset() + getHorizontalHeadSway(getAnimationTime()), getY() + getHeadYOffset(), getTextureWidth(), getTextureHeight());
-            } else if (this.isMovingRight() || this.getIsFacing().isFacingRight()) {
+            } else if (this.getIsFacing().isFacingRight()) {
                 batch.draw(head.getRegions().get(4), getX() + getHeadXOffset() - getHorizontalHeadSway(getAnimationTime()), getY() + getHeadYOffset(), getTextureWidth(), getTextureHeight());
-            } else if (this.isMovingUp() || this.getIsFacing().isFacingUp()) {
+            } else if (this.getIsFacing().isFacingUp()) {
                 batch.draw(head.getRegions().get(1), getX() - getHorizontalHeadSway(getAnimationTime()) * 0.5f, getY() + getHeadYOffset(), getTextureWidth(), getTextureHeight());
-            } else if (this.isMovingDown() || this.getIsFacing().isFacingDown()) {
+            } else if (this.getIsFacing().isFacingDown()) {
                 batch.draw(head.getRegions().get(2), getX() + getHorizontalHeadSway(getAnimationTime()) * 0.5f, getY() + getHeadYOffset(), getTextureWidth(), getTextureHeight());
             }
         }

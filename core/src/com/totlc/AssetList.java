@@ -74,6 +74,8 @@ public enum AssetList {
     JANE_HEAD("sprites/Colorado/jane_head.atlas", TextureAtlas.class),
     JANE_STAND("sprites/Colorado/jane_stand.atlas", TextureAtlas.class),
     JANE_WALK_SIDE("sprites/Colorado/walk/jane_walk_side.atlas", TextureAtlas.class),
+    JANE_WALK_FRONT("sprites/Colorado/walk/jane_walk_front.atlas", TextureAtlas.class),
+    JANE_WALK_BACK("sprites/Colorado/walk/jane_walk_back.atlas", TextureAtlas.class),
     JANE_WHIP_SIDE("sprites/Colorado/whip/jane_whip_side.atlas", TextureAtlas.class),
 
     // Weapon Sprites

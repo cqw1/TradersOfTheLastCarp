@@ -14,6 +14,11 @@ public class Louisiana extends PlayableCharacter {
         setHeadYOffset(30);
         setSway(1);
         setBob(3);
+
+        setHpMax(5);
+        setHpCurrent(getHpMax());
+        setSpeed(300);
+        setMaxVel(300);
     }
 
     @Override
@@ -28,8 +33,6 @@ public class Louisiana extends PlayableCharacter {
         walk_animation_front = new Animation<TextureRegion>(1 / 12f, walk_front.getRegions(), Animation.PlayMode.LOOP);
         walk_back = assetManager.get(AssetList.JACK_WALK_BACK.toString());
         walk_animation_back = new Animation<TextureRegion>(1 / 12f, walk_back.getRegions(), Animation.PlayMode.LOOP);
-
-        // Cheer Textures and Animation.
 
         // Attacking Textures and Animation.
         whip_side = assetManager.get(AssetList.JACK_WHIP_SIDE.toString());
