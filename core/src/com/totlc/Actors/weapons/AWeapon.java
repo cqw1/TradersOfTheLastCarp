@@ -109,7 +109,7 @@ public abstract class AWeapon extends TotlcObject {
             setHeight(-1 * whip_width);
             initHitBox();
 
-            batch.draw(downAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY() - 0.9375f * character.getHeight());
+            batch.draw(downAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY() - textureWidth);
         } else if (character.getIsFacing().isFacingUp()) {
 //                setWidth(upAnimation.getKeyFrame(attackingCounter, false).getRegionWidth());
 //                setHeight(upAnimation.getKeyFrame(attackingCounter, false).getRegionHeight());

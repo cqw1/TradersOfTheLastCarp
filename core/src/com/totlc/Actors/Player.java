@@ -62,7 +62,7 @@ public class Player extends Character {
     private Animation<TextureRegion> whippingDownAnimation;
 
     private boolean invincible = false;
-    private float whippingAnimationLength = 0.5f;
+    private float whippingAnimationLength = 0.3f;
 
     private int invincibilityPeriod = 1000; // in millis
     private long invincibilityStart;
@@ -252,14 +252,18 @@ public class Player extends Character {
         whippingRightTextureAtlas = assetManager.get(AssetList.PLAYER_WHIP_RIGHT.toString());
         whippingRightAnimation = new Animation<TextureRegion>((float) (1.0/whippingRightTextureAtlas.getRegions().size * whippingAnimationLength), whippingRightTextureAtlas.getRegions());
 
-        weapon = new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString());
+        weapon = new Whip(assetManager, this, whippingAnimationLength, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString());
 
         setTexture(new Texture(Gdx.files.internal(AssetList.PLAYER_STAND_DOWN.toString())));
     }
 
     public void createWeapon(){
         getStage().addActor(getWeapon());
-        getWeapon().setZIndex(getZIndex() - 1);
+        if (getIsFacing().isFacingDown()){
+            getWeapon().setZIndex(getZIndex() + 1);
+        } else{
+            getWeapon().setZIndex(getZIndex() - 1);
+        }
         setAttacking(true);
     }
 

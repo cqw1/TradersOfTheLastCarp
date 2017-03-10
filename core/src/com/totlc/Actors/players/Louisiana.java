@@ -36,12 +36,16 @@ public class Louisiana extends PlayableCharacter {
 
         // Attacking Textures and Animation.
         whip_side = assetManager.get(AssetList.JACK_WHIP_SIDE.toString());
-        whip_animation_side = new Animation<TextureRegion>(1 / 12f, whip_side.getRegions());
+        whip_animation_side = new Animation<TextureRegion>(1.0f /whip_side.getRegions().size * 0.3f, whip_side.getRegions());
+        whip_front = assetManager.get(AssetList.JACK_WHIP_FRONT.toString());
+        whip_animation_front = new Animation<TextureRegion>(1.0f /whip_front.getRegions().size * 0.3f, whip_front.getRegions());
+        whip_back = assetManager.get(AssetList.JACK_WHIP_BACK.toString());
+        whip_animation_back = new Animation<TextureRegion>(1.0f /whip_back.getRegions().size * 0.3f, whip_back.getRegions());
 
         // Head Textures.
         head = assetManager.get(AssetList.JACK_HEAD.toString());
 
         // Whip initialization.
-        setWeapon(new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
+        setWeapon(new Whip(assetManager, this, 0.3f, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
     }
 }

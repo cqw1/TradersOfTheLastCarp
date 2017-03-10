@@ -37,12 +37,16 @@ public class Colorado extends PlayableCharacter {
 
         // Attacking Textures and Animation.
         whip_side = assetManager.get(AssetList.JANE_WHIP_SIDE.toString());
-        whip_animation_side = new Animation<TextureRegion>(1 / 12f, whip_side.getRegions());
+        whip_animation_side = new Animation<TextureRegion>(1.0f / whip_side.getRegions().size * 0.3f, whip_side.getRegions());
+        whip_front = assetManager.get(AssetList.JANE_WHIP_FRONT.toString());
+        whip_animation_front = new Animation<TextureRegion>(1.0f / whip_front.getRegions().size * 0.3f, whip_front.getRegions());
+        whip_back = assetManager.get(AssetList.JANE_WHIP_BACK.toString());
+        whip_animation_back = new Animation<TextureRegion>(1.0f / whip_back.getRegions().size * 0.3f, whip_back.getRegions());
 
         // Head Textures.
         head = assetManager.get(AssetList.JANE_HEAD.toString());
 
         // Whip initialization.
-        setWeapon(new Whip(assetManager, this, AssetList.WHIP_UP.toString(), AssetList.WHIP_DOWN.toString(), AssetList.BLUE_WHIP_LEFT.toString(), AssetList.BLUE_WHIP_RIGHT.toString()));
+        setWeapon(new Whip(assetManager, this, 0.3f, AssetList.BLUE_WHIP_BACK.toString(), AssetList.BLUE_WHIP_FRONT.toString(), AssetList.BLUE_WHIP_LEFT.toString(), AssetList.BLUE_WHIP_RIGHT.toString()));
     }
 }

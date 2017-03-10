@@ -71,18 +71,26 @@ public enum AssetList {
     JACK_WALK_FRONT("sprites/Louisiana/walk/jack_walk_front.atlas", TextureAtlas.class),
     JACK_WALK_BACK("sprites/Louisiana/walk/jack_walk_back.atlas", TextureAtlas.class),
     JACK_WHIP_SIDE("sprites/Louisiana/whip/jack_whip_side.atlas", TextureAtlas.class),
+    JACK_WHIP_FRONT("sprites/Louisiana/whip/jack_whip_front.atlas", TextureAtlas.class),
+    JACK_WHIP_BACK("sprites/Louisiana/whip/jack_whip_back.atlas", TextureAtlas.class),
     JANE_HEAD("sprites/Colorado/jane_head.atlas", TextureAtlas.class),
     JANE_STAND("sprites/Colorado/jane_stand.atlas", TextureAtlas.class),
     JANE_WALK_SIDE("sprites/Colorado/walk/jane_walk_side.atlas", TextureAtlas.class),
     JANE_WALK_FRONT("sprites/Colorado/walk/jane_walk_front.atlas", TextureAtlas.class),
     JANE_WALK_BACK("sprites/Colorado/walk/jane_walk_back.atlas", TextureAtlas.class),
     JANE_WHIP_SIDE("sprites/Colorado/whip/jane_whip_side.atlas", TextureAtlas.class),
+    JANE_WHIP_FRONT("sprites/Colorado/whip/jane_whip_front.atlas", TextureAtlas.class),
+    JANE_WHIP_BACK("sprites/Colorado/whip/jane_whip_back.atlas", TextureAtlas.class),
 
     // Weapon Sprites
     ORANGE_WHIP_LEFT("sprites/whip/orange/orange_whip_left.atlas", TextureAtlas.class),
     ORANGE_WHIP_RIGHT("sprites/whip/orange/orange_whip_right.atlas", TextureAtlas.class),
+    ORANGE_WHIP_FRONT("sprites/whip/orange/orange_whip_front.atlas", TextureAtlas.class),
+    ORANGE_WHIP_BACK("sprites/whip/orange/orange_whip_back.atlas", TextureAtlas.class),
     BLUE_WHIP_LEFT("sprites/whip/blue/blue_whip_left.atlas", TextureAtlas.class),
     BLUE_WHIP_RIGHT("sprites/whip/blue/blue_whip_right.atlas", TextureAtlas.class),
+    BLUE_WHIP_FRONT("sprites/whip/blue/blue_whip_front.atlas", TextureAtlas.class),
+    BLUE_WHIP_BACK("sprites/whip/blue/blue_whip_back.atlas", TextureAtlas.class),
 
     // Special Effects.
     IMPACT("effects/impact.atlas", TextureAtlas.class),

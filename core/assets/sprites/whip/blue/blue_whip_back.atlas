@@ -1,0 +1,34 @@
+
+blue_whip_back.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+back
+  rotate: false
+  xy: 2, 2
+  size: 128, 384
+  orig: 128, 384
+  offset: 0, 0
+  index: 0
+back
+  rotate: false
+  xy: 132, 2
+  size: 128, 384
+  orig: 128, 384
+  offset: 0, 0
+  index: 1
+back
+  rotate: false
+  xy: 262, 2
+  size: 128, 384
+  orig: 128, 384
+  offset: 0, 0
+  index: 2
+back
+  rotate: false
+  xy: 392, 2
+  size: 128, 384
+  orig: 128, 384
+  offset: 0, 0
+  index: 3
