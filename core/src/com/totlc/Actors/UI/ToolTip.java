@@ -1,6 +1,7 @@
 package com.totlc.Actors.UI;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -154,6 +155,7 @@ public class ToolTip extends Actor {
                 currentAtlas.getRegions().get(0).getRegionHeight() / 2 * scale,
                 (float) currentAtlas.getRegions().get(0).getRegionWidth(),
                 (float) currentAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
+
     }
 
     public boolean isDoneTalking() {
