@@ -1,5 +1,6 @@
 package com.totlc.Actors.enemies;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -35,6 +36,9 @@ public class DaredevilPangolini extends AEnemy {
     public DaredevilPangolini(AssetManager assetManager, Rectangle r, AMovement movement) {
         super(assetManager, r, movement, hp, atk);
         initMovement(friction, maxVel, speed);
+        setTexture(new Texture(Gdx.files.internal(AssetList.PANGOLINI.toString())));
+        setScale(1.2f);
+        moveHitBox(8, 8);
     }
 
     @Override
@@ -45,7 +49,7 @@ public class DaredevilPangolini extends AEnemy {
     @Override
     public void draw(Batch batch, float alpha) {
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
-        batch.draw((Texture) getAssetManager().get(AssetList.PANGOLINI.toString()), getX(), getY(), getWidth(), getHeight());
+        batch.draw(getTexture(), getX(), getY(), 0, 0, getWidth(), getHeight(), getScaleX(), getScaleY(), 0, 0, 0, 156, 226, false, false);
         drawStatuses(batch, alpha);
     }
 }

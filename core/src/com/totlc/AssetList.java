@@ -66,11 +66,31 @@ public enum AssetList {
     WHIP_DOWN("sprites/whip/front.atlas", TextureAtlas.class),
     WHIP_UP("sprites/whip/back.atlas", TextureAtlas.class),
     JACK_HEAD("sprites/Louisiana/jack_head.atlas", TextureAtlas.class),
-    JACK_STAND("sprites/Louisiana/stand_side.png", Texture.class),
-    JACK_WALK_SIDE("sprites/Louisiana/jack_walk_side.atlas", TextureAtlas.class),
+    JACK_STAND("sprites/Louisiana/jack_stand.atlas", TextureAtlas.class),
+    JACK_WALK_SIDE("sprites/Louisiana/walk/jack_walk_side.atlas", TextureAtlas.class),
+    JACK_WALK_FRONT("sprites/Louisiana/walk/jack_walk_front.atlas", TextureAtlas.class),
+    JACK_WALK_BACK("sprites/Louisiana/walk/jack_walk_back.atlas", TextureAtlas.class),
+    JACK_WHIP_SIDE("sprites/Louisiana/whip/jack_whip_side.atlas", TextureAtlas.class),
+    JACK_WHIP_FRONT("sprites/Louisiana/whip/jack_whip_front.atlas", TextureAtlas.class),
+    JACK_WHIP_BACK("sprites/Louisiana/whip/jack_whip_back.atlas", TextureAtlas.class),
     JANE_HEAD("sprites/Colorado/jane_head.atlas", TextureAtlas.class),
-    JANE_STAND("sprites/Colorado/stand_side.png", Texture.class),
-    JANE_WALK_SIDE("sprites/Colorado/jane_walk_side.atlas", TextureAtlas.class),
+    JANE_STAND("sprites/Colorado/jane_stand.atlas", TextureAtlas.class),
+    JANE_WALK_SIDE("sprites/Colorado/walk/jane_walk_side.atlas", TextureAtlas.class),
+    JANE_WALK_FRONT("sprites/Colorado/walk/jane_walk_front.atlas", TextureAtlas.class),
+    JANE_WALK_BACK("sprites/Colorado/walk/jane_walk_back.atlas", TextureAtlas.class),
+    JANE_WHIP_SIDE("sprites/Colorado/whip/jane_whip_side.atlas", TextureAtlas.class),
+    JANE_WHIP_FRONT("sprites/Colorado/whip/jane_whip_front.atlas", TextureAtlas.class),
+    JANE_WHIP_BACK("sprites/Colorado/whip/jane_whip_back.atlas", TextureAtlas.class),
+
+    // Weapon Sprites
+    ORANGE_WHIP_LEFT("sprites/whip/orange/orange_whip_left.atlas", TextureAtlas.class),
+    ORANGE_WHIP_RIGHT("sprites/whip/orange/orange_whip_right.atlas", TextureAtlas.class),
+    ORANGE_WHIP_FRONT("sprites/whip/orange/orange_whip_front.atlas", TextureAtlas.class),
+    ORANGE_WHIP_BACK("sprites/whip/orange/orange_whip_back.atlas", TextureAtlas.class),
+    BLUE_WHIP_LEFT("sprites/whip/blue/blue_whip_left.atlas", TextureAtlas.class),
+    BLUE_WHIP_RIGHT("sprites/whip/blue/blue_whip_right.atlas", TextureAtlas.class),
+    BLUE_WHIP_FRONT("sprites/whip/blue/blue_whip_front.atlas", TextureAtlas.class),
+    BLUE_WHIP_BACK("sprites/whip/blue/blue_whip_back.atlas", TextureAtlas.class),
 
     // Special Effects.
     IMPACT("effects/impact.atlas", TextureAtlas.class),
@@ -125,12 +145,12 @@ public enum AssetList {
     LEVEL02_TMX("tmx/basics.tmx", TiledMap.class),
     LEVEL03_TMX("tmx/evasion.tmx", TiledMap.class),
     LEVEL04_TMX("tmx/weaving.tmx", TiledMap.class),
-    LEVEL05_TMX("tmx/fire.tmx", TiledMap.class),
-    LEVEL06_TMX("tmx/spikes.tmx", TiledMap.class),
-    LEVEL07_TMX("tmx/patterns.tmx", TiledMap.class),
-    LEVEL08_TMX("tmx/arrow_hell.tmx", TiledMap.class),
-    LEVEL09_TMX("tmx/twinkle.tmx", TiledMap.class),
-    LEVEL10_TMX("tmx/level_10.tmx", TiledMap.class);
+    LEVEL05_TMX("tmx/teleport.tmx", TiledMap.class),
+    LEVEL06_TMX("tmx/fire.tmx", TiledMap.class),
+    LEVEL07_TMX("tmx/spikes.tmx", TiledMap.class),
+    LEVEL08_TMX("tmx/patterns.tmx", TiledMap.class),
+    LEVEL09_TMX("tmx/arrow_hell.tmx", TiledMap.class),
+    LEVEL10_TMX("tmx/twinkle.tmx", TiledMap.class);
 
     private String pathname;
     private Class type;

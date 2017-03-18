@@ -7,8 +7,8 @@ import com.totlc.Actors.Player;
 public class Whip extends AWeapon {
     private Player player;
 
-    public Whip(AssetManager assetManager, Player player, String upAsset, String downAsset, String leftAsset, String rightAsset) {
-        super(assetManager, player, 0, 0.5f, upAsset, downAsset, leftAsset, rightAsset);
+    public Whip(AssetManager assetManager, Player player, float attackTime, String upAsset, String downAsset, String leftAsset, String rightAsset) {
+        super(assetManager, player, 0, attackTime, upAsset, downAsset, leftAsset, rightAsset);
         this.player = player;
     }
 

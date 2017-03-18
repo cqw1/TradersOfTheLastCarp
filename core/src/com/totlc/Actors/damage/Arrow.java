@@ -24,6 +24,7 @@ public class Arrow extends Damage {
 
         setDamageType(damageType);
         setScaleFactor(0.75f);
+        getHitBox().setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
 
         setTexture(new Texture(Gdx.files.internal(AssetList.PROJECTILE_ARROW.toString())));
     }

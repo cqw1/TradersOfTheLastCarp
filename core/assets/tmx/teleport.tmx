@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="94">
+ <properties>
+  <property name="objective" type="int" value="2"/>
+ </properties>
+ <layer name="WALLS" width="50" height="28">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="ITEMS">
+  <object id="89" x="1134.33" y="709.667" width="62" height="60">
+   <properties>
+    <property name="type" value="GOLDFISH"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="91" x="525.667" y="103.667" width="62" height="60">
+   <properties>
+    <property name="type" value="GOLDFISH"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="TRAPS">
+  <object id="3" name="3" x="174.667" y="400" width="32" height="32">
+   <properties>
+    <property name="type" value="TELEPORTER"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="TRIGGERS">
+  <object id="5" x="1129.67" y="86.6667" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="52" x="1129.67" y="548" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="53" x="1129.67" y="485.334" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="55" x="1129.67" y="408" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="56" x="1131" y="340" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="57" x="1129.67" y="272" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="58" x="1129.67" y="212" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="59" x="1129.67" y="146.667" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="60" x="521.333" y="751.333" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="61" x="520" y="303.333" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="62" x="521.333" y="556.666" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="63" x="520" y="488.666" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="64" x="520" y="363.333" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="65" x="520" y="428.666" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="66" x="521.333" y="623.333" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="67" x="521.333" y="688.666" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="92" x="518.667" y="231.333" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+  <object id="93" x="1128.33" y="610.666" width="76" height="36">
+   <properties>
+    <property name="trap_id" value="3"/>
+    <property name="type" value="TELEPORT_PAD"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="ENEMIES"/>
+</map>

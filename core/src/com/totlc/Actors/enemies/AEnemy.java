@@ -1,6 +1,7 @@
 package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -47,6 +48,7 @@ public abstract class AEnemy extends Character {
         super(assetManager, r);
         TextureAtlas atlas = new TextureAtlas(AssetList.ICON_PACK.toString());
         heart = atlas.findRegion("heart_icon");
+        heart.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         font = TradersOfTheLastCarp.systemFont0;
         this.movement = movement;
         setHpMax(hp);

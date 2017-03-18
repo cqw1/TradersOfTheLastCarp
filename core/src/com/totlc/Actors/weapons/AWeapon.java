@@ -20,8 +20,11 @@ public abstract class AWeapon extends TotlcObject {
     private Character character;
     private int attack = 1;
 
-    private static float whip_width = 144;
+    private static float whip_width = 200;
     private static float whip_height = 72;
+
+    private float textureWidth;
+    private float textureHeight;
 
     private String upAsset;
     private String downAsset;
@@ -57,6 +60,9 @@ public abstract class AWeapon extends TotlcObject {
 
         rightTextureAtlas = assetManager.get(rightAsset);
         rightAnimation = new Animation<TextureRegion>((float) (1.0/rightTextureAtlas.getRegions().size * attackingAnimationLength), rightTextureAtlas.getRegions());
+
+        textureWidth = leftTextureAtlas.getRegions().get(0).getRegionWidth();
+        textureHeight = leftTextureAtlas.getRegions().get(0).getRegionHeight();
     }
 
     @Override
@@ -80,21 +86,21 @@ public abstract class AWeapon extends TotlcObject {
         if (character.getIsFacing().isFacingRight()) {
 //                setWidth(rightAnimation.getKeyFrame(attackingCounter, false).getRegionWidth());
 //                setHeight(rightAnimation.getKeyFrame(ahbttackingCounter, false).getRegionHeight());
-            moveAbs(characterHB.getX() + character.getWidth(), characterHB.getY() + Math.abs(characterHB.getHeight() - whip_height) / 2);
+            moveAbs(characterHB.getX() + character.getWidth(), characterHB.getY() + Math.abs(characterHB.getHeight() - textureHeight) / 2);
             setWidth(whip_width);
             setHeight(whip_height);
             initHitBox();
 
-            batch.draw(rightAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY());
+            batch.draw(rightAnimation.getKeyFrame(attackingCounter, false), (float)character.getHitBoxCenter().getX(), character.getY());
         } else if (character.getIsFacing().isFacingLeft()) {
 //                setWidth(-1 * leftAnimation.getKeyFrame(attackingCounter, false).getRegionWidth());
 //                setHeight(leftAnimation.getKeyFrame(attackingCounter, false).getRegionHeight());
-            moveAbs(characterHB.getX(), characterHB.getY() + Math.abs(characterHB.getHeight() - whip_height) / 2);
+            moveAbs(characterHB.getX(), characterHB.getY() + Math.abs(characterHB.getHeight() - textureHeight) / 2);
             setHeight(whip_height);
             setWidth(-1 * whip_width);
             initHitBox();
 
-            batch.draw(leftAnimation.getKeyFrame(attackingCounter, false), character.getX() - 1.35f * character.getWidth(), character.getY());
+            batch.draw(leftAnimation.getKeyFrame(attackingCounter, false), (float)character.getHitBoxCenter().getX() - textureWidth, character.getY());
         } else if (character.getIsFacing().isFacingDown()) {
 //                setWidth(downAnimation.getKeyFrame(attackingCounter, false).getRegionWidth());
 //                setHeight(-1 * downAnimation.getKeyFrame(attackingCounter, false).getRegionHeight());
@@ -103,7 +109,7 @@ public abstract class AWeapon extends TotlcObject {
             setHeight(-1 * whip_width);
             initHitBox();
 
-            batch.draw(downAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY() - 0.9375f * character.getHeight());
+            batch.draw(downAnimation.getKeyFrame(attackingCounter, false), character.getX(), character.getY() - textureWidth);
         } else if (character.getIsFacing().isFacingUp()) {
 //                setWidth(upAnimation.getKeyFrame(attackingCounter, false).getRegionWidth());
 //                setHeight(upAnimation.getKeyFrame(attackingCounter, false).getRegionHeight());
