@@ -70,7 +70,7 @@ public class Player extends Character {
     private boolean hasKey = false;
 
     public Player(AssetManager assetManager, float x, float y){
-        super(assetManager, new Rectangle(x, y, 72, 100));
+        super(assetManager, new Rectangle(x, y, 72, 112));
 
         setSpeed(acc);
         setMaxVel(maxVelocity);

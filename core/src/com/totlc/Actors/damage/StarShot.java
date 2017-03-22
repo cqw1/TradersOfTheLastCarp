@@ -30,7 +30,7 @@ public class StarShot extends Damage {
         super(assetManager, new Rectangle(x, y, 24, 24), damage, damageType);
 
         //TODO: Correct hitboxes?
-        moveHitBox(20, 20);
+        moveHitBox(42, 42);
 
         setDamageType(damageType);
         setScaleFactor(1.0f);
