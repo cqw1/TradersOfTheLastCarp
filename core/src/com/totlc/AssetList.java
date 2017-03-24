@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 public enum AssetList {
     //Sounds
     TRAP_ACTIVATION("sounds/trap_activation.mp3", Sound.class),
-    KEY_PICKUP_SOUND("sounds/key2pickup.mp3", Sound.class),
+    KEY_PICKUP_SOUND("sounds/ding0.wav", Sound.class),
     ELECTRICITY_SOUND("sounds/electricity8.mp3", Sound.class),
     SPIKES_SOUND("sounds/sword0.mp3", Sound.class),
     HEAL_SOUND("sounds/healspell2.mp3", Sound.class),
