@@ -30,7 +30,7 @@ public class CharacterSelect extends ALevel{
     ArrayList<PlayableCharacter> currentCharacters = new ArrayList<PlayableCharacter>();
     int currentlySelected = 0;
     Point2D.Float characterSelectStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * (1 / 6.0)),
-            (float)(TradersOfTheLastCarp.CONFIG_HEIGHT * (1 / 4.0)));
+            (float)(TradersOfTheLastCarp.CONFIG_HEIGHT * (2 / 4.0)));
     ButtonPrompt cursor;
     private float cursorScale = 0.5f;
 
@@ -39,7 +39,7 @@ public class CharacterSelect extends ALevel{
 
         characterSelectScreen = new TotlcObject(assetManager, new Rectangle()) {
 
-            String asset = AssetList.LEVEL_SELECT_SCREEN.toString();
+            String asset = AssetList.CHARACTER_SELECT_SCREEN.toString();
 
             @Override
             public void draw(Batch batch, float alpha) {
@@ -128,6 +128,13 @@ public class CharacterSelect extends ALevel{
             TradersOfTheLastCarp.playerClass = availablePlayers.get(currentlySelected);
             setNextLevel(TitleScreen.class);
             initNextLevel();
+        }
+
+        if (keyCode == Input.Keys.ESCAPE) {
+            ALevel nextLevelObject = LevelFactory.createLevel(TitleScreen.class, getAssetManager());
+            loadLevel(nextLevelObject);
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
+            sound.play(1.0f);
         }
 
         return isHandled;

@@ -37,12 +37,8 @@ public abstract class PlayableCharacter extends Player {
     @Override
     public void draw(Batch batch, float delta) {
         if (isInvincible()) {
-            if (System.currentTimeMillis() > (getInvincibilityStart() + getInvincibilityPeriod())) {
-                setInvincible(false);
-            } else {
-                if (System.currentTimeMillis() % 2 == 0) {
-                    return;
-                }
+            if (System.currentTimeMillis() % 2 == 0) {
+                return;
             }
         }
 

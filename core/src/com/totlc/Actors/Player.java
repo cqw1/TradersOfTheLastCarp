@@ -63,7 +63,6 @@ public class Player extends Character {
     private TextureAtlas whippingDownTextureAtlas;
     private Animation<TextureRegion> whippingDownAnimation;
 
-    private boolean invincible = false;
     private float whippingAnimationLength = 0.3f;
 
     private int invincibilityPeriod = 1000; // in millis
@@ -78,6 +77,7 @@ public class Player extends Character {
     public Player(AssetManager assetManager, float x, float y){
         super(assetManager, new Rectangle(x, y, player_width, player_height));
 
+        setInvincible(false);
         setSpeed(acc);
         setMaxVel(maxVelocity);
 
@@ -96,13 +96,9 @@ public class Player extends Character {
     }
 
     public void draw(Batch batch, float delta) {
-        if (invincible) {
-            if (System.currentTimeMillis() > (invincibilityStart + invincibilityPeriod)) {
-                invincible = false;
-            } else {
-                if (System.currentTimeMillis() % 2 == 0){
-                    return;
-                }
+        if (isInvincible()) {
+            if (System.currentTimeMillis() % 2 == 0) {
+                return;
             }
         }
 
@@ -149,6 +145,10 @@ public class Player extends Character {
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
+
+        if (System.currentTimeMillis() > (invincibilityStart + invincibilityPeriod)) {
+            setInvincible(false);
+        }
 
         if (getAttacking()) {
             // Returns so we don't move while we're attacking.
@@ -199,16 +199,16 @@ public class Player extends Character {
 
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof AEnemy) {
-            if (!invincible) {
+            if (!isInvincible()) {
                 takeDamage(((AEnemy)otherActor).getAttack());
-                invincible = true;
+                setInvincible(true);
                 invincibilityStart = System.currentTimeMillis();
             }
         } else
             if (otherActor instanceof Damage) {
-                if (!invincible && ((Damage)otherActor).getDamageType() != 2) {
+                if (!isInvincible() && ((Damage)otherActor).getDamageType() != 2) {
                     takeDamage(((Damage)otherActor).getAttack());
-                    invincible = true;
+                    setInvincible(true);
                     invincibilityStart = System.currentTimeMillis();
                 }
         }
@@ -304,10 +304,6 @@ public class Player extends Character {
 
     public int getGoldfishCount() {
         return goldfishCount;
-    }
-
-    public boolean isInvincible() {
-        return invincible;
     }
 
     public boolean hasKey() {

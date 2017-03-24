@@ -25,7 +25,7 @@ public class TitleScreen extends ALevel {
     private float cursorScale = 0.5f;
     private int optionFocusIndex = 0;
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
-    private Point2D.Float optionsSize = new Point2D.Float(330f, 120f);
+    private Point2D.Float optionsSize = new Point2D.Float(330f, 180f);
     private Point2D.Float optionsStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * 0.8 - optionsSize.getX() / 2 + 10), (float) (TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - optionsSize.getY() - 190f));
 
     public TitleScreen(AssetManager assetManager) {
@@ -82,10 +82,23 @@ public class TitleScreen extends ALevel {
             }
         });
 
+        //Character-select
+        menuOptions.add(new MenuOption(assetManager, AssetList.OPTION_CHARSELECT.toString()) {
+            @Override
+            public void draw(Batch batch, float alpha) {
+                batch.draw(getAssetManager().get(asset, Texture.class), (float) optionsStart.getX(), (float) optionsStart.getY(), (float)optionsSize.getX(), (float)optionsSize.getY());
+            }
+
+            public void execute() {
+                setNextLevel(CharacterSelect.class);
+                initNextLevel();
+            }
+        });
+
         addActor(titleScreen);
 
         //Button Prompt
-        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 20) {
+        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, TradersOfTheLastCarp.CONFIG_HEIGHT - 80) {
             private float baseY = getY();
 
             @Override
@@ -117,14 +130,14 @@ public class TitleScreen extends ALevel {
         boolean isHandled = false;
 
         if (keyCode == Input.Keys.UP) {
-            optionFocusIndex = (optionFocusIndex + 1) % menuOptions.size();
+            optionFocusIndex = (optionFocusIndex - 1 + menuOptions.size()) % menuOptions.size();
             isHandled = true;
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
             sound.play(1.0f);
         }
 
         if (keyCode == Input.Keys.DOWN) {
-            optionFocusIndex = Math.abs((optionFocusIndex - 1) % menuOptions.size());
+            optionFocusIndex = (optionFocusIndex + 1) % menuOptions.size();
             isHandled = true;
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
             sound.play(1.0f);
@@ -146,11 +159,6 @@ public class TitleScreen extends ALevel {
 
         if (keyCode == Input.Keys.Q) {
             setNextLevel(SandBoxLevel.class);
-            initNextLevel();
-        }
-
-        if (keyCode == Input.Keys.W) {
-            setNextLevel(CharacterSelect.class);
             initNextLevel();
         }
 
