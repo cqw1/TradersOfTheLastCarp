@@ -8,6 +8,10 @@ import com.totlc.AssetList;
 
 public class Louisiana extends PlayableCharacter {
 
+    public Louisiana(AssetManager assetManager) {
+        this(assetManager, 0, 0);
+    }
+
     public Louisiana(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
         setHeadXOffset(16);

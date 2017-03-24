@@ -39,6 +39,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	public static BitmapFont systemFont0;
 	public static Player player;
+	public static Class playerClass;
 
     public static FitViewport viewport;
 
@@ -50,9 +51,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	@Override
 	public void create() {
 		loadAssets();
-        player = new Player(assetManager, 0, CONFIG_HEIGHT / 2);
 		player = new Louisiana(assetManager, 0, CONFIG_HEIGHT / 2);
-//		player = new Colorado(assetManager, 0, CONFIG_HEIGHT / 2);
+		playerClass = Louisiana.class;
 
 		// For drawing hitboxes.
 		shapeRenderer = new ShapeRenderer();

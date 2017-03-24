@@ -34,6 +34,8 @@ public class Player extends Character {
     // Player info.
     private float acc = 300;
     private float maxVelocity = 300;
+    public static float player_width = 72;
+    public static float player_height = 112;
 
     // Walking
     private TextureAtlas walkDownTextureAtlas;
@@ -69,8 +71,12 @@ public class Player extends Character {
     private AWeapon weapon;
     private boolean hasKey = false;
 
+    public Player(AssetManager assetManager) {
+        this(assetManager, 0, 0);
+    }
+
     public Player(AssetManager assetManager, float x, float y){
-        super(assetManager, new Rectangle(x, y, 72, 112));
+        super(assetManager, new Rectangle(x, y, player_width, player_height));
 
         setSpeed(acc);
         setMaxVel(maxVelocity);

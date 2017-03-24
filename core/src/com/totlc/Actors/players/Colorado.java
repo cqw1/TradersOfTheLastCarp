@@ -9,6 +9,10 @@ import com.totlc.AssetList;
 
 public class Colorado extends PlayableCharacter {
 
+    public Colorado(AssetManager assetManager) {
+        this(assetManager, 0, 0);
+    }
+
     public Colorado(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
         setHeadXOffset(10);
