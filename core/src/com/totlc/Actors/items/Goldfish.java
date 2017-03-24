@@ -2,6 +2,7 @@ package com.totlc.Actors.items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
@@ -58,6 +59,8 @@ public class Goldfish extends APickup {
 
     @Override
     public void pickup(Character p) {
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.GOLDFISH_SOUND.toString()));
+        sound.play(1.0f);
         ((Player) p).setGoldfishCount(((Player) p).getGoldfishCount() + 1);
     }
 

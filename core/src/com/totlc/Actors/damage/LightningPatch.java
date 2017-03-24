@@ -2,6 +2,7 @@ package com.totlc.Actors.damage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -9,7 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 
-public class LightningPatch extends Damage{
+public class LightningPatch extends Damage {
 
     // Texture information
     private TextureAtlas particleAtlas;
@@ -17,11 +18,13 @@ public class LightningPatch extends Damage{
 
     private long lifeSpan = 8000;
     private long startTime;
+    private Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.ELECTRICITY_SOUND.toString()));
 
     public LightningPatch(AssetManager assetManager, float x, float y, float width, float height, int damageType) {
         super(assetManager, new Rectangle(x, y, width, height), 1, damageType);
         loadAssets(assetManager);
         this.startTime = System.currentTimeMillis();
+        sound.play(0.5f);
     }
 
     @Override
@@ -34,6 +37,8 @@ public class LightningPatch extends Damage{
             electricity.allowCompletion();
         }
         if (electricity.isComplete()){
+            sound.stop();
+            sound.dispose();
             remove();
         }
         electricity.setPosition(getX(), getY());

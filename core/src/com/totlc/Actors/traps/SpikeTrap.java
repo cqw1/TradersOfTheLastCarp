@@ -68,7 +68,7 @@ public class SpikeTrap extends ATrap {
         damageArea.setTimeToApplyDamage(System.currentTimeMillis());
         setAnimationTime(0);
         this.reverse = false;
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/sword0.mp3"));
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.SPIKES_SOUND.toString()));
         sound.play(1.0f);
     }
 

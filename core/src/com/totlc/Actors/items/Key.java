@@ -1,6 +1,8 @@
 package com.totlc.Actors.items;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -28,6 +30,9 @@ public class Key extends APickup {
     public void pickup(Character p) {
         // Add self to player inventory?
         ((Player)p).giveKey();
+
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.KEY_PICKUP_SOUND.toString()));
+        sound.play(1.0f);
     }
 
     @Override

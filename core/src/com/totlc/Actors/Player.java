@@ -204,8 +204,7 @@ public class Player extends Character {
                 setInvincible(true);
                 invincibilityStart = System.currentTimeMillis();
             }
-        } else
-            if (otherActor instanceof Damage) {
+        } else if (otherActor instanceof Damage) {
                 if (!isInvincible() && ((Damage)otherActor).getDamageType() != 2) {
                     takeDamage(((Damage)otherActor).getAttack());
                     setInvincible(true);

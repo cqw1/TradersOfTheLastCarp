@@ -151,6 +151,8 @@ public abstract class ALevel extends Stage {
 
         //Check if the player has died
         if (player.getHpCurrent() <= 0) {
+//            Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.GAME_OVER_SOUND.toString()));
+//            sound.play(1.0f);
             addActor(dedScreen);
             //Button Prompt
             addActor(new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * 0.5f - 50, 50) {

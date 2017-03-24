@@ -2,6 +2,7 @@ package com.totlc.Actors.items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
@@ -58,6 +59,9 @@ public class Health extends APickup {
 
     @Override
     public void pickup(Character p) {
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.HEAL_SOUND.toString()));
+        sound.play(0.75f);
+
         if (p.getHpCurrent() < p.getHpMax()){
             p.setHpCurrent(Math.min(p.getHpCurrent() + 2, p.getHpMax()));
         }

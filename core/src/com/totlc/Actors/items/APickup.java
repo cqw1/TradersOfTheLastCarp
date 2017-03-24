@@ -1,11 +1,14 @@
 package com.totlc.Actors.items;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Character;
+import com.totlc.AssetList;
 
 /**
  * Abstract class for items that can be picked up by the player.
