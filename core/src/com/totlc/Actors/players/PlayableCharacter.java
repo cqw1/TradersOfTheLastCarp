@@ -136,7 +136,6 @@ public abstract class PlayableCharacter extends Player {
 
     // Head offsets for whipping.
     private Point2D getHeadBob(float deltaTime){
-        System.out.println(whip_animation_side.getKeyFrameIndex(deltaTime));
         switch(whip_animation_side.getKeyFrameIndex(deltaTime)){
             case 0:
                 return new Point2D.Float(2 * getSway(), 1 * getBob());
