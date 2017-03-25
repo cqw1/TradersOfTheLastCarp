@@ -11,9 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.UI.ButtonPrompt;
-import com.totlc.Actors.players.Colorado;
-import com.totlc.Actors.players.Louisiana;
-import com.totlc.Actors.players.PlayableCharacter;
+import com.totlc.Actors.players.*;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 
@@ -22,14 +20,19 @@ import java.util.ArrayList;
 
 public class CharacterSelect extends ALevel{
 
+    // Hard coded value for playable characters. Remove when all characters are implemented.
+    private static int playableCharacters = 2;
+
     TotlcObject characterSelectScreen;
     ArrayList<Class> availablePlayers = new ArrayList<Class>() {{
         add(Louisiana.class);
         add(Colorado.class);
+        add(MrFischl.class);
+        add(Ontario.class);
     }};
     ArrayList<PlayableCharacter> currentCharacters = new ArrayList<PlayableCharacter>();
     int currentlySelected = 0;
-    Point2D.Float characterSelectStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * (1 / 6.0)),
+    Point2D.Float characterSelectStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * (1 / 16.0)),
             (float)(TradersOfTheLastCarp.CONFIG_HEIGHT * (2 / 4.0)));
     ButtonPrompt cursor;
     private float cursorScale = 0.5f;
@@ -80,11 +83,14 @@ public class CharacterSelect extends ALevel{
 
         currentCharacters.get(currentlySelected).setMovingDown(true);
 
-        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 20) {
+        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 30) {
             private float baseY = getY();
 
             @Override
             public void draw(Batch batch, float alpha) {
+                if (System.currentTimeMillis() % 1000 <= 200) {
+                    return;
+                }
                 batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
             }
 
@@ -108,7 +114,7 @@ public class CharacterSelect extends ALevel{
         boolean isHandled = false;
         if (keyCode == Input.Keys.LEFT) {
             currentCharacters.get(currentlySelected).setMovingDown(false);
-            currentlySelected = Math.abs((currentlySelected - 1) % availablePlayers.size());
+            currentlySelected = (currentlySelected - 1 + playableCharacters) % playableCharacters;
             isHandled = true;
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
             sound.play(1.0f);
@@ -117,7 +123,7 @@ public class CharacterSelect extends ALevel{
 
         if (keyCode == Input.Keys.RIGHT) {
             currentCharacters.get(currentlySelected).setMovingDown(false);
-            currentlySelected = (currentlySelected + 1) % availablePlayers.size();
+            currentlySelected = (currentlySelected + 1) % playableCharacters;
             isHandled = true;
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
             sound.play(1.0f);

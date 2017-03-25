@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.totlc.Actors.TotlcObject;
+import com.totlc.Actors.UI.ButtonPrompt;
 import com.totlc.Actors.UI.LevelOption;
 import com.totlc.Actors.UI.MenuOption;
 import com.totlc.AssetList;
@@ -29,6 +30,9 @@ public class LevelSelect extends ALevel {
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
     private Point2D.Float optionsSize = new Point2D.Float(128f, 128f);
     private Point2D.Float gridStart = new Point2D.Float(236f, 500f);
+
+    private ButtonPrompt cursor;
+    private float cursorScale = 0.5f;
 
     private AssetManager assetManager;
 
@@ -95,6 +99,27 @@ public class LevelSelect extends ALevel {
         }
 
         grid[0][0].levelOption.setSelected(true);
+
+        //Button Prompt
+        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 30) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                if (System.currentTimeMillis() % 1000 <= 200) {
+                    return;
+                }
+                batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        };
+
+        cursor.update();
+        addActor(cursor);
     }
 
     public void instantiateGrid() {

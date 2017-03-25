@@ -90,6 +90,7 @@ public enum AssetList {
     JANE_WHIP_FRONT("sprites/Colorado/whip/jane_whip_front.atlas", TextureAtlas.class),
     JANE_WHIP_BACK("sprites/Colorado/whip/jane_whip_back.atlas", TextureAtlas.class),
     FISCHL_HEAD("sprites/MrFischl/fischl_head.atlas", TextureAtlas.class),
+    JOE_HEAD("sprites/Ontario/joe_head.atlas", TextureAtlas.class),
 
     // Weapon Sprites
     ORANGE_WHIP_LEFT("sprites/whip/orange/orange_whip_left.atlas", TextureAtlas.class),

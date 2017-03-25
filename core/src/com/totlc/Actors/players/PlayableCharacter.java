@@ -23,9 +23,9 @@ public abstract class PlayableCharacter extends Player {
 
     public PlayableCharacter(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
+        initTextures(assetManager);
         textureWidth = walk_side.getRegions().get(0).getRegionWidth();
         textureHeight = walk_side.getRegions().get(0).getRegionHeight();
-        initTextures(assetManager);
         setHeadXOffset(0);
         setHeadYOffset(0);
         setSway(0);

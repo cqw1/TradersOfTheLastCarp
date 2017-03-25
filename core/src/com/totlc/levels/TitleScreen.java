@@ -26,7 +26,7 @@ public class TitleScreen extends ALevel {
     private int optionFocusIndex = 0;
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
     private Point2D.Float optionsSize = new Point2D.Float(330f, 180f);
-    private Point2D.Float optionsStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * 0.8 - optionsSize.getX() / 2 + 10), (float) (TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - optionsSize.getY() - 190f));
+    private Point2D.Float optionsStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * 0.8 - optionsSize.getX() / 2 + 10), (float) (TradersOfTheLastCarp.CONFIG_HEIGHT / 2 - optionsSize.getY() - 165f));
 
     public TitleScreen(AssetManager assetManager) {
         super(assetManager);
@@ -98,11 +98,14 @@ public class TitleScreen extends ALevel {
         addActor(titleScreen);
 
         //Button Prompt
-        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, TradersOfTheLastCarp.CONFIG_HEIGHT - 80) {
+        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 20) {
             private float baseY = getY();
 
             @Override
             public void draw(Batch batch, float alpha) {
+                if (System.currentTimeMillis() % 1000 <= 200) {
+                    return;
+                }
                 batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
             }
 
