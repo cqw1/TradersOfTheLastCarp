@@ -32,9 +32,9 @@ public class MrFischl extends PlayableCharacter {
         head = assetManager.get(AssetList.FISCHL_HEAD.toString());
         Array<TextureRegion> textureArray = new Array<TextureRegion>(4);
         textureArray.add(head.findRegion("head_left"));
-        textureArray.add(head.findRegion("head_front"));
+        textureArray.add(head.findRegion("head_forward"));
         textureArray.add(head.findRegion("head_right"));
-        notImplemented = new Animation<TextureRegion>(1 / 12f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
+        notImplemented = new Animation<TextureRegion>(1 / 15f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
 
         walk_side = assetManager.get(AssetList.JANE_WALK_SIDE.toString());
     }
@@ -42,6 +42,6 @@ public class MrFischl extends PlayableCharacter {
     // Placeholder draw for character select screen.
     @Override
     public void draw(Batch batch, float delta) {
-        batch.draw(notImplemented.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidth(), getTextureHeight());
+        batch.draw(notImplemented.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidthHead(), getTextureHeightHead());
     }
 }

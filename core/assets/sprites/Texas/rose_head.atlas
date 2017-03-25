@@ -1,5 +1,5 @@
 
-joe_head.png
+rose_head.png
 size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
@@ -7,35 +7,35 @@ repeat: none
 head_back_base
   rotate: false
   xy: 2, 2
-  size: 128, 128
-  orig: 128, 128
+  size: 160, 128
+  orig: 160, 128
   offset: 0, 0
   index: 0
 head_back_top
   rotate: false
-  xy: 132, 2
-  size: 128, 128
-  orig: 128, 128
+  xy: 164, 2
+  size: 160, 128
+  orig: 160, 128
   offset: 0, 0
   index: 0
 head_forward
   rotate: false
-  xy: 262, 2
-  size: 128, 128
-  orig: 128, 128
+  xy: 326, 2
+  size: 160, 128
+  orig: 160, 128
   offset: 0, 0
   index: 0
 head_left
   rotate: false
-  xy: 392, 2
-  size: 128, 128
-  orig: 128, 128
+  xy: 488, 2
+  size: 160, 128
+  orig: 160, 128
   offset: 0, 0
   index: 0
 head_right
   rotate: false
-  xy: 522, 2
-  size: 128, 128
-  orig: 128, 128
+  xy: 650, 2
+  size: 160, 128
+  orig: 160, 128
   offset: 0, 0
   index: 0

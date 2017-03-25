@@ -30,10 +30,11 @@ public class CharacterSelect extends ALevel{
         add(Colorado.class);
         add(MrFischl.class);
         add(Ontario.class);
+        add(Texas.class);
     }};
     ArrayList<PlayableCharacter> currentCharacters = new ArrayList<PlayableCharacter>();
     int currentlySelected = 0;
-    Point2D.Float characterSelectStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * (1 / 16.0)),
+    Point2D.Float characterSelectStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * (1 / 24.0)),
             (float)(TradersOfTheLastCarp.CONFIG_HEIGHT * (2 / 4.0)));
     ButtonPrompt cursor, names;
     private float cursorScale = 0.5f;

@@ -7,21 +7,21 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.totlc.AssetList;
 
-public class Ontario extends PlayableCharacter {
+public class Texas extends PlayableCharacter {
 
     Animation<TextureRegion> notImplemented;
 
-    public Ontario(AssetManager assetManager) {
+    public Texas(AssetManager assetManager) {
         this(assetManager, 0, 0);
     }
 
-    public Ontario(AssetManager assetManager, float x, float y) {
+    public Texas(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
         setHpMax(5);
         setHpCurrent(getHpMax());
-        setSpeed(50);
-        setMaxVel(800);
+        setSpeed(300);
+        setMaxVel(300);
 
         setMovingDown(true);
     }
@@ -29,12 +29,12 @@ public class Ontario extends PlayableCharacter {
     @Override
     protected void initTextures(AssetManager assetManager) {
         // Head Textures.
-        head = assetManager.get(AssetList.JOE_HEAD.toString());
+        head = assetManager.get(AssetList.ROSE_HEAD.toString());
         Array<TextureRegion> textureArray = new Array<TextureRegion>(4);
         textureArray.add(head.findRegion("head_left"));
         textureArray.add(head.findRegion("head_forward"));
         textureArray.add(head.findRegion("head_right"));
-        notImplemented = new Animation<TextureRegion>(1 / 12f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
+        notImplemented = new Animation<TextureRegion>(1 / 10f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
 
         walk_side = assetManager.get(AssetList.JACK_WALK_SIDE.toString());
     }

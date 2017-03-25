@@ -11,14 +11,14 @@ head_back_base
   orig: 128, 128
   offset: 0, 0
   index: 0
-head_back_front
+head_back_top
   rotate: false
   xy: 132, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 0
-head_front
+head_forward
   rotate: false
   xy: 262, 2
   size: 128, 128
