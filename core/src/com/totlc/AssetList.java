@@ -39,6 +39,7 @@ public enum AssetList {
     CRYSTAL_CARP_TALK("sprites/crystal_carp/carp_talk.atlas", TextureAtlas.class),
     CRYSTAL_CARP_TURN_BORDER("sprites/crystal_carp/carp_turn_border.atlas", TextureAtlas.class),
     CRYSTAL_CARP_TALK_BORDER("sprites/crystal_carp/carp_talk_border.atlas", TextureAtlas.class),
+    NAME_PLATES("UI/nameplates/name_plates.atlas", TextureAtlas.class),
 
     // Enemy Sprites.
     SPIDER_IDLE("sprites/spider/spider_idle.atlas", TextureAtlas.class),

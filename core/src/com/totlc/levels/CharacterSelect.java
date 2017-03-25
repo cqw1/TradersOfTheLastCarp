@@ -6,6 +6,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
@@ -34,7 +35,7 @@ public class CharacterSelect extends ALevel{
     int currentlySelected = 0;
     Point2D.Float characterSelectStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * (1 / 16.0)),
             (float)(TradersOfTheLastCarp.CONFIG_HEIGHT * (2 / 4.0)));
-    ButtonPrompt cursor;
+    ButtonPrompt cursor, names;
     private float cursorScale = 0.5f;
 
     public CharacterSelect(AssetManager assetManager) {
@@ -102,6 +103,23 @@ public class CharacterSelect extends ALevel{
 
         cursor.update();
         addActor(cursor);
+
+        names = new ButtonPrompt(assetManager, AssetList.NAME_PLATES.toString(), TradersOfTheLastCarp.CONFIG_WIDTH / 2 - 375, 80) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                batch.draw(getAssetManager().get(this.asset, TextureAtlas.class).getRegions().get(currentlySelected), getX(), getY(), 750, 300);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        };
+
+        names.update();
+        addActor(names);
     }
 
     public void act(float delta) {
