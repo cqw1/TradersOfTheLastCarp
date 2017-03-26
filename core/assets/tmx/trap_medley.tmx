@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="23">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="28">
  <properties>
   <property name="objective" type="int" value="0"/>
-  <property name="time" type="int" value="15000"/>
+  <property name="time" type="int" value="20000"/>
  </properties>
  <layer name="WALLS" width="50" height="28">
   <data encoding="csv">
@@ -36,55 +36,101 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="ITEMS">
-  <object id="9" x="340" y="390.667" width="32" height="32">
+ <objectgroup name="ITEMS"/>
+ <objectgroup name="TRAPS">
+  <object id="10" name="10" x="182.667" y="117.333" width="124" height="192">
    <properties>
-    <property name="type" value="HEALTH"/>
+    <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
-  <object id="18" x="804" y="580" width="58.6667" height="60">
+  <object id="11" name="11" x="178.667" y="564" width="124" height="192">
    <properties>
-    <property name="type" value="GOLDFISH"/>
+    <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
-  <object id="19" x="792" y="265.334" width="58.6667" height="60">
+  <object id="12" name="12" x="644" y="134.667" width="128" height="128">
    <properties>
-    <property name="type" value="GOLDFISH"/>
+    <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
-  <object id="22" x="1380" y="412" width="58.6667" height="60">
+  <object id="14" name="14" x="650.667" y="605.333" width="128" height="128">
    <properties>
-    <property name="type" value="GOLDFISH"/>
+    <property name="type" value="ARROW_TRAP"/>
+   </properties>
+  </object>
+  <object id="21" name="21" x="1358.67" y="336" width="124" height="192">
+   <properties>
+    <property name="type" value="ARROW_TRAP"/>
+   </properties>
+  </object>
+  <object id="22" name="22" x="1104" y="181.333" width="110" height="100">
+   <properties>
+    <property name="direction" value="DOWN"/>
+    <property name="type" value="FIRE_TRAP"/>
+   </properties>
+  </object>
+  <object id="25" name="25" x="1108" y="592" width="141.333" height="118.667">
+   <properties>
+    <property name="type" value="SPIKE_TRAP"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="TRAPS"/>
- <objectgroup name="TRIGGERS"/>
+ <objectgroup name="TRIGGERS">
+  <object id="13" x="817.333" y="401.333" width="40" height="40">
+   <properties>
+    <property name="trap_id" value="10:11:12"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="15" x="493.333" y="397.333" width="40" height="40">
+   <properties>
+    <property name="trap_id" value="14"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="16" x="689.333" y="181.333" width="40" height="40">
+   <properties>
+    <property name="trap_id" value="12"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="18" x="1138.67" y="421.333" width="40" height="40">
+   <properties>
+    <property name="trap_id" value="21:22"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="19" x="477.333" y="636" width="40" height="40">
+   <properties>
+    <property name="trap_id" value="11:14"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="23" x="697.333" y="648" width="40" height="40">
+   <properties>
+    <property name="trap_id" value="11:14"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="24" x="924" y="178.667" width="40" height="40">
+   <properties>
+    <property name="trap_id" value="10:22"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="27" x="1152" y="632" width="40" height="40">
+   <properties>
+    <property name="trap_id" value="25"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="ENEMIES">
-  <object id="4" x="1121.34" y="745.333" width="40" height="40">
+  <object id="5" x="1234.67" y="401.333" width="53.3333" height="48">
    <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="5" x="1117.33" y="112" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="7" x="537.334" y="741.334" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="8" x="525.333" y="108" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
+    <property name="invincible" type="bool" value="true"/>
+    <property name="type" value="SPIDER"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="TERRAIN"/>
 </map>

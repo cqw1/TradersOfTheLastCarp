@@ -4,13 +4,16 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 
-public class Level11 extends ALevel {
+/**
+ * Created by Bao Vu on 3/26/2017.
+ */
+public class Level13 extends ALevel {
 
-    public final String tmxFileName = AssetList.LEVEL11_TMX.toString();
+    public final String tmxFileName = AssetList.LEVEL13_TMX.toString();
 
-    public Level11(AssetManager assetManager) {
+    public Level13(AssetManager assetManager) {
         super(assetManager);
-        setNextLevel(Level12.class);
+        setNextLevel(EndLevel.class);
     }
 
     public void initOtherLevelStuff() {

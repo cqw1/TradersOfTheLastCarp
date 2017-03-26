@@ -24,7 +24,7 @@ public class LightningPatch extends Damage {
         super(assetManager, new Rectangle(x, y, width, height), 1, damageType);
         loadAssets(assetManager);
         this.startTime = System.currentTimeMillis();
-        sound.play(0.5f);
+        sound.play(0.3f);
     }
 
     @Override

@@ -151,23 +151,7 @@ public abstract class ALevel extends Stage {
 
         //Check if the player has died
         if (player.getHpCurrent() <= 0) {
-//            Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.GAME_OVER_SOUND.toString()));
-//            sound.play(1.0f);
-            addActor(dedScreen);
-            //Button Prompt
-            addActor(new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * 0.5f - 50, 50) {
-                private float baseY = getY();
-
-                @Override
-                public void draw(Batch batch, float alpha) {
-                    batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * 0.5f, 120 * 0.5f);
-                }
-
-                @Override
-                public void update() {
-//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
-                }
-            });
+            return;
         }
 
         //Check whether we should unlock the stage
@@ -184,6 +168,9 @@ public abstract class ALevel extends Stage {
         //Now check for collisions
         Array<Actor> allActors = getActors();
         toBeRemoved.clear();
+
+        boolean removeA = false;
+        boolean removeB = false;
         for (int aCounter = 0; aCounter < allActors.size; aCounter++) {
             // Ignore if not an interactable object or being removed
             Actor a = allActors.get(aCounter);
@@ -201,10 +188,18 @@ public abstract class ALevel extends Stage {
 
                 TotlcObject objB = (TotlcObject) b;
                 if (Intersector.overlapConvexPolygons(objA.getHitBox(), objB.getHitBox())) {
-                    if (objA.collidesWith(objB)) {
+                    removeA = objA.collidesWith(objB);
+                    removeB = objB.collidesWith(objA);
+
+                    if ((objA instanceof Player && removeA) ||
+                            (objB instanceof Player && removeB)) {
+                        handlePlayerDeath();
+                    }
+
+                    if (removeA) {
                         toBeRemoved.add(objA);
                     }
-                    if (objB.collidesWith(objA)) {
+                    if (removeB) {
                         toBeRemoved.add(objB);
                     }
                 } else {
@@ -400,6 +395,26 @@ public abstract class ALevel extends Stage {
         }
 
         endInit();
+    }
+
+    public void handlePlayerDeath() {
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.GAME_OVER_SOUND.toString()));
+        sound.play(1.0f);
+        addActor(dedScreen);
+        //Button Prompt
+        addActor(new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * 0.5f - 50, 50) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * 0.5f, 120 * 0.5f);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        });
     }
 
     @Override

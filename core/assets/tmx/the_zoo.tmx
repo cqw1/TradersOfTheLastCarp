@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="95">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="21">
  <properties>
-  <property name="objective" type="int" value="1"/>
+  <property name="objective" type="int" value="2"/>
  </properties>
  <layer name="WALLS" width="50" height="28">
   <data encoding="csv">
@@ -35,141 +35,105 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="ITEMS">
-  <object id="89" x="1134.33" y="709.667" width="62" height="60">
-   <properties>
-    <property name="type" value="GOLDFISH"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="91" x="525.667" y="103.667" width="62" height="60">
-   <properties>
-    <property name="type" value="GOLDFISH"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="94" x="840" y="445.333" width="54.6667" height="56">
-   <properties>
-    <property name="type" value="KEY"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="ITEMS"/>
  <objectgroup name="TRAPS">
-  <object id="3" name="3" x="174.667" y="400" width="32" height="32">
+  <object id="10" name="10" x="458.667" y="141.333" width="124" height="192">
    <properties>
-    <property name="type" value="TELEPORTER"/>
+    <property name="type" value="ARROW_TRAP"/>
+   </properties>
+  </object>
+  <object id="11" name="11" x="460" y="504" width="124" height="192">
+   <properties>
+    <property name="type" value="ARROW_TRAP"/>
+   </properties>
+  </object>
+  <object id="12" name="12" x="824" y="514.667" width="128" height="128">
+   <properties>
+    <property name="type" value="SPIKE_TRAP"/>
+   </properties>
+  </object>
+  <object id="14" name="14" x="818.667" y="180" width="128" height="128">
+   <properties>
+    <property name="type" value="SPIKE_TRAP"/>
+   </properties>
+  </object>
+  <object id="17" name="17" x="1269.33" y="114.667" width="110" height="100">
+   <properties>
+    <property name="direction" value="DOWN"/>
+    <property name="type" value="FIRE_TRAP"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="TRIGGERS">
-  <object id="5" x="1129.67" y="86.6667" width="76" height="36">
+  <object id="13" x="501.333" y="400" width="40" height="40">
    <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
+    <property name="trap_id" value="10:11"/>
+    <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="52" x="1129.67" y="548" width="76" height="36">
+  <object id="15" x="862.667" y="220" width="40" height="40">
    <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
+    <property name="trap_id" value="14"/>
+    <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="53" x="1129.67" y="485.334" width="76" height="36">
+  <object id="16" x="869.333" y="561.333" width="40" height="40">
    <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
+    <property name="trap_id" value="12"/>
+    <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="55" x="1129.67" y="408" width="76" height="36">
+  <object id="18" x="1302.66" y="237.334" width="40" height="40">
    <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
+    <property name="trap_id" value="17"/>
+    <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="56" x="1131" y="340" width="76" height="36">
+  <object id="19" x="245.333" y="588" width="40" height="40">
    <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
+    <property name="trap_id" value="11"/>
+    <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="57" x="1129.67" y="272" width="76" height="36">
+  <object id="20" x="232" y="201.333" width="40" height="40">
    <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="58" x="1129.67" y="212" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="59" x="1129.67" y="146.667" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="60" x="521.333" y="751.333" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="61" x="520" y="303.333" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="62" x="521.333" y="556.666" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="63" x="520" y="488.666" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="64" x="520" y="363.333" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="65" x="520" y="428.666" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="66" x="521.333" y="623.333" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="67" x="521.333" y="688.666" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="92" x="518.667" y="231.333" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
-  <object id="93" x="1128.33" y="610.666" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
+    <property name="trap_id" value="10"/>
+    <property name="type" value="BUTTON"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="ENEMIES"/>
+ <objectgroup name="ENEMIES">
+  <object id="1" x="1266.67" y="301.333" width="120" height="250">
+   <properties>
+    <property name="type" value="GELATIN_KING"/>
+   </properties>
+  </object>
+  <object id="2" x="1344" y="714.667" width="44" height="46.6667">
+   <properties>
+    <property name="type" value="STAR"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="4" x="1248" y="648" width="44" height="46.6667">
+   <properties>
+    <property name="type" value="STAR"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="7" x="714.666" y="509.333" width="53.3333" height="48">
+   <properties>
+    <property name="type" value="SPIDER"/>
+   </properties>
+  </object>
+  <object id="8" x="725.333" y="313.333" width="54.6667" height="73.3333">
+   <properties>
+    <property name="type" value="PANGOLINI"/>
+   </properties>
+  </object>
+  <object id="9" x="968" y="388" width="102.667" height="86.6667">
+   <properties>
+    <property name="type" value="FLAN"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
