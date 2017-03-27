@@ -15,6 +15,7 @@ import com.totlc.Actors.UI.LevelOption;
 import com.totlc.Actors.UI.MenuOption;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
+import com.totlc.Util;
 
 import java.awt.geom.Point2D;
 import java.lang.reflect.InvocationTargetException;
@@ -25,11 +26,11 @@ public class LevelSelect extends ALevel {
 
     private int row = 0;
     private int col = 0;
-    private LevelOptionInfo [][] grid = new LevelOptionInfo[2][6];
+    private LevelOptionInfo [][] grid = new LevelOptionInfo[4][5];
 
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
     private Point2D.Float optionsSize = new Point2D.Float(128f, 128f);
-    private Point2D.Float gridStart = new Point2D.Float(236f, 500f);
+    private Point2D.Float gridStart = new Point2D.Float(250f, 550f);
 
     private ButtonPrompt cursor;
     private float cursorScale = 0.5f;
@@ -66,11 +67,13 @@ public class LevelSelect extends ALevel {
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[0].length; c++) {
 
+                /*
                 if (grid[r][c] == null) {
                     // Don't draw the asset because it doesn't have a corresponding level.
                     // Allows for irregular number of levels.
                     continue;
                 }
+                */
 
                 final int finalRow = r;
                 final int finalCol = c;
@@ -81,8 +84,8 @@ public class LevelSelect extends ALevel {
                         AssetList.QUESTION_MARK_SELECT_BORDER.toString(),
                         grid[r][c].levelClass,
                         grid[r][c].levelName,
-                        (float) (gridStart.getX() + (c * 200)),
-                        (float) (gridStart.getY() - (r * 200))) {
+                        (float) (gridStart.getX() + (c * 250)),
+                        (float) (gridStart.getY() - (r * 150))) {
 
 
                     public void execute() {
@@ -123,35 +126,30 @@ public class LevelSelect extends ALevel {
     }
 
     public void instantiateGrid() {
-        /*
-        grid[0][0] = new LevelOptionInfo(null, SpikeLevel.class, "Spikes");
-        grid[0][1] = new LevelOptionInfo(null, TeleporterLevel.class, "Teleporter");
-        grid[0][2] = new LevelOptionInfo(null, SpiderLevel.class, "Spiders");
-        grid[0][3] = new LevelOptionInfo(null, StargazerLevel.class, "Stargazer");
-        grid[0][4] = new LevelOptionInfo(null, FlanLevel.class, "Flan");
-        grid[0][5] = new LevelOptionInfo(null, FlameLevel.class, "Flame");
 
-        grid[1][0] = new LevelOptionInfo(null, GelatinLevel.class, "Gelatin");
-        grid[1][1] = new LevelOptionInfo(null, GoldfishLevel.class, "Goldfish");
-        grid[1][2] = null;
-        grid[1][3] = null;
-        grid[1][4] = null;
-        grid[1][5] = null;
-        */
+        grid[0][0] = new LevelOptionInfo(null, Level01.class, Util.parseLevelString(AssetList.LEVEL01_TMX.toString()));
+        grid[0][1] = new LevelOptionInfo(null, Level02.class, Util.parseLevelString(AssetList.LEVEL02_TMX.toString()));
+        grid[0][2] = new LevelOptionInfo(null, Level03.class, Util.parseLevelString(AssetList.LEVEL03_TMX.toString()));
+        grid[0][3] = new LevelOptionInfo(null, Level04.class, Util.parseLevelString(AssetList.LEVEL04_TMX.toString()));
+        grid[0][4] = new LevelOptionInfo(null, Level05.class, Util.parseLevelString(AssetList.LEVEL05_TMX.toString()));
 
-        grid[0][0] = new LevelOptionInfo(null, Level01.class, "Level 1");
-        grid[0][1] = new LevelOptionInfo(null, Level02.class, "Level 2");
-        grid[0][2] = new LevelOptionInfo(null, Level03.class, "Level 3");
-        grid[0][3] = new LevelOptionInfo(null, Level04.class, "Level 4");
-        grid[0][4] = new LevelOptionInfo(null, Level05.class, "Level 5");
-        grid[0][5] = new LevelOptionInfo(null, Level06.class, "Level 6");
+        grid[1][0] = new LevelOptionInfo(null, Level06.class, Util.parseLevelString(AssetList.LEVEL06_TMX.toString()));
+        grid[1][1] = new LevelOptionInfo(null, Level07.class, Util.parseLevelString(AssetList.LEVEL07_TMX.toString()));
+        grid[1][2] = new LevelOptionInfo(null, Level08.class, Util.parseLevelString(AssetList.LEVEL08_TMX.toString()));
+        grid[1][3] = new LevelOptionInfo(null, Level09.class, Util.parseLevelString(AssetList.LEVEL09_TMX.toString()));
+        grid[1][4] = new LevelOptionInfo(null, Level10.class, Util.parseLevelString(AssetList.LEVEL10_TMX.toString()));
 
-        grid[1][0] = new LevelOptionInfo(null, Level07.class, "Level 7");
-        grid[1][1] = new LevelOptionInfo(null, Level08.class, "Level 8");
-        grid[1][2] = new LevelOptionInfo(null, Level09.class, "Level 9");
-        grid[1][3] = new LevelOptionInfo(null, Level10.class, "Level 10");
-        grid[1][4] = new LevelOptionInfo(null, Level11.class, "Level 11");
-        grid[1][5] = null;
+        grid[2][0] = new LevelOptionInfo(null, Level11.class, Util.parseLevelString(AssetList.LEVEL11_TMX.toString()));
+        grid[2][1] = new LevelOptionInfo(null, Level12.class, Util.parseLevelString(AssetList.LEVEL12_TMX.toString()));
+        grid[2][2] = new LevelOptionInfo(null, Level13.class, Util.parseLevelString(AssetList.LEVEL13_TMX.toString()));
+        grid[2][3] = new LevelOptionInfo(null, null, "TODO");
+        grid[2][4] = new LevelOptionInfo(null, null, "TODO");
+
+        grid[3][0] = new LevelOptionInfo(null, null, "TODO");
+        grid[3][1] = new LevelOptionInfo(null, null, "TODO");
+        grid[3][2] = new LevelOptionInfo(null, null, "TODO");
+        grid[3][3] = new LevelOptionInfo(null, null, "TODO");
+        grid[3][4] = new LevelOptionInfo(null, null, "TODO");
     }
 
     @Override

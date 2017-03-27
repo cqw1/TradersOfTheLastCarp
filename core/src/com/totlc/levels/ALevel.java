@@ -35,6 +35,7 @@ import com.totlc.Actors.triggers.TriggerFactory;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
+import com.totlc.Util;
 import com.totlc.levels.ObjectiveVerifier.Objectives;
 
 import java.awt.geom.Point2D;
@@ -314,7 +315,7 @@ public abstract class ALevel extends Stage {
 
     public void loadFromTMX(String tmxFileName) {
         TiledMap map = getAssetManager().get(tmxFileName);
-        setNameString(parseLevelString(tmxFileName));
+        setNameString(Util.parseLevelString(tmxFileName));
 
         MapProperties mapProperties = map.getProperties();
         switch(mapProperties.get("objective", Integer.class)) {
@@ -609,20 +610,6 @@ public abstract class ALevel extends Stage {
 
         TradersOfTheLastCarp.level = toBeLoaded;
         Gdx.input.setInputProcessor(TradersOfTheLastCarp.level);
-    }
-
-    public String parseLevelString(String tmxFileName) {
-        // tmxFileName comes in the format of "tmx/level_01.tmx"
-        // Want to convert to "Level 01"
-        if (tmxFileName.equals("")) {
-            return "NO NAME";
-        }
-
-        String[] splitString = tmxFileName.split("[\\/\\.]"); // Split based on "/" and "." (e.g. ["tmx", "level_01", "tmx"])
-        String parsed = splitString[splitString.length - 2]; // Get the second to last element. (e.g. "level_01")
-        parsed = parsed.replaceAll("_", " "); // (e.g. "level 01") TODO I think our font displays lowercase in uppercase?
-
-        return parsed;
     }
 
     // Full restore of the player's health.

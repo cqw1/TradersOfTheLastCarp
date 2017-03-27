@@ -36,13 +36,36 @@ public abstract class LevelOption extends Actor {
 
     @Override
     public void draw(Batch batch, float alpha) {
+        String asset;
         if (isSelected) {
-            batch.draw(assetManager.get(selectedAsset, Texture.class), x, y);
+            asset = selectedAsset;
         } else {
-            batch.draw(assetManager.get(unselectedAsset, Texture.class), x, y);
+            asset = unselectedAsset;
         }
 
-        font.draw(batch, nameString, x, y + 150);
+//        batch.draw(assetManager.get(asset, Texture.class), x, y);
+        batch.draw(
+                assetManager.get(asset, Texture.class),
+                x,
+                y,
+                0,
+                0,
+//                (float)assetManager.get(asset, Texture.class).getWidth()/2,
+//                (float)assetManager.get(asset, Texture.class).getHeight()/2,
+                (float)assetManager.get(asset, Texture.class).getWidth(),
+                (float)assetManager.get(asset, Texture.class).getHeight(),
+                0.5f,
+                0.5f,
+                0,
+                0,
+                0,
+                assetManager.get(asset, Texture.class).getWidth(),
+                assetManager.get(asset, Texture.class).getHeight(),
+                false,
+                false
+        );
+
+        font.draw(batch, nameString, x, y + 90);
     }
 
     public void setSelected(boolean selected) {
