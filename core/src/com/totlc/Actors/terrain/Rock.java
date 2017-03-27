@@ -31,7 +31,7 @@ public class Rock extends AWall {
     }
 
     public Rock(AssetManager assetManager, float x, float y) {
-        this(assetManager, x, y, 1);
+        this(assetManager, x, y, 0.6f);
     }
 
     @Override

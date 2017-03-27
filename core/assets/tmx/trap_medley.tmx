@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="28">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="30">
  <properties>
   <property name="objective" type="int" value="0"/>
   <property name="time" type="int" value="20000"/>
@@ -36,7 +36,18 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="ITEMS"/>
+ <objectgroup name="ITEMS">
+  <object id="28" x="345.333" y="394.667" width="81.3333" height="78.6667">
+   <properties>
+    <property name="type" value="HEALTH"/>
+   </properties>
+  </object>
+  <object id="29" x="1134.67" y="613.333" width="81.3333" height="78.6667">
+   <properties>
+    <property name="type" value="HEALTH"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="TRAPS">
   <object id="10" name="10" x="182.667" y="117.333" width="124" height="192">
    <properties>

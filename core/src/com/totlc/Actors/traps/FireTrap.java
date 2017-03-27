@@ -32,7 +32,7 @@ public class FireTrap extends ATrap {
     public static float width = 110;
     public static float height = 100;
     public static long defaultRange = 750;
-    public static long delay = 500;
+    public static long delay = 650;
 
     public FireTrap(AssetManager assetManager, float x, float y) {
         this(assetManager, x, y, defaultRange, delay);

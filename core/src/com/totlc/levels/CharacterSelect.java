@@ -33,11 +33,13 @@ public class CharacterSelect extends ALevel{
         add(Texas.class);
     }};
     ArrayList<PlayableCharacter> currentCharacters = new ArrayList<PlayableCharacter>();
+    ArrayList<Point2D.Float> characterGridPoints = new ArrayList<Point2D.Float>();
     int currentlySelected = 0;
     Point2D.Float characterSelectStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * (1 / 24.0)),
             (float)(TradersOfTheLastCarp.CONFIG_HEIGHT * (2 / 4.0)));
     ButtonPrompt cursor, names;
     private float cursorScale = 0.5f;
+    TotlcObject characterHover;
 
     public CharacterSelect(AssetManager assetManager) {
         super(assetManager);
@@ -68,12 +70,51 @@ public class CharacterSelect extends ALevel{
         for (Class c: availablePlayers) {
             if (c.equals(TradersOfTheLastCarp.playerClass)) {
                 currentlySelected = i;
+
+                // draw the character that is currently selected
+                addActor(new TotlcObject(assetManager, new Rectangle(adjustedStart, (float) characterSelectStart.getY(), 512, 512)) {
+                    @Override
+                    public void draw(Batch batch, float alpha) {
+                        batch.draw(new Texture(Gdx.files.internal(AssetList.GREEN_SELECT_BORDER.toString())), getX(), getY(), 0, 0, 128, 128, 1f, 1f, 0, 0, 0, (int) getWidth(), (int) getHeight(), false, false);
+                    }
+
+                    @Override
+                    public boolean collidesWith(Actor otherActor) {
+                        return false;
+                    }
+
+                    @Override
+                    public void endCollidesWith(Actor otherActor) {
+
+                    }
+                });
+
+                // draw the hover
+                characterHover = new TotlcObject(assetManager, new Rectangle(adjustedStart, (float) characterSelectStart.getY(), 512, 512)) {
+                    @Override
+                    public void draw(Batch batch, float alpha) {
+                        batch.draw(new Texture(Gdx.files.internal(AssetList.GREEN_SELECT.toString())), getX(), getY(), 0, 0, 128, 128, 1f, 1f, 0, 0, 0, (int) getWidth(), (int) getHeight(), false, false);
+                    }
+
+                    @Override
+                    public boolean collidesWith(Actor otherActor) {
+                        return false;
+                    }
+
+                    @Override
+                    public void endCollidesWith(Actor otherActor) {
+
+                    }
+                };
+                addActor(characterHover);
+                characterHover.setZIndex(2);
             }
 
             try {
                 PlayableCharacter p = (PlayableCharacter) c.getConstructor(AssetManager.class).newInstance(assetManager);
                 p.setMaxVel(0.001f);
                 p.moveAbs(adjustedStart, (float) characterSelectStart.getY());
+                characterGridPoints.add(new Point2D.Float(adjustedStart, (float) characterSelectStart.getY()));
                 adjustedStart += spacePerCharacter;
                 addActor(p);
                 currentCharacters.add(p);
@@ -134,6 +175,8 @@ public class CharacterSelect extends ALevel{
         if (keyCode == Input.Keys.LEFT) {
             currentCharacters.get(currentlySelected).setMovingDown(false);
             currentlySelected = (currentlySelected - 1 + playableCharacters) % playableCharacters;
+            Point2D.Float newLocation = characterGridPoints.get(currentlySelected);
+            characterHover.moveAbs((float) newLocation.getX(), (float) newLocation.getY());
             isHandled = true;
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
             sound.play(1.0f);
@@ -143,6 +186,8 @@ public class CharacterSelect extends ALevel{
         if (keyCode == Input.Keys.RIGHT) {
             currentCharacters.get(currentlySelected).setMovingDown(false);
             currentlySelected = (currentlySelected + 1) % playableCharacters;
+            Point2D.Float newLocation = characterGridPoints.get(currentlySelected);
+            characterHover.moveAbs((float) newLocation.getX(), (float) newLocation.getY());
             isHandled = true;
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch7.wav"));
             sound.play(1.0f);

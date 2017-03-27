@@ -28,7 +28,7 @@ public class Stargazer extends AEnemy {
 
     // Stat constants.
     private static int id = 1;
-    private static int hp = 2;
+    private static int hp = 1;
     private static int atk = 1;
 
     private static float friction = .99f;

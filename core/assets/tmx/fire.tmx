@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="17">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="18">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -63,8 +63,9 @@
     <property name="type" value="FIRE_TRAP"/>
    </properties>
   </object>
-  <object id="8" name="8" x="469" y="614.667" width="110" height="100">
+  <object id="8" name="8" x="1029" y="129.333" width="110" height="100">
    <properties>
+    <property name="direction" value="DOWN"/>
     <property name="type" value="FIRE_TRAP"/>
    </properties>
   </object>
@@ -90,7 +91,13 @@
   </object>
   <object id="11" x="512.334" y="481.333" width="32" height="32">
    <properties>
-    <property name="trap_id" value="7:8:16"/>
+    <property name="trap_id" value="7:16"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="17" x="1069.67" y="669.333" width="32" height="32">
+   <properties>
+    <property name="trap_id" value="8"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
