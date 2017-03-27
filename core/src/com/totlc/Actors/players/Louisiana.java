@@ -50,6 +50,6 @@ public class Louisiana extends PlayableCharacter {
         head = assetManager.get(AssetList.JACK_HEAD.toString());
 
         // Whip initialization.
-        setWeapon(new Whip(assetManager, this, 0.3f, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
+        setWeapon(new Whip(assetManager, this, 0.3f, 2000, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
     }
 }

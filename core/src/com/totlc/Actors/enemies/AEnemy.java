@@ -31,7 +31,7 @@ public abstract class AEnemy extends Character {
 
     private boolean stunned = false;
     private long stunStart;
-    private long stunPeriod = 1000; // in millis
+    private long stunPeriod = 0; // in millis
 
     // Health indicator texture.
     private TextureRegion heart;
@@ -100,6 +100,7 @@ public abstract class AEnemy extends Character {
                 if (!stunned) {
                     stunned = true;
                     stunStart = System.currentTimeMillis();
+                    setStunPeriod(((Whip)otherActor).getStunPeriod());
                     drawStunIndicator(stunPeriod);
                     this.hpTimer = System.currentTimeMillis();
                     this.showHP = true;
@@ -180,6 +181,10 @@ public abstract class AEnemy extends Character {
 
     public long getStunPeriod() {
         return stunPeriod;
+    }
+
+    public void setStunPeriod(long stun) {
+        this.stunPeriod = stun;
     }
 
     public AMovement getMovement() {

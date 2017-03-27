@@ -20,10 +20,10 @@ public class Colorado extends PlayableCharacter {
         setSway(2);
         setBob(3);
 
-        setHpMax(8);
+        setHpMax(6);
         setHpCurrent(getHpMax());
         setSpeed(240);
-        setMaxVel(240);
+        setMaxVel(250);
     }
 
     @Override
@@ -51,6 +51,6 @@ public class Colorado extends PlayableCharacter {
         head = assetManager.get(AssetList.JANE_HEAD.toString());
 
         // Whip initialization.
-        setWeapon(new Whip(assetManager, this, 0.3f, AssetList.BLUE_WHIP_BACK.toString(), AssetList.BLUE_WHIP_FRONT.toString(), AssetList.BLUE_WHIP_LEFT.toString(), AssetList.BLUE_WHIP_RIGHT.toString()));
+        setWeapon(new Whip(assetManager, this, 0.3f, 3000, AssetList.BLUE_WHIP_BACK.toString(), AssetList.BLUE_WHIP_FRONT.toString(), AssetList.BLUE_WHIP_LEFT.toString(), AssetList.BLUE_WHIP_RIGHT.toString()));
     }
 }
