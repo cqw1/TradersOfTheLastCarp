@@ -115,10 +115,10 @@ public abstract class AEnemy extends Character {
 
     public void act(float deltaTime) {
         super.act(deltaTime);
-        increaseAnimationTime(deltaTime);
         if (checkStun()) {
             return;
         }
+        increaseAnimationTime(deltaTime);
         procStatuses();
         movement.move(this, deltaTime);
     }
