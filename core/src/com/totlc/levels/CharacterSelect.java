@@ -37,7 +37,7 @@ public class CharacterSelect extends ALevel{
     int currentlySelected = 0;
     Point2D.Float characterSelectStart = new Point2D.Float((float) (TradersOfTheLastCarp.CONFIG_WIDTH * (1 / 24.0)),
             (float)(TradersOfTheLastCarp.CONFIG_HEIGHT * (2 / 4.0)));
-    ButtonPrompt cursor, names;
+    ButtonPrompt spacePrompt, escPrompt, names;
     private float cursorScale = 0.5f;
     TotlcObject characterHover;
     TotlcObject characterSelected;
@@ -89,7 +89,7 @@ public class CharacterSelect extends ALevel{
 
                     }
                 };
-                characterSelected.setTexture(new Texture(Gdx.files.internal(AssetList.GREEN_SELECT_BORDER.toString())));
+                characterSelected.setTexture(new Texture(Gdx.files.internal(AssetList.GREEN_SELECT.toString())));
                 addActor(characterSelected);
                 characterSelected.setZIndex(2);
 
@@ -110,7 +110,7 @@ public class CharacterSelect extends ALevel{
 
                     }
                 };
-                characterHover.setTexture(new Texture(Gdx.files.internal(AssetList.GREEN_SELECT.toString())));
+                characterHover.setTexture(new Texture(Gdx.files.internal(AssetList.GREEN_SELECT_BORDER.toString())));
                 addActor(characterHover);
                 characterHover.setZIndex(2);
             }
@@ -131,7 +131,7 @@ public class CharacterSelect extends ALevel{
 
         currentCharacters.get(currentlySelected).setMovingDown(true);
 
-        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 30) {
+        spacePrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 30) {
             private float baseY = getY();
 
             @Override
@@ -148,8 +148,28 @@ public class CharacterSelect extends ALevel{
             }
         };
 
-        cursor.update();
-        addActor(cursor);
+        spacePrompt.update();
+        addActor(spacePrompt);
+
+        escPrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_ESC.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 80) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                if (System.currentTimeMillis() % 1000 <= 200) {
+                    return;
+                }
+                batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        };
+
+        escPrompt.update();
+        addActor(escPrompt);
 
         names = new ButtonPrompt(assetManager, AssetList.NAME_PLATES.toString(), TradersOfTheLastCarp.CONFIG_WIDTH / 2 - 375, 80) {
             private float baseY = getY();

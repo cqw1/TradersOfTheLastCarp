@@ -28,6 +28,7 @@ public enum AssetList {
     TITLE_SCREEN("UI/Splash2.png", Texture.class),
     BUTTON_PROMPT_ESC("UI/ButtonPromptESC.png", Texture.class),
     BUTTON_PROMPT_SPACE("UI/ButtonPromptSpace.png", Texture.class),
+    BUTTON_PROMPT_SPACE_REPLAY("UI/ButtonPromptSpaceReplay.png", Texture.class),
     OPTION_QUICKPLAY("UI/splash_options_0.png", Texture.class),
     OPTION_LVLSELECT("UI/splash_options_1.png", Texture.class),
     OPTION_CHARSELECT("UI/splash_options_2.png", Texture.class),
