@@ -79,6 +79,9 @@ public class GelatinKing extends AEnemy {
     @Override
     public void act(float deltaTime){
         super.act(deltaTime);
+        if (checkStun()) {
+            return;
+        }
         if (System.currentTimeMillis() - timeStamp > hazardSetTime && this.king){
             timeStamp = System.currentTimeMillis();
             setLightningPatch();

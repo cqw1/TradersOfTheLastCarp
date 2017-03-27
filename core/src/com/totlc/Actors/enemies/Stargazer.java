@@ -90,7 +90,9 @@ public class Stargazer extends AEnemy {
     @Override
     public void act(float deltaTime) {
         super.act(deltaTime);
-
+        if (checkStun()) {
+            return;
+        }
         if (!spin){
             if (windDown){
                 if (System.currentTimeMillis() > (movementTime + (spinPeriod * 0.2))) {
