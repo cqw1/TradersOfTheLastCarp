@@ -5,33 +5,22 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.carps.CrystalCarp;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ALevel;
 
 public class ToolTip extends Actor {
-    // Status of carp
-    private final int TALKING = 0;
-    private final int TURNING = 1;
-    private int status;
-
     // Texture information.
     private NinePatch bar;
     private BitmapFont font;
 
     private String message;
 
-    private TextureAtlas carpTalkAtlas, carpTurnAtlas;
-    private Animation<TextureRegion> carpTalkAnimation, carpTurnAnimation;
     private float time = 0;
 
     private TextureAtlas currentAtlas;
     private Animation<TextureRegion> currentAnimation;
-
-    // Time to spend talking and turning respectively in seconds.
-    private int talkTime;
-    private boolean doneTalking = false;
-    private float animationTime = 0; // Time spent in current animation.
 
     // Number of lines the message takes up. Had to manually line break the message.
     private int numLines = 1;
@@ -48,9 +37,10 @@ public class ToolTip extends Actor {
     private int horizontalPadding = 25;
     private static float carpVerticalOffset = 5;
     private static float carpHorizontalOffset = 60;
+    private CrystalCarp carp;
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
-    public ToolTip(AssetManager assetManager, int x, int y, String message, int delay, int talkTime, int duration, boolean loop){
+    public ToolTip(AssetManager assetManager, int x, int y, String message, int delay, int talkTime, int duration, boolean loop) {
         setX(x);
         setY(y);
 
@@ -67,26 +57,19 @@ public class ToolTip extends Actor {
 
         this.message = message;
         this.duration = Math.max(duration, delay + talkTime);
-        this.talkTime = talkTime;
         this.delay = delay;
         this.loop = loop;
 
-        carpTalkAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TALK_BORDER.toString());
-        carpTalkAnimation = new Animation<TextureRegion>(1 / 10f, carpTalkAtlas.getRegions(), Animation.PlayMode.LOOP);
+        TextureAtlas carpTalkAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TALK_BORDER.toString());
 
-        carpTurnAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TURN_BORDER.toString());
-        carpTurnAnimation = new Animation<TextureRegion>(1 / 16f, carpTurnAtlas.getRegions(), Animation.PlayMode.NORMAL);
-
-        for (int i = 0; i < carpTurnAtlas.getRegions().size; i++){
-            carpTurnAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        }
-        for (int i = 0; i < carpTalkAtlas.getRegions().size; i++){
-            carpTalkAtlas.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        }
-
-        status = TURNING;
-        currentAnimation = carpTurnAnimation;
-        currentAtlas = carpTurnAtlas;
+        this.carp = new CrystalCarp(assetManager,
+                getX() + getWidth() / 2 + carpHorizontalOffset,
+                getY() - carpTalkAtlas.getRegions().get(0).getRegionHeight() / 2 * scale + carpVerticalOffset,
+                delay,
+                talkTime,
+                loop,
+                scale
+        );
 
         bar = new NinePatch(assetManager.get(AssetList.UI_BAR.toString(), Texture.class), 16, 16, 8, 8);
         font = TradersOfTheLastCarp.systemFont0;
@@ -97,49 +80,17 @@ public class ToolTip extends Actor {
     public void act(float deltaTime) {
         // deltaTime = time in seconds since last frame
         time += deltaTime;
+        carp.act(deltaTime);
 
-        if (time > delay) {
-            animationTime += deltaTime;
-
-            // Start commenting out here to stop the turn/talk switching animation.
-            if (status == TALKING) {
-                if (animationTime > talkTime) {
-                    if (!loop) {
-                        setDoneTalking(true);
-                    }
-                    animationTime = 0;
-                    currentAnimation = carpTurnAnimation;
-                    currentAnimation.setPlayMode(Animation.PlayMode.REVERSED);
-                    currentAtlas = carpTurnAtlas;
-                    status = (status + 1) % 2;
-                }
-
-            } else if (status == TURNING) {
-                if (currentAnimation.isAnimationFinished(animationTime) && !isDoneTalking()) {
-                    animationTime = 0;
-                    if(currentAnimation.getPlayMode().equals(Animation.PlayMode.REVERSED)){
-                        currentAnimation.setPlayMode(Animation.PlayMode.NORMAL);
-                    } else{
-                        currentAnimation = carpTalkAnimation;
-                        currentAtlas = carpTalkAtlas;
-                        status = (status + 1) % 2;
-                    }
-                }
-            }
-            // Stop commenting out here.
-        }
-
-
-        if (time > (duration) && currentAnimation.isAnimationFinished(animationTime)) {
-            // Check if we've stayed for as long as specified. If so, remove from screen.
+        if (time > duration) {
             this.remove();
+            carp.remove();
         }
-
     }
 
     @Override
     public void draw(Batch batch, float alpha){
-        if (time > delay && status == TALKING) {
+        if (time > delay) {
             // Draw message box.
             bar.draw(batch, getX(), getY(), getWidth(), getHeight());
 
@@ -147,24 +98,9 @@ public class ToolTip extends Actor {
             font.draw(batch, message, getX() + horizontalPadding, getY() + getHeight() / 2 + 5 * (numLines));
         }
 
-        // Draw carp.
-        batch.draw(currentAnimation.getKeyFrame(animationTime),
-                getX() + getWidth() / 2 + carpHorizontalOffset,
-                getY() - currentAtlas.getRegions().get(0).getRegionHeight() / 2 * scale + carpVerticalOffset,
-                currentAtlas.getRegions().get(0).getRegionWidth() / 2 * scale,
-                currentAtlas.getRegions().get(0).getRegionHeight() / 2 * scale,
-                (float) currentAtlas.getRegions().get(0).getRegionWidth(),
-                (float) currentAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
+        carp.draw(batch, alpha);
 
-    }
 
-    public boolean isDoneTalking() {
-        return doneTalking;
-    }
-
-    // Reset to false to enable talking again.
-    public void setDoneTalking(boolean doneTalking) {
-        this.doneTalking = doneTalking;
     }
 
 }
