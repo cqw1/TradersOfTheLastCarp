@@ -1,6 +1,8 @@
 package com.totlc.Actors.carps;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -10,6 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 
 public class CrystalCarp extends Actor {
+
+    public static final int HEIGHT = 256;
+    public static final int WIDTH = 256;
     // Status of carp
     private final int TALKING = 0;
     private final int TURNING = 1;
@@ -23,22 +28,25 @@ public class CrystalCarp extends Actor {
     private Animation<TextureRegion> currentAnimation;
 
     // Time to spend talking and turning respectively in seconds.
-    private int talkTime;
+    private float talkTime;
     private boolean doneTalking = false;
     private float animationTime = 0; // Time spent in current animation.
 
     // Seconds to delay until animating the tooltip. Should delay tooltip creation in constructor.
-    private int delay;
+    private float delay; // in seconds
 
     // Seconds to display the tooltip for
-    private int duration;
+    private float duration; // in seconds
 
     // Boolean flag for repeating animation.
     private boolean loop;
 
     private float scale;
 
-    public CrystalCarp(AssetManager assetManager, float x, float y, int delay, int talkTime, boolean loop, float scale) {
+    // Optional sound to play when the carp talks.
+    private Sound sound;
+
+    public CrystalCarp(AssetManager assetManager, float x, float y, float delay, float talkTime, boolean loop, float scale) {
         setX(x);
         setY(y);
 
@@ -96,6 +104,10 @@ public class CrystalCarp extends Actor {
                         currentAnimation = carpTalkAnimation;
                         currentAtlas = carpTalkAtlas;
                         status = (status + 1) % 2;
+
+                        if (sound != null) {
+                            sound.play();
+                        }
                     }
                 }
             }
@@ -124,5 +136,9 @@ public class CrystalCarp extends Actor {
     // Reset to false to enable talking again.
     public void setDoneTalking(boolean doneTalking) {
         this.doneTalking = doneTalking;
+    }
+
+    public void setVoice(String soundName) {
+        this.sound = Gdx.audio.newSound(Gdx.files.internal(soundName));
     }
 }

@@ -14,6 +14,8 @@ public enum AssetList {
     HEAL_SOUND("sounds/healspell2.mp3", Sound.class),
     GOLDFISH_SOUND("sounds/splash1.mp3", Sound.class),
     GAME_OVER_SOUND("sounds/wahwahwaah.ogg", Sound.class),
+    YOU_LOSE("sounds/youlose.mp3", Sound.class),
+    FINE("sounds/fine.mp3", Sound.class),
 
     // UI elements and icons.
     UI_BAR("UI/UIBar.png", Texture.class),

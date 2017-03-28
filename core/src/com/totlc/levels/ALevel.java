@@ -22,6 +22,7 @@ import com.totlc.Actors.Character;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.Player;
 import com.totlc.Actors.UI.*;
+import com.totlc.Actors.carps.CrystalCarp;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.enemies.EnemyFactory;
 import com.totlc.Actors.items.APickup;
@@ -399,8 +400,8 @@ public abstract class ALevel extends Stage {
     }
 
     public void handlePlayerDeath() {
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.GAME_OVER_SOUND.toString()));
-        sound.play(1.0f);
+//        Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.GAME_OVER_SOUND.toString()));
+//        sound.play(1.0f);
         addActor(dedScreen);
         //Button Prompt
         addActor(new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * 0.5f - 50, 50) {
@@ -419,6 +420,18 @@ public abstract class ALevel extends Stage {
 //                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
             }
         });
+
+        CrystalCarp carp = new CrystalCarp(
+                assetManager,
+                CONFIG_WIDTH / 2 - CrystalCarp.WIDTH / 2,
+                CONFIG_HEIGHT / 4 - CrystalCarp.HEIGHT / 2,
+                1,
+                1,
+                false,
+                1f
+        );
+        carp.setVoice(AssetList.YOU_LOSE.toString());
+        addActor(carp);
     }
 
     @Override

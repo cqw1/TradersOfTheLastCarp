@@ -25,12 +25,12 @@ public class ToolTip extends Actor {
     // Number of lines the message takes up. Had to manually line break the message.
     private int numLines = 1;
     // Seconds to display the tooltip for
-    private int duration;
+    private float duration;
     // Boolean flag for repeating animation.
     private boolean loop;
 
     // Seconds to delay until animating the tooltip. Should delay tooltip creation in constructor.
-    private int delay;
+    private float delay;
 
     private static float scale = 0.75f;
     // Padding for the text within the black background.
@@ -40,7 +40,7 @@ public class ToolTip extends Actor {
     private CrystalCarp carp;
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
-    public ToolTip(AssetManager assetManager, int x, int y, String message, int delay, int talkTime, int duration, boolean loop) {
+    public ToolTip(AssetManager assetManager, int x, int y, String message, float delay, float talkTime, float duration, boolean loop) {
         setX(x);
         setY(y);
 
@@ -60,11 +60,9 @@ public class ToolTip extends Actor {
         this.delay = delay;
         this.loop = loop;
 
-        TextureAtlas carpTalkAtlas = assetManager.get(AssetList.CRYSTAL_CARP_TALK_BORDER.toString());
-
         this.carp = new CrystalCarp(assetManager,
                 getX() + getWidth() / 2 + carpHorizontalOffset,
-                getY() - carpTalkAtlas.getRegions().get(0).getRegionHeight() / 2 * scale + carpVerticalOffset,
+                getY() - CrystalCarp.HEIGHT / 2 * scale + carpVerticalOffset,
                 delay,
                 talkTime,
                 loop,
