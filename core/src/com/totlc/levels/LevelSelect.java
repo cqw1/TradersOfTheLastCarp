@@ -24,11 +24,11 @@ public class LevelSelect extends ALevel {
 
     private int row = 0;
     private int col = 0;
-    private LevelOptionInfo [][] grid = new LevelOptionInfo[4][5];
+    private LevelOptionInfo [][] grid = new LevelOptionInfo[4][6];
 
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
     private Point2D.Float optionsSize = new Point2D.Float(128f, 128f);
-    private Point2D.Float gridStart = new Point2D.Float(250f, 550f);
+    private Point2D.Float gridStart = new Point2D.Float(260f, 550f);
 
     private ButtonPrompt spacePrompt, escPrompt;
     private float cursorScale = 0.5f;
@@ -82,7 +82,7 @@ public class LevelSelect extends ALevel {
                         AssetList.QUESTION_MARK_SELECT_BORDER.toString(),
                         grid[r][c].levelClass,
                         grid[r][c].levelName,
-                        (float) (gridStart.getX() + (c * 250)),
+                        (float) (gridStart.getX() + (c * 200)),
                         (float) (gridStart.getY() - (r * 150))) {
 
 
@@ -150,24 +150,28 @@ public class LevelSelect extends ALevel {
         grid[0][2] = new LevelOptionInfo(null, Level03.class, Util.parseLevelString(AssetList.LEVEL03_TMX.toString()));
         grid[0][3] = new LevelOptionInfo(null, Level04.class, Util.parseLevelString(AssetList.LEVEL04_TMX.toString()));
         grid[0][4] = new LevelOptionInfo(null, Level05.class, Util.parseLevelString(AssetList.LEVEL05_TMX.toString()));
+        grid[0][5] = new LevelOptionInfo(null, Level06.class, Util.parseLevelString(AssetList.LEVEL06_TMX.toString()));
 
-        grid[1][0] = new LevelOptionInfo(null, Level06.class, Util.parseLevelString(AssetList.LEVEL06_TMX.toString()));
-        grid[1][1] = new LevelOptionInfo(null, Level07.class, Util.parseLevelString(AssetList.LEVEL07_TMX.toString()));
-        grid[1][2] = new LevelOptionInfo(null, Level08.class, Util.parseLevelString(AssetList.LEVEL08_TMX.toString()));
-        grid[1][3] = new LevelOptionInfo(null, Level09.class, Util.parseLevelString(AssetList.LEVEL09_TMX.toString()));
-        grid[1][4] = new LevelOptionInfo(null, Level10.class, Util.parseLevelString(AssetList.LEVEL10_TMX.toString()));
+        grid[1][0] = new LevelOptionInfo(null, Level07.class, Util.parseLevelString(AssetList.LEVEL07_TMX.toString()));
+        grid[1][1] = new LevelOptionInfo(null, Level08.class, Util.parseLevelString(AssetList.LEVEL08_TMX.toString()));
+        grid[1][2] = new LevelOptionInfo(null, Level09.class, Util.parseLevelString(AssetList.LEVEL09_TMX.toString()));
+        grid[1][3] = new LevelOptionInfo(null, Level10.class, Util.parseLevelString(AssetList.LEVEL10_TMX.toString()));
+        grid[1][4] = new LevelOptionInfo(null, Level11.class, Util.parseLevelString(AssetList.LEVEL11_TMX.toString()));
+        grid[1][5] = new LevelOptionInfo(null, Level12.class, Util.parseLevelString(AssetList.LEVEL12_TMX.toString()));
 
-        grid[2][0] = new LevelOptionInfo(null, Level11.class, Util.parseLevelString(AssetList.LEVEL11_TMX.toString()));
-        grid[2][1] = new LevelOptionInfo(null, Level12.class, Util.parseLevelString(AssetList.LEVEL12_TMX.toString()));
-        grid[2][2] = new LevelOptionInfo(null, Level13.class, Util.parseLevelString(AssetList.LEVEL13_TMX.toString()));
+        grid[2][0] = new LevelOptionInfo(null, Level13.class, Util.parseLevelString(AssetList.LEVEL13_TMX.toString()));
+        grid[2][1] = new LevelOptionInfo(null, null, "TODO");
+        grid[2][2] = new LevelOptionInfo(null, null, "TODO");
         grid[2][3] = new LevelOptionInfo(null, null, "TODO");
         grid[2][4] = new LevelOptionInfo(null, null, "TODO");
+        grid[2][5] = new LevelOptionInfo(null, null, "TODO");
 
         grid[3][0] = new LevelOptionInfo(null, null, "TODO");
         grid[3][1] = new LevelOptionInfo(null, null, "TODO");
         grid[3][2] = new LevelOptionInfo(null, null, "TODO");
         grid[3][3] = new LevelOptionInfo(null, null, "TODO");
         grid[3][4] = new LevelOptionInfo(null, null, "TODO");
+        grid[3][5] = new LevelOptionInfo(null, null, "TODO");
     }
 
     @Override
