@@ -4,6 +4,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.enemies.GelatinKing;
 import com.totlc.Actors.enemies.JustDessert;
+import com.totlc.Actors.enemies.WallfacedProtector;
+import com.totlc.Actors.enemies.movement.BasicMovement;
 import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
 import com.totlc.Actors.enemies.movement.RandomMovement;
 import com.totlc.Actors.items.APickup;
@@ -11,11 +13,9 @@ import com.totlc.Actors.items.Goldfish;
 import com.totlc.Actors.items.Key;
 import com.totlc.Actors.terrain.AWall;
 import com.totlc.Actors.terrain.Rock;
-import com.totlc.Actors.traps.ATrap;
-import com.totlc.Actors.traps.FireTrap;
-import com.totlc.Actors.traps.Teleporter;
-import com.totlc.Actors.traps.TrapFactory;
+import com.totlc.Actors.traps.*;
 import com.totlc.Actors.triggers.ATrigger;
+import com.totlc.Actors.triggers.ButtonTrigger;
 import com.totlc.Actors.triggers.TeleportPad;
 import com.totlc.Actors.triggers.TriggerFactory;
 import com.totlc.Directionality;
@@ -48,19 +48,19 @@ public class SandBoxLevel extends ALevel{
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
         TradersOfTheLastCarp.musicPlayer.play();
 
-        AWall rock = new Rock(getAssetManager(), 800, 300, 1);
-        AWall rock1 = new Rock(getAssetManager(), 500, 300, 0.5f);
-        AWall rock2= new Rock(getAssetManager(), 1000, 300, 0.8f);
-        addActor(rock);
-        addActor(rock1);
-        addActor(rock2);
 
-        AEnemy flan = new JustDessert(getAssetManager(), 300, 300, 1, new ProximityBasedAggro(getPlayer()));
-        AEnemy flan1 = new JustDessert(getAssetManager(), 300, 300, 3, new ProximityBasedAggro(getPlayer()));
-        AEnemy flan2 = new JustDessert(getAssetManager(), 300, 300, 7, new ProximityBasedAggro(getPlayer()));
-        addActor(flan);
-        addActor(flan1);
-        addActor(flan2);
+        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
+        addActor(wallface);
+
+        ATrap arrow = new ArrowTrap(getAssetManager(), 500, 300);
+        addActor(arrow);
+
+        ATrigger trigger0 = new ButtonTrigger(getAssetManager(), 1000, 300);
+        ATrigger trigger1 = new ButtonTrigger(getAssetManager(), 100, 300);
+        trigger0.addTrap(arrow);
+        addActor(trigger0);
+        trigger1.addTrap(arrow);
+        addActor(trigger1);
 
         endInit();
     }

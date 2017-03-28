@@ -60,12 +60,12 @@ public abstract class AEnemy extends Character {
      * Helper that draws a health indicator above the enemy.
      */
     public void drawHealth(Batch batch, float alpha, int xOffset, int yOffset) {
-        if(showHP) {
+        if(isShowHP()) {
             batch.draw(heart, (float) getHitBoxCenter().getX() - (heartSize / 2) + xOffset, (float) getHitBoxCenter().getY() + getHitBoxHeight() + yOffset, heartSize, heartSize);
             layout.setText(font, getHpCurrent() + "/" + getHpMax());
             font.draw(batch, getHpCurrent() + "/" + getHpMax(), (float) getHitBoxCenter().getX() + xOffset - (layout.width / 2), (float) getHitBoxCenter().getY() + getHitBoxHeight() + yOffset + (heartSize / 2) + 3);
-            if (System.currentTimeMillis() - this.hpTimer > 3000) {
-                this.showHP = false;
+            if (System.currentTimeMillis() - getHpTimer() > 3000) {
+                setShowHp(false);
             }
         }
     }
@@ -81,7 +81,7 @@ public abstract class AEnemy extends Character {
      * Helper that draws a stun indicator above enemy head.
      * @param stunPeriod: Duration to stun for.
      */
-    private void drawStunIndicator(long stunPeriod) {
+    protected void drawStunIndicator(long stunPeriod) {
         Stun stun = new Stun(getAssetManager(), this, stunPeriod, true);
         getStage().addActor(stun);
     }
@@ -142,14 +142,6 @@ public abstract class AEnemy extends Character {
         isFloating = floating;
     }
 
-    public boolean isShowHP() {
-        return showHP;
-    }
-
-    public void setShowHP(boolean showHP) {
-        this.showHP = showHP;
-    }
-
     public Point2D getTarget(Actor target) {
         Point2D targetVector = new Point2D.Double(target.getX() - getX(), target.getY() - getY());
         float n = (float) Math.sqrt(Math.pow(targetVector.getX(), 2) + Math.pow(targetVector.getY(), 2));
@@ -164,8 +156,8 @@ public abstract class AEnemy extends Character {
     @Override
     public void takeDamage(int damage){
         super.takeDamage(damage);
-        this.hpTimer = System.currentTimeMillis();
-        this.showHP = true;
+        setHpTimer(System.currentTimeMillis());
+        setShowHp(true);
     }
 
     public boolean isStunned() {
@@ -175,8 +167,28 @@ public abstract class AEnemy extends Character {
         this.stunned = stun;
     }
 
+    public long getHpTimer() {
+        return hpTimer;
+    }
+
+    public void setHpTimer(long hpTimer) {
+        this.hpTimer = hpTimer;
+    }
+
+    public boolean isShowHP() {
+        return showHP;
+    }
+
+    public void setShowHp(boolean show){
+        this.showHP = show;
+    }
+
     public long getStunStart() {
         return stunStart;
+    }
+
+    public void setStunStart(long stunStart) {
+        this.stunStart = stunStart;
     }
 
     public long getStunPeriod() {

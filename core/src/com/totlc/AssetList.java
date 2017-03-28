@@ -59,6 +59,11 @@ public enum AssetList {
     PANGOLINI("sprites/pangolini/pangolini.png", Texture.class),
     JELLYFISH("sprites/gelatin_king/jelly_fish.atlas", TextureAtlas.class),
     GELATIN_KING("sprites/gelatin_king/gelatin_king.atlas", TextureAtlas.class),
+    WALLFACE_HEAD("sprites/WallfacedProtector/wallface_head.atlas", TextureAtlas.class),
+    WALLFACE_STAND("sprites/WallfacedProtector/wallface_stand.atlas", TextureAtlas.class),
+    WALLFACE_WALK_SIDE("sprites/WallfacedProtector/wallface_walk_side.atlas", TextureAtlas.class),
+    WALLFACE_WALK_FRONT("sprites/WallfacedProtector/wallface_walk_front.atlas", TextureAtlas.class),
+    WALLFACE_WALK_BACK("sprites/WallfacedProtector/wallface_walk_back.atlas", TextureAtlas.class),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),
