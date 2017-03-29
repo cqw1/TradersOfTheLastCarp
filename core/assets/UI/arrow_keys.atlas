@@ -1,6 +1,6 @@
 
 arrow_keys.png
-size: 512,128
+size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -28,6 +28,13 @@ key_right
 key_up
   rotate: false
   xy: 347, 2
+  size: 113, 120
+  orig: 113, 120
+  offset: 0, 0
+  index: -1
+space
+  rotate: false
+  xy: 462, 2
   size: 113, 120
   orig: 113, 120
   offset: 0, 0
