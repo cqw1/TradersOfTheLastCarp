@@ -14,10 +14,7 @@ import com.totlc.Actors.items.Key;
 import com.totlc.Actors.terrain.AWall;
 import com.totlc.Actors.terrain.Rock;
 import com.totlc.Actors.traps.*;
-import com.totlc.Actors.triggers.ATrigger;
-import com.totlc.Actors.triggers.ButtonTrigger;
-import com.totlc.Actors.triggers.TeleportPad;
-import com.totlc.Actors.triggers.TriggerFactory;
+import com.totlc.Actors.triggers.*;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.*;
@@ -38,7 +35,7 @@ public class SandBoxLevel extends ALevel{
 
     public SandBoxLevel(AssetManager assetManager) {
         super(assetManager, Objectives.UNLOCK);
-        setNextLevel(SpikeLevel.class);
+        setNextLevel(TitleScreen.class);
     }
 
     public void initOtherLevelStuff() {
@@ -54,8 +51,13 @@ public class SandBoxLevel extends ALevel{
         ATrap boulder = new BoulderTrap(getAssetManager(), 1200, 300);
         addActor(boulder);
 
-        ExitPortal wormhole = new ExitPortal(getAssetManager(), 100, 100);
+        EntrancePortal enter = new EntrancePortal(getAssetManager(), 500, 300);
+
+        ExitPortal wormhole = new ExitPortal(getAssetManager(), 900, 100);
         addActor(wormhole);
+
+        enter.addTrap(wormhole);
+        addActor(enter);
 
         ATrigger trigger0 = new ButtonTrigger(getAssetManager(), 1000, 300);
         ATrigger trigger1 = new ButtonTrigger(getAssetManager(), 100, 300);

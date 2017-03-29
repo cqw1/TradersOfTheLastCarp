@@ -47,6 +47,7 @@ public class ExitPortal extends ATrap {
 
     @Override
     public void act(float deltaTime){
+        super.act(deltaTime);
         increaseAnimationTime(deltaTime);
         angle += 8;
         angle = angle % 360;
