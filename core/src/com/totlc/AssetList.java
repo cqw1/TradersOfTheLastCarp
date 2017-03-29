@@ -128,6 +128,9 @@ public enum AssetList {
     FLAN_PARTS_0("effects/flan_parts.particle", null),
     FLAN_PARTS_1("effects/flan_parts_prime.particle", null),
     TELEPORT_BEAM("effects/teleport0.particle", null),
+    WORMHOLE_EFFECT("effects/wormhole.particle", null),
+    DEBRIS_TRAIL("effects/debristrail.particle", null),
+    DEBRIS_DROP("effects/debrisdrop.particle", null),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas", TextureAtlas.class),
@@ -139,6 +142,8 @@ public enum AssetList {
     FIRE_TRAP_DOWN("traps/fire_trap/fire_trap_down.png", Texture.class),
     EYE_GLOW("traps/fire_trap/eye_glow.atlas", TextureAtlas.class),
     SPIKE_TRAP("traps/spike_trap.atlas", TextureAtlas.class),
+    WORMHOLE("traps/worm_hole.atlas", TextureAtlas.class),
+    BOULDER("traps/boulder.png", Texture.class),
     GOLDFISH("sprites/goldfish/goldfish_glow.atlas", TextureAtlas.class),
     GOLDFISH_UI("sprites/goldfish/goldfish_ui.atlas", TextureAtlas.class),
     ROCKS("sprites/rocks/rocks.atlas", TextureAtlas.class),

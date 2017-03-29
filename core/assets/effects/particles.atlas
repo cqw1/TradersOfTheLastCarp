@@ -13,35 +13,35 @@ repeat: none
   index: -1
 10fireglow
   rotate: false
-  xy: 971, 68
+  xy: 756, 58
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 11firespark
   rotate: false
-  xy: 889, 71
+  xy: 941, 71
   size: 31, 55
   orig: 31, 55
   offset: 0, 0
   index: -1
 12embers0
   rotate: false
-  xy: 922, 59
+  xy: 680, 51
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 13embers1
   rotate: false
-  xy: 340, 21
+  xy: 729, 58
   size: 25, 16
   orig: 25, 16
   offset: 0, 0
   index: -1
 14embers2
   rotate: false
-  xy: 949, 59
+  xy: 707, 49
   size: 20, 25
   orig: 20, 25
   offset: 0, 0
@@ -62,42 +62,42 @@ repeat: none
   index: -1
 17waterdrop
   rotate: false
-  xy: 989, 83
+  xy: 942, 26
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
   index: -1
 18waterdropflip
   rotate: false
-  xy: 857, 21
+  xy: 965, 26
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
   index: -1
 19elec0
   rotate: false
-  xy: 857, 66
+  xy: 909, 66
   size: 30, 60
   orig: 30, 60
   offset: 0, 0
   index: -1
 1syrup
   rotate: false
-  xy: 387, 21
+  xy: 794, 66
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 20elec1
   rotate: false
-  xy: 612, 78
+  xy: 664, 78
   size: 50, 48
   orig: 50, 48
   offset: 0, 0
   index: -1
 21elec2
   rotate: false
-  xy: 724, 84
+  xy: 776, 84
   size: 42, 42
   orig: 42, 42
   offset: 0, 0
@@ -118,7 +118,7 @@ repeat: none
   index: -1
 24streak
   rotate: false
-  xy: 839, 30
+  xy: 891, 30
   size: 16, 96
   orig: 16, 96
   offset: 0, 0
@@ -130,11 +130,46 @@ repeat: none
   orig: 11, 11
   offset: 0, 0
   index: -1
+26wormholering
+  rotate: false
+  xy: 424, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+27debris0
+  rotate: false
+  xy: 340, 9
+  size: 32, 28
+  orig: 32, 28
+  offset: 0, 0
+  index: -1
+28debris1
+  rotate: false
+  xy: 374, 9
+  size: 32, 28
+  orig: 32, 28
+  offset: 0, 0
+  index: -1
+29debris2
+  rotate: false
+  xy: 612, 46
+  size: 32, 28
+  orig: 32, 28
+  offset: 0, 0
+  index: -1
 2flan
   rotate: false
-  xy: 367, 19
+  xy: 774, 64
   size: 18, 18
   orig: 18, 18
+  offset: 0, 0
+  index: -1
+30debris3
+  rotate: false
+  xy: 646, 46
+  size: 32, 28
+  orig: 32, 28
   offset: 0, 0
   index: -1
 3stun
@@ -146,35 +181,35 @@ repeat: none
   index: -1
 4arrowpoint
   rotate: false
-  xy: 956, 86
+  xy: 909, 24
   size: 31, 40
   orig: 31, 40
   offset: 0, 0
   index: -1
 5arrowshaft
   rotate: false
-  xy: 806, 43
+  xy: 858, 43
   size: 31, 83
   orig: 31, 83
   offset: 0, 0
   index: -1
 6shield
   rotate: false
-  xy: 424, 2
+  xy: 476, 2
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 7sparkle
   rotate: false
-  xy: 476, 2
+  xy: 612, 76
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 8fire0
   rotate: false
-  xy: 768, 56
+  xy: 820, 56
   size: 36, 70
   orig: 36, 70
   offset: 0, 0
@@ -188,7 +223,7 @@ repeat: none
   index: -1
 berry
   rotate: false
-  xy: 922, 86
+  xy: 974, 86
   size: 32, 40
   orig: 32, 40
   offset: 0, 0
@@ -202,14 +237,14 @@ mint0
   index: -1
 mint1
   rotate: false
-  xy: 664, 76
+  xy: 716, 76
   size: 50, 20
   orig: 50, 20
   offset: 0, 0
   index: -1
 mint2
   rotate: false
-  xy: 664, 98
+  xy: 716, 98
   size: 58, 28
   orig: 58, 28
   offset: 0, 0

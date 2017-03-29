@@ -49,17 +49,25 @@ public class SandBoxLevel extends ALevel{
         TradersOfTheLastCarp.musicPlayer.play();
 
 
-        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
-        addActor(wallface);
+//        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
+//        addActor(wallface);
 
         ATrap arrow = new ArrowTrap(getAssetManager(), 500, 300);
         addActor(arrow);
 
+        ATrap boulder = new BoulderTrap(getAssetManager(), 1200, 300);
+        addActor(boulder);
+
+        ExitPortal wormhole = new ExitPortal(getAssetManager(), 100, 100);
+        addActor(wormhole);
+
         ATrigger trigger0 = new ButtonTrigger(getAssetManager(), 1000, 300);
         ATrigger trigger1 = new ButtonTrigger(getAssetManager(), 100, 300);
         trigger0.addTrap(arrow);
+        trigger0.addTrap(boulder);
         addActor(trigger0);
         trigger1.addTrap(arrow);
+        trigger1.addTrap(boulder);
         addActor(trigger1);
 
         endInit();
