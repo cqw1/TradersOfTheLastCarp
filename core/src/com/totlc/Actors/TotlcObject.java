@@ -272,7 +272,7 @@ public abstract class TotlcObject extends Actor {
     }
 
     public boolean isInMotion() {
-        return vel.getX() == 0 && vel.getY() == 0;
+        return !(vel.getX() == 0 && vel.getY() == 0);
     }
 
     public void returnIntoBounds(float formerX, float formerY) {

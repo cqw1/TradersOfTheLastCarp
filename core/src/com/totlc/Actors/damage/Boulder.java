@@ -20,7 +20,7 @@ import com.totlc.TradersOfTheLastCarp;
 
 import java.awt.*;
 
-public class Boulder extends  Damage{
+public class Boulder extends Damage{
 
     private float destinationHeight;
     private boolean rolling = false;
