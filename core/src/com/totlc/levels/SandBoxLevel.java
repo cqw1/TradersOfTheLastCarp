@@ -45,9 +45,8 @@ public class SandBoxLevel extends ALevel{
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("SandBox");
 
-        TradersOfTheLastCarp.musicPlayer.setSong("test0");
-        TradersOfTheLastCarp.musicPlayer.play();
-
+//        TradersOfTheLastCarp.musicPlayer.setSong("test0");
+//        TradersOfTheLastCarp.musicPlayer.play();
 
         AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
         addActor(wallface);

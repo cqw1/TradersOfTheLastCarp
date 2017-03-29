@@ -131,6 +131,7 @@ public enum AssetList {
     WORMHOLE_EFFECT("effects/wormhole.particle", null),
     DEBRIS_TRAIL("effects/debristrail.particle", null),
     DEBRIS_DROP("effects/debrisdrop.particle", null),
+    BOULDER_BREAK("effects/boulderbreak.particle", null),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas", TextureAtlas.class),

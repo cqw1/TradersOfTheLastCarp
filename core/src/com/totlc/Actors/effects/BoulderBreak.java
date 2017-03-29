@@ -9,33 +9,35 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.AssetList;
 
-public class RockFall extends AEffect{
+public class BoulderBreak extends AEffect{
+
+
     // Texture information
     private TextureAtlas particleAtlas;
-    private ParticleEffect rocks;
+    private ParticleEffect debris;
 
-    public RockFall(AssetManager assetManager, float x, float y) {
+    public BoulderBreak(AssetManager assetManager, float x, float y) {
         this(assetManager, new Rectangle(x, y, 1, 1));
         loadAssets(assetManager);
-        rocks.setPosition(getX(), getY());
+        debris.setPosition(getX(), getY());
     }
 
-    public RockFall(AssetManager assetManager, Rectangle r) {
+    public BoulderBreak(AssetManager assetManager, Rectangle r) {
         super(assetManager, r);
     }
 
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
-        rocks.setPosition(getX(), getY());
-        if(rocks.isComplete()){
+        debris.setPosition(getX(), getY());
+        if(debris.isComplete()){
             remove();
         }
     }
 
     @Override
     public void draw(Batch batch, float alpha) {
-        rocks.draw(batch, Gdx.graphics.getDeltaTime());
+        debris.draw(batch, Gdx.graphics.getDeltaTime());
     }
 
     @Override
@@ -50,8 +52,8 @@ public class RockFall extends AEffect{
 
     private void loadAssets(AssetManager assetManager){
         particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
-        rocks = new ParticleEffect();
-        rocks.load(Gdx.files.internal(AssetList.DEBRIS_DROP.toString()), particleAtlas);
-        rocks.start();
+        debris = new ParticleEffect();
+        debris.load(Gdx.files.internal(AssetList.BOULDER_BREAK.toString()), particleAtlas);
+        debris.start();
     }
 }

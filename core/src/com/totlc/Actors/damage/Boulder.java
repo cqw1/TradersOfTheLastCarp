@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Player;
+import com.totlc.Actors.effects.BoulderBreak;
 import com.totlc.Actors.effects.Impact;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.terrain.AWall;
@@ -27,6 +28,7 @@ public class Boulder extends  Damage{
 
     private TextureAtlas particleAtlas;
     private ParticleEffect debris;
+    Sound rollingSound;
 
     public Boulder(AssetManager assetManager, float x, float y, int attack, int damageType) {
         this(assetManager, new Rectangle(x, y, 300, 300), attack, damageType);
@@ -45,6 +47,8 @@ public class Boulder extends  Damage{
         debris = new ParticleEffect();
         debris.load(Gdx.files.internal(AssetList.DEBRIS_TRAIL.toString()), particleAtlas);
         debris.start();
+
+        rollingSound = Gdx.audio.newSound(Gdx.files.internal("sounds/rumble0.wav"));
     }
 
     @Override
@@ -62,6 +66,7 @@ public class Boulder extends  Damage{
             rolling = true;
             Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bouldercrash0.mp3"));
             impactSound.play(0.5f);
+            rollingSound.loop(1f);
         }
         debris.setPosition((float)getCenter().getX(), getY() + 10);
     }
@@ -78,20 +83,26 @@ public class Boulder extends  Damage{
             getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
         } else if (otherActor instanceof AEnemy){
             if (((AEnemy) otherActor).isInvincible()){
-                Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bouldercrash1.mp3"));
-                impactSound.play(0.5f);
+                breakEffect();
                 return true;
             } else{
                 getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
             }
         } else if (otherActor instanceof AWall || otherActor instanceof Rock){
             if (rolling){
-                Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bouldercrash1.mp3"));
-                impactSound.play(0.5f);
+                breakEffect();
                 return true;
             }
         }
         return false;
+    }
+
+    private void breakEffect(){
+        Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bouldercrash1.mp3"));
+        impactSound.play(0.5f);
+        rollingSound.stop();
+        rollingSound.dispose();
+        getStage().addActor(new BoulderBreak(getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY()));
     }
 
     @Override
