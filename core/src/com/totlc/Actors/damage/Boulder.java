@@ -2,6 +2,7 @@ package com.totlc.Actors.damage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
@@ -54,11 +55,13 @@ public class Boulder extends  Damage{
         } else if (getVel().getX() < 0){
             angle += 3;
         }
-        if(getY() <= destinationHeight){
+        if(getY() <= destinationHeight && !rolling){
             // Start rolling.
             setVel(new Point(-300, 0));
             getHitBox().setScale(0.8f, 0.7f);
             rolling = true;
+            Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bouldercrash0.mp3"));
+            impactSound.play(0.5f);
         }
         debris.setPosition((float)getCenter().getX(), getY() + 10);
     }
@@ -75,12 +78,16 @@ public class Boulder extends  Damage{
             getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
         } else if (otherActor instanceof AEnemy){
             if (((AEnemy) otherActor).isInvincible()){
+                Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bouldercrash1.mp3"));
+                impactSound.play(0.5f);
                 return true;
             } else{
                 getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
             }
         } else if (otherActor instanceof AWall || otherActor instanceof Rock){
             if (rolling){
+                Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bouldercrash1.mp3"));
+                impactSound.play(0.5f);
                 return true;
             }
         }

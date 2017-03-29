@@ -10,8 +10,8 @@ import com.totlc.TradersOfTheLastCarp;
 public class BoulderTrap extends ATrap {
 
     // Boulder trap has no physical form.
-    private static float width = 8;
-    private static float height = 8;
+    private static float width = 50;
+    private static float height = 50;
     private static long delay = 2000;
 
     public BoulderTrap(AssetManager assetManager, float x, float y) {
@@ -31,7 +31,7 @@ public class BoulderTrap extends ATrap {
     public void setup() {
         if (!isSetup()) {
             // If someone's already triggered this trap
-            getStage().addActor(new Exclamation(getAssetManager(), (float) getHitBoxCenter().getX() + getHitBoxWidth() / 2, (float) getHitBoxCenter().getY() + getHitBoxHeight() / 3));
+            getStage().addActor(new Exclamation(getAssetManager(), (float) getHitBoxCenter().getX() + getHitBoxWidth(), TradersOfTheLastCarp.CONFIG_HEIGHT - 100));
             getStage().addActor(new RockFall(getAssetManager(), getX(), TradersOfTheLastCarp.CONFIG_HEIGHT));
             setStartTime(System.currentTimeMillis());
             setSetup(true);

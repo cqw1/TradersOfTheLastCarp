@@ -2,6 +2,7 @@ package com.totlc.Actors.traps;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -35,6 +36,8 @@ public class ExitPortal extends ATrap {
         wormHole = new ParticleEffect();
         wormHole.load(Gdx.files.internal(AssetList.WORMHOLE_EFFECT.toString()), particleAtlas);
         wormHole.start();
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/drone0.mp3"));
+        sound.play(1f);
     }
 
     public ExitPortal(AssetManager assetManager, float x, float y, Directionality d) {

@@ -10,7 +10,7 @@ max: 3
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 0.0
+highMin: 1.0
 highMax: 3.0
 relative: false
 scalingCount: 1
@@ -165,7 +165,7 @@ max: 3
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 0.0
+highMin: 1.0
 highMax: 3.0
 relative: false
 scalingCount: 1
@@ -316,7 +316,7 @@ max: 3
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 0.0
+highMin: 1.0
 highMax: 3.0
 relative: false
 scalingCount: 1
