@@ -17,7 +17,7 @@ public class SpiderRepository extends ATrap  {
     private int textureNum;
     private TextureAtlas trapTextureAtlas;
     private static int maxNumSpiders = 10;
-    private static int spidersGenerated = 0;
+    private int spidersGenerated = 0;
     private static Random randomNum = new Random();
     private static float width = 128;
     private static float height = 140;

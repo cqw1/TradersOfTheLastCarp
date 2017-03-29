@@ -160,8 +160,8 @@ public class LevelSelect extends ALevel {
         grid[1][5] = new LevelOptionInfo(null, Level12.class, Util.parseLevelString(AssetList.LEVEL12_TMX.toString()));
 
         grid[2][0] = new LevelOptionInfo(null, Level13.class, Util.parseLevelString(AssetList.LEVEL13_TMX.toString()));
-        grid[2][1] = new LevelOptionInfo(null, null, "TODO");
-        grid[2][2] = new LevelOptionInfo(null, null, "TODO");
+        grid[2][1] = new LevelOptionInfo(null, Level14.class, Util.parseLevelString(AssetList.LEVEL14_TMX.toString()));
+        grid[2][2] = new LevelOptionInfo(null, Level15.class, Util.parseLevelString(AssetList.LEVEL15_TMX.toString()));
         grid[2][3] = new LevelOptionInfo(null, null, "TODO");
         grid[2][4] = new LevelOptionInfo(null, null, "TODO");
         grid[2][5] = new LevelOptionInfo(null, null, "TODO");
