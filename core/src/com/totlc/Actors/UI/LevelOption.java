@@ -50,8 +50,6 @@ public abstract class LevelOption extends Actor {
                 y,
                 0,
                 0,
-//                (float)assetManager.get(asset, Texture.class).getWidth()/2,
-//                (float)assetManager.get(asset, Texture.class).getHeight()/2,
                 (float)assetManager.get(asset, Texture.class).getWidth(),
                 (float)assetManager.get(asset, Texture.class).getHeight(),
                 0.5f,
@@ -65,6 +63,7 @@ public abstract class LevelOption extends Actor {
                 false
         );
 
+        font.getData().setScale(1.0f);
         font.draw(batch, nameString, x, y + 90);
     }
 
