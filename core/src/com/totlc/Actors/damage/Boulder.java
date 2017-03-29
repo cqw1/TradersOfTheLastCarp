@@ -57,7 +57,7 @@ public class Boulder extends  Damage{
         if(getY() <= destinationHeight){
             // Start rolling.
             setVel(new Point(-300, 0));
-            getHitBox().setScale(1, 0.7f);
+            getHitBox().setScale(0.8f, 0.7f);
             rolling = true;
         }
         debris.setPosition((float)getCenter().getX(), getY() + 10);

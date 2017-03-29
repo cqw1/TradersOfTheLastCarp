@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.damage.Boulder;
 import com.totlc.Actors.effects.Exclamation;
 import com.totlc.Actors.effects.RockFall;
-import com.totlc.Actors.terrain.Rock;
 import com.totlc.TradersOfTheLastCarp;
 
 public class BoulderTrap extends ATrap {
