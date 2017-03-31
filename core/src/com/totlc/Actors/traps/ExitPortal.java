@@ -58,15 +58,16 @@ public class ExitPortal extends ATrap {
     public void activate() {
         getTargetActor().moveAbs(getX(), getY());
         Point2D vel = getTargetActor().getVel();
+        double largestVector = Math.max(Math.abs(vel.getX()), Math.abs(vel.getY()));
         if (modifiedDirection != null) {
             if (modifiedDirection.isFacingDown()) {
-
+                vel.setLocation(0, -1 * largestVector);
             } else if (modifiedDirection.isFacingLeft()) {
-
+                vel.setLocation(-1 * largestVector, 0);
             } else if (modifiedDirection.isFacingRight()) {
-
+                vel.setLocation(largestVector, 0);
             } else if (modifiedDirection.isFacingUp()) {
-
+                vel.setLocation(0, largestVector);
             }
         }
     }
