@@ -11,27 +11,27 @@ public class TutorialLevel extends ALevel {
     private TextBox textBox;
 
     public TutorialLevel(AssetManager assetManager) {
-        super(assetManager);
+        super(assetManager, ObjectiveVerifier.Objectives.SURVIVE);
+        setTimeLimit(10000);
         setNextLevel(Level01.class);
+        setNameString("Tutorial");
 
-        textBox = new TextBox(assetManager, "testing text box", 0, 1, 10, false);
-    }
-
-    public static ALevel make(AssetManager assetManager) {
-        return new TutorialLevel(assetManager);
+        textBox = new TextBox(assetManager, "Come find me if you want to escape!", 0, 1, 10, false);
     }
 
     public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         addActor(new TutorialInfo(getAssetManager()));
         addActor(textBox);
+
+        endInit();
     }
 
-    @Override
-    public void act(float delta) {
-        // Let the actors update themselves
-        for (Actor a : getActors()) {
-            a.act(delta);
-        }
-    }
+//    @Override
+//    public void act(float delta) {
+//        // Let the actors update themselves
+//        for (Actor a : getActors()) {
+//            a.act(delta);
+//        }
+//    }
 }

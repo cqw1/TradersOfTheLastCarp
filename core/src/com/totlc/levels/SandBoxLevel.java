@@ -42,9 +42,6 @@ public class SandBoxLevel extends ALevel{
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("SandBox");
 
-//        TradersOfTheLastCarp.musicPlayer.setSong("test0");
-//        TradersOfTheLastCarp.musicPlayer.play();
-
         AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
         addActor(wallface);
 
@@ -53,7 +50,7 @@ public class SandBoxLevel extends ALevel{
 
         EntrancePortal enter = new EntrancePortal(getAssetManager(), 500, 300);
 
-        ExitPortal wormhole = new ExitPortal(getAssetManager(), 900, 100);
+        ExitPortal wormhole = new ExitPortal(getAssetManager(), 100, 600, Directionality.RIGHT);
         addActor(wormhole);
 
         enter.addTrap(wormhole);
