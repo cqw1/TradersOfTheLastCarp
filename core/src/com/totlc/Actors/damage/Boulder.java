@@ -80,7 +80,9 @@ public class Boulder extends Damage{
     @Override
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player) {
-            getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
+            if (!((Player)otherActor).isInvincible()) {
+                getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
+            }
         } else if (otherActor instanceof AEnemy){
             if (((AEnemy) otherActor).isInvincible()){
                 breakEffect();
