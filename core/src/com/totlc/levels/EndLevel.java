@@ -34,7 +34,6 @@ public class EndLevel extends ALevel {
                 CONFIG_HEIGHT / 4 - CrystalCarp.HEIGHT / 2,
                 1,
                 0.5f,
-                false,
                 1f
         );
         carp.setVoice(AssetList.FINE.toString());

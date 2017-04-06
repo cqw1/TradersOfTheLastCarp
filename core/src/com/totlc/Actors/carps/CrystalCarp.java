@@ -38,15 +38,13 @@ public class CrystalCarp extends Actor {
     // Seconds to display the tooltip for
     private float duration; // in seconds
 
-    // Boolean flag for repeating animation.
-    private boolean loop;
 
     private float scale;
 
     // Optional sound to play when the carp talks.
     private Sound sound;
 
-    public CrystalCarp(AssetManager assetManager, float x, float y, float delay, float talkTime, boolean loop, float scale) {
+    public CrystalCarp(AssetManager assetManager, float x, float y, float delay, float talkTime, float scale) {
         setX(x);
         setY(y);
 
@@ -84,9 +82,7 @@ public class CrystalCarp extends Actor {
             // Start commenting out here to stop the turn/talk switching animation.
             if (status == TALKING) {
                 if (animationTime > talkTime) {
-                    if (!loop) {
-                        setDoneTalking(true);
-                    }
+                    setDoneTalking(true);
                     animationTime = 0;
                     currentAnimation = carpTurnAnimation;
                     currentAnimation.setPlayMode(Animation.PlayMode.REVERSED);
