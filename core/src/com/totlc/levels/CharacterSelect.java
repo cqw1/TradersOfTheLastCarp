@@ -139,7 +139,7 @@ public class CharacterSelect extends ALevel{
                 if (System.currentTimeMillis() % 1000 <= 200) {
                     return;
                 }
-                batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
+                batch.draw(getAsset(), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
             }
 
             @Override
@@ -159,7 +159,7 @@ public class CharacterSelect extends ALevel{
                 if (System.currentTimeMillis() % 1000 <= 200) {
                     return;
                 }
-                batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
+                batch.draw(getAsset(), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
             }
 
             @Override
@@ -171,18 +171,16 @@ public class CharacterSelect extends ALevel{
         escPrompt.update();
         addActor(escPrompt);
 
-        names = new ButtonPrompt(assetManager, AssetList.NAME_PLATES.toString(), TradersOfTheLastCarp.CONFIG_WIDTH / 2 - 375, 80) {
+        names = new ButtonPrompt(assetManager, assetManager.get(AssetList.NAME_PLATES.toString(), TextureAtlas.class), TradersOfTheLastCarp.CONFIG_WIDTH / 2 - 375, 80) {
             private float baseY = getY();
 
             @Override
             public void draw(Batch batch, float alpha) {
-                batch.draw(getAssetManager().get(this.asset, TextureAtlas.class).getRegions().get(currentlySelected), getX(), getY(), 750, 300);
+                batch.draw(getAssetAtlas().getRegions().get(currentlySelected), getX(), getY(), 750, 300);
             }
 
             @Override
-            public void update() {
-//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
-            }
+            public void update() { }
         };
 
         names.update();

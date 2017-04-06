@@ -15,7 +15,9 @@ import com.totlc.levels.ALevel;
 public class Inventory extends Actor{
 
     // Texture information.
-    private Texture uiComponent, itemIcon;
+    private Texture uiComponent;
+
+    private TextureRegion itemIcon;
     private TextureRegion scoreIcon;
     private BitmapFont font;
     GlyphLayout layout = new GlyphLayout();
@@ -31,7 +33,8 @@ public class Inventory extends Actor{
         setHeight(128);
         setPlayer(player);
         uiComponent = assetManager.get(AssetList.INVENTORY_BOX.toString());
-        itemIcon = null;
+        itemIcon = assetManager.get(AssetList.ITEM_PACK.toString(), TextureAtlas.class).findRegion("0Key");
+        itemIcon.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         TextureAtlas scoreAtlas = assetManager.get(AssetList.GOLDFISH_UI.toString());
         scoreIcon = scoreAtlas.getRegions().get(0);
         scoreIcon.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -41,8 +44,10 @@ public class Inventory extends Actor{
 
     public void draw(Batch batch, float alpha){
         batch.draw(uiComponent, getX(), getY());
-        if (itemIcon != null){
-            batch.draw(itemIcon, getX(), getY());
+        if (getPlayer().hasKey()){
+            batch.draw(itemIcon, getX() + getWidth() * 0.5f - itemIcon.getRegionWidth() * 0.5f, getY(),
+                    itemIcon.getRegionWidth() * 0.5f, itemIcon.getRegionHeight() * 0.5f,
+                    itemIcon.getRegionWidth(), itemIcon.getRegionHeight(), 0.5f, 0.5f, 0);
         }
         drawScore(batch, alpha);
     }
