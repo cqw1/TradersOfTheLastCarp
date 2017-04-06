@@ -22,9 +22,9 @@ public class TutorialInfo extends Actor {
     public TutorialInfo(AssetManager assetManager) {
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-        moveInfo = new MoveInfo(assetManager, font, 1.2f, CONFIG_WIDTH / 4, CONFIG_HEIGHT * 7/8);
-        whipInfo = new WhipInfo(assetManager, font, 1.2f, CONFIG_WIDTH / 2, CONFIG_HEIGHT * 7/8);
-        objectiveInfo = new ObjectiveInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 3/4, CONFIG_HEIGHT * 7/8);
+        moveInfo = new MoveInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 0.25f, CONFIG_HEIGHT * 0.7f);
+        whipInfo = new WhipInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 0.475f, CONFIG_HEIGHT * 0.7f);
+        objectiveInfo = new ObjectiveInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 0.75f, CONFIG_HEIGHT * 0.7f);
     }
 
     @Override
@@ -37,14 +37,20 @@ public class TutorialInfo extends Actor {
 
 class MoveInfo {
     private BitmapFont font;
+    private float fontScale;
+
     private TextureAtlas arrowKeys;
     private int arrowKeyWidth;
     private int arrowKeyHeight;
+    private float arrowKeyWidthScaled;
+    private float arrowKeyHeightScaled;
     private float arrowKeyScale = 0.5f;
 
-    private int verticalPadding = 130;
-    private int horizontalPadding = 5;
-    private float fontScale;
+    // Padding for the text so it centers below the icons.
+    private int verticalPadding = 100;
+    private int horizontalPadding = 27;
+
+    // Draw the middle of the arrow keys at x, y
     private float x;
     private float y;
 
@@ -57,13 +63,15 @@ class MoveInfo {
         arrowKeys = assetManager.get(AssetList.ARROW_KEYS.toString(), TextureAtlas.class);
         arrowKeyWidth = arrowKeys.getRegions().get(0).originalWidth;
         arrowKeyHeight = arrowKeys.getRegions().get(0).originalHeight;
+        arrowKeyWidthScaled = arrowKeys.getRegions().get(0).originalWidth * arrowKeyScale;
+        arrowKeyHeightScaled = arrowKeys.getRegions().get(0).originalHeight * arrowKeyScale;
     }
 
     public void draw(Batch batch) {
         batch.draw(
                 arrowKeys.findRegion("key_left"),
-                x,
-                y - (arrowKeys.getRegions().get(0).originalHeight),
+                x - (1.5f * arrowKeyWidthScaled),
+                y - arrowKeyHeightScaled,
                 0,
                 0,
                 arrowKeyWidth,
@@ -75,8 +83,8 @@ class MoveInfo {
 
         batch.draw(
                 arrowKeys.findRegion("key_up"),
-                x + 1 + arrowKeyWidth * arrowKeyScale,
-                y - (arrowKeys.getRegions().get(0).originalHeight  + 10) + arrowKeyHeight * arrowKeyScale,
+                x + 1 - (0.5f  * arrowKeyWidthScaled),
+                y - 5,
                 0,
                 0,
                 arrowKeyWidth,
@@ -88,8 +96,8 @@ class MoveInfo {
 
         batch.draw(
                 arrowKeys.findRegion("key_bottom"),
-                x + arrowKeyWidth * arrowKeyScale,
-                y - (arrowKeys.getRegions().get(0).originalHeight),
+                x - (0.5f * arrowKeyWidthScaled),
+                y - arrowKeyHeightScaled,
                 0,
                 0,
                 arrowKeyWidth,
@@ -101,8 +109,8 @@ class MoveInfo {
 
         batch.draw(
                 arrowKeys.findRegion("key_right"),
-                x + (2 * arrowKeyWidth * arrowKeyScale),
-                y - (arrowKeys.getRegions().get(0).originalHeight),
+                x + (0.5f * arrowKeyWidthScaled),
+                y - arrowKeyHeightScaled,
                 0,
                 0,
                 arrowKeyWidth,
@@ -113,7 +121,7 @@ class MoveInfo {
         );
 
         font.getData().setScale(fontScale);
-        font.draw(batch, "MOVE", x - 2 + (arrowKeyWidth) * arrowKeyScale + horizontalPadding, y - verticalPadding);
+        font.draw(batch, "MOVE", x - horizontalPadding, y - verticalPadding);
 
     }
 
@@ -121,14 +129,20 @@ class MoveInfo {
 
 class WhipInfo {
     private BitmapFont font;
+    private float fontScale;
+
     private TextureAtlas arrowKeys;
     private int arrowKeyWidth;
     private int arrowKeyHeight;
+    private float arrowKeyWidthScaled;
+    private float arrowKeyHeightScaled;
     private float arrowKeyScale = 0.5f;
 
-    private int verticalPadding = 130;
-    private int horizontalPadding = 5;
-    private float fontScale;
+    // Padding for the text so it centers below the icons.
+    private int verticalPadding = 100;
+    private int horizontalPadding = 22;
+
+    // Draw the middle of the icon at x, y
     private float x;
     private float y;
 
@@ -141,13 +155,15 @@ class WhipInfo {
         arrowKeys = assetManager.get(AssetList.ARROW_KEYS.toString(), TextureAtlas.class);
         arrowKeyWidth = arrowKeys.getRegions().get(0).originalWidth;
         arrowKeyHeight = arrowKeys.getRegions().get(0).originalHeight;
+        arrowKeyWidthScaled = arrowKeys.getRegions().get(0).originalWidth * arrowKeyScale;
+        arrowKeyHeightScaled = arrowKeys.getRegions().get(0).originalHeight * arrowKeyScale;
     }
 
     public void draw(Batch batch) {
         batch.draw(
                 arrowKeys.findRegion("space"),
-                x + 50,
-                y - (arrowKeys.getRegions().get(0).originalHeight),
+                x - (arrowKeyWidthScaled * 0.5f),
+                y - (arrowKeyHeightScaled * 0.5f),
                 0,
                 0,
                 arrowKeyWidth,
@@ -158,7 +174,7 @@ class WhipInfo {
         );
 
         font.getData().setScale(fontScale);
-        font.draw(batch, "WHIP", x + 50 + horizontalPadding, y - verticalPadding);
+        font.draw(batch, "WHIP", x - horizontalPadding, y - verticalPadding);
 
     }
 
@@ -166,11 +182,20 @@ class WhipInfo {
 
 class ObjectiveInfo {
     private BitmapFont font;
+    private float fontScale;
+
     private Texture arrow;
     private float arrowScale = 0.5f;
-    private int verticalPadding = 130;
+    private int arrowWidth;
+    private int arrowHeight;
+    private float arrowWidthScaled;
+    private float arrowHeightScaled;
 
-    private float fontScale;
+    // Padding for the text so it centers below the icons.
+    private int verticalPadding = 100;
+    private int horizontalPadding = 130;
+
+    // Draw the middle of the icon at x, y
     private float x;
     private float y;
 
@@ -181,30 +206,34 @@ class ObjectiveInfo {
         this.y = y;
 
         arrow = assetManager.get(AssetList.ARROW.toString(), Texture.class);
+        arrowWidth = arrow.getWidth();
+        arrowHeight = arrow.getHeight();
+        arrowWidthScaled = arrowWidth * arrowScale;
+        arrowHeightScaled = arrowHeight * arrowScale;
     }
 
     public void draw(Batch batch) {
         batch.draw(
                 arrow,
-                x + arrow.getWidth() / 4,
-                y - arrow.getHeight() / 2,
+                x - (arrowWidthScaled * 0.5f),
+                y - (arrowHeightScaled * 0.5f),
                 0,
                 0,
-                arrow.getWidth(),
-                arrow.getHeight(),
+                arrowWidth,
+                arrowHeight,
                 arrowScale,
                 arrowScale,
                 0,
                 0,
                 0,
-                arrow.getWidth(),
-                arrow.getHeight(),
+                arrowWidth,
+                arrowHeight,
                 false,
                 false
         );
 
         font.getData().setScale(fontScale);
-        font.draw(batch, "CHECK LEVEL OBJECTIVE", x, y - verticalPadding);
+        font.draw(batch, "CHECK LEVEL OBJECTIVE", x - horizontalPadding, y - verticalPadding);
 
     }
 
