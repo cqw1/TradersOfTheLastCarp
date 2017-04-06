@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.damage.Damage;
+import com.totlc.Actors.effects.Dust;
 import com.totlc.Actors.effects.FlanParts;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.weapons.Whip;
@@ -82,6 +83,7 @@ public class WallfacedProtector extends AEnemy {
             }
         }
         setInvincible(false);
+        drawDustTrail(10);
     }
 
     @Override

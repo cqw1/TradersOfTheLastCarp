@@ -24,19 +24,10 @@ public class FireStream extends Damage {
     private float yOffset = 0;
     private static int damage = 1;
     private static int streamWidth = 50;
+    private float hitboxScale = 0;
 
     // Particle information.
     private long range;
-
-    public FireStream(AssetManager assetManager, TotlcObject actor, float x, float y, long range, int damageType) {
-        super(assetManager, new Rectangle(x, y, range / 2, streamWidth), 1, damageType);
-        setIsFacing(Directionality.RIGHT);
-        setDamageType(damageType);
-        setRange(range);
-        setFollowMe(actor);
-        loadAssets(assetManager);
-        fire.setPosition(getX(), getY());
-    }
 
     public FireStream(AssetManager assetManager, TotlcObject actor, float x, float y, long range, int damageType, Directionality facing) {
         super(assetManager, new Rectangle(x, y, range / 2, streamWidth), 1, damageType);
@@ -46,6 +37,15 @@ public class FireStream extends Damage {
         setFollowMe(actor);
         loadAssets(assetManager);
         fire.setPosition(getX(), getY());
+        if (getIsFacing().isFacingRight() || getIsFacing().isFacingLeft()){
+            getHitBox().setScale(0, 1);
+        } else{
+            getHitBox().setScale(1, 0);
+        }
+    }
+
+    public FireStream(AssetManager assetManager, TotlcObject actor, float x, float y, long range, int damageType) {
+        this(assetManager, actor, x, y, range, damageType, Directionality.RIGHT );
     }
 
     @Override
@@ -56,6 +56,15 @@ public class FireStream extends Damage {
         increaseAnimationTime(deltaTime);
         moveRelative();
         fire.setPosition(getX(), getY());
+        if (hitboxScale < 1) {
+            hitboxScale += 0.03;
+            if (getIsFacing().isFacingRight() || getIsFacing().isFacingLeft()){
+                getHitBox().setScale(hitboxScale, 1);
+            } else{
+                getHitBox().setScale(1, hitboxScale);
+            }
+        }
+
         if (fire.isComplete()){
             remove();
         }

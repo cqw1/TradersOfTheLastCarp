@@ -60,7 +60,7 @@ timeline0: 0.0
 - Scale - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 32.0
+highMin: 64.0
 highMax: 96.0
 relative: false
 scalingCount: 2
@@ -374,7 +374,7 @@ timeline0: 0.0
 - Scale - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 32.0
+highMin: 64.0
 highMax: 80.0
 relative: false
 scalingCount: 2
@@ -632,16 +632,16 @@ small0
 - Delay -
 active: false
 - Duration - 
-lowMin: 10.0
-lowMax: 10.0
+lowMin: 100.0
+lowMax: 100.0
 - Count - 
 min: 0
 max: 200
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 12.0
-highMax: 24.0
+highMin: 20.0
+highMax: 36.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -691,7 +691,7 @@ timeline0: 0.0
 lowMin: 0.0
 lowMax: 0.0
 highMin: 8.0
-highMax: 16.0
+highMax: 32.0
 relative: false
 scalingCount: 2
 scaling0: 1.0
@@ -789,16 +789,16 @@ small1
 - Delay -
 active: false
 - Duration - 
-lowMin: 10.0
-lowMax: 10.0
+lowMin: 100.0
+lowMax: 100.0
 - Count - 
 min: 0
 max: 200
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 12.0
-highMax: 24.0
+highMin: 20.0
+highMax: 36.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -848,7 +848,7 @@ timeline0: 0.0
 lowMin: 0.0
 lowMax: 0.0
 highMin: 8.0
-highMax: 16.0
+highMax: 32.0
 relative: false
 scalingCount: 2
 scaling0: 1.0

@@ -588,34 +588,13 @@ public abstract class ALevel extends Stage {
         addActor(nextStage.getPhysicalBlock());
         nextStage.getPhysicalBlock().setZIndex(terrainIndex);
 
-        AWall lw = new AWall(assetManager, new Rectangle(0, 0, wallSize, CONFIG_HEIGHT)) {
-
-            public void draw(Batch batch, float delta) {
-                batch.draw((Texture) getAssetManager().get(AssetList.WALL_LEFT.toString()), getX(), getY(), getWidth(), getHeight());
-            }
-        };
+        AWall lw = new AWall(assetManager, new Rectangle(0, 0, wallSize, CONFIG_HEIGHT));
         // two separate walls for the exit
-        AWall rwBot = new AWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY())) {
-            public void draw(Batch batch, float delta) {
-                batch.draw((Texture) getAssetManager().get(AssetList.WALL_RIGHT.toString()), getX(), getY(), getWidth(), getHeight());
-            }
-        };
+        AWall rwBot = new AWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, 0, wallSize, nextStage.getY()));
         AWall rwTop = new AWall(assetManager, new Rectangle(CONFIG_WIDTH - wallSize, nextStage.getY() + nextStage.getHeight(),
-                wallSize, CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight())) {
-            public void draw(Batch batch, float delta) {
-                batch.draw((Texture) getAssetManager().get(AssetList.WALL_RIGHT.toString()), getX(), getY(), getWidth(), getHeight());
-            }
-        };
-        AWall tw = new AWall(assetManager, new Rectangle(0, CONFIG_HEIGHT - wallSize, CONFIG_WIDTH, wallSize)) {
-            public void draw(Batch batch, float delta) {
-                batch.draw((Texture) getAssetManager().get(AssetList.WALL_TOP.toString()), getX(), getY(), getWidth(), getHeight());
-            }
-        };
-        AWall bw = new AWall(assetManager, new Rectangle(0, 0, CONFIG_WIDTH, wallSize)) {
-            public void draw(Batch batch, float delta) {
-                batch.draw((Texture) getAssetManager().get(AssetList.WALL_BOTTOM.toString()), getX(), getY(), getWidth(), getHeight());
-            }
-        };
+                wallSize, CONFIG_HEIGHT - nextStage.getY() + nextStage.getHeight()));
+        AWall tw = new AWall(assetManager, new Rectangle(0, CONFIG_HEIGHT - wallSize, CONFIG_WIDTH, wallSize));
+        AWall bw = new AWall(assetManager, new Rectangle(0, 0, CONFIG_WIDTH, wallSize));
 
         // add actors
         addActor(lw);

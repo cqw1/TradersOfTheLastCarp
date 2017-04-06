@@ -75,7 +75,6 @@ public class Door extends AWall {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        batch.draw(getAssetManager().get(AssetList.WALL_RIGHT.toString(), Texture.class), getX(), getY(), getWidth(), getHeight());
         batch.draw(doorAnimation.getKeyFrame(getAnimationTime()), getX() + xOffset, getY() + yOffset, textureWidth / 2, textureHeight / 2, textureWidth, textureHeight, scaleX, scaleY, rotation);
     }
 }

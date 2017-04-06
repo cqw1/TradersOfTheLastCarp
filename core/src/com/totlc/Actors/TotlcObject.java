@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.effects.Dust;
 import com.totlc.Actors.terrain.AWall;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
@@ -300,6 +301,14 @@ public abstract class TotlcObject extends Actor {
     public boolean isOutOfBounds() {
         return getX() < 0 || getX() + WIDTH > TradersOfTheLastCarp.CONFIG_WIDTH ||
                 getY() < 0 || getY() + HEIGHT > TradersOfTheLastCarp.CONFIG_HEIGHT;
+    }
+
+    public void drawDustTrail(int skip){
+        if(isInMotion() && System.currentTimeMillis() % skip == 0){
+            Dust dust = new Dust(getAssetManager(), (float)getHitBoxCenter().getX(), getY());
+            getStage().addActor(dust);
+            dust.setZIndex(getZIndex() - 1);
+        }
     }
 
     public boolean assetsLoaded() {

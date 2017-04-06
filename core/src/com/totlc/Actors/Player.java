@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.damage.Damage;
+import com.totlc.Actors.effects.Dust;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.items.Key;
 import com.totlc.Actors.terrain.AWall;
@@ -166,6 +167,7 @@ public class Player extends Character {
         setAcc(getNewAcceleration());
         updateVelocity();
         moveUnit(deltaTime);
+        drawDustTrail(5);
         returnIntoBounds(formerX, formerY);
     }
 

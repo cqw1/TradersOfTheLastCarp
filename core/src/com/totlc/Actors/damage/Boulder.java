@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -24,6 +25,7 @@ public class Boulder extends Damage{
 
     private float destinationHeight;
     private boolean rolling = false;
+    private boolean removeFlag = false;
     private float angle = 0;
 
     private TextureAtlas particleAtlas;
@@ -73,8 +75,10 @@ public class Boulder extends Damage{
 
     @Override
     public void draw(Batch batch, float alpha) {
-        batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), angle, 0, 0, 300, 300, false, false);
         debris.draw(batch, Gdx.graphics.getDeltaTime());
+        if (!removeFlag) {
+            batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), angle, 0, 0, 300, 300, false, false);
+        }
     }
 
     @Override
@@ -84,14 +88,12 @@ public class Boulder extends Damage{
         } else if (otherActor instanceof AEnemy){
             if (((AEnemy) otherActor).isInvincible()){
                 breakEffect();
-                return true;
             } else{
                 getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
             }
         } else if (otherActor instanceof AWall || otherActor instanceof Rock){
             if (rolling){
                 breakEffect();
-                return true;
             }
         }
         return false;
@@ -103,6 +105,19 @@ public class Boulder extends Damage{
         rollingSound.stop();
         rollingSound.dispose();
         getStage().addActor(new BoulderBreak(getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY()));
+        allowRemoval();
+    }
+
+    private void allowRemoval(){
+        removeFlag = true;
+        getHitBox().setScale(0, 0);
+        for (ParticleEmitter p : debris.getEmitters()){
+            p.allowCompletion();
+        }
+    }
+
+    private boolean delayRemove() {
+       return debris.isComplete() && super.remove();
     }
 
     @Override

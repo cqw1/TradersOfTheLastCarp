@@ -42,9 +42,6 @@ public class SandBoxLevel extends ALevel{
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("SandBox");
 
-        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
-        addActor(wallface);
-
         ATrap boulder = new BoulderTrap(getAssetManager(), 1200, 300);
         addActor(boulder);
 
@@ -62,6 +59,9 @@ public class SandBoxLevel extends ALevel{
         addActor(trigger0);
         trigger1.addTrap(boulder);
         addActor(trigger1);
+
+        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
+        addActor(wallface);
 
         endInit();
     }

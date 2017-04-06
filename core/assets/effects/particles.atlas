@@ -1,278 +1,278 @@
 
 particles.png
-size: 1024,128
+size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 0regen
   rotate: false
-  xy: 712, 70
+  xy: 163, 98
   size: 52, 54
   orig: 52, 54
   offset: 0, 0
   index: -1
 10fireglow
   rotate: false
-  xy: 337, 6
+  xy: 424, 124
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 11firespark
   rotate: false
-  xy: 922, 39
+  xy: 321, 97
   size: 31, 55
   orig: 31, 55
   offset: 0, 0
   index: -1
 12embers0
   rotate: false
-  xy: 978, 69
+  xy: 2, 2
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 13embers1
   rotate: false
-  xy: 290, 6
+  xy: 890, 208
   size: 25, 16
   orig: 25, 16
   offset: 0, 0
   index: -1
 14embers2
   rotate: false
-  xy: 979, 99
+  xy: 29, 2
   size: 20, 25
   orig: 20, 25
   offset: 0, 0
   index: -1
 15smokelight
   rotate: false
-  xy: 2, 9
+  xy: 2, 139
   size: 124, 115
   orig: 124, 115
   offset: 0, 0
   index: -1
 16smokedark
   rotate: false
-  xy: 128, 16
+  xy: 2, 29
   size: 108, 108
   orig: 108, 108
   offset: 0, 0
   index: -1
 17waterdrop
   rotate: false
-  xy: 955, 51
+  xy: 994, 211
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
   index: -1
 18waterdropflip
   rotate: false
-  xy: 956, 6
+  xy: 198, 31
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
   index: -1
 19elec0
   rotate: false
-  xy: 763, 8
+  xy: 392, 105
   size: 30, 60
   orig: 30, 60
   offset: 0, 0
   index: -1
 1syrup
   rotate: false
-  xy: 978, 51
+  xy: 559, 166
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 20elec1
   rotate: false
-  xy: 711, 4
+  xy: 838, 206
   size: 50, 48
   orig: 50, 48
   offset: 0, 0
   index: -1
 21elec2
   rotate: false
-  xy: 766, 82
+  xy: 950, 212
   size: 42, 42
   orig: 42, 42
   offset: 0, 0
   index: -1
 22elec3
   rotate: false
-  xy: 795, 8
+  xy: 704, 182
   size: 54, 72
   orig: 54, 72
   offset: 0, 0
   index: -1
 23ring
   rotate: false
-  xy: 477, 16
+  xy: 760, 218
   size: 76, 36
   orig: 76, 36
   offset: 0, 0
   index: -1
 24streak
   rotate: false
-  xy: 1005, 28
+  xy: 112, 41
   size: 16, 96
   orig: 16, 96
   offset: 0, 0
   index: -1
 25glowparticle
   rotate: false
-  xy: 128, 3
+  xy: 332, 154
   size: 11, 11
   orig: 11, 11
   offset: 0, 0
   index: -1
 26wormholering
   rotate: false
-  xy: 555, 2
-  size: 50, 50
-  orig: 50, 50
+  xy: 128, 154
+  size: 100, 100
+  orig: 100, 100
   offset: 0, 0
   index: -1
 27debris0
   rotate: false
-  xy: 877, 96
+  xy: 130, 39
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
   index: -1
 28debris1
   rotate: false
-  xy: 911, 96
+  xy: 457, 154
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
   index: -1
 29debris2
   rotate: false
-  xy: 945, 96
+  xy: 491, 154
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
   index: -1
 2flan
   rotate: false
-  xy: 317, 4
+  xy: 51, 9
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 30debris3
   rotate: false
-  xy: 922, 9
+  xy: 525, 154
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
   index: -1
 31frags0
   rotate: false
-  xy: 424, 54
+  xy: 416, 184
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 32frags1
   rotate: false
-  xy: 496, 54
+  xy: 488, 184
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 33frags2
   rotate: false
-  xy: 568, 54
+  xy: 560, 184
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 34frags3
   rotate: false
-  xy: 640, 54
+  xy: 632, 184
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 3stun
   rotate: false
-  xy: 238, 24
+  xy: 230, 154
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 4arrowpoint
   rotate: false
-  xy: 844, 84
+  xy: 424, 142
   size: 31, 40
   orig: 31, 40
   offset: 0, 0
   index: -1
 5arrowshaft
   rotate: false
-  xy: 889, 11
+  xy: 130, 69
   size: 31, 83
   orig: 31, 83
   offset: 0, 0
   index: -1
 6shield
   rotate: false
-  xy: 607, 2
+  xy: 217, 102
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 7sparkle
   rotate: false
-  xy: 659, 2
+  xy: 269, 102
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 8fire0
   rotate: false
-  xy: 851, 12
+  xy: 354, 95
   size: 36, 70
   orig: 36, 70
   offset: 0, 0
   index: -1
 9fire1
   rotate: false
-  xy: 340, 37
+  xy: 332, 167
   size: 82, 87
   orig: 82, 87
   offset: 0, 0
   index: -1
 berry
   rotate: false
-  xy: 810, 84
+  xy: 164, 34
   size: 32, 40
   orig: 32, 40
   offset: 0, 0
   index: -1
 mint0
   rotate: false
-  xy: 355, 7
+  xy: 760, 188
   size: 60, 28
   orig: 60, 28
   offset: 0, 0
   index: -1
 mint1
   rotate: false
-  xy: 238, 2
+  xy: 163, 76
   size: 50, 20
   orig: 50, 20
   offset: 0, 0
   index: -1
 mint2
   rotate: false
-  xy: 417, 7
+  xy: 890, 226
   size: 58, 28
   orig: 58, 28
   offset: 0, 0

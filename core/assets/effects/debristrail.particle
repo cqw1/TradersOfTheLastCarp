@@ -64,7 +64,7 @@ highMin: 64.0
 highMax: 64.0
 relative: false
 scalingCount: 2
-scaling0: 0.27450982
+scaling0: 0.50980395
 scaling1: 1.0
 timelineCount: 2
 timeline0: 0.0
@@ -112,9 +112,9 @@ timelineCount: 1
 timeline0: 0.0
 - Tint - 
 colorsCount: 3
-colors0: 0.70980394
-colors1: 0.6
-colors2: 0.3764706
+colors0: 0.9098039
+colors1: 0.78431374
+colors2: 0.43529412
 timelineCount: 1
 timeline0: 0.0
 - Transparency - 
@@ -140,7 +140,7 @@ premultipliedAlpha: false
 15smokelight.png
 
 
-Untitled
+rocks
 - Delay -
 active: false
 - Duration - 

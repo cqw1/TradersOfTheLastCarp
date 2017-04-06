@@ -128,6 +128,7 @@ public enum AssetList {
     SPARKLE("effects/sparkle.particle", null),
     ELECTRICITY("effects/lightning.particle", null),
     SPLASH("effects/splash.particle", null),
+    DUST("effects/dust.particle", null),
     FLAN_PARTS_0("effects/flan_parts.particle", null),
     FLAN_PARTS_1("effects/flan_parts_prime.particle", null),
     TELEPORT_BEAM("effects/teleport0.particle", null),
@@ -164,11 +165,7 @@ public enum AssetList {
     SMOKE("effects/smoke.particle", null),
 
     // Tilesets and terrain
-    DEFAULT_TILESET("tileset/map.png", Texture.class),
-    WALL_LEFT("tileset/wall_left.png", Texture.class),
-    WALL_RIGHT("tileset/wall_right.png", Texture.class),
-    WALL_BOTTOM("tileset/wall_bottom.png", Texture.class),
-    WALL_TOP("tileset/wall_top.png", Texture.class),
+    DEFAULT_TILESET("tileset/DungeonSimple0.png", Texture.class),
     END_CREDITS("UI/Victory.png", Texture.class),
 
     // TMX for levels

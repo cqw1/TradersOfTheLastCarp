@@ -21,7 +21,6 @@ public class StarShot extends Damage {
     private ParticleEffectPool.PooledEffect starTrail;
 
     // Bookkeeping variables.
-    private long startTime;
     private boolean removeFlag = false;
     private Point2D textureDimensions;
     private static int damage = 2;
@@ -73,7 +72,6 @@ public class StarShot extends Damage {
     }
 
     private void allowRemoval(){
-        startTime = System.currentTimeMillis();
         removeFlag = true;
         getHitBox().setScale(0, 0);
         for (ParticleEmitter p : starTrail.getEmitters()){

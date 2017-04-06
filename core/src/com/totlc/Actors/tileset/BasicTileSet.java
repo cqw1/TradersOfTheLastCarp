@@ -10,13 +10,16 @@ import com.totlc.TradersOfTheLastCarp;
 public class BasicTileSet extends Image {
 
     AssetManager assetManager;
+    Texture asset;
 
     public BasicTileSet(AssetManager assetManager) {
         this.assetManager = assetManager;
+        this.asset = assetManager.get(AssetList.DEFAULT_TILESET.toString(), Texture.class);
+        this.asset.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         this.setZIndex(0);
     }
 
     public void draw(Batch batch, float delta) {
-        batch.draw(assetManager.get(AssetList.DEFAULT_TILESET.toString(), Texture.class), 0f, 0f, (float) TradersOfTheLastCarp.CONFIG_WIDTH, (float) TradersOfTheLastCarp.CONFIG_HEIGHT);
+        batch.draw(this.asset, 0f, 0f, (float) TradersOfTheLastCarp.CONFIG_WIDTH, (float) TradersOfTheLastCarp.CONFIG_HEIGHT);
     }
 }

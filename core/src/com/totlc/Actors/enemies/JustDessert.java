@@ -62,6 +62,12 @@ public class JustDessert extends AEnemy{
     }
 
     @Override
+    public void act(float deltaTime) {
+        super.act(deltaTime);
+        drawDustTrail(12);
+    }
+
+    @Override
     public void draw(Batch batch, float alpha) {
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         if (getHpCurrent() == 7){
