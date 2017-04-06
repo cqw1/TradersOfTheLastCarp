@@ -34,8 +34,7 @@ public class Level01 extends ALevel {
                 "Check each level's objective \nto complete the level.",
                 2f,
                 6f,
-                12f,
-                false);
+                12f);
 
         addActor(objectiveToolTip);
     }

@@ -18,6 +18,7 @@ public enum AssetList {
     FINE("sounds/fine.mp3", Sound.class),
 
     // UI elements and icons.
+    ARROW("UI/arrow.png", Texture.class),
     ARROW_KEYS("UI/arrow_keys.atlas", TextureAtlas.class),
     UI_BAR("UI/UIBar.png", Texture.class),
     UI_BOX("UI/UIBox.png", Texture.class),

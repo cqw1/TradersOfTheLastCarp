@@ -164,14 +164,14 @@ public class LevelSelect extends ALevel {
         grid[2][2] = new LevelOptionInfo(null, Level15.class, Util.parseLevelString(AssetList.LEVEL15_TMX.toString()));
         grid[2][3] = new LevelOptionInfo(null, null, "TODO");
         grid[2][4] = new LevelOptionInfo(null, null, "TODO");
-        grid[2][5] = new LevelOptionInfo(null, TutorialLevel.class, "Tutorial");
+        grid[2][5] = new LevelOptionInfo(null, null, "TODO");
 
         grid[3][0] = new LevelOptionInfo(null, null, "TODO");
         grid[3][1] = new LevelOptionInfo(null, null, "TODO");
         grid[3][2] = new LevelOptionInfo(null, null, "TODO");
         grid[3][3] = new LevelOptionInfo(null, null, "TODO");
         grid[3][4] = new LevelOptionInfo(null, null, "TODO");
-        grid[3][5] = new LevelOptionInfo(null, null, "TODO");
+        grid[3][5] = new LevelOptionInfo(null, TutorialLevel.class, "Tutorial");
     }
 
     @Override

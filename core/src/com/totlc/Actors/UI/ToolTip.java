@@ -27,7 +27,6 @@ public class ToolTip extends Actor {
     // Seconds to display the tooltip for
     private float duration;
     // Boolean flag for repeating animation.
-    private boolean loop;
 
     // Seconds to delay until animating the tooltip. Should delay tooltip creation in constructor.
     private float delay;
@@ -40,7 +39,7 @@ public class ToolTip extends Actor {
     private CrystalCarp carp;
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
-    public ToolTip(AssetManager assetManager, int x, int y, String message, float delay, float talkTime, float duration, boolean loop) {
+    public ToolTip(AssetManager assetManager, int x, int y, String message, float delay, float talkTime, float duration) {
         setX(x);
         setY(y);
 
@@ -58,14 +57,12 @@ public class ToolTip extends Actor {
         this.message = message;
         this.duration = Math.max(duration, delay + talkTime);
         this.delay = delay;
-        this.loop = loop;
 
         this.carp = new CrystalCarp(assetManager,
                 getX() + getWidth() / 2 + carpHorizontalOffset,
                 getY() - CrystalCarp.HEIGHT / 2 * scale + carpVerticalOffset,
                 delay,
                 talkTime,
-                loop,
                 scale
         );
 

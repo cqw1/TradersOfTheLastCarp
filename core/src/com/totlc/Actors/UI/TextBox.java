@@ -29,9 +29,8 @@ public class TextBox extends Actor {
     // Seconds to display the tooltip for
     private float duration;
     // Boolean flag for repeating animation.
-    private boolean loop;
 
-    // Seconds to delay until animating the tooltip. Should delay tooltip creation in constructor.
+    // Seconds to delay until the textbox shows up
     private float delay;
 
     private static float scale = 0.9f;
@@ -42,7 +41,16 @@ public class TextBox extends Actor {
     private CrystalCarp carp;
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
-    public TextBox(AssetManager assetManager, String message, float delay, float talkTime, float duration, boolean loop) {
+
+    /**
+     *
+     * @param assetManager
+     * @param message String message to display in the textbox
+     * @param delay Seconds until the textbox shows
+     * @param talkTime Seconds for the carp talking animation
+     * @param duration Seconds how long the text box appears for. The max of talking + delay, or duration
+     */
+    public TextBox(AssetManager assetManager, String message, float delay, float talkTime, float duration) {
         setX(50);
         setY(10);
 
@@ -60,7 +68,6 @@ public class TextBox extends Actor {
         this.message = message;
         this.duration = Math.max(duration, delay + talkTime);
         this.delay = delay;
-        this.loop = loop;
 
 //        this.carp = new CrystalCarp(assetManager,
 //                getX() + getWidth() / 2 + carpHorizontalOffset,
@@ -76,7 +83,6 @@ public class TextBox extends Actor {
                 -20,
                 delay,
                 talkTime,
-                loop,
                 scale
         );
 

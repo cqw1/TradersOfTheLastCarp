@@ -426,7 +426,6 @@ public abstract class ALevel extends Stage {
                 CONFIG_HEIGHT / 4 - CrystalCarp.HEIGHT / 2,
                 1,
                 1,
-                false,
                 1f
         );
         carp.setVoice(AssetList.YOU_LOSE.toString());
