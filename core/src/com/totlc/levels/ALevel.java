@@ -362,17 +362,6 @@ public abstract class ALevel extends Stage {
         }
 
         try {
-            //Enemies
-            for (MapObject mo : map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
-                MapProperties currentObjProp = mo.getProperties();
-                AEnemy currentEnemy = EnemyFactory.createEnemyFromMP(currentObjProp, getAssetManager());
-                addActor(currentEnemy);
-            }
-        } catch (NullPointerException n) {
-            System.err.print("No enemy layer detected.\n");
-        }
-
-        try {
             //Lay out items
             for (MapObject mo : map.getLayers().get(PickupFactory.TYPE).getObjects()) {
                 MapProperties currentObjProp = mo.getProperties();
@@ -395,6 +384,17 @@ public abstract class ALevel extends Stage {
             System.err.print("No terrain layer detected.\n");
         }
 
+        try {
+            //Enemies
+            for (MapObject mo : map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
+                MapProperties currentObjProp = mo.getProperties();
+                AEnemy currentEnemy = EnemyFactory.createEnemyFromMP(currentObjProp, getAssetManager());
+                addActor(currentEnemy);
+            }
+        } catch (NullPointerException n) {
+            System.err.print("No enemy layer detected.\n");
+        }
+
         endInit();
     }
 
@@ -403,7 +403,7 @@ public abstract class ALevel extends Stage {
 //        sound.play(1.0f);
         addActor(dedScreen);
         //Button Prompt
-        addActor(new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * 0.5f - 50, 50) {
+        addActor(new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_ESC.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * 0.5f - 50, 100) {
             private float baseY = getY();
 
             @Override
@@ -411,7 +411,24 @@ public abstract class ALevel extends Stage {
                 if (System.currentTimeMillis() % 1000 <= 200) {
                     return;
                 }
-                batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * 0.5f, 120 * 0.5f);
+                batch.draw(getAsset(), getX(), getY(), 300 * 0.5f, 120 * 0.5f);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        });
+
+        addActor(new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE_REPLAY.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300 * 0.5f - 50, 50) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                if (System.currentTimeMillis() % 1000 <= 200) {
+                    return;
+                }
+                batch.draw(getAsset(), getX(), getY(), 300 * 0.5f, 120 * 0.5f);
             }
 
             @Override

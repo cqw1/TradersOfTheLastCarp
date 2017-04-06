@@ -59,7 +59,7 @@ public class EndLevel extends ALevel {
                 if (System.currentTimeMillis() % 1000 <= 200) {
                     return;
                 }
-                batch.draw(getAssetManager().get(this.asset, Texture.class), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
+                batch.draw(getAsset(), getX(), getY(), 300 * cursorScale, 120 * cursorScale);
             }
 
             @Override
