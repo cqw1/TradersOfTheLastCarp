@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.effects.Dust;
+import com.totlc.Actors.effects.Impact;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.Actors.items.Key;
 import com.totlc.Actors.terrain.AWall;
@@ -202,12 +203,16 @@ public class Player extends Character {
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof AEnemy) {
             if (!isInvincible()) {
+                getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
                 takeDamage(((AEnemy)otherActor).getAttack());
                 setInvincible(true);
                 invincibilityStart = System.currentTimeMillis();
             }
         } else if (otherActor instanceof Damage) {
-                if (!isInvincible() && ((Damage)otherActor).getDamageType() != 2) {
+                if (!isInvincible()
+                        && ((Damage)otherActor).getDamageType() != 2
+                        && ((Damage)otherActor).getAttack() > 0) {
+                    getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
                     takeDamage(((Damage)otherActor).getAttack());
                     setInvincible(true);
                     invincibilityStart = System.currentTimeMillis();

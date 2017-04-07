@@ -13,6 +13,8 @@ public class TrapFactory {
     public static final String SPIKE_TRAP = "SPIKE_TRAP";
     public static final String EXIT_PORTAL = "EXIT_PORTAL";
     public static final String FIRE_TRAP = "FIRE_TRAP";
+    public static final String BOULDER_TRAP = "BOULDER_TRAP";
+
 
     public static ATrap createTrap(String type, AssetManager assetManager, float x, float y) throws NullPointerException {
         if (type.equals(ARROW_TRAP)) {
@@ -27,6 +29,8 @@ public class TrapFactory {
             return new ExitPortal(assetManager, x, y);
         } else if (type.equals(FIRE_TRAP)) {
             return new FireTrap(assetManager, x, y);
+        } else if (type.equals(BOULDER_TRAP)) {
+            return new BoulderTrap(assetManager, x, y);
         }
 
         throw new NullPointerException("Received type: " + type);

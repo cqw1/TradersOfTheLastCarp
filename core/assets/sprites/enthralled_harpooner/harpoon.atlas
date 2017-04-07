@@ -1,0 +1,34 @@
+
+harpoon.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+harpoon
+  rotate: false
+  xy: 2, 326
+  size: 256, 160
+  orig: 256, 160
+  offset: 0, 0
+  index: 0
+harpoon
+  rotate: false
+  xy: 2, 164
+  size: 256, 160
+  orig: 256, 160
+  offset: 0, 0
+  index: 1
+harpoon
+  rotate: false
+  xy: 260, 326
+  size: 256, 160
+  orig: 256, 160
+  offset: 0, 0
+  index: 2
+harpoon
+  rotate: false
+  xy: 2, 2
+  size: 256, 160
+  orig: 256, 160
+  offset: 0, 0
+  index: 3

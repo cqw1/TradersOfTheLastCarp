@@ -54,6 +54,7 @@ public abstract class AEnemy extends Character {
         setHpMax(hp);
         setHpCurrent(hp);
         this.attack = atk;
+        setAttacking(false);
     }
 
     /**
@@ -121,7 +122,9 @@ public abstract class AEnemy extends Character {
         }
         increaseAnimationTime(deltaTime);
         procStatuses();
-        movement.move(this, deltaTime);
+        if (!getAttacking()) {
+            movement.move(this, deltaTime);
+        }
     }
 
     public void endCollidesWith(Actor otherActor) {}

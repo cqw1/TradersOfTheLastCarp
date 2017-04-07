@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -27,13 +28,14 @@ import com.totlc.levels.*;
 public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public static int CONFIG_WIDTH = 1600;
 	public static int CONFIG_HEIGHT = 900;
-	private boolean drawHitboxes = false;
+	private boolean drawHitboxes = true;
 
 	public AssetManager assetManager = new AssetManager();
 	public static MusicPlayer musicPlayer = new MusicPlayer();
 
 	private static OrthographicCamera camera;
 	private static ShapeRenderer shapeRenderer;
+	private static FPSLogger fpsLogger = new FPSLogger();
 
 	public static ALevel level;
 
@@ -88,6 +90,9 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	@Override
 	public void render() {
+		if(drawHitboxes){
+			fpsLogger.log();
+		}
 		if (assetManager.update()) {
 			// Done loading. Move to next screen.
 			// TODO: Move to next screen.

@@ -17,7 +17,9 @@ public class DamageFactory {
             returnMe = new StarShot(assetManager, x, y, damageType);
         } else if(type.equals(DamageEnum.LIGHTNING_PATCH)) {
             returnMe = new LightningPatch(assetManager, x, y, 128, 128, damageType);
-        } else {
+        } else if(type.equals(DamageEnum.LASER)) {
+            returnMe = new Laser(assetManager, x, y, damageType);
+        }else {
             return null;
         }
 

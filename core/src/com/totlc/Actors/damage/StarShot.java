@@ -63,7 +63,6 @@ public class StarShot extends Damage {
     @Override
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player && !removeFlag) {
-            getStage().addActor(new Impact(getAssetManager(), getX(), getY()));
             allowRemoval();
         } else if (otherActor instanceof AWall){
             allowRemoval();

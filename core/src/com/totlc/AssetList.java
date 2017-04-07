@@ -64,11 +64,22 @@ public enum AssetList {
     PANGOLINI("sprites/pangolini/pangolini.png", Texture.class),
     JELLYFISH("sprites/gelatin_king/jelly_fish.atlas", TextureAtlas.class),
     GELATIN_KING("sprites/gelatin_king/gelatin_king.atlas", TextureAtlas.class),
-    WALLFACE_HEAD("sprites/WallfacedProtector/wallface_head.atlas", TextureAtlas.class),
-    WALLFACE_STAND("sprites/WallfacedProtector/wallface_stand.atlas", TextureAtlas.class),
-    WALLFACE_WALK_SIDE("sprites/WallfacedProtector/wallface_walk_side.atlas", TextureAtlas.class),
-    WALLFACE_WALK_FRONT("sprites/WallfacedProtector/wallface_walk_front.atlas", TextureAtlas.class),
-    WALLFACE_WALK_BACK("sprites/WallfacedProtector/wallface_walk_back.atlas", TextureAtlas.class),
+    WALLFACE_HEAD("sprites/wallfaced_protector/wallface_head.atlas", TextureAtlas.class),
+    WALLFACE_STAND("sprites/wallfaced_protector/wallface_stand.atlas", TextureAtlas.class),
+    WALLFACE_WALK_SIDE("sprites/wallfaced_protector/wallface_walk_side.atlas", TextureAtlas.class),
+    WALLFACE_WALK_FRONT("sprites/wallfaced_protector/wallface_walk_front.atlas", TextureAtlas.class),
+    WALLFACE_WALK_BACK("sprites/wallfaced_protector/wallface_walk_back.atlas", TextureAtlas.class),
+    HARPOONER_HEAD("sprites/enthralled_harpooner/harpooner_head.png", Texture.class),
+    HARPOONER_STAND("sprites/enthralled_harpooner/harpooner_stand.png", Texture.class),
+    HARPOONER_WALK("sprites/enthralled_harpooner/harpooner_walk.atlas", TextureAtlas.class),
+    HARPOONER_ATTACK("sprites/enthralled_harpooner/harpooner_attack.atlas", TextureAtlas.class),
+    HARPOON("sprites/enthralled_harpooner/harpoon.atlas", TextureAtlas.class),
+    FISHERMAN_HEAD("sprites/enthralled_fisherman/fisherman_head.png", Texture.class),
+    FISHERMAN_STAND("sprites/enthralled_fisherman/fisherman_stand.png", Texture.class),
+    FISHERMAN_WALK("sprites/enthralled_fisherman/fisherman_walk.atlas", TextureAtlas.class),
+    FISHERMAN_ATTACK("sprites/enthralled_fisherman/fisherman_attack.atlas", TextureAtlas.class),
+    FISHHOOK_THROW("sprites/enthralled_fisherman/hook_throw.atlas", TextureAtlas.class),
+    FISHHOOK("sprites/enthralled_fisherman/fisherman_hook.png", Texture.class),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),
@@ -136,6 +147,7 @@ public enum AssetList {
     DEBRIS_TRAIL("effects/debristrail.particle", null),
     DEBRIS_DROP("effects/debrisdrop.particle", null),
     BOULDER_BREAK("effects/boulderbreak.particle", null),
+    SPARKS("effects/sparks.particle", null),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas", TextureAtlas.class),
@@ -163,6 +175,7 @@ public enum AssetList {
     STAR_PARTICLES("sprites/starshot/star_particles.atlas", TextureAtlas.class),
     FLAMETHROWER("effects/fire0.particle", null),
     SMOKE("effects/smoke.particle", null),
+    PROJECTILE_LASER("traps/laser_totem/laser.png", Texture.class),
 
     // Tilesets and terrain
     DEFAULT_TILESET("tileset/DungeonSimple0.png", Texture.class),

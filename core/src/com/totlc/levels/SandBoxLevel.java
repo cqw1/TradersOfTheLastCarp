@@ -1,10 +1,7 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.totlc.Actors.enemies.AEnemy;
-import com.totlc.Actors.enemies.GelatinKing;
-import com.totlc.Actors.enemies.JustDessert;
-import com.totlc.Actors.enemies.WallfacedProtector;
+import com.totlc.Actors.enemies.*;
 import com.totlc.Actors.enemies.movement.BasicMovement;
 import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
 import com.totlc.Actors.enemies.movement.RandomMovement;
@@ -42,26 +39,32 @@ public class SandBoxLevel extends ALevel{
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("SandBox");
 
-        ATrap boulder = new BoulderTrap(getAssetManager(), 1200, 300);
-        addActor(boulder);
+//        ATrap boulder = new BoulderTrap(getAssetManager(), 1200, 300);
+//        addActor(boulder);
+//
+//        EntrancePortal enter = new EntrancePortal(getAssetManager(), 500, 300);
+//
+//        ExitPortal wormhole = new ExitPortal(getAssetManager(), 100, 600, Directionality.RIGHT);
+//        addActor(wormhole);
+//
+//        enter.addTrap(wormhole);
+//        addActor(enter);
+//
+//        ATrigger trigger0 = new ButtonTrigger(getAssetManager(), 1000, 300);
+//        ATrigger trigger1 = new ButtonTrigger(getAssetManager(), 100, 300);
+//        trigger0.addTrap(boulder);
+//        addActor(trigger0);
+//        trigger1.addTrap(boulder);
+//        addActor(trigger1);
 
-        EntrancePortal enter = new EntrancePortal(getAssetManager(), 500, 300);
+//        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
+//        addActor(wallface);
 
-        ExitPortal wormhole = new ExitPortal(getAssetManager(), 100, 600, Directionality.RIGHT);
-        addActor(wormhole);
+        AEnemy fisherman = new EnthralledFisherman(getAssetManager(), 200, 200, new BasicMovement(getPlayer()));
+        addActor(fisherman);
 
-        enter.addTrap(wormhole);
-        addActor(enter);
-
-        ATrigger trigger0 = new ButtonTrigger(getAssetManager(), 1000, 300);
-        ATrigger trigger1 = new ButtonTrigger(getAssetManager(), 100, 300);
-        trigger0.addTrap(boulder);
-        addActor(trigger0);
-        trigger1.addTrap(boulder);
-        addActor(trigger1);
-
-        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
-        addActor(wallface);
+        AEnemy harpooner = new EnthralledHarpooner(getAssetManager(), 700, 700, new BasicMovement(getPlayer()));
+        addActor(harpooner);
 
         endInit();
     }
