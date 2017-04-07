@@ -25,17 +25,5 @@ public class Level01 extends ALevel {
     public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
         loadFromTMX(tmxFileName);
-
-
-        ToolTip objectiveToolTip = new ToolTip(
-                getAssetManager(),
-                CONFIG_WIDTH - 500,
-                CONFIG_HEIGHT - 250,
-                "Check each level's objective \nto complete the level.",
-                2f,
-                6f,
-                12f);
-
-        addActor(objectiveToolTip);
     }
 }

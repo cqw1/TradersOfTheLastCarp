@@ -22,9 +22,9 @@ public class TutorialInfo extends Actor {
     public TutorialInfo(AssetManager assetManager) {
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-        moveInfo = new MoveInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 0.25f, CONFIG_HEIGHT * 0.7f);
-        whipInfo = new WhipInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 0.475f, CONFIG_HEIGHT * 0.7f);
-        objectiveInfo = new ObjectiveInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 0.75f, CONFIG_HEIGHT * 0.7f);
+        moveInfo = new MoveInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 0.35f, CONFIG_HEIGHT * 0.75f);
+        whipInfo = new WhipInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 0.6f, CONFIG_HEIGHT * 0.75f);
+        objectiveInfo = new ObjectiveInfo(assetManager, font, 1.2f, CONFIG_WIDTH * 0.85f, CONFIG_HEIGHT * 0.75f);
     }
 
     @Override

@@ -7,11 +7,11 @@ import com.totlc.Actors.UI.TextBoxFactory;
 import com.totlc.Actors.UI.TutorialInfo;
 import com.totlc.TradersOfTheLastCarp;
 
-public class TutorialLevel extends ALevel {
+public class Level00 extends ALevel {
 
     private TextBox textBox;
 
-    public TutorialLevel(AssetManager assetManager) {
+    public Level00(AssetManager assetManager) {
         super(assetManager, ObjectiveVerifier.Objectives.SURVIVE);
         setTimeLimit(10000);
         setNextLevel(Level01.class);

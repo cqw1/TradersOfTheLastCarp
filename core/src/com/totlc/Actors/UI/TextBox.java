@@ -21,9 +21,6 @@ public class TextBox extends Actor {
 
     private float time = 0;
 
-    private TextureAtlas currentAtlas;
-    private Animation<TextureRegion> currentAnimation;
-
     // Number of lines the message takes up. Had to manually line break the message.
     private int numLines = 1;
     // Seconds to display the tooltip for
@@ -51,10 +48,10 @@ public class TextBox extends Actor {
      * @param duration Seconds how long the text box appears for. The max of talking + delay, or duration
      */
     public TextBox(AssetManager assetManager, String message, float delay, float talkTime, float duration) {
-        setX(50);
-        setY(10);
+        setX(64);
+        setY(64);
 
-        setWidth(CONFIG_WIDTH - 100);
+        setWidth(CONFIG_WIDTH - 128);
         setHeight(200);
 
         // Programmatically figure out width and height based on message.
@@ -69,18 +66,9 @@ public class TextBox extends Actor {
         this.duration = Math.max(duration, delay + talkTime);
         this.delay = delay;
 
-//        this.carp = new CrystalCarp(assetManager,
-//                getX() + getWidth() / 2 + carpHorizontalOffset,
-//                getY() - CrystalCarp.HEIGHT / 2 * scale + carpVerticalOffset,
-//                delay,
-//                talkTime,
-//                loop,
-//                scale
-//        );
-
         this.carp = new CrystalCarp(assetManager,
-                getX() + getWidth() - CrystalCarp.WIDTH - 20,
-                -20,
+                getX() + getWidth() - (CrystalCarp.WIDTH + 20),
+                getY() + getHeight() / 2.0f - (CrystalCarp.HEIGHT / 2.0f * scale) - 13,
                 delay,
                 talkTime,
                 scale
@@ -114,8 +102,6 @@ public class TextBox extends Actor {
         }
 
         carp.draw(batch, alpha);
-
-
     }
 
 }

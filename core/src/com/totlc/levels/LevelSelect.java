@@ -18,6 +18,7 @@ import com.totlc.Util;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LevelSelect extends ALevel {
     public TotlcObject levelSelectScreen;
@@ -144,34 +145,41 @@ public class LevelSelect extends ALevel {
     }
 
     public void instantiateGrid() {
+        ArrayList<LevelOptionInfo> levels = new ArrayList<LevelOptionInfo>();
 
-        grid[0][0] = new LevelOptionInfo(null, Level01.class, Util.parseLevelString(AssetList.LEVEL01_TMX.toString()));
-        grid[0][1] = new LevelOptionInfo(null, Level02.class, Util.parseLevelString(AssetList.LEVEL02_TMX.toString()));
-        grid[0][2] = new LevelOptionInfo(null, Level03.class, Util.parseLevelString(AssetList.LEVEL03_TMX.toString()));
-        grid[0][3] = new LevelOptionInfo(null, Level04.class, Util.parseLevelString(AssetList.LEVEL04_TMX.toString()));
-        grid[0][4] = new LevelOptionInfo(null, Level05.class, Util.parseLevelString(AssetList.LEVEL05_TMX.toString()));
-        grid[0][5] = new LevelOptionInfo(null, Level06.class, Util.parseLevelString(AssetList.LEVEL06_TMX.toString()));
+        /**
+         * TODO: Add in reverse order since we populate the grid by removing from the end. For that O(1) time lol.
+         * TODO: This isn't really a todo. I just wanted the color to pop out.
+         */
+        levels.add(new LevelOptionInfo(null, Level15.class, Util.parseLevelString(AssetList.LEVEL15_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level14.class, Util.parseLevelString(AssetList.LEVEL14_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level13.class, Util.parseLevelString(AssetList.LEVEL13_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level12.class, Util.parseLevelString(AssetList.LEVEL12_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level11.class, Util.parseLevelString(AssetList.LEVEL11_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level10.class, Util.parseLevelString(AssetList.LEVEL10_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level09.class, Util.parseLevelString(AssetList.LEVEL09_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level08.class, Util.parseLevelString(AssetList.LEVEL08_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level07.class, Util.parseLevelString(AssetList.LEVEL07_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level06.class, Util.parseLevelString(AssetList.LEVEL06_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level05.class, Util.parseLevelString(AssetList.LEVEL05_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level04.class, Util.parseLevelString(AssetList.LEVEL04_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level03.class, Util.parseLevelString(AssetList.LEVEL02_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level02.class, Util.parseLevelString(AssetList.LEVEL02_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level01.class, Util.parseLevelString(AssetList.LEVEL01_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level00.class, "Tutorial"));
 
-        grid[1][0] = new LevelOptionInfo(null, Level07.class, Util.parseLevelString(AssetList.LEVEL07_TMX.toString()));
-        grid[1][1] = new LevelOptionInfo(null, Level08.class, Util.parseLevelString(AssetList.LEVEL08_TMX.toString()));
-        grid[1][2] = new LevelOptionInfo(null, Level09.class, Util.parseLevelString(AssetList.LEVEL09_TMX.toString()));
-        grid[1][3] = new LevelOptionInfo(null, Level10.class, Util.parseLevelString(AssetList.LEVEL10_TMX.toString()));
-        grid[1][4] = new LevelOptionInfo(null, Level11.class, Util.parseLevelString(AssetList.LEVEL11_TMX.toString()));
-        grid[1][5] = new LevelOptionInfo(null, Level12.class, Util.parseLevelString(AssetList.LEVEL12_TMX.toString()));
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[r].length; c++) {
+                if (levels.size() > 0) {
+                    grid[r][c] = levels.remove(levels.size() - 1);
+                } else {
+                    grid[r][c] = new LevelOptionInfo(null, null, "TODO");
 
-        grid[2][0] = new LevelOptionInfo(null, Level13.class, Util.parseLevelString(AssetList.LEVEL13_TMX.toString()));
-        grid[2][1] = new LevelOptionInfo(null, Level14.class, Util.parseLevelString(AssetList.LEVEL14_TMX.toString()));
-        grid[2][2] = new LevelOptionInfo(null, Level15.class, Util.parseLevelString(AssetList.LEVEL15_TMX.toString()));
-        grid[2][3] = new LevelOptionInfo(null, null, "TODO");
-        grid[2][4] = new LevelOptionInfo(null, null, "TODO");
-        grid[2][5] = new LevelOptionInfo(null, null, "TODO");
+                }
 
-        grid[3][0] = new LevelOptionInfo(null, null, "TODO");
-        grid[3][1] = new LevelOptionInfo(null, null, "TODO");
-        grid[3][2] = new LevelOptionInfo(null, null, "TODO");
-        grid[3][3] = new LevelOptionInfo(null, null, "TODO");
-        grid[3][4] = new LevelOptionInfo(null, null, "TODO");
-        grid[3][5] = new LevelOptionInfo(null, TutorialLevel.class, "Tutorial");
+            }
+        }
+
     }
 
     @Override
