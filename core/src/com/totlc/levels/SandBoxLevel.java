@@ -50,15 +50,19 @@ public class SandBoxLevel extends ALevel{
 //        enter.addTrap(wormhole);
 //        addActor(enter);
 //
-//        ATrigger trigger0 = new ButtonTrigger(getAssetManager(), 1000, 300);
+        ATrigger trigger0 = new ButtonTrigger(getAssetManager(), 1000, 300);
 //        ATrigger trigger1 = new ButtonTrigger(getAssetManager(), 100, 300);
 //        trigger0.addTrap(boulder);
-//        addActor(trigger0);
+        addActor(trigger0);
 //        trigger1.addTrap(boulder);
 //        addActor(trigger1);
 
 //        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
 //        addActor(wallface);
+
+        ATrap laser = new LaserTotem(getAssetManager(), 500, 500, 2000);
+        addActor(laser);
+        trigger0.addTrap(laser);
 
         AEnemy fisherman = new EnthralledFisherman(getAssetManager(), 200, 200, new BasicMovement(getPlayer()));
         addActor(fisherman);

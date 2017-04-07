@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.Player;
-import com.totlc.Actors.terrain.AWall;
 import com.totlc.AssetList;
 
 import java.awt.geom.Point2D;
@@ -24,6 +23,7 @@ public class Hook extends Damage {
 
     private static float width = 74, height = 39;
 
+    // Not generated with factory.
     public Hook(AssetManager assetManager, Character origin, float x, float y, int attack, int damageType, float range, Point2D initialVelocity) {
         super(assetManager, new Rectangle(x, y, width, height), attack, damageType);
         this.target = null;

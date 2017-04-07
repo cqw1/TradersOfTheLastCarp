@@ -1,0 +1,62 @@
+
+red_gem.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+red_gem
+  rotate: false
+  xy: 2, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 0
+red_gem
+  rotate: false
+  xy: 79, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 1
+red_gem
+  rotate: false
+  xy: 79, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 7
+red_gem
+  rotate: false
+  xy: 156, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 2
+red_gem
+  rotate: false
+  xy: 156, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 6
+red_gem
+  rotate: false
+  xy: 233, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 3
+red_gem
+  rotate: false
+  xy: 233, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 5
+red_gem
+  rotate: false
+  xy: 310, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 4

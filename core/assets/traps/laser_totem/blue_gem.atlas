@@ -1,0 +1,62 @@
+
+blue_gem.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+blue_gem
+  rotate: false
+  xy: 2, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 0
+blue_gem
+  rotate: false
+  xy: 79, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 1
+blue_gem
+  rotate: false
+  xy: 79, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 7
+blue_gem
+  rotate: false
+  xy: 156, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 2
+blue_gem
+  rotate: false
+  xy: 156, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 6
+blue_gem
+  rotate: false
+  xy: 233, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 3
+blue_gem
+  rotate: false
+  xy: 233, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 5
+blue_gem
+  rotate: false
+  xy: 310, 2
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: 4

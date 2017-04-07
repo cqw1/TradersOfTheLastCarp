@@ -1,6 +1,8 @@
 package com.totlc.Actors.enemies;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -149,6 +151,8 @@ public class EnthralledFisherman extends AEnemy {
     private void attack(){
         setAnimationTime(0);
         setAttacking(true);
+        Sound attackSound = Gdx.audio.newSound(Gdx.files.internal("sounds/woosh.mp3"));
+        attackSound.play(1f);
         Point2D targetVector = getTarget(((ALevel)getStage()).getPlayer());
         Hook hook = new Hook(getAssetManager(), this, (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0, 1, 400,
                 new Point2D.Double(targetVector.getX() * 500, targetVector.getY() * 500));

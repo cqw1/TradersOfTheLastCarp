@@ -32,6 +32,7 @@ public class Boulder extends Damage{
     private ParticleEffect debris;
     Sound rollingSound;
 
+    // Not generated with factory.
     public Boulder(AssetManager assetManager, float x, float y, int attack, int damageType) {
         this(assetManager, new Rectangle(x, y, 300, 300), attack, damageType);
     }

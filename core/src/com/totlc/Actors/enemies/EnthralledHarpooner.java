@@ -1,6 +1,8 @@
 package com.totlc.Actors.enemies;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -160,6 +162,8 @@ public class EnthralledHarpooner extends AEnemy{
     private void attack(){
         setAnimationTime(0);
         setAttacking(true);
+        Sound attackSound = Gdx.audio.newSound(Gdx.files.internal("sounds/woosh.mp3"));
+        attackSound.play(1f);
         if (this.getIsFacing().isFacingLeft()) {
             getStage().addActor(new Melee(getAssetManager(), (float)getHitBoxCenter().getX() - 150, (float)getHitBoxCenter().getY() - 40, 150, 80, this.attackTime, 2, 1));
         } else {

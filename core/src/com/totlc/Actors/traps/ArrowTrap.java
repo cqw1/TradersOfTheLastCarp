@@ -17,9 +17,7 @@ public class ArrowTrap extends ATrap{
 
     // Asset and animation constants.
     private TextureAtlas trapTextureAtlas;
-    private Animation<TextureRegion> trapAnimation;
     private static long delay = 650; // in millis
-    private long displayEyebrows = 2000;
     private static float width = 124;
     private static float height = 192;
 
@@ -31,7 +29,6 @@ public class ArrowTrap extends ATrap{
         super(assetManager, r, delay);
 
         trapTextureAtlas = assetManager.get(AssetList.ARROW_TRAP.toString());
-        trapAnimation = new Animation<TextureRegion>(1 / 12f, trapTextureAtlas.getRegions());
     }
 
     @Override

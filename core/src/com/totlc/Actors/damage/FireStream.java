@@ -40,6 +40,7 @@ public class FireStream extends Damage {
         if (getIsFacing().isFacingRight() || getIsFacing().isFacingLeft()){
             getHitBox().setScale(0, 1);
         } else{
+            getHitBox().setOrigin(actor.getX(), actor.getY() + range / 2);
             getHitBox().setScale(1, 0);
         }
     }
