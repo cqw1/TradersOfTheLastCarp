@@ -63,7 +63,7 @@ public class TitleScreen extends ALevel {
             }
 
             public void execute() {
-                setNextLevel(Level01.class);
+                setNextLevel(Level00.class);
                 TradersOfTheLastCarp.musicPlayer.playSong("test6", 0.3f);
                 initNextLevel();
             }

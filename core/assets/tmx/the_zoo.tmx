@@ -36,14 +36,14 @@
 </data>
  </layer>
  <objectgroup name="ITEMS">
-  <object id="21" x="317.333" y="382.667" width="60" height="70.6667">
+  <object id="21" x="1126.67" y="393.333" width="60" height="70.6667">
    <properties>
     <property name="type" value="HEALTH"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="TRAPS">
-  <object id="10" name="10" x="458.667" y="141.333" width="124" height="192">
+  <object id="10" name="10" x="824" y="140" width="124" height="192">
    <properties>
     <property name="type" value="ARROW_TRAP"/>
    </properties>
@@ -58,12 +58,12 @@
     <property name="type" value="SPIKE_TRAP"/>
    </properties>
   </object>
-  <object id="14" name="14" x="818.667" y="180" width="128" height="128">
+  <object id="14" name="14" x="461.334" y="176" width="128" height="128">
    <properties>
     <property name="type" value="SPIKE_TRAP"/>
    </properties>
   </object>
-  <object id="17" name="17" x="1269.33" y="114.667" width="110" height="100">
+  <object id="17" name="17" x="1048" y="193.334" width="110" height="100">
    <properties>
     <property name="direction" value="DOWN"/>
     <property name="type" value="FIRE_TRAP"/>
@@ -71,25 +71,25 @@
   </object>
  </objectgroup>
  <objectgroup name="TRIGGERS">
-  <object id="13" x="501.333" y="400" width="40" height="40">
+  <object id="13" x="385.333" y="404" width="40" height="40">
    <properties>
     <property name="trap_id" value="10:11"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="15" x="862.667" y="220" width="40" height="40">
+  <object id="15" x="682.667" y="214.667" width="40" height="40">
    <properties>
-    <property name="trap_id" value="14"/>
+    <property name="trap_id" value="10:14"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="16" x="869.333" y="561.333" width="40" height="40">
+  <object id="16" x="690.666" y="537.333" width="40" height="40">
    <properties>
-    <property name="trap_id" value="12"/>
+    <property name="trap_id" value="11:12"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="18" x="1302.66" y="237.334" width="40" height="40">
+  <object id="18" x="1082.66" y="500" width="56" height="56">
    <properties>
     <property name="trap_id" value="17"/>
     <property name="type" value="BUTTON"/>
@@ -114,19 +114,19 @@
     <property name="type" value="GELATIN_KING"/>
    </properties>
   </object>
-  <object id="2" x="1344" y="714.667" width="44" height="46.6667">
+  <object id="2" x="1312" y="618.667" width="44" height="46.6667">
    <properties>
     <property name="type" value="STAR"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="4" x="1248" y="648" width="44" height="46.6667">
+  <object id="4" x="1310.66" y="186.667" width="44" height="46.6667">
    <properties>
     <property name="type" value="STAR"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="7" x="714.666" y="509.333" width="53.3333" height="48">
+  <object id="7" x="618.666" y="429.333" width="53.3333" height="48">
    <properties>
     <property name="type" value="SPIDER"/>
    </properties>
@@ -136,7 +136,7 @@
     <property name="type" value="PANGOLINI"/>
    </properties>
   </object>
-  <object id="9" x="968" y="388" width="102.667" height="86.6667">
+  <object id="9" x="856" y="397.333" width="102.667" height="86.6667">
    <properties>
     <property name="type" value="FLAN"/>
    </properties>

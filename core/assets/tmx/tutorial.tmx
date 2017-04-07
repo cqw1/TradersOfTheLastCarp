@@ -38,93 +38,91 @@
  <objectgroup name="ENEMIES">
   <object id="1" name="Pangolini" x="1285.33" y="385.333" width="62.6667" height="65.3333">
    <properties>
-    <property name="hp" type="int" value="2"/>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="PANGOLINI"/>
+    <property name="type" value="DUMMY"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="TRAPS">
-  <object id="3" name="Arrow Trap" x="769.333" y="381.333" width="61.3333" height="124">
+  <object id="3" name="Arrow Trap" x="883.333" y="373.333" width="61.3333" height="124">
    <properties>
     <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="TRIGGERS">
-  <object id="20" x="302" y="76.6667" width="34" height="36">
+  <object id="20" x="585" y="76.6667" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="27" x="302" y="591.333" width="34" height="36">
+  <object id="27" x="585" y="591.333" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="28" x="302" y="527.333" width="34" height="36">
+  <object id="28" x="585" y="527.333" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="29" x="302" y="459.333" width="34" height="36">
+  <object id="29" x="585" y="459.333" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="30" x="302" y="400.667" width="34" height="36">
+  <object id="30" x="585" y="400.667" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="31" x="302" y="334" width="34" height="36">
+  <object id="31" x="585" y="334" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="32" x="302" y="272.667" width="34" height="36">
+  <object id="32" x="585" y="272.667" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="33" x="303.333" y="208.667" width="34" height="36">
+  <object id="33" x="586.333" y="208.667" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="34" x="303.333" y="146" width="34" height="36">
+  <object id="34" x="586.333" y="146" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="35" x="302" y="76.6667" width="34" height="36">
+  <object id="35" x="585" y="76.6667" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="36" x="302" y="780.667" width="34" height="36">
+  <object id="36" x="585" y="780.667" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="37" x="300.667" y="719.333" width="34" height="36">
+  <object id="37" x="583.667" y="719.333" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="38" x="302" y="654" width="34" height="36">
+  <object id="38" x="585" y="654" width="34" height="36">
    <properties>
     <property name="trap_id" value="3"/>
     <property name="type" value="BUTTON"/>

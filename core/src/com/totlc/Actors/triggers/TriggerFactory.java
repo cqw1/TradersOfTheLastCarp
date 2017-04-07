@@ -10,12 +10,15 @@ public class TriggerFactory {
     public static final String TYPE = "TRIGGERS";
     public static final String BUTTON = "BUTTON";
     public static final String TELE_PAD = "TELEPORT_PAD";
+    public static final String ENTRANCE_PORTAL = "ENTRANCE_PORTAL";
 
     public static ATrigger createTrigger(String type, AssetManager assetManager, float x, float y) throws NullPointerException {
         if (type.equals(BUTTON)) {
             return new ButtonTrigger(assetManager, x, y);
         } else if (type.equals(TELE_PAD)) {
             return new TeleportPad(assetManager, x, y);
+        } else if (type.equals(ENTRANCE_PORTAL)) {
+            return new EntrancePortal(assetManager, x, y);
         }
 
         throw new NullPointerException("Received type: " + type);
