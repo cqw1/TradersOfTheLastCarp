@@ -251,10 +251,15 @@ public abstract class ALevel extends Stage {
            if (player.getHpCurrent() > 0){
                 player.createWeapon();
            } else{
-               ALevel nextLevelObject = LevelFactory.createLevel(TitleScreen.class, assetManager);
-               loadLevel(nextLevelObject);
-               Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
-               sound.play(1.0f);
+               try {
+                   TradersOfTheLastCarp.player = (Player) TradersOfTheLastCarp.playerClass.getConstructor(AssetManager.class).newInstance(assetManager);
+                   ALevel nextLevelObject = LevelFactory.createLevel(this.getClass(), assetManager);
+                   loadLevel(nextLevelObject);
+                   Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
+                   sound.play(1.0f);
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
            }
            return true;
         }

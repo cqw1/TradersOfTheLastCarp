@@ -39,9 +39,9 @@ public class SandBoxLevel extends ALevel{
         setPlayer(TradersOfTheLastCarp.player);
         setNameString("SandBox");
 
-//        ATrap boulder = new BoulderTrap(getAssetManager(), 1200, 300);
-//        addActor(boulder);
-//
+        ATrap boulder = new BoulderTrap(getAssetManager(), 1200, 300);
+        addActor(boulder);
+
 //        EntrancePortal enter = new EntrancePortal(getAssetManager(), 500, 300);
 //
 //        ExitPortal wormhole = new ExitPortal(getAssetManager(), 100, 600, Directionality.RIGHT);
@@ -50,21 +50,18 @@ public class SandBoxLevel extends ALevel{
 //        enter.addTrap(wormhole);
 //        addActor(enter);
 //
-//        ATrigger trigger0 = new ButtonTrigger(getAssetManager(), 1000, 300);
-//        ATrigger trigger1 = new ButtonTrigger(getAssetManager(), 100, 300);
-//        trigger0.addTrap(boulder);
-//        addActor(trigger0);
-//        trigger1.addTrap(boulder);
-//        addActor(trigger1);
+        ATrigger trigger0 = new IntervalTrigger(getAssetManager(), 1000, 300);
+        trigger0.addTrap(boulder);
+        addActor(trigger0);
 
 //        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
 //        addActor(wallface);
 
-        AEnemy fisherman = new EnthralledFisherman(getAssetManager(), 200, 200, new BasicMovement(getPlayer()));
-        addActor(fisherman);
-
-        AEnemy harpooner = new EnthralledHarpooner(getAssetManager(), 700, 700, new BasicMovement(getPlayer()));
-        addActor(harpooner);
+//        AEnemy fisherman = new EnthralledFisherman(getAssetManager(), 200, 200, new BasicMovement(getPlayer()));
+//        addActor(fisherman);
+//
+//        AEnemy harpooner = new EnthralledHarpooner(getAssetManager(), 700, 700, new BasicMovement(getPlayer()));
+//        addActor(harpooner);
 
         endInit();
     }

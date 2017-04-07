@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="31">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="40">
  <properties>
-  <property name="objective" type="int" value="0"/>
-  <property name="time" type="int" value="20000"/>
+  <property name="objective" type="int" value="1"/>
  </properties>
  <layer name="WALLS" width="50" height="28">
   <data encoding="csv">
@@ -37,111 +36,131 @@
 </data>
  </layer>
  <objectgroup name="ITEMS">
-  <object id="28" x="345.333" y="394.667" width="81.3333" height="78.6667">
+  <object id="38" x="746.667" y="381.333" width="50.6667" height="64">
    <properties>
-    <property name="type" value="HEALTH"/>
-   </properties>
-  </object>
-  <object id="29" x="1134.67" y="613.333" width="81.3333" height="78.6667">
-   <properties>
-    <property name="type" value="HEALTH"/>
+    <property name="type" value="KEY"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="TRAPS">
-  <object id="10" name="10" x="182.667" y="117.333" width="124" height="192">
+  <object id="7" name="7" x="538.667" y="370.667" width="74.6667" height="86.6667">
    <properties>
-    <property name="type" value="ARROW_TRAP"/>
+    <property name="type" value="EXIT_PORTAL"/>
    </properties>
   </object>
-  <object id="11" name="11" x="178.667" y="564" width="124" height="192">
+  <object id="34" name="34" x="1136" y="370.667" width="74.6667" height="86.6667">
    <properties>
-    <property name="type" value="ARROW_TRAP"/>
+    <property name="type" value="EXIT_PORTAL"/>
    </properties>
   </object>
-  <object id="12" name="12" x="644" y="134.667" width="128" height="128">
+  <object id="37" name="37" x="202.667" y="681.333" width="74.6667" height="86.6667">
    <properties>
-    <property name="type" value="ARROW_TRAP"/>
-   </properties>
-  </object>
-  <object id="14" name="14" x="650.667" y="605.333" width="128" height="128">
-   <properties>
-    <property name="type" value="ARROW_TRAP"/>
-   </properties>
-  </object>
-  <object id="21" name="21" x="1358.67" y="336" width="124" height="192">
-   <properties>
-    <property name="type" value="ARROW_TRAP"/>
-   </properties>
-  </object>
-  <object id="22" name="22" x="1104" y="181.333" width="110" height="100">
-   <properties>
-    <property name="direction" value="DOWN"/>
-    <property name="type" value="FIRE_TRAP"/>
-   </properties>
-  </object>
-  <object id="25" name="25" x="1108" y="592" width="141.333" height="118.667">
-   <properties>
-    <property name="type" value="SPIKE_TRAP"/>
+    <property name="type" value="EXIT_PORTAL"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="TRIGGERS">
-  <object id="13" x="817.333" y="401.333" width="40" height="40">
+  <object id="32" x="305.333" y="402.667" width="45.3333" height="50.6667">
    <properties>
-    <property name="trap_id" value="10:11:12"/>
-    <property name="type" value="BUTTON"/>
+    <property name="trap_id" value="7"/>
+    <property name="type" value="ENTRANCE_PORTAL"/>
    </properties>
   </object>
-  <object id="15" x="493.333" y="397.333" width="40" height="40">
+  <object id="33" x="908" y="197.333" width="45.3333" height="50.6667">
    <properties>
-    <property name="trap_id" value="14"/>
-    <property name="type" value="BUTTON"/>
+    <property name="trap_id" value="34"/>
+    <property name="type" value="ENTRANCE_PORTAL"/>
    </properties>
   </object>
-  <object id="16" x="689.333" y="181.333" width="40" height="40">
+  <object id="35" x="912" y="633.333" width="45.3333" height="50.6667">
    <properties>
-    <property name="trap_id" value="12"/>
-    <property name="type" value="BUTTON"/>
+    <property name="trap_id" value="37"/>
+    <property name="type" value="ENTRANCE_PORTAL"/>
    </properties>
   </object>
-  <object id="18" x="1138.67" y="421.333" width="40" height="40">
+  <object id="36" x="908" y="401.333" width="45.3333" height="50.6667">
    <properties>
-    <property name="trap_id" value="21:22"/>
-    <property name="type" value="BUTTON"/>
+    <property name="trap_id" value="37"/>
+    <property name="type" value="ENTRANCE_PORTAL"/>
    </properties>
   </object>
-  <object id="19" x="477.333" y="636" width="40" height="40">
+  <object id="39" x="1360" y="729.333" width="45.3333" height="50.6667">
    <properties>
-    <property name="trap_id" value="11:14"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="23" x="697.333" y="648" width="40" height="40">
-   <properties>
-    <property name="trap_id" value="11:14"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="24" x="924" y="178.667" width="40" height="40">
-   <properties>
-    <property name="trap_id" value="10:22"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="27" x="1152" y="632" width="40" height="40">
-   <properties>
-    <property name="trap_id" value="25"/>
-    <property name="type" value="BUTTON"/>
+    <property name="trap_id" value="37"/>
+    <property name="type" value="ENTRANCE_PORTAL"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="ENEMIES">
-  <object id="5" x="1021.33" y="412" width="53.3333" height="48">
+ <objectgroup name="ENEMIES"/>
+ <objectgroup name="TERRAIN">
+  <object id="15" x="430.667" y="122.667" width="62.6667" height="62.6667">
    <properties>
-    <property name="invincible" type="bool" value="true"/>
-    <property name="movement" value="BASIC"/>
-    <property name="type" value="SPIDER"/>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="16" x="437.333" y="510.667" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="17" x="434.667" y="416" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="18" x="433.333" y="326.667" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="19" x="430.667" y="221.333" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="22" x="434.667" y="616" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="23" x="437.333" y="721.333" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="24" x="1018.67" y="617.333" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="25" x="1021.33" y="722.667" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="26" x="1021.33" y="512" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="27" x="1014.67" y="124" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="28" x="1018.67" y="417.333" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="29" x="1014.67" y="222.667" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="30" x="1017.33" y="328" width="62.6667" height="62.6667">
+   <properties>
+    <property name="type" value="ROCK"/>
    </properties>
   </object>
  </objectgroup>

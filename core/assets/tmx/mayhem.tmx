@@ -80,7 +80,7 @@
   </object>
  </objectgroup>
  <objectgroup name="ENEMIES">
-  <object id="14" x="573.333" y="234.667" width="41.3333" height="34.6667">
+  <object id="14" x="542.667" y="228" width="41.3333" height="34.6667">
    <properties>
     <property name="type" value="SPIDER"/>
    </properties>

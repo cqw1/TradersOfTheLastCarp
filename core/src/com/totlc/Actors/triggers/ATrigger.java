@@ -50,6 +50,15 @@ public abstract class ATrigger extends TotlcObject {
 
     public void handleTrigger(boolean b, Actor a) { setTriggered(b); setActorThatTriggered(a);}
 
+    public void activateTraps() {
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.TRAP_ACTIVATION.toString()));
+        sound.play(0.5f);
+
+        for (ATrap trap : getListOfTraps()) {
+            trap.setup();
+        }
+    }
+
     @Override
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player ||
@@ -57,12 +66,7 @@ public abstract class ATrigger extends TotlcObject {
                         !((AEnemy) otherActor).isFloating())) {
 
             if (!isTriggered()) {
-                Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.TRAP_ACTIVATION.toString()));
-                sound.play(0.5f);
-
-                for (ATrap trap : getListOfTraps()) {
-                    trap.setup();
-                }
+                activateTraps();
             }
 
             handleTrigger(true, otherActor);

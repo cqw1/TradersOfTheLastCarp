@@ -179,7 +179,6 @@ public class LevelSelect extends ALevel {
 
             }
         }
-
     }
 
     @Override
