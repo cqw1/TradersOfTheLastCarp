@@ -179,6 +179,8 @@ public enum AssetList {
     FLAMETHROWER("effects/fire0.particle", null),
     SMOKE("effects/smoke.particle", null),
     PROJECTILE_LASER("traps/laser_totem/laser.png", Texture.class),
+    PARTICLE_LASER("effects/laser.particle", null),
+    LASERPULSE("effects/laserpulse.particle", null),
 
     // Tilesets and terrain
     DEFAULT_TILESET("tileset/DungeonSimple0.png", Texture.class),

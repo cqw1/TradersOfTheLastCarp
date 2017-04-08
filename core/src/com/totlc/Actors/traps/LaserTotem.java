@@ -4,13 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.damage.DamageEnum;
 import com.totlc.Actors.damage.DamageFactory;
+import com.totlc.Actors.damage.Laser;
 import com.totlc.AssetList;
 
 import java.awt.geom.Point2D;
@@ -19,26 +17,28 @@ public class LaserTotem extends ATrap{
 
     // Asset and animation constants.
     private Texture trapTexture;
-    private TextureAtlas blue_gem, red_gem;
+    private TextureAtlas blue_gem, red_gem, particleAtlas;
     Animation<TextureRegion> blueGemAnimation, redGemAnimation;
+    private ParticleEffect laserSource;
+    private Laser l;
+
     private Sound attackSound;
     private static long duration = 8000; // in millis
     private long startTime;
     private static float width = 230;
     private static float height = 301;
 
-    private float angle;
+    private float angle, initialAngle;
     private float gem_scale;
-    private static float rotationSpeed = 0.012f;
+    private static float rotationSpeed = 0.016f;
 
     public LaserTotem(AssetManager assetManager, int x, int y, long delay) {
         super(assetManager, new Rectangle(x, y, width, height), delay);
         trapTexture = assetManager.get(AssetList.LASER_TOTEM.toString());
         blue_gem = assetManager.get(AssetList.BLUE_GEM.toString());
-        blueGemAnimation = new Animation<TextureRegion>(1 / 16f, blue_gem.getRegions());
+        blueGemAnimation = new Animation<TextureRegion>(1 / 8f, blue_gem.getRegions());
         red_gem = assetManager.get(AssetList.RED_GEM.toString());
         redGemAnimation = new Animation<TextureRegion>(1 / 16f, red_gem.getRegions());
-        this.angle = 0;
         this.gem_scale = 0.7f;
         for (int i = 0; i < blue_gem.getRegions().size; i++){
             blue_gem.getRegions().get(i).getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -48,12 +48,26 @@ public class LaserTotem extends ATrap{
         }
         this.startTime = 0;
         attackSound = Gdx.audio.newSound(Gdx.files.internal("sounds/laser1.mp3"));
+        this.initialAngle = 0;
+        this.angle = 0;
+
+        particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
+        laserSource = new ParticleEffect();
+        laserSource.load(Gdx.files.internal(AssetList.LASERPULSE.toString()), particleAtlas);
+    }
+
+    public LaserTotem(AssetManager assetManager, int x, int y, long delay, float initialAngle) {
+        this(assetManager, x, y, delay);
+        this.initialAngle = initialAngle;
+        this.angle = initialAngle;
     }
 
     @Override
     public void activate() {
         this.startTime = System.currentTimeMillis();
         attackSound.play(1f);
+        laserSource.start();
+        laserSource.setPosition(getX() + 75, getY() + trapTexture.getHeight() * 0.88f);
     }
 
     @Override
@@ -67,11 +81,12 @@ public class LaserTotem extends ATrap{
         if(isActive()){
             this.angle += rotationSpeed;
             getStage().addActor(DamageFactory.createDamage(DamageEnum.LASER, new Point2D.Double(2000 * Math.sin(angle), 2000 * Math.cos(angle)), getAssetManager(),
-                    getX() + 36 + red_gem.getRegions().get(0).getRegionWidth() * 0.3f * this.gem_scale, getY() + trapTexture.getHeight() * 0.75f + red_gem.getRegions().get(0).getRegionHeight() * 0.5f * this.gem_scale, 0));
+                    getX() + 20, getY() + trapTexture.getHeight() * 0.74f + red_gem.getRegions().get(0).getRegionHeight() * 0.5f * this.gem_scale, 0));
             if (System.currentTimeMillis() - this.startTime >= this.duration){
-                this.angle = 0;
+                this.angle = this.initialAngle;
                 setActive(false);
                 attackSound.stop();
+                laserSource.allowCompletion();
             }
         }
     }
@@ -80,13 +95,14 @@ public class LaserTotem extends ATrap{
     public void draw(Batch batch, float alpha) {
         batch.draw(trapTexture, getX(), getY());
         if (isSetup() || isActive()) {
-            batch.draw(redGemAnimation.getKeyFrame(getAnimationTime(), true), getX() + 36, getY() + trapTexture.getHeight() * 0.75f,
+            batch.draw(redGemAnimation.getKeyFrame(getAnimationTime(), true), getX() + 38, getY() + trapTexture.getHeight() * 0.74f,
                     red_gem.getRegions().get(0).getRegionWidth() * 0.5f, red_gem.getRegions().get(0).getRegionHeight() * 0.5f,
                     red_gem.getRegions().get(0).getRegionWidth(), red_gem.getRegions().get(0).getRegionHeight(), this.gem_scale, this.gem_scale, 0);
         } else{
-            batch.draw(blueGemAnimation.getKeyFrame(getAnimationTime(), true), getX() + 36, getY() + trapTexture.getHeight() * 0.75f,
+            batch.draw(blueGemAnimation.getKeyFrame(getAnimationTime(), true), getX() + 38, getY() + trapTexture.getHeight() * 0.74f,
                     blue_gem.getRegions().get(0).getRegionWidth() * 0.5f, blue_gem.getRegions().get(0).getRegionHeight() * 0.5f,
                     blue_gem.getRegions().get(0).getRegionWidth(), blue_gem.getRegions().get(0).getRegionHeight(), this.gem_scale, this.gem_scale, 0);
         }
+        laserSource.draw(batch, Gdx.graphics.getDeltaTime());
     }
 }

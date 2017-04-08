@@ -61,7 +61,7 @@ public class SandBoxLevel extends ALevel{
 //        addActor(wallface);
 
 
-        ATrap laser = new LaserTotem(getAssetManager(), 500, 500, 2000);
+        ATrap laser = new LaserTotem(getAssetManager(), 500, 500, 1000, 90);
         addActor(laser);
         trigger0.addTrap(laser);
 

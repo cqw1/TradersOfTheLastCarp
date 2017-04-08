@@ -46,7 +46,7 @@ public class LightningPatch extends Damage {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        electricity.draw(batch,  Gdx.graphics.getDeltaTime());
+        electricity.draw(batch, Gdx.graphics.getDeltaTime());
     }
 
     @Override
