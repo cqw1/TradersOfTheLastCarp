@@ -17,6 +17,7 @@ public class EnemyFactory {
     public static final String HARPOONER = "HARPOONER";
     public static final String FISHERMAN = "FISHERMAN";
     public static final String DUMMY = "DUMMY";
+    public static final String WALLFACED = "WALLFACED";
 
     public static AEnemy createDefaultEnemy(String type, AssetManager assetManager, float x, float y) throws NullPointerException {
         if (type.equals(SPIDER)) {
@@ -37,6 +38,8 @@ public class EnemyFactory {
             return new EnthralledFisherman(assetManager, x, y, new BasicMovement(TradersOfTheLastCarp.player));
         } else if (type.equals(DUMMY)) {
             return new Dummy(assetManager, x, y, new Immobile(TradersOfTheLastCarp.player));
+        } else if (type.equals(WALLFACED)) {
+            return new WallfacedProtector(assetManager, x, y, new BasicMovement(TradersOfTheLastCarp.player));
         }
 
         throw new NullPointerException("Received type: " + type);

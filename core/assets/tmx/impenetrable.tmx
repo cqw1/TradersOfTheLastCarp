@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="24">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="36">
  <properties>
-  <property name="objective" type="int" value="0"/>
-  <property name="time" type="int" value="25000"/>
+  <property name="objective" type="int" value="2"/>
  </properties>
  <layer name="WALLS" width="50" height="28">
   <data encoding="csv">
@@ -36,112 +35,60 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="ITEMS">
-  <object id="9" x="472.333" y="435.667" width="32" height="32">
+ <objectgroup name="ITEMS"/>
+ <objectgroup name="TRAPS">
+  <object id="26" name="26" x="422.666" y="485.333" width="84" height="136">
    <properties>
-    <property name="type" value="HEALTH"/>
+    <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
-  <object id="18" x="466.667" y="712" width="58.6667" height="60">
+  <object id="29" name="29" x="417.33" y="258.667" width="84" height="136">
    <properties>
-    <property name="type" value="GOLDFISH"/>
+    <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
-  <object id="19" x="489.333" y="142.667" width="58.6667" height="60">
+  <object id="30" name="30" x="728" y="574.667" width="84" height="136">
    <properties>
-    <property name="type" value="GOLDFISH"/>
+    <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
-  <object id="20" x="1034.67" y="717.333" width="58.6667" height="60">
+  <object id="31" name="31" x="1170.67" y="574.667" width="84" height="136">
    <properties>
-    <property name="type" value="GOLDFISH"/>
-   </properties>
-  </object>
-  <object id="21" x="1054.67" y="137.333" width="58.6667" height="60">
-   <properties>
-    <property name="type" value="GOLDFISH"/>
-   </properties>
-  </object>
-  <object id="22" x="1380" y="412" width="58.6667" height="60">
-   <properties>
-    <property name="type" value="GOLDFISH"/>
-   </properties>
-  </object>
-  <object id="23" x="1062.33" y="436.667" width="32" height="32">
-   <properties>
-    <property name="type" value="HEALTH"/>
+    <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="TRAPS"/>
- <objectgroup name="TRIGGERS"/>
+ <objectgroup name="TRIGGERS">
+  <object id="32" x="308" y="418.667" width="40" height="42.6667">
+   <properties>
+    <property name="trap_id" value="26:29"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="34" x="1180" y="188" width="40" height="42.6667">
+   <properties>
+    <property name="trap_id" value="26:31"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="35" x="756" y="189.333" width="40" height="42.6667">
+   <properties>
+    <property name="trap_id" value="26:30"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="ENEMIES">
-  <object id="1" x="613.333" y="112" width="40" height="40">
+  <object id="24" x="965.333" y="274.667" width="69.3333" height="65.3333">
    <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
+    <property name="type" value="WALLFACED"/>
    </properties>
   </object>
-  <object id="2" x="909.334" y="109.334" width="40" height="40">
+  <object id="25" x="964" y="510.667" width="69.3333" height="65.3333">
    <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="3" x="894.666" y="750.667" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="4" x="1177.34" y="749.333" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="5" x="1189.33" y="113.333" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="6" x="588" y="750.667" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="7" x="366.667" y="750.667" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="8" x="389.333" y="114.667" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="14" x="1440" y="598.667" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
-   </properties>
-  </object>
-  <object id="15" x="1436" y="241.334" width="40" height="40">
-   <properties>
-    <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
+    <property name="type" value="WALLFACED"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="TERRAIN">
-  <object id="16" x="753.667" y="438" width="42.6667" height="41.3333">
-   <properties>
-    <property name="type" value="ROCK"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="TERRAIN"/>
 </map>

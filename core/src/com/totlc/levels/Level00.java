@@ -15,7 +15,7 @@ public class Level00 extends ALevel {
         super(assetManager, ObjectiveVerifier.Objectives.SURVIVE);
         setTimeLimit(10000);
         setNextLevel(Level01.class);
-        setNameString("Tutorial");
+        setNameString("Baby Steps");
 
 //        textBox = new TextBox(assetManager, "Come find me if you want to escape!", 0, 1, 10, false);
 //        textBox = new TextBox(assetManager, "Come find me if you want to escape!", 0, 1, 10);

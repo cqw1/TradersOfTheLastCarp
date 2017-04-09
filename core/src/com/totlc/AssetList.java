@@ -16,6 +16,7 @@ public enum AssetList {
     GAME_OVER_SOUND("sounds/wahwahwaah.ogg", Sound.class),
     YOU_LOSE("sounds/youlose.mp3", Sound.class),
     FINE("sounds/fine.mp3", Sound.class),
+    BLOP("sounds/blop.mp3", Sound.class),
 
     // UI elements and icons.
     ARROW("UI/arrow.png", Texture.class),
@@ -191,18 +192,22 @@ public enum AssetList {
     LEVEL02_TMX("tmx/basics.tmx", TiledMap.class),
     LEVEL03_TMX("tmx/evasion.tmx", TiledMap.class),
     LEVEL04_TMX("tmx/weaving.tmx", TiledMap.class),
-    LEVEL05_TMX("tmx/warp.tmx", TiledMap.class),
+    LEVEL05_TMX("tmx/impenetrable.tmx", TiledMap.class),
     LEVEL06_TMX("tmx/teleport.tmx", TiledMap.class),
     LEVEL07_TMX("tmx/spikes.tmx", TiledMap.class),
-    LEVEL08_TMX("tmx/twinkle_jr.tmx", TiledMap.class),
-    LEVEL09_TMX("tmx/fire.tmx", TiledMap.class),
-    LEVEL10_TMX("tmx/spawn.tmx", TiledMap.class),
-    LEVEL11_TMX("tmx/mayhem.tmx", TiledMap.class),
-    LEVEL12_TMX("tmx/the_zoo.tmx", TiledMap.class),
-    LEVEL13_TMX("tmx/trap_medley.tmx", TiledMap.class),
-    LEVEL14_TMX("tmx/patterns.tmx", TiledMap.class),
-    LEVEL15_TMX("tmx/arrow_hell.tmx", TiledMap.class),
-    LEVEL16_TMX("tmx/twinkle.tmx", TiledMap.class);
+    LEVEL08_TMX("tmx/warp.tmx", TiledMap.class),
+    LEVEL09_TMX("tmx/pebbles.tmx", TiledMap.class),
+    LEVEL10_TMX("tmx/twinkle_jr.tmx", TiledMap.class),
+    LEVEL11_TMX("tmx/fire.tmx", TiledMap.class),
+    LEVEL12_TMX("tmx/laser.tmx", TiledMap.class),
+    LEVEL13_TMX("tmx/spawn.tmx", TiledMap.class),
+    LEVEL14_TMX("tmx/mayhem.tmx", TiledMap.class),
+    LEVEL15_TMX("tmx/the_zoo.tmx", TiledMap.class),
+    LEVEL16_TMX("tmx/trap_medley.tmx", TiledMap.class),
+    LEVEL17_TMX("tmx/patterns.tmx", TiledMap.class),
+    LEVEL18_TMX("tmx/bouldering.tmx", TiledMap.class),
+    LEVEL19_TMX("tmx/arrow_hell.tmx", TiledMap.class),
+    LEVEL20_TMX("tmx/twinkle.tmx", TiledMap.class);
 
     private String pathname;
     private Class type;

@@ -31,7 +31,7 @@ public class BoulderTrap extends ATrap {
     public void setup() {
         if (!isSetup()) {
             // If someone's already triggered this trap
-            getStage().addActor(new Exclamation(getAssetManager(), (float) getHitBoxCenter().getX() + getHitBoxWidth(), TradersOfTheLastCarp.CONFIG_HEIGHT - 150));
+            getStage().addActor(new Exclamation(getAssetManager(), (float) getHitBoxCenter().getX() + getHitBoxWidth(), (float) getHitBoxCenter().getY() + getHitBoxHeight() / 3));
             getStage().addActor(new RockFall(getAssetManager(), (float) getHitBoxCenter().getX(), TradersOfTheLastCarp.CONFIG_HEIGHT));
             setStartTime(System.currentTimeMillis());
             setSetup(true);

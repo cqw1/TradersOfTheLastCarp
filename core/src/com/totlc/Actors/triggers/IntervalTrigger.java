@@ -8,16 +8,16 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class IntervalTrigger extends ATrigger {
 
     private long triggerTime;
-    private long interval = 2500;
+    private long interval;
 
     public IntervalTrigger(AssetManager assetManager, float x, float y) {
-        super(assetManager, new Rectangle(x, y, 1, 1));
-        this.triggerTime = System.currentTimeMillis() + interval;
+        this(assetManager, x, y, 2500);
     }
 
     public IntervalTrigger(AssetManager assetManager, float x, float y, long interval) {
-        this(assetManager, x, y);
+        super(assetManager, new Rectangle(x, y, 1, 1));
         this.interval = interval;
+        this.triggerTime = System.currentTimeMillis() + interval;
     }
 
     public void act(float delta) {
@@ -36,5 +36,13 @@ public class IntervalTrigger extends ATrigger {
 
     public void endCollidesWith(Actor otherActor) {
 
+    }
+
+    public void setInterval(long time) {
+        interval = time;
+    }
+
+    public void setStartTime(long time) {
+        triggerTime = System.currentTimeMillis() + time;
     }
 }

@@ -37,8 +37,6 @@ public class EntrancePortal extends ATrigger {
         wormHole = new ParticleEffect();
         wormHole.load(Gdx.files.internal(AssetList.WORMHOLE_EFFECT.toString()), particleAtlas);
         wormHole.start();
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/drone0.mp3"));
-        sound.play(1f);
     }
 
     @Override

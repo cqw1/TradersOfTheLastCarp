@@ -140,8 +140,7 @@
   <object id="5" x="1021.33" y="412" width="53.3333" height="48">
    <properties>
     <property name="invincible" type="bool" value="true"/>
-    <property name="movement" value="BASIC"/>
-    <property name="type" value="SPIDER"/>
+    <property name="type" value="FISHERMAN"/>
    </properties>
   </object>
  </objectgroup>

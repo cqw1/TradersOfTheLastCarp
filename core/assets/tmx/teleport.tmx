@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="95">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="96">
  <properties>
   <property name="objective" type="int" value="1"/>
  </properties>
@@ -51,6 +51,11 @@
   <object id="94" x="842.667" y="381.333" width="54.6667" height="56">
    <properties>
     <property name="type" value="KEY"/>
+   </properties>
+  </object>
+  <object id="95" x="352" y="389" width="55" height="62">
+   <properties>
+    <property name="type" value="HEALTH"/>
    </properties>
   </object>
  </objectgroup>

@@ -36,8 +36,6 @@ public class ExitPortal extends ATrap {
         wormHole = new ParticleEffect();
         wormHole.load(Gdx.files.internal(AssetList.WORMHOLE_EFFECT.toString()), particleAtlas);
         wormHole.start();
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/drone0.mp3"));
-        sound.play(1f);
     }
 
     public ExitPortal(AssetManager assetManager, float x, float y, Directionality d) {
@@ -56,6 +54,9 @@ public class ExitPortal extends ATrap {
 
     @Override
     public void activate() {
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.BLOP.toString()));
+        sound.play(0.7f);
+
         getTargetActor().moveAbs(getX(), getY());
         Point2D vel = getTargetActor().getVel();
         double largestVector = Math.max(Math.abs(vel.getX()), Math.abs(vel.getY()));

@@ -151,6 +151,11 @@ public class LevelSelect extends ALevel {
          * TODO: Add in reverse order since we populate the grid by removing from the end. For that O(1) time lol.
          * TODO: This isn't really a todo. I just wanted the color to pop out.
          */
+        levels.add(new LevelOptionInfo(null, Level20.class, Util.parseLevelString(AssetList.LEVEL20_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level19.class, Util.parseLevelString(AssetList.LEVEL19_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level18.class, Util.parseLevelString(AssetList.LEVEL18_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level17.class, Util.parseLevelString(AssetList.LEVEL17_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level16.class, Util.parseLevelString(AssetList.LEVEL16_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level15.class, Util.parseLevelString(AssetList.LEVEL15_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level14.class, Util.parseLevelString(AssetList.LEVEL14_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level13.class, Util.parseLevelString(AssetList.LEVEL13_TMX.toString())));
@@ -163,10 +168,10 @@ public class LevelSelect extends ALevel {
         levels.add(new LevelOptionInfo(null, Level06.class, Util.parseLevelString(AssetList.LEVEL06_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level05.class, Util.parseLevelString(AssetList.LEVEL05_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level04.class, Util.parseLevelString(AssetList.LEVEL04_TMX.toString())));
-        levels.add(new LevelOptionInfo(null, Level03.class, Util.parseLevelString(AssetList.LEVEL02_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level03.class, Util.parseLevelString(AssetList.LEVEL03_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level02.class, Util.parseLevelString(AssetList.LEVEL02_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level01.class, Util.parseLevelString(AssetList.LEVEL01_TMX.toString())));
-        levels.add(new LevelOptionInfo(null, Level00.class, "Tutorial"));
+        levels.add(new LevelOptionInfo(null, Level00.class, "Baby Steps"));
 
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[r].length; c++) {
