@@ -32,9 +32,9 @@ public class EnemyFactory {
         } else if (type.equals(GELATIN)) {
             return new GelatinKing(assetManager, x, y, new RandomMovement(TradersOfTheLastCarp.player));
         } else if (type.equals(HARPOONER)) {
-            return new EnthralledHarpooner(assetManager, x, y, new RandomMovement(TradersOfTheLastCarp.player));
+            return new EnthralledHarpooner(assetManager, x, y, new BasicMovement(TradersOfTheLastCarp.player));
         } else if (type.equals(FISHERMAN)) {
-            return new EnthralledFisherman(assetManager, x, y, new RandomMovement(TradersOfTheLastCarp.player));
+            return new EnthralledFisherman(assetManager, x, y, new BasicMovement(TradersOfTheLastCarp.player));
         } else if (type.equals(DUMMY)) {
             return new Dummy(assetManager, x, y, new Immobile(TradersOfTheLastCarp.player));
         }

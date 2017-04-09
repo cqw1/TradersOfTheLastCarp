@@ -31,8 +31,13 @@ public class LaserTotem extends ATrap{
     private float angle, initialAngle;
     private float gem_scale;
     private static float rotationSpeed = 0.016f;
+    private static long delay = 2000;
 
-    public LaserTotem(AssetManager assetManager, int x, int y, long delay) {
+    public LaserTotem(AssetManager assetManager, float x, float y) {
+        this(assetManager, x, y, delay);
+    }
+
+    public LaserTotem(AssetManager assetManager, float x, float y, long delay) {
         super(assetManager, new Rectangle(x, y, width, height), delay);
         trapTexture = assetManager.get(AssetList.LASER_TOTEM.toString());
         blue_gem = assetManager.get(AssetList.BLUE_GEM.toString());
