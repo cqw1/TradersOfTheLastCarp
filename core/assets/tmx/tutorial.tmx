@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="40">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="41">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -35,6 +35,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="TEXT">
+  <object id="40" x="129.333" y="790.667" width="65.3333" height="50.6667">
+   <properties>
+    <property name="message" value="Be careful-- traps are in every room!"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="ENEMIES">
   <object id="1" name="Pangolini" x="1285.33" y="385.333" width="62.6667" height="65.3333">
    <properties>

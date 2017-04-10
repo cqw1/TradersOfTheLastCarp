@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="40">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="41">
  <properties>
   <property name="objective" type="int" value="1"/>
  </properties>
@@ -35,6 +35,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="TEXT">
+  <object id="40" x="83" y="732" width="38" height="36">
+   <properties>
+    <property name="message" value="Now you're thinking with portals!"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="ITEMS">
   <object id="38" x="746.667" y="381.333" width="50.6667" height="64">
    <properties>
