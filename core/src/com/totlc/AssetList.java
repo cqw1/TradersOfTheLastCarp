@@ -81,6 +81,10 @@ public enum AssetList {
     FISHERMAN_ATTACK("sprites/enthralled_fisherman/fisherman_attack.atlas", TextureAtlas.class),
     FISHHOOK_THROW("sprites/enthralled_fisherman/hook_throw.atlas", TextureAtlas.class),
     FISHHOOK("sprites/enthralled_fisherman/fisherman_hook.png", Texture.class),
+    CHAPERONE_WALK("sprites/chaperone/chaperone_shuffle.atlas", TextureAtlas.class),
+    CHAPERONE_ATTACK("sprites/chaperone/chaperone_cane.atlas", TextureAtlas.class),
+    DANGER_ZONE("sprites/chaperone/devil_circle.atlas", TextureAtlas.class),
+    DANGER_ZONE_LOOP("sprites/chaperone/devil_circle_loop.atlas", TextureAtlas.class),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),
@@ -149,6 +153,9 @@ public enum AssetList {
     DEBRIS_DROP("effects/debrisdrop.particle", null),
     BOULDER_BREAK("effects/boulderbreak.particle", null),
     SPARKS("effects/sparks.particle", null),
+    SHADOW_PATH("effects/shadowpath.particle", null),
+    SHADOW_CLOAK("effects/shadowcloak.particle", null),
+    RING_EFFECT("effects/ringeffect.particle", null),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas", TextureAtlas.class),

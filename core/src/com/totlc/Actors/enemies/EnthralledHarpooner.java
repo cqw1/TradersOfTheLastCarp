@@ -79,8 +79,8 @@ public class EnthralledHarpooner extends AEnemy{
                 setIsFacing(Directionality.RIGHT);
             }
             // Attack chance.
-            if (Math.random() < attackChance
-                    && new Point2D.Double(getMovement().getTarget().getX(), getMovement().getTarget().getY()).distance(new Point2D.Double(getX(), getY())) < 200){
+            if (new Point2D.Double(getMovement().getTarget().getX(), getMovement().getTarget().getY()).distance(new Point2D.Double(getX(), getY())) < 200
+                && Math.random() < attackChance) {
                 setAnimationTime(0);
                 this.attackStartTime = System.currentTimeMillis();
                 attack();

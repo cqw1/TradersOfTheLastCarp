@@ -1,0 +1,118 @@
+
+devil_circle.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+circle
+  rotate: false
+  xy: 2, 167
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 0
+circle
+  rotate: false
+  xy: 2, 112
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 1
+circle
+  rotate: false
+  xy: 164, 167
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 2
+circle
+  rotate: false
+  xy: 2, 57
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 3
+circle
+  rotate: false
+  xy: 164, 112
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 4
+circle
+  rotate: false
+  xy: 326, 167
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 5
+circle
+  rotate: false
+  xy: 2, 2
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 6
+circle
+  rotate: false
+  xy: 164, 57
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 7
+circle
+  rotate: false
+  xy: 326, 112
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 8
+circle
+  rotate: false
+  xy: 488, 167
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 9
+circle
+  rotate: false
+  xy: 164, 2
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 10
+circle
+  rotate: false
+  xy: 326, 57
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 11
+circle
+  rotate: false
+  xy: 488, 112
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 12
+circle
+  rotate: false
+  xy: 650, 167
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 13
+circle
+  rotate: false
+  xy: 326, 2
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 14
+circle
+  rotate: false
+  xy: 488, 57
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 15

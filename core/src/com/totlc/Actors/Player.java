@@ -168,7 +168,7 @@ public class Player extends Character {
         setAcc(getNewAcceleration());
         updateVelocity();
         moveUnit(deltaTime);
-        drawDustTrail(5);
+        drawDustTrail(10);
         returnIntoBounds(formerX, formerY);
     }
 
