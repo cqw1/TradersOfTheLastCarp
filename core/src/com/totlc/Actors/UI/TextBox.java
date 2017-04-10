@@ -39,6 +39,10 @@ public class TextBox extends Actor {
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
 
+
+    public TextBox(AssetManager assetManager, String message) {
+        this(assetManager, message, 0, 1, 5);
+    }
     /**
      *
      * @param assetManager
@@ -76,6 +80,7 @@ public class TextBox extends Actor {
 
         box = new NinePatch(assetManager.get(AssetList.UI_BOX.toString(), Texture.class), 32, 32, 32, 32);
         font = TradersOfTheLastCarp.systemFont0;
+
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 

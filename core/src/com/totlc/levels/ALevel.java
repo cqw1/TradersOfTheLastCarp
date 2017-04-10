@@ -391,7 +391,7 @@ public abstract class ALevel extends Stage {
 
         try {
             //Enemies
-            for (MapObject mo : map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
+            for (MapObject mo: map.getLayers().get(EnemyFactory.TYPE).getObjects()) {
                 MapProperties currentObjProp = mo.getProperties();
                 AEnemy currentEnemy = EnemyFactory.createEnemyFromMP(currentObjProp, getAssetManager());
                 addActor(currentEnemy);
@@ -401,6 +401,17 @@ public abstract class ALevel extends Stage {
         }
 
         endInit();
+
+        try {
+            //UI elements go on top
+            for (MapObject mo: map.getLayers().get(TextBoxFactory.TYPE).getObjects()) {
+                MapProperties currentObjProp = mo.getProperties();
+                TextBox tb = TextBoxFactory.createTextBoxFromMp(currentObjProp, getAssetManager());
+                addActor(tb);
+            }
+        } catch (NullPointerException n) {
+            System.err.print("No UI layer detected");
+        }
     }
 
     public void handlePlayerDeath() {
