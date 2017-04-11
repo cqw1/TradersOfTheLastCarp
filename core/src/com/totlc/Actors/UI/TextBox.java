@@ -103,6 +103,7 @@ public class TextBox extends Actor {
             box.draw(batch, getX(), getY(), getWidth(), getHeight());
 
             // Draw message.
+            font.getData().setScale(1.5f);
             font.draw(batch, message, getX() + horizontalPadding, getY() + getHeight() / 2 + 5 * (numLines));
         }
 

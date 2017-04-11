@@ -150,7 +150,7 @@ public class Stargazer extends AEnemy {
     private void star_shot(){
         Point2D targetVector = getTarget(((ALevel)getStage()).getPlayer());
         Sound starSound = Gdx.audio.newSound(Gdx.files.internal("sounds/sparkle0.mp3"));
-        starSound.play(0.7f);
+        starSound.play(0.2f);
         getStage().addActor(DamageFactory.createDamage(DamageEnum.STAR_SHOT, new Point2D.Double(targetVector.getX() * projectileSpeed, targetVector.getY() * projectileSpeed), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
     }
 
