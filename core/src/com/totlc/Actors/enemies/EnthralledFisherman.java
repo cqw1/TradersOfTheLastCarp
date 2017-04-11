@@ -24,8 +24,8 @@ public class EnthralledFisherman extends AEnemy {
     private static int hp = 2;
     private static int atk = 1;
 
-    private static float maxVel = 100;
-    private static float speed = 20;
+    private static float maxVel = 180;
+    private static float speed = 75;
     private static float friction = 0.2f;
     private static float attackChance = .008f;
     private static long attackTime = 1600;

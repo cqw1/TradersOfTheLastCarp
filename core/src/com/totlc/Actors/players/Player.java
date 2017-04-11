@@ -1,4 +1,4 @@
-package com.totlc.Actors;
+package com.totlc.Actors.players;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Character;
 import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.effects.Dust;
 import com.totlc.Actors.effects.Impact;
@@ -71,6 +72,8 @@ public class Player extends Character {
     private long invincibilityStart;
     private AWeapon weapon;
     private boolean hasKey = false;
+    private long weaponUsageCD = 1500;
+    private long weaponUsageTime;
 
     public Player(AssetManager assetManager) {
         this(assetManager, 0, 0);
@@ -90,8 +93,8 @@ public class Player extends Character {
 
         setHpMax(5);
         setHpCurrent(getHpMax());
+        weaponUsageTime = System.currentTimeMillis();
 
-        //TODO: Correct the hitbox?
         moveHitBox(28, 0);
 
        initTextures(assetManager);
@@ -168,7 +171,7 @@ public class Player extends Character {
         setAcc(getNewAcceleration());
         updateVelocity();
         moveUnit(deltaTime);
-        drawDustTrail(10);
+        drawDustTrail(5);
         returnIntoBounds(formerX, formerY);
     }
 
@@ -271,13 +274,16 @@ public class Player extends Character {
     }
 
     public void createWeapon(){
-        getStage().addActor(getWeapon());
-        if (getIsFacing().isFacingDown()){
-            getWeapon().setZIndex(getZIndex() + 1);
-        } else{
-            getWeapon().setZIndex(getZIndex() - 1);
+        if (System.currentTimeMillis() > weaponUsageTime) {
+            getStage().addActor(getWeapon());
+            if (getIsFacing().isFacingDown()) {
+                getWeapon().setZIndex(getZIndex() + 1);
+            } else {
+                getWeapon().setZIndex(getZIndex() - 1);
+            }
+            setAttacking(true);
+            weaponUsageTime = System.currentTimeMillis() + weaponUsageCD;
         }
-        setAttacking(true);
     }
 
     public void endCollidesWith(Actor otherActor) {}

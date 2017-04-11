@@ -133,7 +133,7 @@
   </object>
   <object id="8" x="725.333" y="313.333" width="54.6667" height="73.3333">
    <properties>
-    <property name="type" value="PANGOLINI"/>
+    <property name="type" value="HARPOONER"/>
    </properties>
   </object>
   <object id="9" x="856" y="397.333" width="102.667" height="86.6667">

@@ -8,8 +8,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
-import com.totlc.Actors.Player;
-import com.totlc.Actors.effects.Impact;
+import com.totlc.Actors.players.Player;
 import com.totlc.AssetList;
 
 public class Goldfish extends APickup {

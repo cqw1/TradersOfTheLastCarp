@@ -4,8 +4,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.Player;
-import com.totlc.Actors.effects.Impact;
 
 public class Melee extends Damage{
 

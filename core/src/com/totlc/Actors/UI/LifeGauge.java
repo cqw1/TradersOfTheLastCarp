@@ -1,12 +1,11 @@
 package com.totlc.Actors.UI;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.Player;
+import com.totlc.Actors.players.Player;
 import com.totlc.AssetList;
 
 /**

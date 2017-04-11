@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.Player;
+import com.totlc.Actors.players.Player;
 import com.totlc.Actors.effects.Dust;
 import com.totlc.Actors.effects.Sparks;
 import com.totlc.Actors.enemies.AEnemy;
