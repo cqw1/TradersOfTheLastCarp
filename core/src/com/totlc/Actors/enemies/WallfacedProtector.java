@@ -27,7 +27,7 @@ import java.awt.geom.Point2D;
 public class WallfacedProtector extends AEnemy {
 
     // Stat constants.
-    private static int id = 4;
+    private static int id = 5;
     private static int hp = 2;
     private static int atk = 3;
 

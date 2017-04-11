@@ -19,7 +19,7 @@ import java.awt.geom.Point2D;
 public class GelatinKing extends AEnemy {
 
     // Stat constants.
-    private static int id = 2;
+    private static int id = 3;
     private static int basehp = 1;
     private static int atk = 1;
 
