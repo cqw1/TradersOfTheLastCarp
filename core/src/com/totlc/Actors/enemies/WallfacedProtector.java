@@ -22,10 +22,10 @@ public class WallfacedProtector extends AEnemy {
     // Stat constants.
     private static int id = 5;
     private static int hp = 2;
-    private static int atk = 3;
+    private static int atk = 2;
 
     private static float maxVel = 200;
-    private static float speed = 40;
+    private static float speed = 70;
     private static float friction = 0.2f;
     private long lastHitTime;
 
@@ -33,7 +33,7 @@ public class WallfacedProtector extends AEnemy {
     TextureAtlas stand, walk_side, walk_front, walk_back, head;
     Animation<TextureRegion> walk_animation_side, walk_animation_front, walk_animation_back;
 
-    private static float width = 128, height = 160;
+    private static float width = 128, height = 136;
     private static float shieldSize = 200;
     private float textureWidthBody, textureHeightBody, textureWidthHead, textureHeightHead;
     private float headXOffset;

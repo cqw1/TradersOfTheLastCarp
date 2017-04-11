@@ -57,6 +57,12 @@ public class TrapFactory {
             }
         }
 
+        if (mp.get("type", String.class).equals(EXIT_PORTAL)) {
+            if (mp.containsKey("direction")) {
+                ((ExitPortal) returnMe).setModifiedDirection(mp.get("direction", String.class));
+            }
+        }
+
         return returnMe;
     }
 }

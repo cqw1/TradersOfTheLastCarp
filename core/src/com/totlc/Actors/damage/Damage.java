@@ -2,10 +2,7 @@ package com.totlc.Actors.damage;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.Player;
 import com.totlc.Actors.TotlcObject;
-import com.totlc.Actors.enemies.AEnemy;
 
 public abstract class Damage extends TotlcObject {
 

@@ -33,14 +33,14 @@ public class ArrowTrap extends ATrap{
 
     @Override
     public void activate() {
-        Point2D center = getCenter();
+
         //Left/right-wards arrow
-        getStage().addActor(DamageFactory.createDamage(DamageEnum.ARROW, new Point2D.Double(-500, 0), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0));
-        getStage().addActor(DamageFactory.createDamage(DamageEnum.ARROW, new Point2D.Double(500, 0), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0));
+        getStage().addActor(DamageFactory.createDamage(DamageEnum.ARROW, new Point2D.Double(-500, 0), getAssetManager(), (float) getHitBoxCenter().getX() - 32, (float) getHitBoxCenter().getY(), 0));
+        getStage().addActor(DamageFactory.createDamage(DamageEnum.ARROW, new Point2D.Double(500, 0), getAssetManager(), (float) getHitBoxCenter().getX() - 32, (float) getHitBoxCenter().getY(), 0));
 
         //Up/down arrow
-        getStage().addActor(DamageFactory.createDamage(DamageEnum.ARROW, new Point2D.Double(0, 500), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0));
-        getStage().addActor(DamageFactory.createDamage(DamageEnum.ARROW, new Point2D.Double(0, -500), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0));
+        getStage().addActor(DamageFactory.createDamage(DamageEnum.ARROW, new Point2D.Double(0, 500), getAssetManager(), (float) getHitBoxCenter().getX() - 32, (float) getHitBoxCenter().getY(), 0));
+        getStage().addActor(DamageFactory.createDamage(DamageEnum.ARROW, new Point2D.Double(0, -500), getAssetManager(), (float) getHitBoxCenter().getX() - 32, (float) getHitBoxCenter().getY(), 0));
     }
 
     @Override

@@ -1,18 +1,13 @@
 package com.totlc.levels;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.Player;
 import com.totlc.Actors.UI.ButtonPrompt;
 import com.totlc.Actors.carps.CrystalCarp;
 import com.totlc.Actors.tileset.EndScreen;
 import com.totlc.AssetList;
-import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 
 import static com.totlc.TradersOfTheLastCarp.CONFIG_HEIGHT;

@@ -1,10 +1,8 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.totlc.Actors.Player;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
-import com.totlc.levels.ObjectiveVerifier.*;
 
 public class Level02 extends ALevel {
 
