@@ -1,0 +1,76 @@
+
+pangolini_idle.png
+size: 512,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+pangolini_idle
+  rotate: false
+  xy: 2, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 0
+pangolini_idle
+  rotate: false
+  xy: 2, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 4
+pangolini_idle
+  rotate: false
+  xy: 2, 2
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 1
+pangolini_idle
+  rotate: false
+  xy: 2, 2
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 3
+pangolini_idle
+  rotate: false
+  xy: 104, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 2
+pangolini_idle
+  rotate: false
+  xy: 104, 2
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 5
+pangolini_idle
+  rotate: false
+  xy: 104, 2
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 9
+pangolini_idle
+  rotate: false
+  xy: 206, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 6
+pangolini_idle
+  rotate: false
+  xy: 206, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 8
+pangolini_idle
+  rotate: false
+  xy: 206, 2
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 7

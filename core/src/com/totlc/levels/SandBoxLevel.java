@@ -2,10 +2,7 @@ package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.totlc.Actors.enemies.*;
-import com.totlc.Actors.enemies.movement.BasicMovement;
-import com.totlc.Actors.enemies.movement.ProximityBasedAggro;
-import com.totlc.Actors.enemies.movement.RandomMovement;
-import com.totlc.Actors.enemies.movement.ZoningMovement;
+import com.totlc.Actors.enemies.movement.*;
 import com.totlc.Actors.items.APickup;
 import com.totlc.Actors.items.Goldfish;
 import com.totlc.Actors.items.Key;
@@ -72,8 +69,11 @@ public class SandBoxLevel extends ALevel{
 //        AEnemy harpooner = new EnthralledHarpooner(getAssetManager(), 700, 700, new BasicMovement(getPlayer()));
 //        addActor(harpooner);
 
-        AEnemy chaperone = new FellChaperone(getAssetManager(), 700, 300, new ZoningMovement(getPlayer()));
-        addActor(chaperone);
+//        AEnemy chaperone = new FellChaperone(getAssetManager(), 700, 300, new ZoningMovement(getPlayer()));
+//        addActor(chaperone);
+
+        AEnemy pangolini = new DaredevilPangolini(getAssetManager(), 900, 100, new BasicMovement(getPlayer()));
+        addActor(pangolini);
 
         endInit();
     }

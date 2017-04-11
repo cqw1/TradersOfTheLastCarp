@@ -23,6 +23,9 @@ public class Invulnerable extends AStatus {
     public void act(float deltaTime){
         super.act(deltaTime);
         shield.setPosition(getX(), getY());
+        if (shield.isComplete()){
+
+        }
     }
 
     @Override
@@ -41,5 +44,13 @@ public class Invulnerable extends AStatus {
         shield.setPosition((float) getFollowMe().getHitBoxCenter().getX(), (float) getFollowMe().getHitBoxCenter().getY());
         shield.load(Gdx.files.internal(AssetList.SHIELD.toString()), particleAtlas);
         shield.start();
+    }
+
+    public ParticleEffect getShield() {
+        return shield;
+    }
+
+    public void setShield(ParticleEffect shield) {
+        this.shield = shield;
     }
 }

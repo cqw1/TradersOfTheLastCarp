@@ -126,7 +126,6 @@ public class Stargazer extends AEnemy {
 
     @Override
     public void draw(Batch batch, float alpha) {
-
         boolean flip = getIsFacing().isFacingRight();
         float w = spinAnimation.getKeyFrame(getAnimationTime()).getRegionWidth();
         float h = spinAnimation.getKeyFrame(getAnimationTime()).getRegionHeight();
@@ -145,6 +144,7 @@ public class Stargazer extends AEnemy {
 
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         drawStatuses(batch, alpha);
+        drawShield(batch);
     }
 
     private void star_shot(){

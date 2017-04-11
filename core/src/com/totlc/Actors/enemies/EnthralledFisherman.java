@@ -133,6 +133,8 @@ public class EnthralledFisherman extends AEnemy {
         }
 
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
+        drawStatuses(batch, alpha);
+        drawShield(batch);
     }
 
     protected void initTextures(AssetManager assetManager){

@@ -173,6 +173,8 @@ public class FellChaperone extends AEnemy{
         shadow_cloak.draw(batch, Gdx.graphics.getDeltaTime());
 
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
+        drawStatuses(batch, alpha);
+        drawShield(batch);
     }
 
     private void summonCircle(){

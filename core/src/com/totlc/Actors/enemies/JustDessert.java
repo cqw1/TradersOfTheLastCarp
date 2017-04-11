@@ -69,7 +69,6 @@ public class JustDessert extends AEnemy{
 
     @Override
     public void draw(Batch batch, float alpha) {
-        drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         if (getHpCurrent() == 7){
             if (getMovement().isAttack()){
                 batch.draw(jumpAnimationP.getKeyFrame(getAnimationTime(), true), getX(), getY(),
@@ -99,7 +98,9 @@ public class JustDessert extends AEnemy{
                         (float) walkTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
             }
         }
+        drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         drawStatuses(batch, alpha);
+        drawShield(batch);
     }
 
     @Override

@@ -17,8 +17,7 @@ import com.badlogic.gdx.math.Polygon;
 import com.totlc.status.AStatus;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 public abstract class TotlcObject extends Actor {
 
@@ -50,7 +49,7 @@ public abstract class TotlcObject extends Actor {
 
     private float knockback = 25;
 
-    private List<AStatus> statuses = new ArrayList<AStatus>();
+    private Stack<AStatus> statuses = new Stack<AStatus>();
 
     // Orientation and movement flags.
     private Directionality isFacing = Directionality.DOWN;
@@ -319,7 +318,7 @@ public abstract class TotlcObject extends Actor {
         this.assetsLoaded = assetsLoaded;
     }
 
-    public List<AStatus> getStatuses() {
+    public Stack<AStatus> getStatuses() {
         return statuses;
     }
 

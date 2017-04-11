@@ -21,7 +21,6 @@ public class IntervalMovement extends AMovement {
     @Override
     public void specializedMove(AEnemy self, float deltaTime) {
         Point2D newAcc = self.getAcc();
-
         if (skitter) {
             if (System.currentTimeMillis() > (movementTime + skitterPeriod)) {
                 skitter = false;
