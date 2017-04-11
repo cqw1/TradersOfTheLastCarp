@@ -79,7 +79,7 @@ public class TextBox extends Actor {
         );
 
         box = new NinePatch(assetManager.get(AssetList.UI_BOX.toString(), Texture.class), 32, 32, 32, 32);
-        font = TradersOfTheLastCarp.systemFont0;
+        font = TradersOfTheLastCarp.systemFont0L;
 
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
@@ -103,7 +103,9 @@ public class TextBox extends Actor {
             box.draw(batch, getX(), getY(), getWidth(), getHeight());
 
             // Draw message.
+            font.getData().setScale(0.3f);
             font.draw(batch, message, getX() + horizontalPadding, getY() + getHeight() / 2 + 5 * (numLines));
+            font.getData().setScale(1.0f);
         }
 
         carp.draw(batch, alpha);

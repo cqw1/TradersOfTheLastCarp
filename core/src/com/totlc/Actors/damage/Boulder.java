@@ -31,6 +31,9 @@ public class Boulder extends Damage{
     private TextureAtlas particleAtlas;
     private ParticleEffect debris;
     Sound rollingSound;
+    private Texture shadow;
+
+    private static float shadowSize = 3;
 
     // Not generated with factory.
     public Boulder(AssetManager assetManager, float x, float y, int attack, int damageType) {
@@ -44,6 +47,8 @@ public class Boulder extends Damage{
         getHitBox().setScale(0, 0);
         setScaleFactor(1);
         setTexture(new Texture(Gdx.files.internal(AssetList.BOULDER.toString())));
+        shadow = getAssetManager().get(AssetList.SHADOW.toString());
+        shadow.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         setVel(new Point(0, -800));
 
         particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
@@ -69,7 +74,7 @@ public class Boulder extends Damage{
             rolling = true;
             Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bouldercrash0.mp3"));
             impactSound.play(0.5f);
-            rollingSound.loop(1f);
+            rollingSound.play(1f);
         }
         debris.setPosition((float)getCenter().getX(), getY() + 10);
     }
@@ -78,6 +83,9 @@ public class Boulder extends Damage{
     public void draw(Batch batch, float alpha) {
         debris.draw(batch, Gdx.graphics.getDeltaTime());
         if (!removeFlag) {
+            batch.draw(shadow, (float) getCenter().getX() - (shadow.getWidth() * shadowSize * getShadowScale()) * 0.5f, this.destinationHeight - (shadow.getHeight() * shadowSize * getShadowScale()) * 0.5f,
+                    shadow.getWidth() * shadowSize * getShadowScale(),
+                    shadow.getHeight() * shadowSize * getShadowScale());
             batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), angle, 0, 0, 300, 300, false, false);
         }
     }
@@ -117,6 +125,10 @@ public class Boulder extends Damage{
 
     private boolean delayRemove() {
        return debris.isComplete() && super.remove();
+    }
+
+    private float getShadowScale(){
+        return (TradersOfTheLastCarp.CONFIG_HEIGHT - getY()) / (TradersOfTheLastCarp.CONFIG_HEIGHT - destinationHeight);
     }
 
     @Override

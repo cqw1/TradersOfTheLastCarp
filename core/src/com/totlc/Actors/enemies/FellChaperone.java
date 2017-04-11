@@ -28,13 +28,13 @@ public class FellChaperone extends AEnemy{
 
     private float textureWidthBody, textureHeightBody, circleWidth, circleHeight;
 
-    private static float maxVel = 300;
-    private static float speed = 200;
+    private static float maxVel = 250;
+    private static float speed = 100;
     private static float friction = 0f;
 
     private static float circleScale = 3.0f;
 
-    private static float attackChance = .05f;
+    private static float attackChance = .08f;
     private static long attackTime = 4000;
     private long attackStartTime;
     private boolean windDown, spawnedHitbox;
@@ -49,7 +49,7 @@ public class FellChaperone extends AEnemy{
         this.spawnedHitbox = false;
 
         walkTextureAtlas = assetManager.get(AssetList.CHAPERONE_WALK.toString());
-        walkAnimation = new Animation<TextureRegion>(1 / 16f, walkTextureAtlas.getRegions(), Animation.PlayMode.LOOP);
+        walkAnimation = new Animation<TextureRegion>(1 / 12f, walkTextureAtlas.getRegions(), Animation.PlayMode.LOOP);
         attackTextureAtlas = assetManager.get(AssetList.CHAPERONE_ATTACK.toString());
         attackAnimation = new Animation<TextureRegion>(1 / 20f, attackTextureAtlas.getRegions(), Animation.PlayMode.LOOP);
         circleTextureAtlas = assetManager.get(AssetList.DANGER_ZONE.toString());
@@ -78,13 +78,11 @@ public class FellChaperone extends AEnemy{
         ring_effect.load(Gdx.files.internal(AssetList.RING_EFFECT.toString()), particleAtlas);
 
         shadow_path.start();
-        shadow_path.setPosition((float)getHitBoxCenter().getX() - 32, getY());
         shadow_cloak.start();
-        shadow_cloak.setPosition((float)getHitBoxCenter().getX() - 32, getY());
         ring_effect.start();
-        ring_effect.setPosition((float)getHitBoxCenter().getX(), getY() + 50);
 
         attackSound = Gdx.audio.newSound(Gdx.files.internal("sounds/scary0.mp3"));
+        ring_effect.setPosition((float)getHitBoxCenter().getX(), getY() + 60);
 
         initMovement(friction, maxVel, speed);
     }
@@ -94,13 +92,13 @@ public class FellChaperone extends AEnemy{
         super.act(deltaTime);
 
         if (this.getIsFacing().isFacingRight()) {
-            shadow_path.setPosition((float)getHitBoxCenter().getX() - 32, getY());
+            shadow_path.setPosition((float)getHitBoxCenter().getX() - 20, getY());
             shadow_cloak.setPosition((float)getHitBoxCenter().getX() - 32, getY());
         } else {
-            shadow_path.setPosition((float)getHitBoxCenter().getX(), getY());
+            shadow_path.setPosition((float)getHitBoxCenter().getX() + 20, getY());
             shadow_cloak.setPosition((float)getHitBoxCenter().getX(), getY());
         }
-        ring_effect.setPosition((float)getHitBoxCenter().getX(), getY() + 50);
+        ring_effect.setPosition((float)getHitBoxCenter().getX(), getY() + 60);
 
         if (checkStun()) {
             return;
@@ -125,7 +123,7 @@ public class FellChaperone extends AEnemy{
                 setIsFacing(Directionality.RIGHT);
             }
             // Attack chance when too close.
-            if (new Point2D.Double(getMovement().getTarget().getX(), getMovement().getTarget().getY()).distance(new Point2D.Double(getX(), getY())) < 250
+            if (new Point2D.Double(getMovement().getTarget().getX(), getMovement().getTarget().getY()).distance(new Point2D.Double(getX(), getY())) < 200
                     && Math.random() < attackChance){
                 setAnimationTime(0);
                 circleAnimation.setPlayMode(Animation.PlayMode.NORMAL);
@@ -168,7 +166,9 @@ public class FellChaperone extends AEnemy{
             } else {
                 batch.draw(attackAnimation.getKeyFrame(getAnimationTime(), false), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
             }
-            ring_effect.draw(batch, Gdx.graphics.getDeltaTime());
+            if (this.spawnedHitbox){
+                ring_effect.draw(batch, Gdx.graphics.getDeltaTime());
+            }
         }
         shadow_cloak.draw(batch, Gdx.graphics.getDeltaTime());
 

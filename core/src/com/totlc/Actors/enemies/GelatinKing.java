@@ -90,7 +90,6 @@ public class GelatinKing extends AEnemy {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
         if(this.king){
             batch.draw(kingAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(),
                     0,
@@ -105,6 +104,7 @@ public class GelatinKing extends AEnemy {
                     (float) jellyTextureAtlas.getRegions().get(0).getRegionHeight(), scale, scale, 0);
         }
         batch.draw(shadow, (float) getHitBoxCenter().getX() - (shadow.getWidth() * scale * shadowSize) / 2, (float)getHitBoxCenter().getY() - getHeight() * scale * 0.5f, shadow.getWidth() * scale * shadowSize, shadow.getHeight() * scale * shadowSize);
+        drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
     }
 
     // Drop floor hazard.

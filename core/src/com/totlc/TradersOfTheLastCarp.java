@@ -9,10 +9,7 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -39,7 +36,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	public static ALevel level;
 
-	public static BitmapFont systemFont0;
+	public static BitmapFont systemFont0, systemFont0L;
 	public static Player player;
 	public static Class playerClass;
 
@@ -140,6 +137,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	    // Special loading here
         systemFont0 =  new BitmapFont(new FileHandle(AssetList.LOVELO_FONT.toString()),
                 new FileHandle(AssetList.LOVELO_IMAGE.toString()), false);
+		systemFont0L =  new BitmapFont(new FileHandle(AssetList.LOVELO_LARGE.toString()));
+
 
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 

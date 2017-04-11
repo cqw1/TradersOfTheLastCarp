@@ -67,6 +67,9 @@ public class EnthralledFisherman extends AEnemy {
     @Override
     public void act(float deltaTime) {
         super.act(deltaTime);
+        if (checkStun()) {
+            return;
+        }
         if (getAttacking()){
             if(System.currentTimeMillis() - attackStartTime > attackTime){
                 setAnimationTime(0);

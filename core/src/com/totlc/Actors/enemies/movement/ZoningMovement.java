@@ -23,26 +23,16 @@ public class ZoningMovement extends AMovement {
         if(new Point2D.Double(getTarget().getX(), getTarget().getY()).distance(new Point2D.Double(self.getX(), self.getY())) > zoneDistance) {
             speed = self.getSpeed();
         } else{
-            speed = 20;
+            speed = 50;
         }
         if (getTarget().isInMotion()){
             if(getTarget().isMovingLeft() || getTarget().isMovingRight() ) {
-//                if (getTarget().getY() < self.getY()){
-//
-//                } else{
-//
-//                }
                 newAcc.setLocation(targetVector.getX() * getTarget().getMaxVel() * 1.5, targetVector.getY() * speed * 2);
            } else {
-//                if (getTarget().getX() < self.getX()){
-//
-//                } else{
-//
-//                }
                 newAcc.setLocation(targetVector.getX() * speed * 2, targetVector.getY() * getTarget().getMaxVel() * 1.5);
             }
         } else{
-            newAcc.setLocation(0, 0);
+            newAcc.setLocation(targetVector.getX() * speed * 0.2f, targetVector.getY() * speed * 0.2f);
         }
         self.updateVelocity();
         self.moveUnit(deltaTime);

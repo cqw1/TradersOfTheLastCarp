@@ -66,6 +66,9 @@ public class EnthralledHarpooner extends AEnemy{
     @Override
     public void act(float deltaTime) {
         super.act(deltaTime);
+        if (checkStun()) {
+            return;
+        }
         if (getAttacking()){
             if(System.currentTimeMillis() - attackStartTime > (attackTime + 500)){
                 setAnimationTime(0);
