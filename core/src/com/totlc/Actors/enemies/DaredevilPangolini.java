@@ -8,7 +8,11 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.sun.org.apache.regexp.internal.RE;
+import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.enemies.movement.AMovement;
+import com.totlc.Actors.players.Player;
+import com.totlc.Actors.terrain.AWall;
+import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
 
@@ -188,6 +192,16 @@ public class DaredevilPangolini extends AEnemy {
         setAttack((int)rollDamage);
         setInvincible(true);
         debrisTrail.start();
+    }
+
+    @Override
+    public boolean collidesWith(Actor otherActor){
+        boolean result = super.collidesWith(otherActor);
+        if (otherActor instanceof Player || otherActor instanceof AWall) {
+            setAnimationTime(0);
+            endRoll();
+        }
+        return result;
     }
 
     public float getTextureWidthBody() {
