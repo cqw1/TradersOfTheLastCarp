@@ -64,7 +64,7 @@ public class DaredevilPangolini extends AEnemy {
         rollTextureAtlas = getAssetManager().get(AssetList.PANGOLINI_ROLL.toString());
         rollAnimation = new Animation<TextureRegion>(1/16f, this.rollTextureAtlas.getRegions());
         curlTextureAtlas = getAssetManager().get(AssetList.PANGOLINI_CURL.toString());
-        curlAnimation = new Animation<TextureRegion>(1/20f, this.curlTextureAtlas.getRegions());
+        curlAnimation = new Animation<TextureRegion>(1/16f, this.curlTextureAtlas.getRegions());
 
         particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
         debrisTrail = new ParticleEffect();
@@ -187,6 +187,8 @@ public class DaredevilPangolini extends AEnemy {
     }
 
     private void roll(){
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/skid.mp3"));
+        sound.play(0.3f);
         this.spinUp = false;
         setAttacking(true);
         setAttack((int)rollDamage);

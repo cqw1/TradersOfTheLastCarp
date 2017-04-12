@@ -88,7 +88,7 @@ public class EnthralledHarpooner extends AEnemy{
                 this.attackStartTime = System.currentTimeMillis();
                 attack();
             }
-            drawDustTrail(10);
+            drawDustTrail(500);
         }
     }
 

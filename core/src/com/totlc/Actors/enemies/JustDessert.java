@@ -64,7 +64,7 @@ public class JustDessert extends AEnemy{
     @Override
     public void act(float deltaTime) {
         super.act(deltaTime);
-        drawDustTrail(12);
+        drawDustTrail(800);
     }
 
     @Override

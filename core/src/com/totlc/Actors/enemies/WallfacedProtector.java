@@ -81,7 +81,7 @@ public class WallfacedProtector extends AEnemy {
         if (System.currentTimeMillis() - this.lastHitTime > 1000) {
             setInvincible(false);
         }
-        drawDustTrail(10);
+        drawDustTrail(1000);
     }
 
     @Override

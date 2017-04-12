@@ -48,6 +48,7 @@ public abstract class TotlcObject extends Actor {
     private float maxVel;
 
     private float knockback = 25;
+    private long lastDustTrail;
 
     private Stack<AStatus> statuses = new Stack<AStatus>();
 
@@ -65,6 +66,7 @@ public abstract class TotlcObject extends Actor {
         setHeight(r.getHeight());
         initHitBox();
         setAssetManager(assetManager);
+        this.lastDustTrail = System.currentTimeMillis();
     }
 
     public abstract void draw(Batch batch, float alpha);
@@ -303,10 +305,11 @@ public abstract class TotlcObject extends Actor {
     }
 
     public void drawDustTrail(int skip){
-        if(isInMotion() && System.currentTimeMillis() % skip == 0){
+        if(isInMotion() && System.currentTimeMillis() - this.lastDustTrail > skip){
             Dust dust = new Dust(getAssetManager(), (float)getHitBoxCenter().getX(), getY());
             getStage().addActor(dust);
             dust.setZIndex(getZIndex() - 1);
+            this.lastDustTrail = System.currentTimeMillis();
         }
     }
 

@@ -8,7 +8,11 @@ import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.Character;
 import com.totlc.Actors.TotlcObject;
+import com.totlc.Actors.effects.Smoke;
+import com.totlc.Actors.enemies.AEnemy;
+import com.totlc.Actors.players.Player;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
 
@@ -82,6 +86,11 @@ public class FireStream extends Damage {
 
     @Override
     public boolean collidesWith(Actor otherActor) {
+        if (otherActor instanceof AEnemy || otherActor instanceof Player){
+            if (!((Character) otherActor).isInvincible()){
+                getStage().addActor(new Smoke(getAssetManager(), (TotlcObject) otherActor, (float)((TotlcObject) otherActor).getHitBoxCenter().getX(), (float)((TotlcObject) otherActor).getHitBoxCenter().getY(), 1000));
+            }
+        }
         return false;
     }
 

@@ -16,12 +16,21 @@ public class Smoke extends AEffect {
     private TextureAtlas particleAtlas;
     private ParticleEffect smoke;
 
+    private long duration, startTime;
+
     private TotlcObject followMe;
 
     public Smoke(AssetManager assetManager, TotlcObject actor, float x, float y) {
         super(assetManager, new Rectangle(x, y, 1, 1));
         this.followMe = actor;
+        this.duration = -1;
         loadAssets(assetManager);
+        this.startTime = System.currentTimeMillis();
+    }
+
+    public Smoke(AssetManager assetManager, TotlcObject actor, float x, float y, long duration) {
+        this(assetManager, actor, x, y);
+        this.duration = duration;
     }
 
     @Override
@@ -29,6 +38,12 @@ public class Smoke extends AEffect {
         increaseAnimationTime(deltaTime);
         moveAbs((float)followMe.getHitBoxCenter().getX() + followMe.getHitBoxWidth() / 2, (float)followMe.getHitBoxCenter().getY() + followMe.getHitBoxHeight() / 2);
         smoke.setPosition(getX(), getY());
+        if (duration > 0 && System.currentTimeMillis() - startTime > duration){
+            smoke.allowCompletion();
+        }
+        if(smoke.isComplete()){
+            remove();
+        }
     }
 
     @Override
@@ -49,8 +64,8 @@ public class Smoke extends AEffect {
     private void loadAssets(AssetManager assetManager){
         particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
         smoke = new ParticleEffect();
-        smoke.setPosition(getX(), getY());
         smoke.load(Gdx.files.internal(AssetList.SMOKE.toString()), particleAtlas);
         smoke.start();
+        smoke.setPosition(getX(), getY());
     }
 }
