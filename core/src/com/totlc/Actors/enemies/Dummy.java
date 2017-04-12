@@ -11,7 +11,7 @@ import com.totlc.AssetList;
 public class Dummy extends AEnemy {
 
     // Stat constants.
-    private static int id = 3;
+    private static int id = -1;
     private static int hp = 2;
     private static int atk = 1;
 

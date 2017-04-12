@@ -1,0 +1,62 @@
+
+chaperone_cane.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+cane
+  rotate: false
+  xy: 2, 2
+  size: 140, 290
+  orig: 140, 290
+  offset: 0, 0
+  index: 0
+cane
+  rotate: false
+  xy: 144, 2
+  size: 140, 290
+  orig: 140, 290
+  offset: 0, 0
+  index: 1
+cane
+  rotate: false
+  xy: 144, 2
+  size: 140, 290
+  orig: 140, 290
+  offset: 0, 0
+  index: 7
+cane
+  rotate: false
+  xy: 286, 2
+  size: 140, 290
+  orig: 140, 290
+  offset: 0, 0
+  index: 2
+cane
+  rotate: false
+  xy: 286, 2
+  size: 140, 290
+  orig: 140, 290
+  offset: 0, 0
+  index: 6
+cane
+  rotate: false
+  xy: 428, 2
+  size: 140, 290
+  orig: 140, 290
+  offset: 0, 0
+  index: 3
+cane
+  rotate: false
+  xy: 428, 2
+  size: 140, 290
+  orig: 140, 290
+  offset: 0, 0
+  index: 5
+cane
+  rotate: false
+  xy: 570, 2
+  size: 140, 290
+  orig: 140, 290
+  offset: 0, 0
+  index: 4

@@ -1,10 +1,13 @@
 package com.totlc.Actors.traps;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.damage.Boulder;
 import com.totlc.Actors.effects.Exclamation;
 import com.totlc.Actors.effects.RockFall;
+import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 
 public class BoulderTrap extends ATrap {

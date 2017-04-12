@@ -1,0 +1,20 @@
+
+devil_circle_loop.png
+size: 512,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+loop
+  rotate: false
+  xy: 2, 2
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 0
+loop
+  rotate: false
+  xy: 164, 2
+  size: 160, 53
+  orig: 160, 53
+  offset: 0, 0
+  index: 1

@@ -29,6 +29,10 @@ public enum AssetList {
     ICON_PACK("UI/icon_pak.atlas", TextureAtlas.class),
     LOVELO_FONT("UI/Lovelo.fnt", null),
     LOVELO_IMAGE("UI/Lovelo.png", Texture.class),
+    LOVELO_LARGE("UI/lovelo_large.fnt", null),
+    LOVELO_LARGE_IMAGE1("UI/lovelo_large1.png",null),
+    LOVELO_LARGE_IMAGE2("UI/lovelo_large2.png", null),
+    LOVELO_LARGE_IMAGE3("UI/lovelo_large3.png", null),
     ITEM_PACK("sprites/items/items.atlas", TextureAtlas.class),
     DIED_SCREEN("UI/udied.png", Texture.class),
     TITLE_SCREEN("UI/Splash2.png", Texture.class),
@@ -81,6 +85,10 @@ public enum AssetList {
     FISHERMAN_ATTACK("sprites/enthralled_fisherman/fisherman_attack.atlas", TextureAtlas.class),
     FISHHOOK_THROW("sprites/enthralled_fisherman/hook_throw.atlas", TextureAtlas.class),
     FISHHOOK("sprites/enthralled_fisherman/fisherman_hook.png", Texture.class),
+    CHAPERONE_WALK("sprites/chaperone/chaperone_shuffle.atlas", TextureAtlas.class),
+    CHAPERONE_ATTACK("sprites/chaperone/chaperone_cane.atlas", TextureAtlas.class),
+    DANGER_ZONE("sprites/chaperone/devil_circle.atlas", TextureAtlas.class),
+    DANGER_ZONE_LOOP("sprites/chaperone/devil_circle_loop.atlas", TextureAtlas.class),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),
@@ -149,6 +157,9 @@ public enum AssetList {
     DEBRIS_DROP("effects/debrisdrop.particle", null),
     BOULDER_BREAK("effects/boulderbreak.particle", null),
     SPARKS("effects/sparks.particle", null),
+    SHADOW_PATH("effects/shadowpath.particle", null),
+    SHADOW_CLOAK("effects/shadowcloak.particle", null),
+    RING_EFFECT("effects/ringeffect.particle", null),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas", TextureAtlas.class),
