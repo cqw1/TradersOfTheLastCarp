@@ -25,7 +25,6 @@ public class Laser extends Damage {
     private TextureAtlas particleAtlas;
     private ParticleEffect laser;
 
-
     public Laser(AssetManager assetManager, float x, float y, int damageType) {
         super(assetManager, new Rectangle(x, y, longSide, shortSide), damage, damageType);
 
@@ -63,14 +62,13 @@ public class Laser extends Damage {
     @Override
     public void draw(Batch batch, float alpha) {
         laser.draw(batch, Gdx.graphics.getDeltaTime());
-        batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), getVelocityAngle(), 0, 0, 100, 20, false, false);
+        batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), getVelocityAngle(), 0, 0, (int) longSide, (int)shortSide, false, false);
     }
 
     @Override
     public boolean collidesWith(Actor otherActor) {
         if (otherActor instanceof Player) {
             getStage().addActor(new Sparks(getAssetManager(), (float)getCenter().getX(), (float)getCenter().getY()));
-
             return true;
         } else if (otherActor instanceof AEnemy){
             getStage().addActor(new Sparks(getAssetManager(), (float)getCenter().getX(), (float)getCenter().getY()));

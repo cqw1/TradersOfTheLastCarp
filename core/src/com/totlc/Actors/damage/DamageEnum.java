@@ -5,7 +5,8 @@ public enum DamageEnum {
     ARROW(0),
     STAR_SHOT(1),
     LIGHTNING_PATCH(2),
-    LASER(3);
+    LASER(3),
+    BULLET(4);
 
     int type;
     DamageEnum(int id) {
@@ -22,6 +23,8 @@ public enum DamageEnum {
                 return "LIGHTNING_PATCH";
             case 3:
                 return "LASER";
+            case 4:
+                return "BULLET";
         }
 
         return "";

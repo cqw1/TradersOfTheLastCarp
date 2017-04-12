@@ -18,6 +18,12 @@ public class IntervalMovement extends AMovement {
         this.waitPeriod = this.waitPeriod + (int)(Math.random() * 1000);
     }
 
+    public IntervalMovement(Character target, int skitterPeriod, int waitPeriod) {
+        super(target);
+        this.waitPeriod = waitPeriod;
+        this.skitterPeriod = skitterPeriod;
+    }
+
     @Override
     public void specializedMove(AEnemy self, float deltaTime) {
         Point2D newAcc = self.getAcc();

@@ -64,8 +64,8 @@ public class Inventory extends Actor{
         font.getData().setScale(1.0f);
         layout.setText(font, "SCORE: " + ((ALevel)getStage()).getPlayer().getGoldfishCount());
         font.draw(batch, "SCORE: " + ((ALevel)getStage()).getPlayer().getGoldfishCount(), getX()+ uiComponent.getWidth() + scoreOffset, getY() + uiComponent.getHeight() * 0.53f);
-//        batch.draw(scoreIcon, getX() + uiComponent.getWidth() + scoreOffset + layout.width + 5, getY() + uiComponent.getHeight() * 0.53f - scoreIcon.getRegionHeight() * 0.5f * 0.36f - 5, 0, 0,
-//                (float) scoreIcon.getRegionWidth(),
-//                (float) scoreIcon.getRegionHeight(), 0.36f, 0.36f, 0);
+        batch.draw(scoreIcon, getX() + uiComponent.getWidth() + scoreOffset + layout.width + 5, getY() + uiComponent.getHeight() * 0.53f - scoreIcon.getRegionHeight() * 0.5f * 0.36f - 5, 0, 0,
+                (float) scoreIcon.getRegionWidth(),
+                (float) scoreIcon.getRegionHeight(), 0.36f, 0.36f, 0);
     }
 }

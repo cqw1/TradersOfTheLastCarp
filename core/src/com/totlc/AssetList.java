@@ -92,6 +92,8 @@ public enum AssetList {
     CHAPERONE_ATTACK("sprites/chaperone/chaperone_cane.atlas", TextureAtlas.class),
     DANGER_ZONE("sprites/chaperone/devil_circle.atlas", TextureAtlas.class),
     DANGER_ZONE_LOOP("sprites/chaperone/devil_circle_loop.atlas", TextureAtlas.class),
+    STORKTROOPER_MARCH("sprites/storktrooper/storktrooper_march.atlas", TextureAtlas.class),
+    BULLET("sprites/storktrooper/bullet.png", Texture.class),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),
