@@ -2,10 +2,12 @@ package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.sun.org.apache.regexp.internal.RE;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
@@ -27,18 +29,18 @@ public class DaredevilPangolini extends AEnemy {
     private static float height = 100;
 
     private static float maxVel = 300;
-    private static float speed = 20;
+    private static float speed = 10;
     private static float friction = 0f;
 
-    private static float rollChance = .003f;
-    private static long rollTime = 3000;
-    private static float rollSpeed = 300;
+    private static float rollChance = .008f;
+    private static long rollTime = 3600;
+    private static float rollSpeed = 360;
     private static float rollDamage = 2;
     private long rollStartTime;
 
     // Asset and animation constants.
-    private TextureAtlas idleTextureAtlas, rollTextureAtlas, particleAtlas;
-    private Animation<TextureRegion> idleAnimation, rollAnimation;
+    private TextureAtlas idleTextureAtlas, rollTextureAtlas, curlTextureAtlas, particleAtlas;
+    private Animation<TextureRegion> idleAnimation, rollAnimation, curlAnimation;
     private ParticleEffect debrisTrail;
 
     private boolean spinUp, spinDown;
@@ -56,7 +58,9 @@ public class DaredevilPangolini extends AEnemy {
         idleTextureAtlas = getAssetManager().get(AssetList.PANGOLINI_IDLE.toString());
         idleAnimation = new Animation<TextureRegion>(1/16f, this.idleTextureAtlas.getRegions());
         rollTextureAtlas = getAssetManager().get(AssetList.PANGOLINI_ROLL.toString());
-        rollAnimation = new Animation<TextureRegion>(1/24f, this.rollTextureAtlas.getRegions());
+        rollAnimation = new Animation<TextureRegion>(1/16f, this.rollTextureAtlas.getRegions());
+        curlTextureAtlas = getAssetManager().get(AssetList.PANGOLINI_CURL.toString());
+        curlAnimation = new Animation<TextureRegion>(1/20f, this.curlTextureAtlas.getRegions());
 
         particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
         debrisTrail = new ParticleEffect();
@@ -65,6 +69,9 @@ public class DaredevilPangolini extends AEnemy {
 
         textureWidthBody = idleTextureAtlas.getRegions().get(0).getRegionWidth();
         textureHeightBody = idleTextureAtlas.getRegions().get(0).getRegionHeight();
+
+        this.spinUp = false;
+        this.spinDown = false;
 
         moveHitBox(16, 8);
     }
@@ -81,31 +88,45 @@ public class DaredevilPangolini extends AEnemy {
             debrisTrail.setPosition((float)getCenter().getX() + 36, getY() + 10);
         }
         if (getAttacking()){
+            if(getVel().getX() > 0){
+                rollAnimation.setPlayMode(Animation.PlayMode.REVERSED);
+            } else{
+                rollAnimation.setPlayMode(Animation.PlayMode.NORMAL);
+            }
+            if (System.currentTimeMillis() - this.rollStartTime > 1000 && getSpeed() != this.rollSpeed){
+                setSpeed(rollSpeed);
+                rollAnimation.setFrameDuration(1/64f);
+            }
             getMovement().move(this, deltaTime);
             if(System.currentTimeMillis() - rollStartTime > rollTime){
                 setAnimationTime(0);
-                setAttacking(false);
-                setSpeed(speed);
-                setAttack(atk);
-                getHitBox().setScale(1, 1);
-                setInvincible(false);
-                debrisTrail.allowCompletion();
+                endRoll();
             }
         } else {
-            // Set facing direction.
-            if(Math.signum(getMovement().getTargetVector(this).getX()) > 0){
-                setIsFacing(Directionality.RIGHT);
-                rollAnimation.setPlayMode(Animation.PlayMode.REVERSED);
-
-            } else{
-                setIsFacing(Directionality.LEFT);
-                rollAnimation.setPlayMode(Animation.PlayMode.NORMAL);
-            }
-            // Roll chance.
-            if (Math.random() < rollChance){
-                setAnimationTime(0);
-                this.rollStartTime = System.currentTimeMillis();
-                roll();
+            if (!this.spinUp && !spinDown){
+                // Set facing direction.
+                if(Math.signum(getMovement().getTargetVector(this).getX()) > 0){
+                    setIsFacing(Directionality.RIGHT);
+                    rollAnimation.setPlayMode(Animation.PlayMode.REVERSED);
+                } else{
+                    setIsFacing(Directionality.LEFT);
+                    rollAnimation.setPlayMode(Animation.PlayMode.NORMAL);
+                }
+                // Roll chance.
+                if (Math.random() < rollChance){
+                    setAnimationTime(0);
+                    startRoll();
+                }
+            } else if (this.spinUp){
+                if (curlAnimation.isAnimationFinished(getAnimationTime())){
+                    setAnimationTime(0);
+                    this.rollStartTime = System.currentTimeMillis();
+                    roll();
+                }
+            } else if (this.spinDown){
+                if (curlAnimation.isAnimationFinished(getAnimationTime())){
+                   this.spinDown = false;
+                }
             }
         }
     }
@@ -116,15 +137,26 @@ public class DaredevilPangolini extends AEnemy {
         if (this.getIsFacing().isFacingLeft()) {
             if (getAttacking()){
                 batch.draw(rollAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
-
             } else{
-                batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                if (this.spinUp){
+                    batch.draw(curlAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                } else if(this.spinDown){
+                    batch.draw(curlAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                } else{
+                    batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                }
             }
         } else {
             if (getAttacking()){
                 batch.draw(rollAnimation.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
             } else{
-                batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                if (this.spinUp){
+                    batch.draw(curlAnimation.getKeyFrame(getAnimationTime(), false), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                } else if(this.spinDown){
+                    batch.draw(curlAnimation.getKeyFrame(getAnimationTime(), false), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                } else {
+                    batch.draw(idleAnimation.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                }
             }
         }
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
@@ -132,11 +164,28 @@ public class DaredevilPangolini extends AEnemy {
         drawShield(batch);
     }
 
-    private void roll(){
-        setAttacking(true);
-        setSpeed(rollSpeed);
-        setAttack((int)rollDamage);
+    private void startRoll(){
+        this.spinUp = true;
+        curlAnimation.setPlayMode(Animation.PlayMode.NORMAL);
+        rollAnimation.setFrameDuration(1/16f);
         getHitBox().setScale(1, 0.6f);
+    }
+
+    private void endRoll(){
+        this.spinDown = true;
+        curlAnimation.setPlayMode(Animation.PlayMode.REVERSED);
+        setAttacking(false);
+        setSpeed(speed);
+        setAttack(atk);
+        getHitBox().setScale(1, 1);
+        setInvincible(false);
+        debrisTrail.allowCompletion();
+    }
+
+    private void roll(){
+        this.spinUp = false;
+        setAttacking(true);
+        setAttack((int)rollDamage);
         setInvincible(true);
         debrisTrail.start();
     }

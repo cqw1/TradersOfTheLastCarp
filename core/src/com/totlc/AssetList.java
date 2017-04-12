@@ -67,6 +67,7 @@ public enum AssetList {
     FLAN_PRIME("sprites/flan/flan_prime.atlas", TextureAtlas.class),
     FLAN_JUMP_PRIME("sprites/flan/flan_prime_jump.atlas", TextureAtlas.class),
     PANGOLINI_IDLE("sprites/daredevil_pangolini/pangolini_idle.atlas", TextureAtlas.class),
+    PANGOLINI_CURL("sprites/daredevil_pangolini/pangolini_curl.atlas", TextureAtlas.class),
     PANGOLINI_ROLL("sprites/daredevil_pangolini/pangolini_roll.atlas", TextureAtlas.class),
     JELLYFISH("sprites/gelatin_king/jelly_fish.atlas", TextureAtlas.class),
     GELATIN_KING("sprites/gelatin_king/gelatin_king.atlas", TextureAtlas.class),

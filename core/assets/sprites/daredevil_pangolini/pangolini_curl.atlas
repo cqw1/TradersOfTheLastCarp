@@ -1,0 +1,62 @@
+
+pangolini_curl.png
+size: 512,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+pangolini_curl
+  rotate: false
+  xy: 2, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 0
+pangolini_curl
+  rotate: false
+  xy: 2, 2
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 1
+pangolini_curl
+  rotate: false
+  xy: 104, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 2
+pangolini_curl
+  rotate: false
+  xy: 104, 2
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 3
+pangolini_curl
+  rotate: false
+  xy: 206, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 4
+pangolini_curl
+  rotate: false
+  xy: 206, 2
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 5
+pangolini_curl
+  rotate: false
+  xy: 308, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 6
+pangolini_curl
+  rotate: false
+  xy: 410, 129
+  size: 100, 125
+  orig: 100, 125
+  offset: 0, 0
+  index: 7
