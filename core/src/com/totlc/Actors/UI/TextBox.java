@@ -37,6 +37,10 @@ public class TextBox extends Actor {
     private static float carpHorizontalOffset = 50;
     private CrystalCarp carp;
 
+    private float talkingIntervalTime = 0.2f;
+    private String[] words;
+    private int wordIndex;
+
     // TODO: READ. general formula for height is 20 * (numLines + 1)
 
 
@@ -70,6 +74,8 @@ public class TextBox extends Actor {
         this.duration = Math.max(duration, delay + talkTime);
         this.delay = delay;
 
+        this.words = message.split(" ");
+
         this.carp = new CrystalCarp(assetManager,
                 getX() + getWidth() - (CrystalCarp.WIDTH + 20),
                 getY() + getHeight() / 2.0f - (CrystalCarp.HEIGHT / 2.0f * scale) - 13,
@@ -94,6 +100,8 @@ public class TextBox extends Actor {
             this.remove();
             carp.remove();
         }
+
+        wordIndex = Math.min((int) Math.floor(time / talkingIntervalTime), words.length);
     }
 
     @Override
@@ -101,6 +109,11 @@ public class TextBox extends Actor {
         if (time > delay) {
             // Draw message box.
             box.draw(batch, getX(), getY(), getWidth(), getHeight());
+
+            String message = "";
+            for (int i = 0; i < wordIndex; i++) {
+                message += words[i] + " ";
+            }
 
             // Draw message.
             font.getData().setScale(0.3f);
