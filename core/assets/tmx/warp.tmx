@@ -60,7 +60,7 @@
     <property name="type" value="EXIT_PORTAL"/>
    </properties>
   </object>
-  <object id="37" name="37" x="202.667" y="681.333" width="74.6667" height="86.6667">
+  <object id="37" name="37" x="74.3337" y="716.333" width="74.6667" height="86.6667">
    <properties>
     <property name="type" value="EXIT_PORTAL"/>
    </properties>

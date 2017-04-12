@@ -2,7 +2,7 @@ package com.totlc.Actors.weapons;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.Player;
+import com.totlc.Actors.players.Player;
 
 public class Whip extends AWeapon {
     private Player player;

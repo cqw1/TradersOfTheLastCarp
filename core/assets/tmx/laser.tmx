@@ -43,7 +43,7 @@
     <property name="type" value="LASER_TRAP"/>
    </properties>
   </object>
-  <object id="44" name="44" x="1100" y="413.334" width="84" height="136">
+  <object id="44" name="44" x="1097" y="413.334" width="84" height="136">
    <properties>
     <property name="type" value="LASER_TRAP"/>
    </properties>
@@ -58,7 +58,7 @@
     <property name="type" value="INTERVAL"/>
    </properties>
   </object>
-  <object id="45" x="1124" y="520" width="40" height="42.6667">
+  <object id="45" x="1121" y="520" width="40" height="42.6667">
    <properties>
     <property name="delay" type="int" value="11000"/>
     <property name="start" type="int" value="3000"/>

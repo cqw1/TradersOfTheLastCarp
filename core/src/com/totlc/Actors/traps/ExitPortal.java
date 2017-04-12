@@ -57,7 +57,7 @@ public class ExitPortal extends ATrap {
         Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.BLOP.toString()));
         sound.play(0.7f);
 
-        getTargetActor().moveAbs(getX(), getY());
+        getTargetActor().moveAbs(getHitBoxX(), getHitBoxY());
         Point2D vel = getTargetActor().getVel();
         double largestVector = Math.max(Math.abs(vel.getX()), Math.abs(vel.getY()));
         if (modifiedDirection != null) {
@@ -75,9 +75,14 @@ public class ExitPortal extends ATrap {
 
     @Override
     public void draw(Batch batch, float alpha) {
+//        setZIndex(3);
         batch.draw(trapTextureAtlas.getRegions().get(1), getX() + trapTextureAtlas.getRegions().get(0).getRegionWidth() / 2 - trapTextureAtlas.getRegions().get(1).getRegionWidth() / 2, getY());
         batch.draw(trapTextureAtlas.getRegions().get(0), getX(), getY() + portalOffset, trapTextureAtlas.getRegions().get(0).getRegionWidth() / 2, trapTextureAtlas.getRegions().get(0).getRegionHeight() / 2,
                 trapTextureAtlas.getRegions().get(0).getRegionWidth(), trapTextureAtlas.getRegions().get(0).getRegionHeight(), 0.6f, 0.6f, angle);
         wormHole.draw(batch, Gdx.graphics.getDeltaTime());
+    }
+
+    public void setModifiedDirection(String direction) {
+        this.modifiedDirection = Directionality.valueOf(direction);
     }
 }

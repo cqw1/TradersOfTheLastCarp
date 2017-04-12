@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.Player;
+import com.totlc.Actors.players.Player;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.UI.ButtonPrompt;
 import com.totlc.Actors.UI.MenuOption;

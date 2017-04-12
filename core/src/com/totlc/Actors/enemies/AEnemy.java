@@ -1,5 +1,6 @@
 package com.totlc.Actors.enemies;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
@@ -41,6 +42,8 @@ public abstract class AEnemy extends Character {
     GlyphLayout layout = new GlyphLayout();
 
     private boolean invincible = false;
+    private TextureAtlas particleAtlas;
+    private ParticleEffect shield;
 
     private AMovement movement;
 
@@ -55,6 +58,11 @@ public abstract class AEnemy extends Character {
         setHpCurrent(hp);
         this.attack = atk;
         setAttacking(false);
+
+        particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
+        shield = new ParticleEffect();
+        shield.setPosition((float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY());
+        shield.load(Gdx.files.internal(AssetList.SHIELD.toString()), particleAtlas);
     }
 
     /**
@@ -68,6 +76,12 @@ public abstract class AEnemy extends Character {
             if (System.currentTimeMillis() - getHpTimer() > 3000) {
                 setShowHp(false);
             }
+        }
+    }
+
+    public void drawShield(Batch batch) {
+        if (isInvincible()){
+            shield.draw(batch, Gdx.graphics.getDeltaTime());
         }
     }
 
@@ -120,6 +134,7 @@ public abstract class AEnemy extends Character {
         if (checkStun()) {
             return;
         }
+        shield.setPosition((float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY());
         increaseAnimationTime(deltaTime);
         procStatuses();
         if (!getAttacking()) {
@@ -224,9 +239,9 @@ public abstract class AEnemy extends Character {
 
     public void setInvincible(boolean invincible) {
         if(invincible){
-           getStatuses().add(new Invulnerable(getAssetManager(), this));
+           shield.start();
         } else{
-            getStatuses().remove(new Invulnerable(getAssetManager(), this));
+            shield.allowCompletion();
         }
         this.invincible = invincible;
     }

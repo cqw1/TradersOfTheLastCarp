@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
-import com.totlc.Actors.Player;
 import com.totlc.AssetList;
 
 import java.awt.geom.Point2D;

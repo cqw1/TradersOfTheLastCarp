@@ -105,6 +105,8 @@ public class GelatinKing extends AEnemy {
         }
         batch.draw(shadow, (float) getHitBoxCenter().getX() - (shadow.getWidth() * scale * shadowSize) / 2, (float)getHitBoxCenter().getY() - getHeight() * scale * 0.5f, shadow.getWidth() * scale * shadowSize, shadow.getHeight() * scale * shadowSize);
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
+        drawStatuses(batch, alpha);
+        drawShield(batch);
     }
 
     // Drop floor hazard.

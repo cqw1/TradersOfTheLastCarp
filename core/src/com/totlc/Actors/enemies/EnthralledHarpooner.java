@@ -23,9 +23,9 @@ public class EnthralledHarpooner extends AEnemy{
     private static int hp = 2;
     private static int atk = 1;
 
-    private static float maxVel = 200;
-    private static float speed = 20;
-    private static float friction = 0.9f;
+    private static float maxVel = 180;
+    private static float speed = 60;
+    private static float friction = 0.5f;
     private float attackChance = .05f;
     private long attackTime = 100;
     private long attackStartTime;
@@ -140,6 +140,8 @@ public class EnthralledHarpooner extends AEnemy{
         }
 
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
+        drawStatuses(batch, alpha);
+        drawShield(batch);
     }
 
     protected void initTextures(AssetManager assetManager){

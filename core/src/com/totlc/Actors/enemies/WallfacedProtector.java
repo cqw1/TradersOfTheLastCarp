@@ -2,22 +2,15 @@ package com.totlc.Actors.enemies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.damage.Damage;
-import com.totlc.Actors.effects.Dust;
-import com.totlc.Actors.effects.FlanParts;
+
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
-
-import java.awt.geom.Point2D;
 
 /**
  * Large enemy that is shielded from the front.
@@ -29,17 +22,18 @@ public class WallfacedProtector extends AEnemy {
     // Stat constants.
     private static int id = 5;
     private static int hp = 2;
-    private static int atk = 3;
+    private static int atk = 2;
 
     private static float maxVel = 200;
-    private static float speed = 40;
+    private static float speed = 70;
     private static float friction = 0.2f;
+    private long lastHitTime;
 
     // Textures and animations.
     TextureAtlas stand, walk_side, walk_front, walk_back, head;
     Animation<TextureRegion> walk_animation_side, walk_animation_front, walk_animation_back;
 
-    private static float width = 128, height = 160;
+    private static float width = 128, height = 136;
     private static float shieldSize = 200;
     private float textureWidthBody, textureHeightBody, textureWidthHead, textureHeightHead;
     private float headXOffset;
@@ -62,6 +56,8 @@ public class WallfacedProtector extends AEnemy {
         setHeadYOffset(0);
         setSway(1);
 
+        this.lastHitTime = System.currentTimeMillis();
+
         initMovement(friction, maxVel, speed);
     }
 
@@ -82,7 +78,9 @@ public class WallfacedProtector extends AEnemy {
                 setIsFacing(Directionality.UP);
             }
         }
-        setInvincible(false);
+        if (System.currentTimeMillis() - this.lastHitTime > 1000) {
+            setInvincible(false);
+        }
         drawDustTrail(10);
     }
 
@@ -127,6 +125,8 @@ public class WallfacedProtector extends AEnemy {
         }
 
         drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
+        drawStatuses(batch, alpha);
+        drawShield(batch);
     }
 
     protected void initTextures(AssetManager assetManager){
@@ -147,13 +147,20 @@ public class WallfacedProtector extends AEnemy {
 
     @Override
     public boolean collidesWith(Actor otherActor){
-       setInvincible(checkDirectionalInvincibility(otherActor));
         if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1) {
             Damage damage = (Damage) otherActor;
+            if (checkDirectionalInvincibility(otherActor)){
+                setInvincible(true);
+                this.lastHitTime = System.currentTimeMillis();
+            }
             if (!isInvincible()) {
                 takeDamage(damage.getAttack());
             }
         } else if (otherActor instanceof Whip) {
+            if (checkDirectionalInvincibility(otherActor)){
+                setInvincible(true);
+                this.lastHitTime = System.currentTimeMillis();
+            }
             if (!isInvincible()) {
                 // Invincible enemies can't be stunned.
                 if (!isStunned()) {

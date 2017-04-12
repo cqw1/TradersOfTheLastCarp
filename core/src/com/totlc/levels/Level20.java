@@ -10,7 +10,7 @@ public class Level20 extends ALevel {
 
     public Level20(AssetManager assetManager) {
         super(assetManager);
-        setNextLevel(EndLevel.class);
+        setNextLevel(Level21.class);
     }
 
     public void initOtherLevelStuff() {

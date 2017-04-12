@@ -66,7 +66,9 @@ public enum AssetList {
     FLAN_JUMP("sprites/flan/flan_jump.atlas", TextureAtlas.class),
     FLAN_PRIME("sprites/flan/flan_prime.atlas", TextureAtlas.class),
     FLAN_JUMP_PRIME("sprites/flan/flan_prime_jump.atlas", TextureAtlas.class),
-    PANGOLINI("sprites/pangolini/pangolini.png", Texture.class),
+    PANGOLINI_IDLE("sprites/daredevil_pangolini/pangolini_idle.atlas", TextureAtlas.class),
+    PANGOLINI_CURL("sprites/daredevil_pangolini/pangolini_curl.atlas", TextureAtlas.class),
+    PANGOLINI_ROLL("sprites/daredevil_pangolini/pangolini_roll.atlas", TextureAtlas.class),
     JELLYFISH("sprites/gelatin_king/jelly_fish.atlas", TextureAtlas.class),
     GELATIN_KING("sprites/gelatin_king/gelatin_king.atlas", TextureAtlas.class),
     WALLFACE_HEAD("sprites/wallfaced_protector/wallface_head.atlas", TextureAtlas.class),
@@ -203,10 +205,10 @@ public enum AssetList {
     LEVEL02_TMX("tmx/basics.tmx", TiledMap.class),
     LEVEL03_TMX("tmx/evasion.tmx", TiledMap.class),
     LEVEL04_TMX("tmx/weaving.tmx", TiledMap.class),
-    LEVEL05_TMX("tmx/impenetrable.tmx", TiledMap.class),
+    LEVEL05_TMX("tmx/warp.tmx", TiledMap.class),
     LEVEL06_TMX("tmx/teleport.tmx", TiledMap.class),
     LEVEL07_TMX("tmx/spikes.tmx", TiledMap.class),
-    LEVEL08_TMX("tmx/warp.tmx", TiledMap.class),
+    LEVEL08_TMX("tmx/impenetrable.tmx", TiledMap.class),
     LEVEL09_TMX("tmx/pebbles.tmx", TiledMap.class),
     LEVEL10_TMX("tmx/twinkle_jr.tmx", TiledMap.class),
     LEVEL11_TMX("tmx/fire.tmx", TiledMap.class),
@@ -218,7 +220,8 @@ public enum AssetList {
     LEVEL17_TMX("tmx/patterns.tmx", TiledMap.class),
     LEVEL18_TMX("tmx/bouldering.tmx", TiledMap.class),
     LEVEL19_TMX("tmx/arrow_hell.tmx", TiledMap.class),
-    LEVEL20_TMX("tmx/twinkle.tmx", TiledMap.class);
+    LEVEL20_TMX("tmx/twinkle.tmx", TiledMap.class),
+    LEVEL21_TMX("tmx/distortion.tmx", TiledMap.class);
 
     private String pathname;
     private Class type;

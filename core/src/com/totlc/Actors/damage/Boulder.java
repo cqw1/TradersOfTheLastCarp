@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.Player;
 import com.totlc.Actors.effects.BoulderBreak;
 import com.totlc.Actors.effects.Impact;
 import com.totlc.Actors.enemies.AEnemy;
@@ -45,6 +44,7 @@ public class Boulder extends Damage{
         this.destinationHeight = getY();
         moveAbs(getX(), TradersOfTheLastCarp.CONFIG_HEIGHT);
         getHitBox().setScale(0, 0);
+        moveHitBox(36, 36);
         setScaleFactor(1);
         setTexture(new Texture(Gdx.files.internal(AssetList.BOULDER.toString())));
         shadow = getAssetManager().get(AssetList.SHADOW.toString());
