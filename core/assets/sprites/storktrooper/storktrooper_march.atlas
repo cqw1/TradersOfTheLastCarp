@@ -1,0 +1,90 @@
+
+storktrooper_march.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+stork_march
+  rotate: false
+  xy: 2, 184
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 0
+stork_march
+  rotate: false
+  xy: 2, 2
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 1
+stork_march
+  rotate: false
+  xy: 129, 184
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 2
+stork_march
+  rotate: false
+  xy: 129, 2
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 3
+stork_march
+  rotate: false
+  xy: 256, 184
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 4
+stork_march
+  rotate: false
+  xy: 256, 2
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 5
+stork_march
+  rotate: false
+  xy: 383, 184
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 6
+stork_march
+  rotate: false
+  xy: 383, 2
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 7
+stork_march
+  rotate: false
+  xy: 510, 184
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 8
+stork_march
+  rotate: false
+  xy: 510, 2
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 9
+stork_march
+  rotate: false
+  xy: 637, 184
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 10
+stork_march
+  rotate: false
+  xy: 637, 2
+  size: 125, 180
+  orig: 125, 180
+  offset: 0, 0
+  index: 11

@@ -72,8 +72,20 @@ public class SandBoxLevel extends ALevel{
 //        AEnemy chaperone = new FellChaperone(getAssetManager(), 700, 300, new ZoningMovement(getPlayer()));
 //        addActor(chaperone);
 
-        AEnemy pangolini = new DaredevilPangolini(getAssetManager(), 900, 100, new BasicMovement(getPlayer()));
-        addActor(pangolini);
+//        AEnemy pangolini = new DaredevilPangolini(getAssetManager(), 900, 100, new BasicMovement(getPlayer()));
+//        addActor(pangolini);
+
+        AEnemy stork0 = new StorkTrooper(getAssetManager(), 900, 100, new IntervalMovement(getPlayer(), 500, 200));
+        addActor(stork0);
+
+        AEnemy stork1 = new StorkTrooper(getAssetManager(), 900, 300, new IntervalMovement(getPlayer(), 500, 200));
+        addActor(stork1);
+
+        AEnemy stork2 = new StorkTrooper(getAssetManager(), 900, 500, new IntervalMovement(getPlayer(), 500, 200));
+        addActor(stork2);
+
+        AEnemy stork3 = new StorkTrooper(getAssetManager(), 1200, 500, new AvoidantMovement(getPlayer()));
+        addActor(stork3);
 
         endInit();
     }
