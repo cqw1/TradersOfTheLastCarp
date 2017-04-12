@@ -37,7 +37,7 @@ public class TextBox extends Actor {
     private static float carpHorizontalOffset = 50;
     private CrystalCarp carp;
 
-    private float talkingIntervalTime = 0.2f;
+    private float talkingIntervalTime = 0.2f; // In seconds
     private String[] words;
     private int wordIndex;
 
