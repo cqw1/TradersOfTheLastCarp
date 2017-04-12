@@ -1,6 +1,8 @@
 package com.totlc.Actors.UI;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
@@ -37,9 +39,11 @@ public class TextBox extends Actor {
     private static float carpHorizontalOffset = 50;
     private CrystalCarp carp;
 
-    private float talkingIntervalTime = 0.15f; // In seconds
+    private float talkingIntervalTime = 0.3f; // In seconds
     private String[] words;
     private int wordIndex;
+
+    private Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.LEVEL01_TALKING.toString()));
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
 
@@ -90,6 +94,8 @@ public class TextBox extends Actor {
         font = TradersOfTheLastCarp.systemFont0L;
 
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        sound.play(0.8f);
     }
 
     @Override

@@ -223,7 +223,11 @@ public enum AssetList {
     LEVEL18_TMX("tmx/bouldering.tmx", TiledMap.class),
     LEVEL19_TMX("tmx/arrow_hell.tmx", TiledMap.class),
     LEVEL20_TMX("tmx/twinkle.tmx", TiledMap.class),
-    LEVEL21_TMX("tmx/distortion.tmx", TiledMap.class);
+    LEVEL21_TMX("tmx/distortion.tmx", TiledMap.class),
+
+    // Carp talking
+    LEVEL01_TALKING("talking/comefindmeifyouwanttoescape.mp3", Sound.class);
+
 
     private String pathname;
     private Class type;
