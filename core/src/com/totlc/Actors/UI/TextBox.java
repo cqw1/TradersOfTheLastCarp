@@ -37,7 +37,7 @@ public class TextBox extends Actor {
     private static float carpHorizontalOffset = 50;
     private CrystalCarp carp;
 
-    private float talkingIntervalTime = 0.2f; // In seconds
+    private float talkingIntervalTime = 0.15f; // In seconds
     private String[] words;
     private int wordIndex;
 
@@ -45,17 +45,16 @@ public class TextBox extends Actor {
 
 
     public TextBox(AssetManager assetManager, String message) {
-        this(assetManager, message, 0, 1, 5);
+        this(assetManager, message, 0, 5);
     }
     /**
      *
      * @param assetManager
      * @param message String message to display in the textbox
      * @param delay Seconds until the textbox shows
-     * @param talkTime Seconds for the carp talking animation
      * @param duration Seconds how long the text box appears for. The max of talking + delay, or duration
      */
-    public TextBox(AssetManager assetManager, String message, float delay, float talkTime, float duration) {
+    public TextBox(AssetManager assetManager, String message, float delay, float duration) {
         setX(64);
         setY(64);
 
@@ -70,11 +69,14 @@ public class TextBox extends Actor {
             longestLength = Math.max(longestLength, line.length());
         }
 
+
+        this.words = message.split(" ");
+
+        float talkTime = words.length * talkingIntervalTime;
         this.message = message;
         this.duration = Math.max(duration, delay + talkTime);
         this.delay = delay;
 
-        this.words = message.split(" ");
 
         this.carp = new CrystalCarp(assetManager,
                 getX() + getWidth() - (CrystalCarp.WIDTH + 20),
