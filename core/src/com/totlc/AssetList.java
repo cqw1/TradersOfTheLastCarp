@@ -17,6 +17,7 @@ public enum AssetList {
     YOU_LOSE("sounds/youlose.mp3", Sound.class),
     FINE("sounds/fine.mp3", Sound.class),
     BLOP("sounds/blop.mp3", Sound.class),
+    BUBBLES("sounds/bubbles.mp3", Sound.class),
 
     // UI elements and icons.
     ARROW("UI/arrow.png", Texture.class),
@@ -221,10 +222,7 @@ public enum AssetList {
     LEVEL18_TMX("tmx/bouldering.tmx", TiledMap.class),
     LEVEL19_TMX("tmx/arrow_hell.tmx", TiledMap.class),
     LEVEL20_TMX("tmx/twinkle.tmx", TiledMap.class),
-    LEVEL21_TMX("tmx/distortion.tmx", TiledMap.class),
-
-    // Carp talking
-    LEVEL01_TALKING("talking/comefindmeifyouwanttoescape.mp3", Sound.class);
+    LEVEL21_TMX("tmx/distortion.tmx", TiledMap.class);
 
 
     private String pathname;
