@@ -46,6 +46,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	public static ParticleEffectPool starTrailPool;
 
+	public static boolean textBoxShowing = false;
+
 	@Override
 	public void create() {
 		loadAssets();

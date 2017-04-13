@@ -3,16 +3,12 @@ package com.totlc.Actors.enemies;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.sun.org.apache.regexp.internal.RE;
-import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.players.Player;
 import com.totlc.Actors.terrain.AWall;
-import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
 

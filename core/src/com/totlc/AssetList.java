@@ -17,6 +17,7 @@ public enum AssetList {
     YOU_LOSE("sounds/youlose.mp3", Sound.class),
     FINE("sounds/fine.mp3", Sound.class),
     BLOP("sounds/blop.mp3", Sound.class),
+    BUBBLES("sounds/bubbles.mp3", Sound.class),
 
     // UI elements and icons.
     ARROW("UI/arrow.png", Texture.class),
@@ -39,6 +40,7 @@ public enum AssetList {
     BUTTON_PROMPT_ESC("UI/ButtonPromptESC.png", Texture.class),
     BUTTON_PROMPT_SPACE("UI/ButtonPromptSpace.png", Texture.class),
     BUTTON_PROMPT_SPACE_REPLAY("UI/ButtonPromptSpaceReplay.png", Texture.class),
+    BUTTON_PROMPT_SPACE_SKIP("UI/ButtonPromptSpaceSkip.png", Texture.class),
     OPTION_QUICKPLAY("UI/splash_options_0.png", Texture.class),
     OPTION_LVLSELECT("UI/splash_options_1.png", Texture.class),
     OPTION_CHARSELECT("UI/splash_options_2.png", Texture.class),
@@ -52,6 +54,7 @@ public enum AssetList {
     CRYSTAL_CARP_TALK("sprites/crystal_carp/carp_talk.atlas", TextureAtlas.class),
     CRYSTAL_CARP_TURN_BORDER("sprites/crystal_carp/carp_turn_border.atlas", TextureAtlas.class),
     CRYSTAL_CARP_TALK_BORDER("sprites/crystal_carp/carp_talk_border.atlas", TextureAtlas.class),
+    VON_STORK("sprites/BaronVonStork/von_stork.atlas", TextureAtlas.class),
     NAME_PLATES("UI/nameplates/name_plates.atlas", TextureAtlas.class),
 
     // Enemy Sprites.
@@ -91,6 +94,11 @@ public enum AssetList {
     CHAPERONE_ATTACK("sprites/chaperone/chaperone_cane.atlas", TextureAtlas.class),
     DANGER_ZONE("sprites/chaperone/devil_circle.atlas", TextureAtlas.class),
     DANGER_ZONE_LOOP("sprites/chaperone/devil_circle_loop.atlas", TextureAtlas.class),
+    STORKTROOPER_MARCH("sprites/storktrooper/storktrooper_march.atlas", TextureAtlas.class),
+    STORKTROOPER_AIM("sprites/storktrooper/storktrooper_aim.atlas", TextureAtlas.class),
+    STORKTROOPER_SHOOT("sprites/storktrooper/storktrooper_shoot.atlas", TextureAtlas.class),
+    BULLET("sprites/storktrooper/bullet.png", Texture.class),
+    BULLET_CASING("effects/casing.particle", null),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),
@@ -221,10 +229,7 @@ public enum AssetList {
     LEVEL18_TMX("tmx/bouldering.tmx", TiledMap.class),
     LEVEL19_TMX("tmx/arrow_hell.tmx", TiledMap.class),
     LEVEL20_TMX("tmx/twinkle.tmx", TiledMap.class),
-    LEVEL21_TMX("tmx/distortion.tmx", TiledMap.class),
-
-    // Carp talking
-    LEVEL01_TALKING("talking/comefindmeifyouwanttoescape.mp3", Sound.class);
+    LEVEL21_TMX("tmx/distortion.tmx", TiledMap.class);
 
 
     private String pathname;

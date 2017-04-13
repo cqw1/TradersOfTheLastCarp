@@ -13,7 +13,7 @@ repeat: none
   index: -1
 10fireglow
   rotate: false
-  xy: 424, 124
+  xy: 559, 166
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -83,7 +83,7 @@ repeat: none
   index: -1
 1syrup
   rotate: false
-  xy: 559, 166
+  xy: 917, 208
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -198,6 +198,13 @@ repeat: none
   xy: 632, 184
   size: 70, 70
   orig: 70, 70
+  offset: 0, 0
+  index: -1
+35casing
+  rotate: false
+  xy: 424, 112
+  size: 15, 28
+  orig: 15, 28
   offset: 0, 0
   index: -1
 3stun

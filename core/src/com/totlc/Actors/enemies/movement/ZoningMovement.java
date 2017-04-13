@@ -7,7 +7,7 @@ import java.awt.geom.Point2D;
 
 public class ZoningMovement extends AMovement {
 
-    private static float zoneDistance = 300;
+    private static float zoneDistance = 200;
 
     public ZoningMovement(Character target) {
         super(target);
@@ -23,13 +23,13 @@ public class ZoningMovement extends AMovement {
         if(new Point2D.Double(getTarget().getX(), getTarget().getY()).distance(new Point2D.Double(self.getX(), self.getY())) > zoneDistance) {
             speed = self.getSpeed();
         } else{
-            speed = 50;
+            speed = 10;
         }
         if (getTarget().isInMotion()){
             if(getTarget().isMovingLeft() || getTarget().isMovingRight() ) {
-                newAcc.setLocation(targetVector.getX() * getTarget().getMaxVel() * 1.5, targetVector.getY() * speed * 2);
+                newAcc.setLocation(targetVector.getX() * speed * 1.5, targetVector.getY() * speed * 2);
            } else {
-                newAcc.setLocation(targetVector.getX() * speed * 2, targetVector.getY() * getTarget().getMaxVel() * 1.5);
+                newAcc.setLocation(targetVector.getX() * speed * 2, targetVector.getY() * speed * 1.5);
             }
         } else{
             newAcc.setLocation(targetVector.getX() * speed * 0.2f, targetVector.getY() * speed * 0.2f);

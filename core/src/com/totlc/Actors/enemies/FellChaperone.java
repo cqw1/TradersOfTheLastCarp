@@ -28,8 +28,8 @@ public class FellChaperone extends AEnemy{
 
     private float textureWidthBody, textureHeightBody, circleWidth, circleHeight;
 
-    private static float maxVel = 250;
-    private static float speed = 100;
+    private static float maxVel = 300;
+    private static float speed = 300;
     private static float friction = 0f;
 
     private static float circleScale = 3.0f;
