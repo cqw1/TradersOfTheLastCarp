@@ -31,8 +31,8 @@ public class HeavyStorkTrooper extends AEnemy {
     private static long attackTime = 1600;
 
     // Asset and animation constants.
-    private TextureAtlas walkTextureAtlas, attackTextureAtlas, particleAtlas;
-    private Animation<TextureRegion> walkAnimation, attackAnimation;
+    private TextureAtlas walkTextureAtlas, shootTextureAtlas;
+    private Animation<TextureRegion> walkAnimation, shootAnimation;
     private Sound quackSound, fireSound, bulletSound;
 
     private Point2D aimVector;
@@ -52,6 +52,9 @@ public class HeavyStorkTrooper extends AEnemy {
 
         walkTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_MARCH.toString());
         walkAnimation = new Animation<TextureRegion>(1/16f, this.walkTextureAtlas.getRegions());
+
+        shootTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_SHOOT.toString());
+        shootAnimation = new Animation<TextureRegion>(1/24f, this.shootTextureAtlas.getRegions());
 
         textureWidthBody = walkTextureAtlas.getRegions().get(0).getRegionWidth();
         textureHeightBody = walkTextureAtlas.getRegions().get(0).getRegionHeight();
@@ -88,6 +91,7 @@ public class HeavyStorkTrooper extends AEnemy {
                     aimVector = getTarget(((ALevel)getStage()).getPlayer());
                     getStage().addActor(new BulletCasing(getAssetManager(), (float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY()));
                     getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 1600, aimVector.getY() * 1600), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
+                    bulletSound.play(0.8f);
                 }
                 if (System.currentTimeMillis() - this.attackStartTime > this.attackTime) {
                     setAttacking(false);
@@ -98,17 +102,26 @@ public class HeavyStorkTrooper extends AEnemy {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        if(getMovement().isMoving()){
+        if (getAttacking()){
             if (getIsFacing().isFacingRight()){
-                batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                batch.draw(shootAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
             } else{
-                batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                batch.draw(shootAnimation.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
             }
+
         } else{
-            if (getIsFacing().isFacingRight()){
-                batch.draw(walkTextureAtlas.getRegions().get(0), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+            if(getMovement().isMoving()){
+                if (getIsFacing().isFacingRight()){
+                    batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                } else{
+                    batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                }
             } else{
-                batch.draw(walkTextureAtlas.getRegions().get(0), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                if (getIsFacing().isFacingRight()){
+                    batch.draw(walkTextureAtlas.getRegions().get(0), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                } else{
+                    batch.draw(walkTextureAtlas.getRegions().get(0), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                }
             }
         }
     }

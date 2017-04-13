@@ -30,7 +30,7 @@ public class StorkTrooper extends AEnemy {
     private static float friction = 0;
 
     private static float aimChance = .008f;
-    private static long aimTime = 2000;
+    private static long aimTime = 1000;
 
     // Asset and animation constants.
     private TextureAtlas walkTextureAtlas, aimTextureAtlas, shootTextureAtlas;
@@ -60,7 +60,7 @@ public class StorkTrooper extends AEnemy {
         aimAnimation = new Animation<TextureRegion>(1/16f, this.aimTextureAtlas.getRegions());
 
         shootTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_SHOOT.toString());
-        shootAnimation = new Animation<TextureRegion>(1/12f, this.shootTextureAtlas.getRegions());
+        shootAnimation = new Animation<TextureRegion>(1/20f, this.shootTextureAtlas.getRegions());
 
         textureWidthBody = walkTextureAtlas.getRegions().get(0).getRegionWidth();
         textureHeightBody = walkTextureAtlas.getRegions().get(0).getRegionHeight();
@@ -102,19 +102,23 @@ public class StorkTrooper extends AEnemy {
                 takeAim();
             }
         } else{
-            if (this.cooldown && aimAnimation.isAnimationFinished(getAnimationTime())) {
-                setAttacking(false);
-                this.cooldown = false;
-
-            } else{
-                if (this.aiming && System.currentTimeMillis() - this.attackStartTime > aimTime){
-                    fire();
+            if (this.cooldown) {
+                if (aimAnimation.isAnimationFinished(getAnimationTime())) {
+                    setAttacking(false);
+                    this.cooldown = false;
                 }
-                if(!this.aiming && shootAnimation.isAnimationFinished(getAnimationTime())){
-                    bulletSound.play(0.8f);
-                    setAnimationTime(0);
-                    aimAnimation.setPlayMode(Animation.PlayMode.REVERSED);
-                    this.cooldown = true;
+            } else{
+                if (this.aiming) {
+                    if(System.currentTimeMillis() - this.attackStartTime > aimTime){
+                        fire();
+                    }
+                } else {
+                    if(shootAnimation.isAnimationFinished(getAnimationTime())){
+                        bulletSound.play(0.8f);
+                        setAnimationTime(0);
+                        aimAnimation.setPlayMode(Animation.PlayMode.REVERSED);
+                        this.cooldown = true;
+                    }
                 }
             }
         }

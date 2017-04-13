@@ -104,7 +104,7 @@ public class TextBox extends Actor {
 
         sound.play(0.8f);
 
-        spacePrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - WALL_WIDTH - CrystalCarp.WIDTH - 250 * buttonScale - 50 , WALL_WIDTH + 30) {
+        spacePrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE_SKIP.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - WALL_WIDTH - CrystalCarp.WIDTH - 250 * buttonScale - 50 , WALL_WIDTH + 30) {
             private float baseY = getY();
 
             @Override
