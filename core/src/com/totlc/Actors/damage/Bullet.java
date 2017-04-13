@@ -28,7 +28,7 @@ public class Bullet extends Damage {
         setDamageType(damageType);
         setScaleFactor(1);
         getHitBox().setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
-
+        getHitBox().setScale(0.2f, 1);
         setTexture(new Texture(Gdx.files.internal(AssetList.BULLET.toString())));
     }
 
@@ -52,7 +52,6 @@ public class Bullet extends Damage {
             getStage().addActor(new Dust(getAssetManager(), (float)getCenter().getX(), (float)getCenter().getY()));
             return true;
         }
-
         return false;
     }
 

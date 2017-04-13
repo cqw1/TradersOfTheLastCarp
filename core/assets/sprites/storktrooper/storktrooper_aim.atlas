@@ -1,0 +1,41 @@
+
+storktrooper_aim.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+stork_aim
+  rotate: false
+  xy: 2, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: 0
+stork_aim
+  rotate: false
+  xy: 154, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: 1
+stork_aim
+  rotate: false
+  xy: 306, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: 2
+stork_aim
+  rotate: false
+  xy: 458, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: 3
+stork_aim
+  rotate: false
+  xy: 610, 2
+  size: 150, 180
+  orig: 150, 180
+  offset: 0, 0
+  index: 4

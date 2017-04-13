@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.totlc.Actors.damage.DamageEnum;
 import com.totlc.Actors.damage.DamageFactory;
+import com.totlc.Actors.effects.BulletCasing;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.AssetList;
 import com.totlc.Directionality;
@@ -21,7 +22,7 @@ public class StorkTrooper extends AEnemy {
     private static int basehp = 2;
     private static int atk = 1;
 
-    private static float width = 70;
+    private static float width = 100;
     private static float height = 160;
 
     private static float maxVel = 36;
@@ -32,14 +33,13 @@ public class StorkTrooper extends AEnemy {
     private static long aimTime = 2000;
 
     // Asset and animation constants.
-    private TextureAtlas walkTextureAtlas, attackTextureAtlas, particleAtlas;
-    private Animation<TextureRegion> walkAnimation, attackAnimation;
-    private ParticleEffect bulletCasing;
+    private TextureAtlas walkTextureAtlas, aimTextureAtlas, shootTextureAtlas;
+    private Animation<TextureRegion> walkAnimation, aimAnimation, shootAnimation;
     private Sound quackSound, aimSound, fireSound, bulletSound;
 
     private Point2D aimVector;
 
-    private boolean quack, aiming;
+    private boolean quack, aiming, cooldown;
     private long attackStartTime;
 
     private float textureWidthBody, textureHeightBody;
@@ -56,6 +56,12 @@ public class StorkTrooper extends AEnemy {
         walkTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_MARCH.toString());
         walkAnimation = new Animation<TextureRegion>(1/16f, this.walkTextureAtlas.getRegions());
 
+        aimTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_AIM.toString());
+        aimAnimation = new Animation<TextureRegion>(1/16f, this.aimTextureAtlas.getRegions());
+
+        shootTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_SHOOT.toString());
+        shootAnimation = new Animation<TextureRegion>(1/12f, this.shootTextureAtlas.getRegions());
+
         textureWidthBody = walkTextureAtlas.getRegions().get(0).getRegionWidth();
         textureHeightBody = walkTextureAtlas.getRegions().get(0).getRegionHeight();
 
@@ -65,20 +71,16 @@ public class StorkTrooper extends AEnemy {
         bulletSound = Gdx.audio.newSound(Gdx.files.internal("sounds/shell0.wav"));
 
         this.quack = true;
-
         this.aiming = false;
+        this.cooldown = false;
     }
 
     @Override
     public void act(float deltaTime){
         super.act(deltaTime);
-        // Set facing direction.
-        if(Math.signum(getMovement().getTargetVector(this).getX()) > 0){
-            setIsFacing(Directionality.RIGHT);
-        } else{
-            setIsFacing(Directionality.LEFT);
+        if (checkStun()) {
+            return;
         }
-
         // Quack.
         if (getMovement().isMoving() && this.quack){
             quackSound.play(0.2f);
@@ -88,44 +90,80 @@ public class StorkTrooper extends AEnemy {
             this.quack = true;
         }
         if (!getAttacking()){
+            // Set facing direction.
+            if(Math.signum(getMovement().getTargetVector(this).getX()) > 0){
+                setIsFacing(Directionality.RIGHT);
+            } else{
+                setIsFacing(Directionality.LEFT);
+            }
             // Attack chance.
             if (Math.random() < aimChance && !getMovement().isMoving()){
                 setAnimationTime(0);
                 takeAim();
             }
         } else{
-            if (this.aiming && System.currentTimeMillis() - this.attackStartTime > aimTime * 0.8){
-                fire();
-            }
-            if(!this.aiming && System.currentTimeMillis() - this.attackStartTime > aimTime){
-                bulletSound.play(0.8f);
+            if (this.cooldown && aimAnimation.isAnimationFinished(getAnimationTime())) {
                 setAttacking(false);
+                this.cooldown = false;
+
+            } else{
+                if (this.aiming && System.currentTimeMillis() - this.attackStartTime > aimTime){
+                    fire();
+                }
+                if(!this.aiming && shootAnimation.isAnimationFinished(getAnimationTime())){
+                    bulletSound.play(0.8f);
+                    setAnimationTime(0);
+                    aimAnimation.setPlayMode(Animation.PlayMode.REVERSED);
+                    this.cooldown = true;
+                }
             }
         }
         if(getMovement().isMoving()){
+            if(getAcc().getX() > 0){
+                setIsFacing(Directionality.RIGHT);
+            } else{
+                setIsFacing(Directionality.LEFT);
+            }
             drawDustTrail(1000);
         }
     }
 
     @Override
     public void draw(Batch batch, float alpha) {
-        if(getMovement().isMoving()){
-            if (getIsFacing().isFacingRight()){
-                batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
-            } else{
-                batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+        if (getAttacking()){
+            if (this.aiming || this.cooldown) {
+                if (getIsFacing().isFacingRight()) {
+                    batch.draw(aimAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                } else {
+                    batch.draw(aimAnimation.getKeyFrame(getAnimationTime(), false), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                }
+            } else {
+                if (getIsFacing().isFacingRight()){
+                    batch.draw(shootAnimation.getKeyFrame(getAnimationTime(), false), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                } else{
+                    batch.draw(shootAnimation.getKeyFrame(getAnimationTime(), false), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                }
             }
         } else{
-            if (getIsFacing().isFacingRight()){
-                batch.draw(walkTextureAtlas.getRegions().get(0), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+            if(getMovement().isMoving()){
+                if (getIsFacing().isFacingRight()){
+                    batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                } else{
+                    batch.draw(walkAnimation.getKeyFrame(getAnimationTime(), true), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                }
             } else{
-                batch.draw(walkTextureAtlas.getRegions().get(0), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                if (getIsFacing().isFacingRight()){
+                    batch.draw(walkTextureAtlas.getRegions().get(0), getX(), getY(), getTextureWidthBody(), getTextureHeightBody());
+                } else{
+                    batch.draw(walkTextureAtlas.getRegions().get(0), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
+                }
             }
         }
     }
 
     private void takeAim(){
         aimSound.play(1f);
+        aimAnimation.setPlayMode(Animation.PlayMode.NORMAL);
         setAttacking(true);
         this.aiming = true;
         this.attackStartTime = System.currentTimeMillis();
@@ -133,10 +171,10 @@ public class StorkTrooper extends AEnemy {
     }
 
     private void fire(){
+        setAnimationTime(0);
         fireSound.play(1f);
-
+        getStage().addActor(new BulletCasing(getAssetManager(), (float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY()));
         getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3000, aimVector.getY() * 3000), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
-
         this.aiming = false;
     }
 
