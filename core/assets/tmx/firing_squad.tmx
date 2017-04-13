@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="48">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="108">
  <properties>
-  <property name="objective" type="int" value="2"/>
+  <property name="objective" type="int" value="1"/>
  </properties>
  <layer name="WALLS" width="50" height="28">
   <data encoding="csv">
@@ -36,60 +36,45 @@
 </data>
  </layer>
  <objectgroup name="ITEMS"/>
- <objectgroup name="TRAPS">
-  <object id="42" name="42" x="177.333" y="273.333" width="61.3333" height="50.6667">
-   <properties>
-    <property name="direction" value="RIGHT"/>
-    <property name="type" value="BOULDER_TRAP"/>
-   </properties>
-  </object>
-  <object id="43" name="43" x="182.667" y="694.667" width="61.3333" height="50.6667">
-   <properties>
-    <property name="direction" value="RIGHT"/>
-    <property name="type" value="BOULDER_TRAP"/>
-   </properties>
-  </object>
-  <object id="44" name="44" x="180" y="484" width="61.3333" height="50.6667">
-   <properties>
-    <property name="direction" value="RIGHT"/>
-    <property name="type" value="BOULDER_TRAP"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="TRIGGERS">
-  <object id="45" x="501.333" y="240" width="53.3333" height="37.3333">
-   <properties>
-    <property name="trap_id" value="42"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="46" x="713.333" y="437.333" width="53.3333" height="37.3333">
-   <properties>
-    <property name="trap_id" value="44"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
-  <object id="47" x="968" y="665.333" width="53.3333" height="37.3333">
-   <properties>
-    <property name="trap_id" value="43"/>
-    <property name="type" value="BUTTON"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="TEXT"/>
+ <objectgroup name="TRAPS"/>
+ <objectgroup name="TRIGGERS"/>
  <objectgroup name="ENEMIES">
-  <object id="39" x="1288" y="214.667" width="70.6667" height="77.3333">
+  <object id="97" x="1001.33" y="177.333" width="84" height="62.6667">
    <properties>
     <property name="type" value="STORK"/>
    </properties>
   </object>
-  <object id="40" x="1292" y="417.333" width="70.6667" height="77.3333">
+  <object id="98" x="1009.33" y="660" width="84" height="62.6667">
+   <properties>
+    <property name="type" value="STORK"/>
+   </properties>
+  </object>
+  <object id="99" x="1005.33" y="497.333" width="84" height="62.6667">
+   <properties>
+    <property name="type" value="STORK"/>
+   </properties>
+  </object>
+  <object id="100" x="1000" y="350.667" width="84" height="62.6667">
+   <properties>
+    <property name="type" value="STORK"/>
+   </properties>
+  </object>
+  <object id="105" x="1206.67" y="604" width="84" height="62.6667">
    <properties>
     <property name="movement" value="AVOIDANT"/>
     <property name="type" value="STORK"/>
    </properties>
   </object>
-  <object id="41" x="1290.67" y="634.667" width="70.6667" height="77.3333">
+  <object id="106" x="1208" y="446.667" width="84" height="62.6667">
    <properties>
+    <property name="movement" value="AVOIDANT"/>
+    <property name="type" value="STORK"/>
+   </properties>
+  </object>
+  <object id="107" x="1208" y="274.667" width="84" height="62.6667">
+   <properties>
+    <property name="movement" value="AVOIDANT"/>
     <property name="type" value="STORK"/>
    </properties>
   </object>

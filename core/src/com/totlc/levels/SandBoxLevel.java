@@ -69,6 +69,7 @@ public class SandBoxLevel extends ALevel{
 //        AEnemy harpooner = new EnthralledHarpooner(getAssetManager(), 700, 700, new BasicMovement(getPlayer()));
 //        addActor(harpooner);
 //
+
 //        AEnemy chaperone = new FellChaperone(getAssetManager(), 700, 300, new ZoningMovement(getPlayer()));
 //        addActor(chaperone);
 //
@@ -89,6 +90,9 @@ public class SandBoxLevel extends ALevel{
 
 //        AEnemy hstork = new HeavyStorkTrooper(getAssetManager(), 1200, 500, new IntervalMovement(getPlayer(), 2000, 1000));
 //        addActor(hstork);
+
+        AEnemy pangolini2 = new DaredevilPangolini(getAssetManager(), 900, 400, new BasicMovement(getPlayer()));
+        addActor(pangolini2);
 
         endInit();
     }

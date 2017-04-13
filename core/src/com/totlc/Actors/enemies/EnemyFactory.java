@@ -19,6 +19,7 @@ public class EnemyFactory {
     public static final String DUMMY = "DUMMY";
     public static final String WALLFACED = "WALLFACED";
     public static final String CHAPERONE = "CHAPERONE";
+    public static final String STORK = "STORK";
 
     public static AEnemy createDefaultEnemy(String type, AssetManager assetManager, float x, float y) throws NullPointerException {
         if (type.equals(SPIDER)) {
@@ -43,6 +44,8 @@ public class EnemyFactory {
             return new WallfacedProtector(assetManager, x, y, new BasicMovement(TradersOfTheLastCarp.player));
         } else if (type.equals(CHAPERONE)) {
             return new FellChaperone(assetManager, x, y, new ZoningMovement(TradersOfTheLastCarp.player));
+        } else if (type.equals(STORK)) {
+            return new StorkTrooper(assetManager,x ,y, new IntervalMovement(TradersOfTheLastCarp.player, 600, 200));
         }
 
         throw new NullPointerException("Received type: " + type);

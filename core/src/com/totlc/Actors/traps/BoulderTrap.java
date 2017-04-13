@@ -8,7 +8,10 @@ import com.totlc.Actors.damage.Boulder;
 import com.totlc.Actors.effects.Exclamation;
 import com.totlc.Actors.effects.RockFall;
 import com.totlc.AssetList;
+import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
+
+import java.awt.*;
 
 public class BoulderTrap extends ATrap {
 
@@ -16,6 +19,7 @@ public class BoulderTrap extends ATrap {
     private static float width = 50;
     private static float height = 50;
     private static long delay = 2000;
+    private Directionality direction;
 
     public BoulderTrap(AssetManager assetManager, float x, float y) {
         this(assetManager, new Rectangle(x, y, width, height), delay);
@@ -25,9 +29,22 @@ public class BoulderTrap extends ATrap {
         super(assetManager, r, delay);
     }
 
+    public BoulderTrap(AssetManager assetManager, float x, float y, Directionality d) {
+        this(assetManager, x, y);
+        this.direction = d;
+    }
+
     @Override
     public void activate() {
-        getStage().addActor(new Boulder(getAssetManager(), getX(), getY(), 3, 0));
+        if (direction == null) {
+            getStage().addActor(new Boulder(getAssetManager(), getX(), getY(), 3, 0));
+        } else {
+            Boulder b = new Boulder(getAssetManager(), getX(), getY(), 3, 0);
+            if (direction.isFacingRight()) {
+                b.setBoulderVel(new Point(300, 0));
+            }
+            getStage().addActor(b);
+        }
     }
 
     @Override
@@ -39,5 +56,9 @@ public class BoulderTrap extends ATrap {
             setStartTime(System.currentTimeMillis());
             setSetup(true);
         }
+    }
+
+    public void setDirection(String d) {
+        this.direction = Directionality.valueOf(d);
     }
 }

@@ -128,7 +128,7 @@
   </object>
   <object id="7" x="618.666" y="429.333" width="53.3333" height="48">
    <properties>
-    <property name="type" value="SPIDER"/>
+    <property name="type" value="WALLFACED"/>
    </properties>
   </object>
   <object id="8" x="725.333" y="313.333" width="54.6667" height="73.3333">

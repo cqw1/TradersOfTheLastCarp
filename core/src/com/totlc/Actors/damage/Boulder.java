@@ -26,6 +26,7 @@ public class Boulder extends Damage{
     private boolean rolling = false;
     private boolean removeFlag = false;
     private float angle = 0;
+    private Point boulderVel = new Point(-300, 0);
 
     private TextureAtlas particleAtlas;
     private ParticleEffect debris;
@@ -69,7 +70,7 @@ public class Boulder extends Damage{
         }
         if(getY() <= destinationHeight && !rolling){
             // Start rolling.
-            setVel(new Point(-300, 0));
+            setVel(boulderVel);
             getHitBox().setScale(0.8f, 0.7f);
             rolling = true;
             Sound impactSound = Gdx.audio.newSound(Gdx.files.internal("sounds/bouldercrash0.mp3"));
@@ -134,5 +135,9 @@ public class Boulder extends Damage{
     @Override
     public void endCollidesWith(Actor otherActor) {
 
+    }
+
+    public void setBoulderVel(Point p) {
+        boulderVel = p;
     }
 }

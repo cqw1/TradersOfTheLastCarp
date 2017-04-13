@@ -151,6 +151,8 @@ public class LevelSelect extends ALevel {
          * TODO: Add in reverse order since we populate the grid by removing from the end. For that O(1) time lol.
          * TODO: This isn't really a todo. I just wanted the color to pop out.
          */
+        levels.add(new LevelOptionInfo(null, Level23.class, Util.parseLevelString(AssetList.LEVEL23_TMX.toString())));
+        levels.add(new LevelOptionInfo(null, Level22.class, Util.parseLevelString(AssetList.LEVEL22_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level21.class, Util.parseLevelString(AssetList.LEVEL21_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level20.class, Util.parseLevelString(AssetList.LEVEL20_TMX.toString())));
         levels.add(new LevelOptionInfo(null, Level19.class, Util.parseLevelString(AssetList.LEVEL19_TMX.toString())));

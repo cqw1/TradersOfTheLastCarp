@@ -127,13 +127,13 @@
   <object id="14" x="1440" y="598.667" width="40" height="40">
    <properties>
     <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
+    <property name="type" value="STORK"/>
    </properties>
   </object>
   <object id="15" x="1436" y="241.334" width="40" height="40">
    <properties>
     <property name="movement" value="IMMOBILE"/>
-    <property name="type" value="STAR"/>
+    <property name="type" value="STORK"/>
    </properties>
   </object>
  </objectgroup>
