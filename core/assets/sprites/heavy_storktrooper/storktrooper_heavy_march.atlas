@@ -1,0 +1,55 @@
+
+storktrooper_heavy_march.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+storktrooper_heavy
+  rotate: false
+  xy: 2, 2
+  size: 150, 210
+  orig: 150, 210
+  offset: 0, 0
+  index: 0
+storktrooper_heavy
+  rotate: false
+  xy: 154, 2
+  size: 150, 210
+  orig: 150, 210
+  offset: 0, 0
+  index: 1
+storktrooper_heavy
+  rotate: false
+  xy: 154, 2
+  size: 150, 210
+  orig: 150, 210
+  offset: 0, 0
+  index: 5
+storktrooper_heavy
+  rotate: false
+  xy: 306, 2
+  size: 150, 210
+  orig: 150, 210
+  offset: 0, 0
+  index: 2
+storktrooper_heavy
+  rotate: false
+  xy: 306, 2
+  size: 150, 210
+  orig: 150, 210
+  offset: 0, 0
+  index: 4
+storktrooper_heavy
+  rotate: false
+  xy: 458, 2
+  size: 150, 210
+  orig: 150, 210
+  offset: 0, 0
+  index: 3
+storktrooper_heavy
+  rotate: false
+  xy: 610, 2
+  size: 150, 210
+  orig: 150, 210
+  offset: 0, 0
+  index: 6

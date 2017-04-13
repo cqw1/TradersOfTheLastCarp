@@ -21,11 +21,11 @@ public class HeavyStorkTrooper extends AEnemy {
     private static int basehp = 3;
     private static int atk = 1;
 
-    private static float maxVel = 50;
-    private static float speed = 50;
+    private static float maxVel = 36;
+    private static float speed = 36;
     private static float friction = 0;
 
-    private static float width = 70;
+    private static float width = 100;
     private static float height = 160;
 
     private static long attackTime = 1600;
@@ -50,8 +50,8 @@ public class HeavyStorkTrooper extends AEnemy {
         initMovement(friction, maxVel, speed);
         moveHitBox(24, 0);
 
-        walkTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_MARCH.toString());
-        walkAnimation = new Animation<TextureRegion>(1/16f, this.walkTextureAtlas.getRegions());
+        walkTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_HEAVY_MARCH.toString());
+        walkAnimation = new Animation<TextureRegion>(1/12f, this.walkTextureAtlas.getRegions());
 
         shootTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_SHOOT.toString());
         shootAnimation = new Animation<TextureRegion>(1/24f, this.shootTextureAtlas.getRegions());
@@ -59,7 +59,7 @@ public class HeavyStorkTrooper extends AEnemy {
         textureWidthBody = walkTextureAtlas.getRegions().get(0).getRegionWidth();
         textureHeightBody = walkTextureAtlas.getRegions().get(0).getRegionHeight();
 
-        quackSound = Gdx.audio.newSound(Gdx.files.internal("sounds/quack.mp3"));
+        quackSound = Gdx.audio.newSound(Gdx.files.internal("sounds/deepquack.wav"));
         fireSound = Gdx.audio.newSound(Gdx.files.internal("sounds/rapidgun.mp3"));
         bulletSound = Gdx.audio.newSound(Gdx.files.internal("sounds/shell1.wav"));
     }

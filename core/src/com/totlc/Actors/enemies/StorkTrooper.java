@@ -91,9 +91,9 @@ public class StorkTrooper extends AEnemy {
         }
         if (!getAttacking()){
             // Set facing direction.
-            if(Math.signum(getMovement().getTargetVector(this).getX()) > 0){
+            if(getAcc().getX() > 0){
                 setIsFacing(Directionality.RIGHT);
-            } else{
+            } else if (getAcc().getX() < 0){
                 setIsFacing(Directionality.LEFT);
             }
             // Attack chance.
@@ -123,11 +123,6 @@ public class StorkTrooper extends AEnemy {
             }
         }
         if(getMovement().isMoving()){
-            if(getAcc().getX() > 0){
-                setIsFacing(Directionality.RIGHT);
-            } else{
-                setIsFacing(Directionality.LEFT);
-            }
             drawDustTrail(1000);
         }
     }
@@ -166,6 +161,12 @@ public class StorkTrooper extends AEnemy {
     }
 
     private void takeAim(){
+        // Set facing direction.
+        if(Math.signum(getMovement().getTargetVector(this).getX()) > 0){
+            setIsFacing(Directionality.RIGHT);
+        } else{
+            setIsFacing(Directionality.LEFT);
+        }
         aimSound.play(1f);
         aimAnimation.setPlayMode(Animation.PlayMode.NORMAL);
         setAttacking(true);

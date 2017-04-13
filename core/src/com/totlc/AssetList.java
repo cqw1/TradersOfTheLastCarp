@@ -99,6 +99,7 @@ public enum AssetList {
     STORKTROOPER_SHOOT("sprites/storktrooper/storktrooper_shoot.atlas", TextureAtlas.class),
     BULLET("sprites/storktrooper/bullet.png", Texture.class),
     BULLET_CASING("effects/casing.particle", null),
+    STORKTROOPER_HEAVY_MARCH("sprites/heavy_storktrooper/storktrooper_heavy_march.atlas", TextureAtlas.class),
 
     // Player sprites.
     PLAYER_STAND_LEFT("dummy/stand/left.png", Texture.class),

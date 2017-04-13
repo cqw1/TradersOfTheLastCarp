@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
+import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.effects.Stun;
 import com.totlc.Actors.enemies.movement.AMovement;
@@ -160,8 +161,8 @@ public abstract class AEnemy extends Character {
         isFloating = floating;
     }
 
-    public Point2D getTarget(Actor target) {
-        Point2D targetVector = new Point2D.Double(target.getX() - getX(), target.getY() - getY());
+    public Point2D getTarget(TotlcObject target) {
+        Point2D targetVector = new Point2D.Double(target.getHitBoxCenter().getX() - getHitBoxCenter().getX(), target.getHitBoxCenter().getY() - getHitBoxCenter().getY());
         float n = (float) Math.sqrt(Math.pow(targetVector.getX(), 2) + Math.pow(targetVector.getY(), 2));
         if (n != 0) {
             targetVector.setLocation(targetVector.getX() / n, targetVector.getY() / n);

@@ -79,7 +79,7 @@ public class ExitPortal extends ATrap {
         batch.draw(trapTextureAtlas.getRegions().get(1), getX() + trapTextureAtlas.getRegions().get(0).getRegionWidth() / 2 - trapTextureAtlas.getRegions().get(1).getRegionWidth() / 2, getY());
         batch.draw(trapTextureAtlas.getRegions().get(0), getX(), getY() + portalOffset, trapTextureAtlas.getRegions().get(0).getRegionWidth() / 2, trapTextureAtlas.getRegions().get(0).getRegionHeight() / 2,
                 trapTextureAtlas.getRegions().get(0).getRegionWidth(), trapTextureAtlas.getRegions().get(0).getRegionHeight(), 0.6f, 0.6f, angle);
-        wormHole.draw(batch, Gdx.graphics.getDeltaTime());
+//        wormHole.draw(batch, Gdx.graphics.getDeltaTime());
     }
 
     public void setModifiedDirection(String direction) {
