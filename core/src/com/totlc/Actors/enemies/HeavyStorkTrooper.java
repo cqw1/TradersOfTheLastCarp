@@ -19,7 +19,7 @@ public class HeavyStorkTrooper extends AEnemy {
     // Stat constants.
     private static int id = 10;
     private static int basehp = 3;
-    private static int atk = 1;
+    private static int atk = 2;
 
     private static float maxVel = 36;
     private static float speed = 36;
@@ -53,7 +53,7 @@ public class HeavyStorkTrooper extends AEnemy {
         walkTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_HEAVY_MARCH.toString());
         walkAnimation = new Animation<TextureRegion>(1/12f, this.walkTextureAtlas.getRegions());
 
-        shootTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_SHOOT.toString());
+        shootTextureAtlas = getAssetManager().get(AssetList.STORKTROOPER_HEAVY_SHOOT.toString());
         shootAnimation = new Animation<TextureRegion>(1/24f, this.shootTextureAtlas.getRegions());
 
         textureWidthBody = walkTextureAtlas.getRegions().get(0).getRegionWidth();
@@ -67,6 +67,9 @@ public class HeavyStorkTrooper extends AEnemy {
     @Override
     public void act(float deltaTime){
         super.act(deltaTime);
+        if (checkStun()) {
+            return;
+        }
         // Set facing direction.
         if(Math.signum(getMovement().getTargetVector(this).getX()) > 0){
             setIsFacing(Directionality.RIGHT);
@@ -90,7 +93,7 @@ public class HeavyStorkTrooper extends AEnemy {
                     this.lastShotTime = System.currentTimeMillis();
                     aimVector = getTarget(((ALevel)getStage()).getPlayer());
                     getStage().addActor(new BulletCasing(getAssetManager(), (float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY()));
-                    getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 1600, aimVector.getY() * 1600), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
+                    getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3600, aimVector.getY() * 3600), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 1));
                     bulletSound.play(0.8f);
                 }
                 if (System.currentTimeMillis() - this.attackStartTime > this.attackTime) {
@@ -123,11 +126,14 @@ public class HeavyStorkTrooper extends AEnemy {
                     batch.draw(walkTextureAtlas.getRegions().get(0), getX() + getTextureWidthBody(), getY(), -getTextureWidthBody(), getTextureHeightBody());
                 }
             }
+            drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
+            drawStatuses(batch, alpha);
+            drawShield(batch);
         }
     }
 
     private void fire(){
-        fireSound.play(1f);
+        fireSound.play(0.8f);
         setAttacking(true);
         this.attackStartTime = System.currentTimeMillis();
     }

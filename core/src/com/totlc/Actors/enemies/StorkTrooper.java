@@ -158,6 +158,9 @@ public class StorkTrooper extends AEnemy {
                 }
             }
         }
+        drawHealth(batch, alpha, -(int)getHitBoxWidth() / 2, -(int)getHitBoxHeight() / 2);
+        drawStatuses(batch, alpha);
+        drawShield(batch);
     }
 
     private void takeAim(){
@@ -179,7 +182,7 @@ public class StorkTrooper extends AEnemy {
         setAnimationTime(0);
         fireSound.play(1f);
         getStage().addActor(new BulletCasing(getAssetManager(), (float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY()));
-        getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3000, aimVector.getY() * 3000), getAssetManager(), (float) getCenter().getX(), (float) getCenter().getY(), 1));
+        getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3000, aimVector.getY() * 3000), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 1));
         this.aiming = false;
     }
 
