@@ -39,11 +39,17 @@ public class TextBox extends Actor {
     private static float carpHorizontalOffset = 50;
     private CrystalCarp carp;
 
-    private float talkingIntervalTime = 0.3f; // In seconds
+    private float talkingIntervalTime = 0.15f; // In seconds
     private String[] words;
     private int wordIndex;
 
-    private Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.LEVEL01_TALKING.toString()));
+    private Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.BUBBLES.toString()));
+
+    private ButtonPrompt spacePrompt;
+    private float buttonScale = 0.5f;
+
+    private final int WALL_WIDTH = 64;
+
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
 
@@ -59,10 +65,11 @@ public class TextBox extends Actor {
      * @param duration Seconds how long the text box appears for. The max of talking + delay, or duration
      */
     public TextBox(AssetManager assetManager, String message, float delay, float duration) {
-        setX(64);
-        setY(64);
+        TradersOfTheLastCarp.textBoxShowing = true;
+        setX(WALL_WIDTH);
+        setY(WALL_WIDTH);
 
-        setWidth(CONFIG_WIDTH - 128);
+        setWidth(CONFIG_WIDTH - 2 * WALL_WIDTH);
         setHeight(200);
 
         // Programmatically figure out width and height based on message.
@@ -96,6 +103,23 @@ public class TextBox extends Actor {
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         sound.play(0.8f);
+
+        spacePrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - WALL_WIDTH - CrystalCarp.WIDTH - 250 * buttonScale - 50 , WALL_WIDTH + 30) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                if (System.currentTimeMillis() % 1000 <= 200) {
+                    return;
+                }
+                batch.draw(getAsset(), getX(), getY(), 300 * buttonScale, 120 * buttonScale);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        };
     }
 
     @Override
@@ -103,10 +127,10 @@ public class TextBox extends Actor {
         // deltaTime = time in seconds since last frame
         time += deltaTime;
         carp.act(deltaTime);
+        spacePrompt.act(deltaTime);
 
         if (time > duration) {
-            this.remove();
-            carp.remove();
+            removeTextBox();
         }
 
         wordIndex = Math.min((int) Math.floor(time / talkingIntervalTime), words.length);
@@ -130,6 +154,16 @@ public class TextBox extends Actor {
         }
 
         carp.draw(batch, alpha);
+        spacePrompt.draw(batch, alpha);
+
+    }
+
+    public void removeTextBox() {
+        this.remove();
+        carp.remove();
+        sound.stop();
+        sound.dispose();
+        TradersOfTheLastCarp.textBoxShowing = false;
     }
 
 }

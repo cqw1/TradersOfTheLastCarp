@@ -246,20 +246,28 @@ public abstract class ALevel extends Stage {
         }
 
         if (keycode == Input.Keys.SPACE) {
-           if (player.getHpCurrent() > 0){
+            if (TradersOfTheLastCarp.textBoxShowing) {
+                for (Actor actor: getActors()) {
+                    if (actor instanceof TextBox) {
+                        ((TextBox) actor).removeTextBox();
+                    }
+                }
+            }
+
+            if (player.getHpCurrent() > 0){
                 player.createWeapon();
-           } else{
-               try {
+            } else {
+                try {
                    TradersOfTheLastCarp.player = (Player) TradersOfTheLastCarp.playerClass.getConstructor(AssetManager.class).newInstance(assetManager);
                    ALevel nextLevelObject = LevelFactory.createLevel(this.getClass(), assetManager);
                    loadLevel(nextLevelObject);
                    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
                    sound.play(1.0f);
-               } catch (Exception e) {
+                } catch (Exception e) {
                    e.printStackTrace();
-               }
-           }
-           return true;
+                }
+            }
+            return true;
         }
 
         if (keycode == Input.Keys.ESCAPE) {
