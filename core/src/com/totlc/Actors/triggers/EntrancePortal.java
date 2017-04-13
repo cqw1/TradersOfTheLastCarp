@@ -20,8 +20,8 @@ public class EntrancePortal extends ATrigger {
     private TextureAtlas trapTextureAtlas, particleAtlas;
     private ParticleEffect wormHole;
 
-    private static float width = 160;
-    private static float height = 160;
+    private static float width = 128;
+    private static float height = 128;
     private static float portalOffset = 12;
     private float angle = 0;
 
@@ -31,6 +31,7 @@ public class EntrancePortal extends ATrigger {
 
     public EntrancePortal(AssetManager assetManager, Rectangle r) {
         super(assetManager, r);
+        moveHitBox(4, 4);
         trapTextureAtlas = assetManager.get(AssetList.WORMHOLE.toString());
         particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
         moveHitBox(trapTextureAtlas.getRegions().get(0).getRegionWidth() / 2 - getHitBoxWidth() * 0.5f, trapTextureAtlas.getRegions().get(1).getRegionHeight() / 2 + portalOffset);

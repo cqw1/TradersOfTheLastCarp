@@ -275,6 +275,7 @@ public class Player extends Character {
 
     public void createWeapon(){
         if (System.currentTimeMillis() > weaponUsageTime) {
+            getWeapon().moveAbs(getX(), getY());
             getStage().addActor(getWeapon());
             if (getIsFacing().isFacingDown()) {
                 getWeapon().setZIndex(getZIndex() + 1);

@@ -63,6 +63,12 @@ public class TrapFactory {
             }
         }
 
+        if (mp.get("type", String.class).equals(BOULDER_TRAP)) {
+            if (mp.containsKey("direction")) {
+                ((BoulderTrap) returnMe).setDirection(mp.get("direction", String.class));
+            }
+        }
+
         return returnMe;
     }
 }

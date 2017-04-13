@@ -9,6 +9,7 @@ public class MovementFactory {
     public static final String INTERVAL = "INTERVAL";
     public static final String RANDOM = "RANDOM";
     public static final String PROXIMITY = "PROXIMITY";
+    public static final String AVOIDANT = "AVOIDANT";
 
     public static AMovement createMovement(String type) throws NullPointerException {
         if (type.equals(BASIC)) {
@@ -21,6 +22,8 @@ public class MovementFactory {
             return new RandomMovement(TradersOfTheLastCarp.player);
         } else if (type.equals(PROXIMITY)) {
             return new ProximityBasedAggro(TradersOfTheLastCarp.player);
+        } else if (type.equals(AVOIDANT)) {
+            return new AvoidantMovement(TradersOfTheLastCarp.player);
         }
 
         throw new NullPointerException("Received type: " + type);

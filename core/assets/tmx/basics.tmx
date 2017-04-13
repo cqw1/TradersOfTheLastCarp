@@ -89,7 +89,7 @@
  <objectgroup name="ENEMIES">
   <object id="6" x="1194" y="418" width="58" height="60">
    <properties>
-    <property name="type" value="PANGOLINI"/>
+    <property name="type" value="HARPOONER"/>
    </properties>
   </object>
  </objectgroup>

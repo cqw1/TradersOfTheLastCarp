@@ -176,12 +176,6 @@
     <property name="type" value="TELEPORT_PAD"/>
    </properties>
   </object>
-  <object id="93" x="1128.33" y="610.666" width="76" height="36">
-   <properties>
-    <property name="trap_id" value="3"/>
-    <property name="type" value="TELEPORT_PAD"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup name="ENEMIES"/>
 </map>
