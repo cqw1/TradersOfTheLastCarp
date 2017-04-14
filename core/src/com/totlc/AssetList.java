@@ -172,6 +172,8 @@ public enum AssetList {
     SHADOW_PATH("effects/shadowpath.particle", null),
     SHADOW_CLOAK("effects/shadowcloak.particle", null),
     RING_EFFECT("effects/ringeffect.particle", null),
+    PARTYCLES("effects/partycles.atlas", TextureAtlas.class),
+
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas", TextureAtlas.class),

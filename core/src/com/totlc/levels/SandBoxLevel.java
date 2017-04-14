@@ -42,7 +42,7 @@ public class SandBoxLevel extends ALevel{
         TradersOfTheLastCarp.musicPlayer.getCurrentSong().setLooping(true);
         TradersOfTheLastCarp.musicPlayer.play();
 
-//        ATrap boulder = new BoulderTrap(getAssetManager(), 1200, 300);
+//        ATrap boulder = new BoulderTrap(getAssetManager(), 300, 500);
 //        addActor(boulder);
 
 //        EntrancePortal enter = new EntrancePortal(getAssetManager(), 500, 300);
@@ -63,7 +63,6 @@ public class SandBoxLevel extends ALevel{
 //        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
 //        addActor(wallface);
 
-
 //        ATrap laser = new LaserTotem(getAssetManager(), 500, 500, 1000, 90);
 //        addActor(laser);
 //        trigger0.addTrap(laser);
@@ -80,6 +79,9 @@ public class SandBoxLevel extends ALevel{
 //
 //        AEnemy pangolini = new DaredevilPangolini(getAssetManager(), 900, 100, new BasicMovement(getPlayer()));
 //        addActor(pangolini);
+
+        AWall rock = new Rock(getAssetManager(), 300, 300);
+        addActor(rock);
 
         AEnemy stork0 = new StorkTrooper(getAssetManager(), 900, 100, new IntervalMovement(getPlayer(), 600, 200));
         addActor(stork0);
