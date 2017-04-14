@@ -81,19 +81,22 @@ public class SandBoxLevel extends ALevel{
 //        AEnemy pangolini = new DaredevilPangolini(getAssetManager(), 900, 100, new BasicMovement(getPlayer()));
 //        addActor(pangolini);
 
-//        AEnemy stork0 = new StorkTrooper(getAssetManager(), 900, 100, new IntervalMovement(getPlayer(), 600, 200));
-//        addActor(stork0);
-//
-//        AEnemy stork1 = new StorkTrooper(getAssetManager(), 900, 300, new IntervalMovement(getPlayer(), 600, 200));
-//        addActor(stork1);
-//
-//        AEnemy stork2 = new StorkTrooper(getAssetManager(), 900, 500, new IntervalMovement(getPlayer(), 600, 200));
-//        addActor(stork2);
-//
-        AEnemy stork3 = new StorkTrooper(getAssetManager(), 1200, 500, new AvoidantMovement(getPlayer()));
-        addActor(stork3);
+        AEnemy stork0 = new StorkTrooper(getAssetManager(), 900, 100, new IntervalMovement(getPlayer(), 600, 200));
+        addActor(stork0);
 
-        AEnemy hstork = new HeavyStorkTrooper(getAssetManager(), 1200, 300, new IntervalMovement(getPlayer(), 2000, 1000));
+        AEnemy stork1 = new StorkTrooper(getAssetManager(), 900, 300, new IntervalMovement(getPlayer(), 600, 200));
+        addActor(stork1);
+
+        AEnemy stork2 = new StorkTrooper(getAssetManager(), 900, 500, new IntervalMovement(getPlayer(), 600, 200));
+        addActor(stork2);
+//
+//        AEnemy stork3 = new StorkTrooper(getAssetManager(), 1200, 500, new AvoidantMovement(getPlayer()));
+//        addActor(stork3);
+//
+//        AEnemy stork4 = new StorkTrooper(getAssetManager(), 1200, 300, new AvoidantMovement(getPlayer()));
+//        addActor(stork4);
+
+        AEnemy hstork = new HeavyStorkTrooper(getAssetManager(), 1000, 500, new IntervalMovement(getPlayer(), 2000, 1000));
         addActor(hstork);
 
         endInit();

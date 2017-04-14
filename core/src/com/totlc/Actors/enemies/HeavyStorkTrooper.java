@@ -89,11 +89,11 @@ public class HeavyStorkTrooper extends AEnemy {
                     quackSound.play(0.8f);
                     this.lastQuackTime = System.currentTimeMillis();
                 }
-                if (System.currentTimeMillis() - this.lastShotTime > 160){
+                if (System.currentTimeMillis() - this.lastShotTime > 200){
                     this.lastShotTime = System.currentTimeMillis();
-                    aimVector = getTarget(((ALevel)getStage()).getPlayer());
                     getStage().addActor(new BulletCasing(getAssetManager(), (float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY()));
                     getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3600, aimVector.getY() * 3600), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 1));
+                    aimVector = getTarget(((ALevel)getStage()).getPlayer());
                     bulletSound.play(0.8f);
                 }
                 if (System.currentTimeMillis() - this.attackStartTime > this.attackTime) {
@@ -135,6 +135,7 @@ public class HeavyStorkTrooper extends AEnemy {
     private void fire(){
         fireSound.play(0.8f);
         setAttacking(true);
+        aimVector = getTarget(((ALevel)getStage()).getPlayer());
         this.attackStartTime = System.currentTimeMillis();
     }
 
