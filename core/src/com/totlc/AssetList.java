@@ -173,7 +173,7 @@ public enum AssetList {
     SHADOW_CLOAK("effects/shadowcloak.particle", null),
     RING_EFFECT("effects/ringeffect.particle", null),
     PARTYCLES("effects/partycles.atlas", TextureAtlas.class),
-
+    CONFETTI("effects/confetti.particle", null),
 
     // Stage Element Sprites.
     PLATE_BROWN("traps/plate_brown.atlas", TextureAtlas.class),

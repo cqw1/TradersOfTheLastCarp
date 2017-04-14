@@ -1,11 +1,17 @@
 package com.totlc.levels;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.UI.ButtonPrompt;
 import com.totlc.Actors.carps.CrystalCarp;
+import com.totlc.Actors.effects.AEffect;
+import com.totlc.Actors.effects.Confetti;
 import com.totlc.Actors.tileset.EndScreen;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
@@ -19,6 +25,7 @@ public class EndLevel extends ALevel {
     private float cursorScale = 0.5f;
 
     private CrystalCarp carp;
+    private AEffect confetti;
 
     public EndLevel(AssetManager assetManager) {
         super(assetManager);
@@ -32,6 +39,7 @@ public class EndLevel extends ALevel {
                 1f
         );
         carp.setVoice(AssetList.FINE.toString());
+        confetti = new Confetti(assetManager, getPlayer());
     }
 
     public void initOtherLevelStuff() {
@@ -42,6 +50,7 @@ public class EndLevel extends ALevel {
 
         addActor(new EndScreen(getAssetManager()));
         addActor(carp);
+        addActor(confetti);
 
         //Button Prompt
         cursor = new ButtonPrompt(getAssetManager(), AssetList.BUTTON_PROMPT_SPACE.toString(), CONFIG_WIDTH - 300 * cursorScale - 50, 50) {

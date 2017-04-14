@@ -1,6 +1,7 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.totlc.Actors.items.Goldfish;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 

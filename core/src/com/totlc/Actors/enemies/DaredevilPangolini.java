@@ -33,7 +33,7 @@ public class DaredevilPangolini extends AEnemy {
     private static float friction = 0f;
 
     private static float rollChance = .008f;
-    private static long rollTime = 3600;
+    private static long rollTime = 2800;
     private static float rollSpeed = 360;
     private static float rollDamage = 2;
     private long rollStartTime;
