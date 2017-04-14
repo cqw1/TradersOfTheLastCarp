@@ -10,4 +10,8 @@ public class Immobile extends AMovement {
     }
 
     public void specializedMove(AEnemy self, float delta) {}
+
+    public boolean isMoving() {
+        return false;
+    }
 }
