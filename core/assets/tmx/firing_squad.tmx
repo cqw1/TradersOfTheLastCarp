@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="108">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="111">
  <properties>
-  <property name="objective" type="int" value="1"/>
+  <property name="objective" type="int" value="0"/>
+  <property name="time" type="int" value="25000"/>
  </properties>
  <layer name="WALLS" width="50" height="28">
   <data encoding="csv">
@@ -78,6 +79,22 @@
     <property name="type" value="STORK"/>
    </properties>
   </object>
+  <object id="108" x="1409.33" y="406.667" width="81.3333" height="129.333">
+   <properties>
+    <property name="type" value="HEAVY_STORK"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup name="TERRAIN"/>
+ <objectgroup name="TERRAIN">
+  <object id="109" x="408" y="344" width="74.6667" height="73.3333">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="110" x="409.333" y="421.333" width="74.6667" height="73.3333">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
