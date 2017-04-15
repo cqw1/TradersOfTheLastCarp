@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.damage.Bubble;
 import com.totlc.Actors.damage.Damage;
 
 import com.totlc.Actors.enemies.movement.AMovement;
@@ -154,6 +155,16 @@ public class WallfacedProtector extends AEnemy {
                 this.lastHitTime = System.currentTimeMillis();
             }
             if (!isInvincible()) {
+                if (otherActor instanceof Bubble) {
+                    if (!isStunned()) {
+                        setStunned(true);
+                        setStunStart(System.currentTimeMillis());
+                        setStunPeriod(((Whip)otherActor).getStunPeriod());
+                        drawStunIndicator(getStunPeriod());
+                        setHpTimer(System.currentTimeMillis());
+                        setShowHp(true);
+                    }
+                }
                 takeDamage(damage.getAttack());
             }
         } else if (otherActor instanceof Whip) {

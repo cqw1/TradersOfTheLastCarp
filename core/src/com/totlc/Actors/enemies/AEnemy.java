@@ -8,13 +8,13 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.TotlcObject;
+import com.totlc.Actors.damage.Bubble;
 import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.effects.Stun;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
-import com.totlc.status.Invulnerable;
 
 import java.awt.geom.Point2D;
 
@@ -106,9 +106,18 @@ public abstract class AEnemy extends Character {
         if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1) {
             Damage damage = (Damage) otherActor;
             if (!invincible) {
-//                if (System.currentTimeMillis() > damage.getTimeToApplyDamage()) {
-                    takeDamage(damage.getAttack());
-//                }
+                if (otherActor instanceof Bubble) {
+                    if (!invincible) {
+                        // Invincible enemies can't be stunned.
+                        if (!stunned) {
+                            stunned = true;
+                            stunStart = System.currentTimeMillis();
+                            setStunPeriod(((Bubble) otherActor).getStunDuration());
+                            drawStunIndicator(stunPeriod);
+                        }
+                    }
+                }
+                takeDamage(damage.getAttack());
             }
         } else if (otherActor instanceof Whip) {
             if (!invincible) {
@@ -122,9 +131,6 @@ public abstract class AEnemy extends Character {
                     this.showHP = true;
                 }
             }
-
-            // Maybe save this for different weapons
-            //takeDamage(((AWeapon)otherActor).getAttack());
         }
 
         return (getHpCurrent() <= 0);

@@ -136,6 +136,7 @@ public enum AssetList {
     JANE_WHIP_FRONT("sprites/Colorado/whip/jane_whip_front.atlas", TextureAtlas.class),
     JANE_WHIP_BACK("sprites/Colorado/whip/jane_whip_back.atlas", TextureAtlas.class),
     FISCHL_HEAD("sprites/MrFischl/fischl_head.atlas", TextureAtlas.class),
+    FISCHL_HEAD_SPIT("sprites/MrFischl/fischl_head_spit.atlas", TextureAtlas.class),
     JOE_HEAD("sprites/Ontario/joe_head.atlas", TextureAtlas.class),
     ROSE_HEAD("sprites/Texas/rose_head.atlas", TextureAtlas.class),
 
@@ -148,6 +149,7 @@ public enum AssetList {
     BLUE_WHIP_RIGHT("sprites/whip/blue/blue_whip_right.atlas", TextureAtlas.class),
     BLUE_WHIP_FRONT("sprites/whip/blue/blue_whip_front.atlas", TextureAtlas.class),
     BLUE_WHIP_BACK("sprites/whip/blue/blue_whip_back.atlas", TextureAtlas.class),
+    SPIT_BUBBLE("sprites/whip/bubble/spit_bubble.atlas", TextureAtlas.class),
 
     // Special Effects.
     IMPACT("effects/impact.atlas", TextureAtlas.class),
@@ -172,6 +174,7 @@ public enum AssetList {
     SHADOW_PATH("effects/shadowpath.particle", null),
     SHADOW_CLOAK("effects/shadowcloak.particle", null),
     RING_EFFECT("effects/ringeffect.particle", null),
+    WATER_BURST("effects/water_burst.particle", null),
     PARTYCLES("effects/partycles.atlas", TextureAtlas.class),
     CONFETTI("effects/confetti.particle", null),
 

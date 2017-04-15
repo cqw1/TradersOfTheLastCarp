@@ -73,6 +73,7 @@ public class Player extends Character {
     private AWeapon weapon;
     private boolean hasKey = false;
     private long weaponUsageCD = 1500;
+
     private long weaponUsageTime;
 
     public Player(AssetManager assetManager) {
@@ -165,7 +166,6 @@ public class Player extends Character {
             setAnimationTime(0);
         }
 
-
         float formerX = getX();
         float formerY = getY();
         setAcc(getNewAcceleration());
@@ -229,10 +229,6 @@ public class Player extends Character {
     public void setAttacking(boolean attacking){
         super.setAttacking(attacking);
         setAnimationTime(0);
-        if (attacking){
-            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/whip0.mp3"));
-            sound.play(0.7f);
-        }
     }
 
     protected void initTextures(AssetManager assetManager){
@@ -307,7 +303,7 @@ public class Player extends Character {
 
     public AWeapon getWeapon() { return weapon; }
 
-    public void setWeapon(Whip whip) {
+    public void setWeapon(AWeapon whip) {
         weapon = whip;
     }
 
@@ -329,5 +325,21 @@ public class Player extends Character {
 
     public void giveKey() {
         this.hasKey = true;
+    }
+
+    public long getWeaponUsageCD() {
+        return weaponUsageCD;
+    }
+
+    public void setWeaponUsageCD(long weaponUsageCD) {
+        this.weaponUsageCD = weaponUsageCD;
+    }
+
+    public long getWeaponUsageTime() {
+        return weaponUsageTime;
+    }
+
+    public void setWeaponUsageTime(long weaponUsageTime) {
+        this.weaponUsageTime = weaponUsageTime;
     }
 }

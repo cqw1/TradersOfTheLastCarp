@@ -1,6 +1,8 @@
 package com.totlc.Actors.players;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.totlc.Actors.weapons.Whip;
@@ -51,5 +53,17 @@ public class Louisiana extends PlayableCharacter {
 
         // Whip initialization.
         setWeapon(new Whip(assetManager, this, 0.3f, 2000, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
+    }
+
+    @Override
+    public void createWeapon(){
+        super.createWeapon();
+        if (getAttacking()){
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/whip0.mp3"));
+            sound.play(1.0f);
+        } else{
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
+            sound.play(1.0f);
+        }
     }
 }

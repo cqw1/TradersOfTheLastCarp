@@ -13,7 +13,7 @@ repeat: none
   index: -1
 10fireglow
   rotate: false
-  xy: 559, 166
+  xy: 940, 208
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -34,7 +34,7 @@ repeat: none
   index: -1
 13embers1
   rotate: false
-  xy: 890, 208
+  xy: 130, 51
   size: 25, 16
   orig: 25, 16
   offset: 0, 0
@@ -62,14 +62,14 @@ repeat: none
   index: -1
 17waterdrop
   rotate: false
-  xy: 994, 211
+  xy: 535, 139
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
   index: -1
 18waterdropflip
   rotate: false
-  xy: 198, 31
+  xy: 558, 139
   size: 21, 43
   orig: 21, 43
   offset: 0, 0
@@ -83,7 +83,7 @@ repeat: none
   index: -1
 1syrup
   rotate: false
-  xy: 917, 208
+  xy: 683, 166
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -97,7 +97,7 @@ repeat: none
   index: -1
 21elec2
   rotate: false
-  xy: 950, 212
+  xy: 424, 140
   size: 42, 42
   orig: 42, 42
   offset: 0, 0
@@ -139,21 +139,21 @@ repeat: none
   index: -1
 27debris0
   rotate: false
-  xy: 130, 39
+  xy: 424, 110
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
   index: -1
 28debris1
   rotate: false
-  xy: 457, 154
+  xy: 581, 154
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
   index: -1
 29debris2
   rotate: false
-  xy: 491, 154
+  xy: 615, 154
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
@@ -167,7 +167,7 @@ repeat: none
   index: -1
 30debris3
   rotate: false
-  xy: 525, 154
+  xy: 649, 154
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
@@ -202,9 +202,16 @@ repeat: none
   index: -1
 35casing
   rotate: false
-  xy: 424, 112
+  xy: 1000, 226
   size: 15, 28
   orig: 15, 28
+  offset: 0, 0
+  index: -1
+36bubble
+  rotate: false
+  xy: 890, 207
+  size: 48, 47
+  orig: 48, 47
   offset: 0, 0
   index: -1
 3stun
@@ -216,7 +223,7 @@ repeat: none
   index: -1
 4arrowpoint
   rotate: false
-  xy: 424, 142
+  xy: 502, 142
   size: 31, 40
   orig: 31, 40
   offset: 0, 0
@@ -258,7 +265,7 @@ repeat: none
   index: -1
 berry
   rotate: false
-  xy: 164, 34
+  xy: 468, 142
   size: 32, 40
   orig: 32, 40
   offset: 0, 0
@@ -279,7 +286,7 @@ mint1
   index: -1
 mint2
   rotate: false
-  xy: 890, 226
+  xy: 940, 226
   size: 58, 28
   orig: 58, 28
   offset: 0, 0

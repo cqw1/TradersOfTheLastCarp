@@ -16,13 +16,14 @@ import com.totlc.Actors.players.*;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class CharacterSelect extends ALevel{
 
     // Hard coded value for playable characters. Remove when all characters are implemented.
-    private static int playableCharacters = 2;
+    private static int playableCharacters = 5;
 
     TotlcObject characterSelectScreen;
     ArrayList<Class> availablePlayers = new ArrayList<Class>() {{
@@ -90,6 +91,7 @@ public class CharacterSelect extends ALevel{
                     }
                 };
                 characterSelected.setTexture(new Texture(Gdx.files.internal(AssetList.GREEN_SELECT.toString())));
+                characterSelected.getHitBox().setScale(0, 0);
                 addActor(characterSelected);
                 characterSelected.setZIndex(2);
 
@@ -111,6 +113,7 @@ public class CharacterSelect extends ALevel{
                     }
                 };
                 characterHover.setTexture(new Texture(Gdx.files.internal(AssetList.GREEN_SELECT_BORDER.toString())));
+                characterHover.getHitBox().setScale(0, 0);
                 addActor(characterHover);
                 characterHover.setZIndex(2);
             }
@@ -119,6 +122,7 @@ public class CharacterSelect extends ALevel{
                 PlayableCharacter p = (PlayableCharacter) c.getConstructor(AssetManager.class).newInstance(assetManager);
                 p.setMaxVel(0.001f);
                 p.moveAbs(adjustedStart, (float) characterSelectStart.getY());
+                p.setMovingDown(false);
                 characterGridPoints.add(new Point2D.Float(adjustedStart, (float) characterSelectStart.getY()));
                 adjustedStart += spacePerCharacter;
                 addActor(p);
@@ -197,6 +201,7 @@ public class CharacterSelect extends ALevel{
         boolean isHandled = false;
         if (keyCode == Input.Keys.LEFT) {
             currentCharacters.get(currentlySelected).setMovingDown(false);
+            currentCharacters.get(currentlySelected).setVel(new Point(0, 0));
             currentlySelected = (currentlySelected - 1 + playableCharacters) % playableCharacters;
             characterHover.moveAbs((float) characterGridPoints.get(currentlySelected).getX(), (float) characterGridPoints.get(currentlySelected).getY());
             isHandled = true;
@@ -207,6 +212,7 @@ public class CharacterSelect extends ALevel{
 
         if (keyCode == Input.Keys.RIGHT) {
             currentCharacters.get(currentlySelected).setMovingDown(false);
+            currentCharacters.get(currentlySelected).setVel(new Point(0, 0));
             currentlySelected = (currentlySelected + 1) % playableCharacters;
             characterHover.moveAbs((float) characterGridPoints.get(currentlySelected).getX(), (float) characterGridPoints.get(currentlySelected).getY());
             isHandled = true;
@@ -218,6 +224,8 @@ public class CharacterSelect extends ALevel{
         if (keyCode == Input.Keys.SPACE) {
             TradersOfTheLastCarp.playerClass = availablePlayers.get(currentlySelected);
             characterSelected.moveAbs((float) characterGridPoints.get(currentlySelected).getX(), (float) characterGridPoints.get(currentlySelected).getY());
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/UI_SFX_Set/switch10.wav"));
+            sound.play(1.0f);
         }
 
         if (keyCode == Input.Keys.ESCAPE) {

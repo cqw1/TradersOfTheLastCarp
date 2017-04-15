@@ -5,14 +5,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.players.Player;
 
 public class Whip extends AWeapon {
-    private Player player;
 
     private long stunPeriod; // in millis
 
     public Whip(AssetManager assetManager, Player player, float attackTime, long stunDuration, String upAsset, String downAsset, String leftAsset, String rightAsset) {
         super(assetManager, player, 0, attackTime, upAsset, downAsset, leftAsset, rightAsset);
         setStunPeriod(stunDuration);
-        this.player = player;
     }
 
     public Whip(AssetManager assetManager, Player player, float attackTime, String upAsset, String downAsset, String leftAsset, String rightAsset) {

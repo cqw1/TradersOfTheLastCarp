@@ -15,7 +15,7 @@ import java.awt.geom.Point2D;
 public class StarShot extends Damage {
 
     // Asset and animation constants.
-    private TextureAtlas shotTextureAtlas, particleAtlas;
+    private TextureAtlas shotTextureAtlas;
     private Animation<TextureRegion> shotAnimation;
     private ParticleEffectPool.PooledEffect starTrail;
 
@@ -28,7 +28,8 @@ public class StarShot extends Damage {
         super(assetManager, new Rectangle(x, y, 24, 24), damage, damageType);
 
         //TODO: Correct hitboxes?
-        moveHitBox(42, 42);
+        moveHitBox(20, 20);
+        getHitBox().setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
 
         setDamageType(damageType);
         setScaleFactor(1.0f);

@@ -1,0 +1,48 @@
+
+spit_bubble.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+water_bubble
+  rotate: false
+  xy: 2, 2
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: 0
+water_bubble
+  rotate: false
+  xy: 2, 2
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: 2
+water_bubble
+  rotate: false
+  xy: 70, 2
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: 1
+water_bubble
+  rotate: false
+  xy: 138, 2
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: 3
+water_bubble
+  rotate: false
+  xy: 206, 2
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: 4
+water_bubble
+  rotate: false
+  xy: 274, 2
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: 5

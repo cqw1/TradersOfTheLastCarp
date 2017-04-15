@@ -30,7 +30,7 @@ public class Boulder extends Damage{
 
     private TextureAtlas particleAtlas;
     private ParticleEffect debris;
-    Sound rollingSound;
+    private Sound rollingSound;
     private Texture shadow;
 
     private static float shadowSize = 3;

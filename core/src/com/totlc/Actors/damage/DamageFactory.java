@@ -21,6 +21,8 @@ public class DamageFactory {
             returnMe = new Laser(assetManager, x, y, damageType);
         } else if(type.equals(DamageEnum.BULLET)) {
             returnMe = new Bullet(assetManager, x, y, damageType);
+        } else if(type.equals(DamageEnum.BUBBLE)) {
+            returnMe = new Bubble(assetManager, x, y, 0, damageType, 1000);
         } else {
             return null;
         }
