@@ -72,7 +72,7 @@ public class MrFischl extends PlayableCharacter {
 //        textureArray.add(head.findRegion("head_right"));
 //        notImplemented = new Animation<TextureRegion>(1 / 15f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
 
-        // WaterBubble initialization.
+        // WaterBubble placeholder initialization.
         setWeapon(new NullWeapon(assetManager, this, 0, 0.3f, AssetList.BLUE_WHIP_BACK.toString(), AssetList.BLUE_WHIP_FRONT.toString(), AssetList.BLUE_WHIP_LEFT.toString(), AssetList.BLUE_WHIP_RIGHT.toString()));
         getWeapon().getHitBox().setScale(0, 0);
     }

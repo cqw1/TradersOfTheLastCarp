@@ -7,8 +7,14 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import com.totlc.Actors.damage.DamageEnum;
+import com.totlc.Actors.damage.DamageFactory;
+import com.totlc.Actors.damage.Lasso;
+import com.totlc.Actors.weapons.NullWeapon;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
+
+import java.awt.geom.Point2D;
 
 public class Texas extends PlayableCharacter {
 
@@ -64,9 +70,9 @@ public class Texas extends PlayableCharacter {
 //        textureArray.add(head.findRegion("head_right"));
 //        notImplemented = new Animation<TextureRegion>(1 / 10f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
 
-        // Whip initialization.
-        setWeapon(new Whip(assetManager, this, 0.3f, 2000, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
-    }
+        // Lasso placeholder initialization.
+        setWeapon(new NullWeapon(assetManager, this, 0, 0.3f, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
+        getWeapon().getHitBox().setScale(0, 0);    }
 
     @Override
     protected void drawHead(Batch batch, float delta) {
@@ -116,8 +122,22 @@ public class Texas extends PlayableCharacter {
     public void createWeapon(){
         super.createWeapon();
         if (getAttacking()){
-            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/whip0.mp3"));
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/woosh.mp3"));
             sound.play(1.0f);
+            Point2D initVel;
+            if (getIsFacing().isFacingRight()){
+                initVel = new Point2D.Double(2000, 0);
+            } else if(getIsFacing().isFacingLeft()) {
+                initVel = new Point2D.Double(-2000, 0);
+            } else if(getIsFacing().isFacingUp()) {
+                initVel = new Point2D.Double(0, 2000);
+            } else {
+                initVel = new Point2D.Double(0, -2000);
+            }
+
+            Lasso lasso = new Lasso(getAssetManager(), this, (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0, 1, 400, initVel);
+            getStage().addActor(lasso);
+            lasso.setZIndex(getZIndex() - 1);
         } else{
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
             sound.play(1.0f);

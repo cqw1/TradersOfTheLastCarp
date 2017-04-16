@@ -8,23 +8,23 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
-import com.totlc.Actors.players.Player;
+import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.AssetList;
 
 import java.awt.geom.Point2D;
 
-public class Hook extends Damage {
+public class Lasso extends Damage{
 
     private ShapeRenderer lineRenderer = new ShapeRenderer();
     private Character origin, target;
     private float range, angle;
-    private float reelSpeed = 10;
+    private float reelSpeed = 1200;
     private boolean outgoing;
 
     private static float width = 74, height = 39;
 
     // Not generated with factory.
-    public Hook(AssetManager assetManager, Character origin, float x, float y, int attack, int damageType, float range, Point2D initialVelocity) {
+    public Lasso(AssetManager assetManager, Character origin, float x, float y, int attack, int damageType, float range, Point2D initialVelocity) {
         super(assetManager, new Rectangle(x, y, width, height), attack, damageType);
         this.target = null;
         this.range = range;
@@ -38,7 +38,6 @@ public class Hook extends Damage {
         setTexture(assetManager.get(AssetList.FISHHOOK.toString(), Texture.class));
         setVel(initialVelocity);
         this.angle = getVelocityAngle();
-        getHitBox().setScale(0.8f, 0.8f);
         getHitBox().rotate(getVelocityAngle());
     }
 
@@ -85,8 +84,8 @@ public class Hook extends Damage {
 
     @Override
     public boolean collidesWith(Actor otherActor) {
-        if (otherActor instanceof Player) {
-            this.target = (Character) otherActor;
+        if (otherActor instanceof AEnemy) {
+            this.target = (AEnemy) otherActor;
             this.outgoing = false;
             this.target.moveRel((float)(getHitBoxCenter().getX() - target.getHitBoxCenter().getX()),
                     (float)(getHitBoxCenter().getY() - target.getHitBoxCenter().getY()));

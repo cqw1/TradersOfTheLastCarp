@@ -17,6 +17,7 @@ public abstract class AWeapon extends TotlcObject {
 
     private float attackingCounter = 0;
     private float attackingAnimationLength = 0;
+
     private Character character;
     private int attack = 1;
 
@@ -152,5 +153,13 @@ public abstract class AWeapon extends TotlcObject {
 
     public int getAttack() {
         return attack;
+    }
+
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 }
