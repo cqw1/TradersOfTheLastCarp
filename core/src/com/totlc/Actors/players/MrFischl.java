@@ -30,8 +30,8 @@ public class MrFischl extends PlayableCharacter {
 
         setHeadXOffset(12);
         setHeadYOffset(28);
-        setSway(2);
-        setBob(3);
+        setSway(1);
+        setBob(4);
 
         setHpMax(5);
         setHpCurrent(getHpMax());
@@ -50,12 +50,12 @@ public class MrFischl extends PlayableCharacter {
         //Walking Textures and Animations.
         walk_side = assetManager.get(AssetList.FISCHL_WALK_SIDE.toString());
         walk_animation_side = new Animation<TextureRegion>(1 / 12f, walk_side.getRegions(), Animation.PlayMode.LOOP);
-        walk_front = assetManager.get(AssetList.JANE_WALK_FRONT.toString());
+        walk_front = assetManager.get(AssetList.FISCHL_WALK_FRONT.toString());
         walk_animation_front = new Animation<TextureRegion>(1 / 12f, walk_front.getRegions(), Animation.PlayMode.LOOP);
         walk_back = assetManager.get(AssetList.JANE_WALK_BACK.toString());
         walk_animation_back = new Animation<TextureRegion>(1 / 12f, walk_back.getRegions(), Animation.PlayMode.LOOP);
 
-        // Attacking Textures and Animation.
+        // Attacking Textures and Animation (Should be unused for Fischl).
         whip_side = assetManager.get(AssetList.JANE_WHIP_SIDE.toString());
         whip_animation_side = new Animation<TextureRegion>(1.0f / whip_side.getRegions().size * 0.3f, whip_side.getRegions());
         whip_front = assetManager.get(AssetList.JANE_WHIP_FRONT.toString());
@@ -136,7 +136,7 @@ public class MrFischl extends PlayableCharacter {
             } else {
                 initVel = new Point2D.Double(0, -500);
             }
-            getStage().addActor(DamageFactory.createDamage(DamageEnum.BUBBLE, initVel, getAssetManager(), (float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY(), 2));
+            getStage().addActor(DamageFactory.createDamage(DamageEnum.BUBBLE, initVel, getAssetManager(), (float)getHitBoxCenter().getX() - 33, (float)getHitBoxCenter().getY(), 2));
 
         } else{
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
