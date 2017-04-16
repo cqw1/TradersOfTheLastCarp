@@ -72,7 +72,7 @@ public class Player extends Character {
     private long invincibilityStart;
     private AWeapon weapon;
     private boolean hasKey = false;
-    private long weaponUsageCD = 1500;
+    private long weaponUsageCD = 1000;
 
     private long weaponUsageTime;
 

@@ -28,7 +28,7 @@ public class MrFischl extends PlayableCharacter {
     public MrFischl(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
-        setHeadXOffset(10);
+        setHeadXOffset(12);
         setHeadYOffset(28);
         setSway(2);
         setBob(3);
@@ -48,7 +48,7 @@ public class MrFischl extends PlayableCharacter {
         stand = assetManager.get(AssetList.JANE_STAND.toString());
 
         //Walking Textures and Animations.
-        walk_side = assetManager.get(AssetList.JANE_WALK_SIDE.toString());
+        walk_side = assetManager.get(AssetList.FISCHL_WALK_SIDE.toString());
         walk_animation_side = new Animation<TextureRegion>(1 / 12f, walk_side.getRegions(), Animation.PlayMode.LOOP);
         walk_front = assetManager.get(AssetList.JANE_WALK_FRONT.toString());
         walk_animation_front = new Animation<TextureRegion>(1 / 12f, walk_front.getRegions(), Animation.PlayMode.LOOP);
