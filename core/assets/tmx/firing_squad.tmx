@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="111">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="121">
  <properties>
-  <property name="objective" type="int" value="0"/>
-  <property name="time" type="int" value="0"/>
+  <property name="objective" type="int" value="2"/>
  </properties>
  <layer name="WALLS" width="50" height="28">
   <data encoding="csv">
@@ -38,8 +37,43 @@
  </layer>
  <objectgroup name="ITEMS"/>
  <objectgroup name="TEXT"/>
- <objectgroup name="TRAPS"/>
- <objectgroup name="TRIGGERS"/>
+ <objectgroup name="TRAPS">
+  <object id="111" name="111" x="764" y="160" width="69.3333" height="116">
+   <properties>
+    <property name="type" value="ARROW_TRAP"/>
+   </properties>
+  </object>
+  <object id="112" name="112" x="766.667" y="374.667" width="69.3333" height="116">
+   <properties>
+    <property name="type" value="ARROW_TRAP"/>
+   </properties>
+  </object>
+  <object id="113" name="113" x="770.667" y="594.667" width="69.3333" height="116">
+   <properties>
+    <property name="type" value="ARROW_TRAP"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="TRIGGERS">
+  <object id="114" x="592" y="221.333" width="49.3333" height="41.3333">
+   <properties>
+    <property name="trap_id" value="111"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="116" x="597.333" y="653.333" width="49.3333" height="41.3333">
+   <properties>
+    <property name="trap_id" value="113"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+  <object id="117" x="592" y="416" width="49.3333" height="41.3333">
+   <properties>
+    <property name="trap_id" value="111:112:113"/>
+    <property name="type" value="BUTTON"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="ENEMIES">
   <object id="97" x="1001.33" y="177.333" width="84" height="62.6667">
    <properties>
@@ -86,12 +120,27 @@
   </object>
  </objectgroup>
  <objectgroup name="TERRAIN">
-  <object id="109" x="408" y="344" width="74.6667" height="73.3333">
+  <object id="109" x="274.667" y="386.667" width="74.6667" height="73.3333">
    <properties>
     <property name="type" value="ROCK"/>
    </properties>
   </object>
-  <object id="110" x="409.333" y="421.333" width="74.6667" height="73.3333">
+  <object id="110" x="276" y="464" width="74.6667" height="73.3333">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="118" x="274.667" y="306.667" width="74.6667" height="73.3333">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="119" x="433.333" y="102.666" width="74.6667" height="73.3333">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="120" x="438.666" y="696" width="74.6667" height="73.3333">
    <properties>
     <property name="type" value="ROCK"/>
    </properties>

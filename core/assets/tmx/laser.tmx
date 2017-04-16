@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="46">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="49">
  <properties>
   <property name="objective" type="int" value="0"/>
   <property name="time" type="int" value="20000"/>
@@ -48,6 +48,11 @@
     <property name="type" value="LASER_TRAP"/>
    </properties>
   </object>
+  <object id="47" name="47" x="730.333" y="408.001" width="84" height="136">
+   <properties>
+    <property name="type" value="LASER_TRAP"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="TRIGGERS">
   <object id="37" x="330.663" y="512" width="40" height="42.6667">
@@ -58,26 +63,23 @@
     <property name="type" value="INTERVAL"/>
    </properties>
   </object>
-  <object id="45" x="1121" y="520" width="40" height="42.6667">
+  <object id="45" x="1121" y="525.333" width="40" height="42.6667">
    <properties>
     <property name="delay" type="int" value="11000"/>
-    <property name="start" type="int" value="3000"/>
+    <property name="start" type="int" value="2000"/>
     <property name="trap_id" value="44"/>
+    <property name="type" value="INTERVAL"/>
+   </properties>
+  </object>
+  <object id="48" x="751.667" y="521.333" width="40" height="42.6667">
+   <properties>
+    <property name="delay" type="int" value="11000"/>
+    <property name="start" type="int" value="5500"/>
+    <property name="trap_id" value="47"/>
     <property name="type" value="INTERVAL"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="ENEMIES"/>
- <objectgroup name="TERRAIN">
-  <object id="39" x="772" y="317.333" width="57.3333" height="62.6667">
-   <properties>
-    <property name="type" value="ROCK"/>
-   </properties>
-  </object>
-  <object id="40" x="777.333" y="558.667" width="57.3333" height="62.6667">
-   <properties>
-    <property name="type" value="ROCK"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="TERRAIN"/>
 </map>
