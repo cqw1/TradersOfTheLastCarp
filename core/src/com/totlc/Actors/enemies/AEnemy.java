@@ -10,6 +10,7 @@ import com.totlc.Actors.Character;
 import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.damage.Bubble;
 import com.totlc.Actors.damage.Damage;
+import com.totlc.Actors.damage.Lasso;
 import com.totlc.Actors.effects.Stun;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.weapons.Whip;
@@ -110,10 +111,15 @@ public abstract class AEnemy extends Character {
                     if (!invincible) {
                         // Invincible enemies can't be stunned.
                         if (!stunned) {
-                            stunned = true;
-                            stunStart = System.currentTimeMillis();
-                            setStunPeriod(((Bubble) otherActor).getStunDuration());
-                            drawStunIndicator(stunPeriod);
+                            stunForDuration(((Bubble) otherActor).getStunDuration());
+                        }
+                    }
+                }
+                if (otherActor instanceof Lasso) {
+                    if (!invincible) {
+                        // Invincible enemies can't be stunned.
+                        if (!stunned) {
+                            stunForDuration(((Lasso) otherActor).getStunDuration());
                         }
                     }
                 }
@@ -123,10 +129,7 @@ public abstract class AEnemy extends Character {
             if (!invincible) {
                 // Invincible enemies can't be stunned.
                 if (!stunned) {
-                    stunned = true;
-                    stunStart = System.currentTimeMillis();
-                    setStunPeriod(((Whip)otherActor).getStunPeriod());
-                    drawStunIndicator(stunPeriod);
+                    stunForDuration(((Whip)otherActor).getStunPeriod());
                     this.hpTimer = System.currentTimeMillis();
                     this.showHP = true;
                 }
@@ -183,6 +186,13 @@ public abstract class AEnemy extends Character {
         super.takeDamage(damage);
         setHpTimer(System.currentTimeMillis());
         setShowHp(true);
+    }
+
+    public void stunForDuration(long duration){
+        stunned = true;
+        stunStart = System.currentTimeMillis();
+        setStunPeriod(duration);
+        drawStunIndicator(stunPeriod);
     }
 
     public boolean isStunned() {

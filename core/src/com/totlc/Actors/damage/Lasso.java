@@ -21,6 +21,8 @@ public class Lasso extends Damage{
     private float reelSpeed = 1200;
     private boolean outgoing;
 
+    private long stunDuration = 1000;
+
     private static float width = 74, height = 39;
 
     // Not generated with factory.
@@ -60,8 +62,11 @@ public class Lasso extends Damage{
             if (this.target != null){
                 this.target.moveRel((float)(getHitBoxCenter().getX() - target.getHitBoxCenter().getX()),
                         (float)(getHitBoxCenter().getY() - target.getHitBoxCenter().getY()));
-            }
-            if (new Point2D.Double(getHitBoxCenter().getX(), getHitBoxCenter().getY()).distance(this.origin.getCenter()) <= getWidth()) {
+                if (new Point2D.Double(getHitBoxCenter().getX(),
+                        getHitBoxCenter().getY()).distance(this.origin.getHitBoxCenter()) <= Math.max(target.getHitBoxWidth() / 2, target.getHitBoxHeight() / 2) + origin.getHitBoxHeight() / 2 + 20) {
+                    remove();
+                }
+            } else if (new Point2D.Double(getHitBoxCenter().getX(), getHitBoxCenter().getY()).distance(this.origin.getCenter()) <= getWidth()) {
                 remove();
             }
         }
@@ -96,5 +101,13 @@ public class Lasso extends Damage{
     @Override
     public void endCollidesWith(Actor otherActor) {
 
+    }
+
+    public long getStunDuration() {
+        return stunDuration;
+    }
+
+    public void setStunDuration(long stunDuration) {
+        this.stunDuration = stunDuration;
     }
 }

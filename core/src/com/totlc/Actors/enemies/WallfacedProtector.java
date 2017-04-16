@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.damage.Bubble;
 import com.totlc.Actors.damage.Damage;
 
+import com.totlc.Actors.damage.Lasso;
 import com.totlc.Actors.enemies.movement.AMovement;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
@@ -157,12 +158,13 @@ public class WallfacedProtector extends AEnemy {
             if (!isInvincible()) {
                 if (otherActor instanceof Bubble) {
                     if (!isStunned()) {
-                        setStunned(true);
-                        setStunStart(System.currentTimeMillis());
-                        setStunPeriod(((Whip)otherActor).getStunPeriod());
-                        drawStunIndicator(getStunPeriod());
-                        setHpTimer(System.currentTimeMillis());
-                        setShowHp(true);
+                        stunForDuration(((Bubble) otherActor).getStunDuration());
+                    }
+                }
+                if (otherActor instanceof Lasso) {
+                    // Invincible enemies can't be stunned.
+                    if (!isStunned()) {
+                        stunForDuration(((Lasso) otherActor).getStunDuration());
                     }
                 }
                 takeDamage(damage.getAttack());
@@ -175,10 +177,7 @@ public class WallfacedProtector extends AEnemy {
             if (!isInvincible()) {
                 // Invincible enemies can't be stunned.
                 if (!isStunned()) {
-                    setStunned(true);
-                    setStunStart(System.currentTimeMillis());
-                    setStunPeriod(((Whip)otherActor).getStunPeriod());
-                    drawStunIndicator(getStunPeriod());
+                    stunForDuration(((Whip)otherActor).getStunPeriod());
                     setHpTimer(System.currentTimeMillis());
                     setShowHp(true);
                 }

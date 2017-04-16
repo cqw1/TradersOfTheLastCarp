@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.effects.WaterBurst;
 import com.totlc.Actors.enemies.AEnemy;
-import com.totlc.Actors.players.Player;
 import com.totlc.Actors.terrain.AWall;
 import com.totlc.AssetList;
 

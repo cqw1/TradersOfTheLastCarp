@@ -18,7 +18,7 @@ public class Hook extends Damage {
     private ShapeRenderer lineRenderer = new ShapeRenderer();
     private Character origin, target;
     private float range, angle;
-    private float reelSpeed = 10;
+    private float reelSpeed = 1000;
     private boolean outgoing;
 
     private static float width = 74, height = 39;
