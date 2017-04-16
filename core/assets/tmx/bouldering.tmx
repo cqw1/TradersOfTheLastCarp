@@ -78,12 +78,12 @@
   </object>
  </objectgroup>
  <objectgroup name="ENEMIES">
-  <object id="39" x="726.667" y="258.667" width="86.6667" height="94.6667">
+  <object id="39" x="996" y="277.334" width="86.6667" height="94.6667">
    <properties>
     <property name="type" value="WALLFACED"/>
    </properties>
   </object>
-  <object id="40" x="796" y="576" width="86.6667" height="94.6667">
+  <object id="40" x="1065.33" y="594.667" width="86.6667" height="94.6667">
    <properties>
     <property name="type" value="WALLFACED"/>
    </properties>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="31">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="33">
  <properties>
   <property name="objective" type="int" value="0"/>
   <property name="time" type="int" value="20000"/>
@@ -36,6 +36,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="TEXT">
+  <object id="31" x="350" y="736" width="46" height="46">
+   <properties>
+    <property name="message" value="Enemies with shield icons are invulnerable-- be careful!"/>
+    <property name="type" value="TEXT"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="ITEMS">
   <object id="28" x="345.333" y="394.667" width="81.3333" height="78.6667">
    <properties>
@@ -137,7 +145,13 @@
   </object>
  </objectgroup>
  <objectgroup name="ENEMIES">
-  <object id="5" x="1021.33" y="412" width="53.3333" height="48">
+  <object id="5" x="1007.33" y="306" width="53.3333" height="48">
+   <properties>
+    <property name="invincible" type="bool" value="true"/>
+    <property name="type" value="FISHERMAN"/>
+   </properties>
+  </object>
+  <object id="32" x="1011.33" y="500" width="53.3333" height="48">
    <properties>
     <property name="invincible" type="bool" value="true"/>
     <property name="type" value="FISHERMAN"/>

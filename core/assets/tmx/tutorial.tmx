@@ -38,7 +38,8 @@
  <objectgroup name="TEXT">
   <object id="40" x="129.333" y="790.667" width="65.3333" height="50.6667">
    <properties>
-    <property name="message" value="Be careful-- traps are in every room!"/>
+    <property name="message" value="Whips are non-lethal-- find another way to neutralize enemies."/>
+    <property name="type" value="TEXT"/>
    </properties>
   </object>
  </objectgroup>

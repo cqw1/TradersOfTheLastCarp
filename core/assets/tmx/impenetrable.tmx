@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="43">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="107">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -35,69 +35,72 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="ITEMS"/>
+ <objectgroup name="ITEMS">
+  <object id="95" x="218.667" y="595.667" width="55" height="62">
+   <properties>
+    <property name="type" value="HEALTH"/>
+   </properties>
+  </object>
+  <object id="105" x="661.333" y="158.667" width="40" height="30.6667">
+   <properties>
+    <property name="type" value="GOLDFISH"/>
+   </properties>
+  </object>
+  <object id="106" x="1050.67" y="752" width="40" height="30.6667">
+   <properties>
+    <property name="type" value="GOLDFISH"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="TEXT">
+  <object id="96" x="105.333" y="765.333" width="68" height="62.6667">
+   <properties>
+    <property name="message" value="These guys are invulnerable from the front!"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="TRAPS">
-  <object id="26" name="26" x="505.333" y="678.666" width="84" height="136">
+  <object id="99" name="99" x="370.667" y="334.667" width="86.6667" height="134.667">
    <properties>
     <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
-  <object id="29" name="29" x="494.663" y="169.334" width="84" height="136">
+  <object id="100" name="100" x="653.333" y="682.667" width="86.6667" height="134.667">
    <properties>
     <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
-  <object id="36" name="36" x="1168" y="212" width="40" height="44">
+  <object id="101" name="101" x="1016" y="116" width="86.6667" height="134.667">
    <properties>
-    <property name="direction" value="DOWN"/>
-    <property name="type" value="EXIT_PORTAL"/>
-   </properties>
-  </object>
-  <object id="37" name="37" x="937.333" y="761.333" width="40" height="44">
-   <properties>
-    <property name="direction" value="UP"/>
-    <property name="type" value="EXIT_PORTAL"/>
+    <property name="type" value="ARROW_TRAP"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="TRIGGERS">
-  <object id="32" x="222.666" y="472" width="40" height="42.6667">
+  <object id="102" x="230.667" y="436" width="33.3333" height="28">
    <properties>
-    <property name="trap_id" value="26:29"/>
+    <property name="trap_id" value="99"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="39" x="206.667" y="217.333" width="44" height="38.6667">
+  <object id="103" x="1053.33" y="764" width="33.3333" height="28">
    <properties>
-    <property name="trap_id" value="36"/>
-    <property name="type" value="ENTRANCE_PORTAL"/>
-   </properties>
-  </object>
-  <object id="40" x="202.667" y="764" width="44" height="38.6667">
-   <properties>
-    <property name="trap_id" value="37"/>
-    <property name="type" value="ENTRANCE_PORTAL"/>
-   </properties>
-  </object>
-  <object id="41" x="937.333" y="202.667" width="40" height="42.6667">
-   <properties>
-    <property name="trap_id" value="26"/>
+    <property name="trap_id" value="101"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
-  <object id="42" x="1181.33" y="745.334" width="40" height="42.6667">
+  <object id="104" x="664" y="174.667" width="33.3333" height="28">
    <properties>
-    <property name="trap_id" value="29"/>
+    <property name="trap_id" value="100"/>
     <property name="type" value="BUTTON"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="ENEMIES">
-  <object id="25" x="1286.67" y="440" width="69.3333" height="65.3333">
+  <object id="97" x="1269.33" y="346.667" width="90.6667" height="110.667">
    <properties>
     <property name="type" value="WALLFACED"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="TERRAIN"/>
 </map>
