@@ -1,10 +1,10 @@
 package com.totlc.Actors.enemies;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.totlc.Actors.TotlcObject;
 import com.totlc.Actors.damage.Bubble;
 import com.totlc.Actors.damage.Damage;
 
@@ -151,7 +151,7 @@ public class WallfacedProtector extends AEnemy {
     public boolean collidesWith(Actor otherActor){
         if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1) {
             Damage damage = (Damage) otherActor;
-            if (checkDirectionalInvincibility(otherActor)){
+            if (checkDirectionalInvincibility(damage)){
                 setInvincible(true);
                 this.lastHitTime = System.currentTimeMillis();
             }
@@ -170,7 +170,7 @@ public class WallfacedProtector extends AEnemy {
                 takeDamage(damage.getAttack());
             }
         } else if (otherActor instanceof Whip) {
-            if (checkDirectionalInvincibility(otherActor)){
+            if (checkDirectionalInvincibility((Whip)otherActor)){
                 setInvincible(true);
                 this.lastHitTime = System.currentTimeMillis();
             }
@@ -186,27 +186,27 @@ public class WallfacedProtector extends AEnemy {
         return (getHpCurrent() <= 0);
     }
 
-    private boolean checkDirectionalInvincibility(Actor otherActor) {
+    private boolean checkDirectionalInvincibility(TotlcObject otherActor) {
         if(getIsFacing().isFacingRight()){
-            if ((otherActor.getX()) > getX() && Math.abs(otherActor.getY() - getY()) < shieldSize){
+            if ((otherActor.getHitBoxCenter().getX()) > getHitBoxCenter().getX() && Math.abs(otherActor.getHitBoxCenter().getY() - getHitBoxCenter().getY()) < shieldSize){
                 return true;
             } else{
                 return false;
             }
         } else if (getIsFacing().isFacingLeft()){
-            if ((otherActor.getX()) < getX() && Math.abs(otherActor.getY() - getY()) < shieldSize){
+            if ((otherActor.getHitBoxCenter().getX()) < getHitBoxCenter().getX() && Math.abs(otherActor.getHitBoxCenter().getY() - getHitBoxCenter().getY()) < shieldSize){
                 return true;
             } else{
                 return false;
             }
         } else if (getIsFacing().isFacingUp()){
-            if ((otherActor.getY()) > getY() && Math.abs(otherActor.getX() - getX()) < shieldSize){
+            if ((otherActor.getHitBoxCenter().getY()) > getHitBoxCenter().getY() && Math.abs(otherActor.getHitBoxCenter().getX() - getHitBoxCenter().getX()) < shieldSize){
                 return true;
             } else{
                 return false;
             }
         } else {
-            if ((otherActor.getY()) < getY() && Math.abs(otherActor.getX() - getX()) < shieldSize){
+            if ((otherActor.getHitBoxCenter().getY()) < getHitBoxCenter().getY() && Math.abs(otherActor.getHitBoxCenter().getX() - getHitBoxCenter().getX()) < shieldSize){
                 return true;
             } else{
                 return false;
