@@ -39,6 +39,7 @@
   <object id="40" x="83" y="732" width="38" height="36">
    <properties>
     <property name="message" value="Now you're thinking with portals!"/>
+    <property name="type" value="CARP"/>
    </properties>
   </object>
  </objectgroup>

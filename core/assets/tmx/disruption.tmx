@@ -47,7 +47,7 @@
   <object id="110" x="141.333" y="753.333" width="52" height="42.6667">
    <properties>
     <property name="message" value="Using your whip is essential in this room!"/>
-    <property name="type" value="TEXT"/>
+    <property name="type" value="CARP"/>
    </properties>
   </object>
  </objectgroup>

@@ -56,6 +56,7 @@
   <object id="96" x="105.333" y="765.333" width="68" height="62.6667">
    <properties>
     <property name="message" value="These guys are invulnerable from the front!"/>
+    <property name="type" value="CARP"/>
    </properties>
   </object>
  </objectgroup>

@@ -107,6 +107,7 @@
   <object id="64" x="20" y="848" width="28" height="26.6667">
    <properties>
     <property name="message" value="You might want to get to the other side!"/>
+    <property name="type" value="CARP"/>
    </properties>
   </object>
  </objectgroup>

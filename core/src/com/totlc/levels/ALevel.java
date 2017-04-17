@@ -137,7 +137,7 @@ public abstract class ALevel extends Stage {
         player.moveAbs(playerStartPosition.x, playerStartPosition.y);
         addActor(player);
 //        addActor(player.getWeapon());
-        getPlayer().setZIndex(20);
+        getPlayer().setZIndex(100);
         initUI();
     }
 
