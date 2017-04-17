@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.enemies.AEnemy;
 import com.totlc.AssetList;
+import com.totlc.TradersOfTheLastCarp;
 
 import java.awt.geom.Point2D;
 
@@ -49,6 +50,8 @@ public class Lasso extends Damage{
         setVel(initialVelocity);
         this.angle = getVelocityAngle();
         getHitBox().rotate(getVelocityAngle());
+
+        lineRenderer.setProjectionMatrix(TradersOfTheLastCarp.camera.combined);
     }
 
     @Override

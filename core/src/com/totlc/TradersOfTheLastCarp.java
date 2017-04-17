@@ -29,7 +29,7 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 	public AssetManager assetManager = new AssetManager();
 	public static MusicPlayer musicPlayer = new MusicPlayer();
 
-	private static OrthographicCamera camera;
+	public static OrthographicCamera camera;
 	private static ShapeRenderer shapeRenderer;
 	private static FPSLogger fpsLogger = new FPSLogger();
 
