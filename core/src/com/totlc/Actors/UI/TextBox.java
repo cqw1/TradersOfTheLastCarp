@@ -3,14 +3,11 @@ package com.totlc.Actors.UI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.totlc.Actors.carps.CrystalCarp;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
-import com.totlc.levels.ALevel;
 
 import static com.totlc.TradersOfTheLastCarp.CONFIG_WIDTH;
 
@@ -35,11 +32,9 @@ public class TextBox extends Actor {
     private static float scale = 0.9f;
     // Padding for the text within the black background.
     private int horizontalPadding = 50;
-    private static float carpVerticalOffset = 50;
-    private static float carpHorizontalOffset = 50;
-    private CrystalCarp carp;
 
     private float talkingIntervalTime = 0.15f; // In seconds
+    private float talkTime; // In seconds
     private String[] words;
     private int wordIndex;
 
@@ -50,12 +45,14 @@ public class TextBox extends Actor {
 
     private final int WALL_WIDTH = 64;
 
+    private Actor speaker;
+
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
 
 
     public TextBox(AssetManager assetManager, String message) {
-        this(assetManager, message, 0, 5);
+        this(assetManager, message, 0, 5, null);
     }
     /**
      *
@@ -64,7 +61,7 @@ public class TextBox extends Actor {
      * @param delay Seconds until the textbox shows
      * @param duration Seconds how long the text box appears for. The max of talking + delay, or duration
      */
-    public TextBox(AssetManager assetManager, String message, float delay, float duration) {
+    public TextBox(AssetManager assetManager, String message, float delay, float duration, Actor speaker) {
         TradersOfTheLastCarp.textBoxShowing = true;
         setX(WALL_WIDTH);
         setY(WALL_WIDTH);
@@ -83,19 +80,13 @@ public class TextBox extends Actor {
 
         this.words = message.split(" ");
 
-        float talkTime = words.length * talkingIntervalTime;
+        this.talkTime = words.length * talkingIntervalTime;
         this.message = message;
         this.duration = Math.max(duration, delay + talkTime);
         this.delay = delay;
 
 
-        this.carp = new CrystalCarp(assetManager,
-                getX() + getWidth() - (CrystalCarp.WIDTH + 20),
-                getY() + getHeight() / 2.0f - (CrystalCarp.HEIGHT / 2.0f * scale) - 13,
-                delay,
-                talkTime,
-                scale
-        );
+        this.speaker = speaker;
 
         box = new NinePatch(assetManager.get(AssetList.UI_BOX.toString(), Texture.class), 32, 32, 32, 32);
         font = TradersOfTheLastCarp.systemFont0L;
@@ -104,7 +95,12 @@ public class TextBox extends Actor {
 
         sound.play(0.8f);
 
-        spacePrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE_SKIP.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - WALL_WIDTH - CrystalCarp.WIDTH - 250 * buttonScale - 50 , WALL_WIDTH + 30) {
+        float speakerWidth = 0;
+        if (speaker != null) {
+            speakerWidth = speaker.getWidth();
+        }
+
+        spacePrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE_SKIP.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - WALL_WIDTH - speakerWidth - 250 * buttonScale - 50 , WALL_WIDTH + 30) {
             private float baseY = getY();
 
             @Override
@@ -126,7 +122,9 @@ public class TextBox extends Actor {
     public void act(float deltaTime) {
         // deltaTime = time in seconds since last frame
         time += deltaTime;
-        carp.act(deltaTime);
+        if (speaker != null) {
+            speaker.act(deltaTime);
+        }
         spacePrompt.act(deltaTime);
 
         if (time > duration) {
@@ -153,17 +151,33 @@ public class TextBox extends Actor {
             font.getData().setScale(1.0f);
         }
 
-        carp.draw(batch, alpha);
+        if (speaker != null) {
+            speaker.draw(batch, alpha);
+        }
         spacePrompt.draw(batch, alpha);
 
     }
 
     public void removeTextBox() {
         this.remove();
-        carp.remove();
+        if (speaker != null) {
+            speaker.remove();
+        }
         sound.stop();
         sound.dispose();
         TradersOfTheLastCarp.textBoxShowing = false;
+    }
+
+    public float getScale() {
+        return scale;
+    }
+
+    public float getTalkTime() {
+        return talkTime;
+    }
+
+    public void setSpeaker(Actor speaker) {
+        this.speaker = speaker;
     }
 
 }

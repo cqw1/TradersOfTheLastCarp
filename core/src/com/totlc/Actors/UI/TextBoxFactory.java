@@ -8,9 +8,17 @@ import java.lang.reflect.InvocationTargetException;
 
 public class TextBoxFactory {
     public static final String TYPE = "TEXT";
+    public static final String CARP = "CARP";
+    public static final String STORK = "STORK";
 
-    public static TextBox createTextBox(String message, AssetManager assetManager) {
+    public static TextBox createTextBox(String type, String message, AssetManager assetManager) {
         try {
+            if (type.equals(CARP)) {
+                return new CarpTextBox(assetManager, message);
+            } else if (type.equals(STORK)) {
+                // TODO
+            }
+
             return new TextBox(assetManager, message);
         } catch (Exception e) {
             e.printStackTrace();
@@ -21,7 +29,7 @@ public class TextBoxFactory {
 
     public static TextBox createTextBoxFromMp(MapProperties mp, AssetManager assetManager) {
         try {
-            TextBox text = createTextBox(mp.get("message", String.class), assetManager);
+            TextBox text = createTextBox(mp.get("type", String.class), mp.get("message", String.class), assetManager);
             return text;
         } catch (Exception e) {
             e.printStackTrace();
