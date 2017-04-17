@@ -142,6 +142,7 @@ public enum AssetList {
     FISCHL_WALK_FRONT("sprites/MrFischl/walk/fischl_walk_front.atlas", TextureAtlas.class),
     FISCHL_WALK_BACK("sprites/MrFischl/walk/fischl_walk_back.atlas", TextureAtlas.class),
     JOE_HEAD("sprites/Ontario/joe_head.atlas", TextureAtlas.class),
+    JOE_STAND("sprites/Ontario/joe_stand.atlas", TextureAtlas.class),
     ROSE_HEAD("sprites/Texas/rose_head.atlas", TextureAtlas.class),
 
     // Weapon Sprites
@@ -153,6 +154,10 @@ public enum AssetList {
     BLUE_WHIP_RIGHT("sprites/whip/blue/blue_whip_right.atlas", TextureAtlas.class),
     BLUE_WHIP_FRONT("sprites/whip/blue/blue_whip_front.atlas", TextureAtlas.class),
     BLUE_WHIP_BACK("sprites/whip/blue/blue_whip_back.atlas", TextureAtlas.class),
+    YELLOW_WHIP_LEFT("sprites/whip/yellow/yellow_whip_left.atlas", TextureAtlas.class),
+    YELLOW_WHIP_RIGHT("sprites/whip/yellow/yellow_whip_right.atlas", TextureAtlas.class),
+    YELLOW_WHIP_FRONT("sprites/whip/yellow/yellow_whip_front.atlas", TextureAtlas.class),
+    YELLOW_WHIP_BACK("sprites/whip/yellow/yellow_whip_back.atlas", TextureAtlas.class),
     SPIT_BUBBLE("sprites/whip/bubble/spit_bubble.atlas", TextureAtlas.class),
 
     // Special Effects.

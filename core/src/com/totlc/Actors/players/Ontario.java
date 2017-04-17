@@ -21,8 +21,8 @@ public class Ontario extends PlayableCharacter {
     public Ontario(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
-        setHeadXOffset(16);
-        setHeadYOffset(30);
+        setHeadXOffset(15);
+        setHeadYOffset(28);
         setSway(2);
         setBob(3);
 
@@ -36,9 +36,28 @@ public class Ontario extends PlayableCharacter {
     }
 
     @Override
+    public void act(float deltaTime){
+        super.act(deltaTime);
+        if (getAttacking()) {
+            if (!(this.isMovingDown() || this.isMovingLeft() ||
+                    this.isMovingRight() || this.isMovingUp())) {
+                setAnimationTime(0);
+            }
+
+            float formerX = getX();
+            float formerY = getY();
+            setAcc(getNewAcceleration());
+            updateVelocity();
+            moveUnit(deltaTime);
+            drawDustTrail(500);
+            returnIntoBounds(formerX, formerY);
+        }
+    }
+
+    @Override
     protected void initTextures(AssetManager assetManager) {
         // Standing Textures.
-        stand = assetManager.get(AssetList.JACK_STAND.toString());
+        stand = assetManager.get(AssetList.JOE_STAND.toString());
 
         //Walking Textures and Animations.
         walk_side = assetManager.get(AssetList.JACK_WALK_SIDE.toString());
@@ -65,7 +84,7 @@ public class Ontario extends PlayableCharacter {
 //        notImplemented = new Animation<TextureRegion>(1 / 12f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
 
         // Whip initialization.
-        setWeapon(new Whip(assetManager, this, 0.3f, 2000, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
+        setWeapon(new Whip(assetManager, this, 0.3f, 2000, AssetList.YELLOW_WHIP_BACK.toString(), AssetList.YELLOW_WHIP_FRONT.toString(), AssetList.YELLOW_WHIP_LEFT.toString(), AssetList.YELLOW_WHIP_RIGHT.toString()));
     }
 
     @Override
