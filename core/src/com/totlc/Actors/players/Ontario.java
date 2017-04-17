@@ -29,7 +29,7 @@ public class Ontario extends PlayableCharacter {
         setHpMax(5);
         setHpCurrent(getHpMax());
         setSpeed(50);
-        setMaxVel(800);
+        setMaxVel(600);
         setFriction(0.95f);
 
         setMovingDown(true);

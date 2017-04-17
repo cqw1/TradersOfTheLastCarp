@@ -3,7 +3,10 @@ package com.totlc.Actors.damage;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -16,6 +19,9 @@ import java.awt.geom.Point2D;
 public class Lasso extends Damage{
 
     private ShapeRenderer lineRenderer = new ShapeRenderer();
+    private TextureAtlas lassoAtlas;
+    private Animation<TextureRegion> lassoAnimation;
+
     private Character origin, target;
     private float range, angle;
     private float reelSpeed = 1200;
@@ -23,7 +29,7 @@ public class Lasso extends Damage{
 
     private long stunDuration = 1000;
 
-    private static float width = 74, height = 39;
+    private static float width = 80, height = 35;
 
     // Not generated with factory.
     public Lasso(AssetManager assetManager, Character origin, float x, float y, int attack, int damageType, float range, Point2D initialVelocity) {
@@ -36,8 +42,10 @@ public class Lasso extends Damage{
         setDamageType(damageType);
         setScaleFactor(1f);
         getHitBox().setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
+        getHitBox().setScale(0.9f, 0.3f);
 
-        setTexture(assetManager.get(AssetList.FISHHOOK.toString(), Texture.class));
+        lassoAtlas = assetManager.get(AssetList.LASSO.toString());
+        lassoAnimation = new Animation<TextureRegion>(1 / 24f, lassoAtlas.getRegions());
         setVel(initialVelocity);
         this.angle = getVelocityAngle();
         getHitBox().rotate(getVelocityAngle());
@@ -46,6 +54,7 @@ public class Lasso extends Damage{
     @Override
     public void act(float delta) {
         moveUnit(delta);
+        increaseAnimationTime(delta);
         if (this.outgoing) {
             if (new Point2D.Double(getX(), getY()).distance(this.origin.getCenter()) >= range){
                 this.outgoing = false;
@@ -84,7 +93,11 @@ public class Lasso extends Damage{
         lineRenderer.line(getHitBox().getTransformedVertices()[6], getHitBox().getTransformedVertices()[7], (float) origin.getHitBoxCenter().getX(), (float) origin.getHitBoxCenter().getY());
         lineRenderer.end();
         batch.begin();
-        batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), angle, 0, 0, 74, 39, false, false);
+        if (this.target == null){
+            batch.draw(lassoAnimation.getKeyFrame(getAnimationTime(), true), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), angle);
+        } else {
+            batch.draw(lassoAnimation.getKeyFrame(0, false), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), angle);
+        }
     }
 
     @Override

@@ -159,6 +159,7 @@ public enum AssetList {
     YELLOW_WHIP_FRONT("sprites/whip/yellow/yellow_whip_front.atlas", TextureAtlas.class),
     YELLOW_WHIP_BACK("sprites/whip/yellow/yellow_whip_back.atlas", TextureAtlas.class),
     SPIT_BUBBLE("sprites/whip/bubble/spit_bubble.atlas", TextureAtlas.class),
+    LASSO("sprites/whip/lasso/lasso.atlas", TextureAtlas.class),
 
     // Special Effects.
     IMPACT("effects/impact.atlas", TextureAtlas.class),

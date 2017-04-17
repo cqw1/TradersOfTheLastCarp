@@ -135,7 +135,7 @@ public class Texas extends PlayableCharacter {
                 initVel = new Point2D.Double(0, -2000);
             }
 
-            Lasso lasso = new Lasso(getAssetManager(), this, (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0, 2, 600, initVel);
+            Lasso lasso = new Lasso(getAssetManager(), this, (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0, 2, 500, initVel);
             getStage().addActor(lasso);
             lasso.setZIndex(getZIndex() - 1);
         } else{
