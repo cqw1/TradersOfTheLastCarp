@@ -24,7 +24,7 @@ public class Colorado extends PlayableCharacter {
 
         setHpMax(8);
         setHpCurrent(getHpMax());
-        setSpeed(240);
+        setSpeed(250);
         setMaxVel(250);
     }
 

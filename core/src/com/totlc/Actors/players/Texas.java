@@ -18,7 +18,6 @@ import java.awt.geom.Point2D;
 
 public class Texas extends PlayableCharacter {
 
-//    Animation<TextureRegion> notImplemented;
     private float headWidthOffset = -16;
 
     public Texas(AssetManager assetManager) {
@@ -28,8 +27,8 @@ public class Texas extends PlayableCharacter {
     public Texas(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
-        setHeadXOffset(5);
-        setHeadYOffset(30);
+        setHeadXOffset(0);
+        setHeadYOffset(32);
         setSway(2);
         setBob(3);
 
@@ -44,7 +43,7 @@ public class Texas extends PlayableCharacter {
     @Override
     protected void initTextures(AssetManager assetManager) {
         // Standing Textures.
-        stand = assetManager.get(AssetList.JACK_STAND.toString());
+        stand = assetManager.get(AssetList.ROSE_STAND.toString());
 
         //Walking Textures and Animations.
         walk_side = assetManager.get(AssetList.JACK_WALK_SIDE.toString());
@@ -64,11 +63,6 @@ public class Texas extends PlayableCharacter {
 
         // Head Textures.
         head = assetManager.get(AssetList.ROSE_HEAD.toString());
-//        Array<TextureRegion> textureArray = new Array<TextureRegion>(4);
-//        textureArray.add(head.findRegion("head_left"));
-//        textureArray.add(head.findRegion("head_forward"));
-//        textureArray.add(head.findRegion("head_right"));
-//        notImplemented = new Animation<TextureRegion>(1 / 10f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
 
         // Lasso placeholder initialization.
         setWeapon(new NullWeapon(assetManager, this, 0, 0.3f, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));

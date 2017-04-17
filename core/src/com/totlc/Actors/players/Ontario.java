@@ -12,8 +12,6 @@ import com.totlc.AssetList;
 
 public class Ontario extends PlayableCharacter {
 
-//    Animation<TextureRegion> notImplemented;
-
     public Ontario(AssetManager assetManager) {
         this(assetManager, 0, 0);
     }
@@ -29,7 +27,7 @@ public class Ontario extends PlayableCharacter {
         setHpMax(5);
         setHpCurrent(getHpMax());
         setSpeed(50);
-        setMaxVel(600);
+        setMaxVel(640);
         setFriction(0.95f);
 
         setMovingDown(true);
@@ -77,14 +75,9 @@ public class Ontario extends PlayableCharacter {
 
         // Head Textures.
         head = assetManager.get(AssetList.JOE_HEAD.toString());
-//        Array<TextureRegion> textureArray = new Array<TextureRegion>(4);
-//        textureArray.add(head.findRegion("head_left"));
-//        textureArray.add(head.findRegion("head_forward"));
-//        textureArray.add(head.findRegion("head_right"));
-//        notImplemented = new Animation<TextureRegion>(1 / 12f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
 
         // Whip initialization.
-        setWeapon(new Whip(assetManager, this, 0.3f, 2000, AssetList.YELLOW_WHIP_BACK.toString(), AssetList.YELLOW_WHIP_FRONT.toString(), AssetList.YELLOW_WHIP_LEFT.toString(), AssetList.YELLOW_WHIP_RIGHT.toString()));
+        setWeapon(new Whip(assetManager, this, 0.3f, 1000, AssetList.YELLOW_WHIP_BACK.toString(), AssetList.YELLOW_WHIP_FRONT.toString(), AssetList.YELLOW_WHIP_LEFT.toString(), AssetList.YELLOW_WHIP_RIGHT.toString()));
     }
 
     @Override

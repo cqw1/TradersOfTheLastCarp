@@ -24,7 +24,7 @@ public class Lasso extends Damage{
 
     private Character origin, target;
     private float range, angle;
-    private float reelSpeed = 1200;
+    private float reelSpeed = 800;
     private boolean outgoing;
 
     private long stunDuration = 1000;

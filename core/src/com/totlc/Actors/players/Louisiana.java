@@ -21,7 +21,7 @@ public class Louisiana extends PlayableCharacter {
         setSway(1);
         setBob(3);
 
-        setHpMax(5);
+        setHpMax(6);
         setHpCurrent(getHpMax());
         setSpeed(300);
         setMaxVel(300);

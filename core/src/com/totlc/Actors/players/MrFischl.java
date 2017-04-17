@@ -18,7 +18,6 @@ import java.awt.geom.Point2D;
 
 public class MrFischl extends PlayableCharacter {
 
-//    Animation<TextureRegion> notImplemented;
     private TextureAtlas head_spit;
 
     public MrFischl(AssetManager assetManager) {
@@ -65,12 +64,6 @@ public class MrFischl extends PlayableCharacter {
 
         head = assetManager.get(AssetList.FISCHL_HEAD.toString());
         head_spit = assetManager.get(AssetList.FISCHL_HEAD_SPIT.toString());
-
-//        Array<TextureRegion> textureArray = new Array<TextureRegion>(4);
-//        textureArray.add(head.findRegion("head_left"));
-//        textureArray.add(head.findRegion("head_forward"));
-//        textureArray.add(head.findRegion("head_right"));
-//        notImplemented = new Animation<TextureRegion>(1 / 15f, textureArray, Animation.PlayMode.LOOP_PINGPONG);
 
         // WaterBubble placeholder initialization.
         setWeapon(new NullWeapon(assetManager, this, 0, 0.3f, AssetList.BLUE_WHIP_BACK.toString(), AssetList.BLUE_WHIP_FRONT.toString(), AssetList.BLUE_WHIP_LEFT.toString(), AssetList.BLUE_WHIP_RIGHT.toString()));
@@ -143,5 +136,4 @@ public class MrFischl extends PlayableCharacter {
             sound.play(1.0f);
         }
     }
-
 }
