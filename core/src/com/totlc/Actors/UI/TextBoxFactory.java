@@ -16,7 +16,7 @@ public class TextBoxFactory {
             if (type.equals(CARP)) {
                 return new CarpTextBox(assetManager, message);
             } else if (type.equals(STORK)) {
-                // TODO
+                return new StorkTextBox(assetManager, message);
             }
 
             return new TextBox(assetManager, message);

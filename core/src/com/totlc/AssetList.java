@@ -18,6 +18,8 @@ public enum AssetList {
     FINE("sounds/fine.mp3", Sound.class),
     BLOP("sounds/blop.mp3", Sound.class),
     BUBBLES("sounds/bubbles.mp3", Sound.class),
+    DEEPQUACK("sounds/deepquack.wav", Sound.class),
+    DEEPQUACKREPEAT("sounds/deepquackrepeat.mp3", Sound.class),
 
     // UI elements and icons.
     ARROW("UI/arrow.png", Texture.class),

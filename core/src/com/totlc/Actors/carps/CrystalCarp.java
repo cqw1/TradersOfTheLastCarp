@@ -48,6 +48,8 @@ public class CrystalCarp extends Actor {
         setX(x);
         setY(y);
 
+        setWidth(WIDTH);
+
         this.duration = Math.max(duration, delay + talkTime);
         this.talkTime = talkTime;
         this.delay = delay;
@@ -137,4 +139,9 @@ public class CrystalCarp extends Actor {
     public void setVoice(String soundName) {
         this.sound = Gdx.audio.newSound(Gdx.files.internal(soundName));
     }
+
+    public void playVoice() {
+        this.sound.play(0.8f);
+    }
+
 }

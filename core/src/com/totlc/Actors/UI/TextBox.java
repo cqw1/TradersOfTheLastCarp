@@ -29,7 +29,6 @@ public class TextBox extends Actor {
     // Seconds to delay until the textbox shows up
     private float delay;
 
-    private static float scale = 0.9f;
     // Padding for the text within the black background.
     private int horizontalPadding = 50;
 
@@ -38,7 +37,9 @@ public class TextBox extends Actor {
     private String[] words;
     private int wordIndex;
 
-    private Sound sound = Gdx.audio.newSound(Gdx.files.internal(AssetList.BUBBLES.toString()));
+    private Sound sound;
+    private float soundVolume = 0f;
+    private boolean soundPlaying = false;
 
     private ButtonPrompt spacePrompt;
     private float buttonScale = 0.5f;
@@ -46,6 +47,7 @@ public class TextBox extends Actor {
     private final int WALL_WIDTH = 64;
 
     private Actor speaker;
+    private AssetManager assetManager;
 
 
     // TODO: READ. general formula for height is 20 * (numLines + 1)
@@ -54,14 +56,15 @@ public class TextBox extends Actor {
     public TextBox(AssetManager assetManager, String message) {
         this(assetManager, message, 0, 5, null);
     }
+
     /**
-     *
      * @param assetManager
      * @param message String message to display in the textbox
      * @param delay Seconds until the textbox shows
      * @param duration Seconds how long the text box appears for. The max of talking + delay, or duration
      */
     public TextBox(AssetManager assetManager, String message, float delay, float duration, Actor speaker) {
+        this.assetManager = assetManager;
         TradersOfTheLastCarp.textBoxShowing = true;
         setX(WALL_WIDTH);
         setY(WALL_WIDTH);
@@ -93,14 +96,7 @@ public class TextBox extends Actor {
 
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-        sound.play(0.8f);
-
-        float speakerWidth = 0;
-        if (speaker != null) {
-            speakerWidth = speaker.getWidth();
-        }
-
-        spacePrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE_SKIP.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - WALL_WIDTH - speakerWidth - 250 * buttonScale - 50 , WALL_WIDTH + 30) {
+        spacePrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE_SKIP.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - WALL_WIDTH - 250 * buttonScale - 50 , WALL_WIDTH + 30) {
             private float baseY = getY();
 
             @Override
@@ -129,6 +125,11 @@ public class TextBox extends Actor {
 
         if (time > duration) {
             removeTextBox();
+        }
+
+        if (sound != null && !isSoundPlaying()) {
+            sound.play(soundVolume);
+            setSoundPlaying(true);
         }
 
         wordIndex = Math.min((int) Math.floor(time / talkingIntervalTime), words.length);
@@ -164,12 +165,9 @@ public class TextBox extends Actor {
             speaker.remove();
         }
         sound.stop();
+        setSoundPlaying(false);
         sound.dispose();
         TradersOfTheLastCarp.textBoxShowing = false;
-    }
-
-    public float getScale() {
-        return scale;
     }
 
     public float getTalkTime() {
@@ -178,6 +176,39 @@ public class TextBox extends Actor {
 
     public void setSpeaker(Actor speaker) {
         this.speaker = speaker;
+
+        spacePrompt = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE_SKIP.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - WALL_WIDTH - speaker.getWidth() - 250 * buttonScale - 50 , WALL_WIDTH + 30) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                if (System.currentTimeMillis() % 1000 <= 200) {
+                    return;
+                }
+                batch.draw(getAsset(), getX(), getY(), 300 * buttonScale, 120 * buttonScale);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        };
+    }
+
+    public void setSound(String soundName) {
+        this.sound = Gdx.audio.newSound(Gdx.files.internal(soundName));
+    }
+
+    public void setSoundVolume(float volume) {
+        this.soundVolume = volume;
+    }
+
+    public void setSoundPlaying(boolean playing) {
+        this.soundPlaying = playing;
+    }
+
+    public boolean isSoundPlaying() {
+        return this.soundPlaying;
     }
 
 }
