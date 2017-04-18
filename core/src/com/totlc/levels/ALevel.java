@@ -271,6 +271,7 @@ public abstract class ALevel extends Stage {
         }
 
         if (keycode == Input.Keys.ESCAPE) {
+            TradersOfTheLastCarp.textBoxShowing = false;
             ALevel nextLevelObject = LevelFactory.createLevel(TitleScreen.class, assetManager);
             loadLevel(nextLevelObject);
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
@@ -327,6 +328,7 @@ public abstract class ALevel extends Stage {
     public void loadFromTMX(String tmxFileName) {
         TiledMap map = getAssetManager().get(tmxFileName);
         setNameString(Util.parseLevelString(tmxFileName));
+        TradersOfTheLastCarp.textBoxShowing = false;
 
         MapProperties mapProperties = map.getProperties();
         switch(mapProperties.get("objective", Integer.class)) {
