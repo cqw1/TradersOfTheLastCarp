@@ -50,7 +50,7 @@
  <objectgroup name="TEXT">
   <object id="123" x="228" y="104" width="36" height="29.3333">
    <properties>
-    <property name="message" value="Any last words? Not that I'll give you the chance, fool!"/>
+    <property name="message" value="Deal with the interloper, my minions! The Carp is ours to take!"/>
     <property name="type" value="STORK"/>
    </properties>
   </object>

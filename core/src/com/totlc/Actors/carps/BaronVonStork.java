@@ -13,8 +13,8 @@ import com.totlc.AssetList;
 
 public class BaronVonStork extends Actor {
 
-    public static final int HEIGHT = 256;
-    public static final int WIDTH = 256;
+    public static final int HEIGHT = 280;
+    public static final int WIDTH = 300;
     private int status;
 
     private TextureAtlas storkTalkAtlas;

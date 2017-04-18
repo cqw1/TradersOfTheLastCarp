@@ -146,6 +146,7 @@ public enum AssetList {
     JOE_HEAD("sprites/Ontario/joe_head.atlas", TextureAtlas.class),
     JOE_STAND("sprites/Ontario/joe_stand.atlas", TextureAtlas.class),
     JOE_WALK_SIDE("sprites/Ontario/walk/joe_walk_side.atlas", TextureAtlas.class),
+    JOE_WALK_FRONT("sprites/Ontario/walk/joe_walk_front.atlas", TextureAtlas.class),
     ROSE_HEAD("sprites/Texas/rose_head.atlas", TextureAtlas.class),
     ROSE_STAND("sprites/Texas/rose_stand.atlas", TextureAtlas.class),
 

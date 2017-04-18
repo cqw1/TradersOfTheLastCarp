@@ -5,7 +5,7 @@ import com.totlc.Actors.carps.BaronVonStork;
 import com.totlc.AssetList;
 
 public class StorkTextBox extends TextBox {
-    private float scale = 0.5f;
+    private float scale = 1.0f;
 
     public StorkTextBox(AssetManager assetManager, String message) {
         this(assetManager, message, 0, 5);
@@ -16,7 +16,7 @@ public class StorkTextBox extends TextBox {
 
         BaronVonStork stork = new BaronVonStork(assetManager,
                 getX() + getWidth() - (BaronVonStork.WIDTH + 20),
-                getY() + getHeight() / 2.0f - (BaronVonStork.HEIGHT / 2.0f) - 10,
+                getY() + 1,
                 delay,
                 getTalkTime(),
                 scale

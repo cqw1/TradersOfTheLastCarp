@@ -38,7 +38,7 @@
  <objectgroup name="TEXT">
   <object id="53" x="160" y="82" width="34" height="26">
    <properties>
-    <property name="message" value="Stay away from my carp! Go, minions, go!"/>
+    <property name="message" value="You'll go no further. The Crystal Carp is mine!"/>
     <property name="type" value="STORK"/>
    </properties>
   </object>
