@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="121">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="124">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -35,8 +35,26 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="ITEMS"/>
- <objectgroup name="TEXT"/>
+ <objectgroup name="ITEMS">
+  <object id="121" x="307" y="705" width="45" height="47">
+   <properties>
+    <property name="type" value="HEALTH"/>
+   </properties>
+  </object>
+  <object id="122" x="330" y="181" width="45" height="47">
+   <properties>
+    <property name="type" value="HEALTH"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="TEXT">
+  <object id="123" x="228" y="104" width="36" height="29.3333">
+   <properties>
+    <property name="message" value="Any last words? Not that I'll give you the chance, fool!"/>
+    <property name="type" value="STORK"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="TRAPS">
   <object id="111" name="111" x="764" y="160" width="69.3333" height="116">
    <properties>

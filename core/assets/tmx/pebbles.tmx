@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="53">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="54">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -35,6 +35,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="TEXT">
+  <object id="53" x="160" y="82" width="34" height="26">
+   <properties>
+    <property name="message" value="Stay away from my carp! Go, minions, go!"/>
+    <property name="type" value="STORK"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="ITEMS">
   <object id="50" x="1008" y="614.667" width="37.3333" height="33.3333">
    <properties>
