@@ -92,7 +92,11 @@ public class HeavyStorkTrooper extends AEnemy {
                 if (System.currentTimeMillis() - this.lastShotTime > 200){
                     this.lastShotTime = System.currentTimeMillis();
                     getStage().addActor(new BulletCasing(getAssetManager(), (float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY()));
-                    getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3600, aimVector.getY() * 3600), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 1));
+                    if (getIsFacing().isFacingLeft()){
+                        getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3600, aimVector.getY() * 3600), getAssetManager(), (float) getHitBoxCenter().getX() - getTextureWidthBody(), (float) getHitBoxCenter().getY(), 1));
+                    } else {
+                        getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3600, aimVector.getY() * 3600), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 1));
+                    }
                     aimVector = getTarget(((ALevel)getStage()).getPlayer());
                     bulletSound.play(0.8f);
                 }

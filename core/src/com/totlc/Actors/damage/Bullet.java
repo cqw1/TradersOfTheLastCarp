@@ -27,8 +27,8 @@ public class Bullet extends Damage {
         super(assetManager, r, damage, 1);
 
         setDamageType(damageType);
-        getHitBox().setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
         setScaleFactor(.5f);
+        getHitBox().setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
         getHitBox().setScale(0.1f, 1);
         setTexture(new Texture(Gdx.files.internal(AssetList.BULLET.toString())));
     }
@@ -43,7 +43,7 @@ public class Bullet extends Damage {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        batch.draw(getTexture(), getX(), getY(), 0, 0, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), getVelocityAngle(), 0, 0, (int)longSide, (int)shortSide, false, false);
+        batch.draw(getTexture(), getX(), getY(), getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), getScaleFactor(), getScaleFactor(), getVelocityAngle(), 0, 0, (int)longSide, (int)shortSide, false, false);
     }
 
     @Override

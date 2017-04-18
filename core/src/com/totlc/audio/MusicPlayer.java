@@ -40,6 +40,7 @@ public class MusicPlayer {
         trackListByName.put("test6", "music/Zanzibar.mp3");
         trackListByName.put("test7", "music/AztecLoop.mp3");
         trackListByName.put("tribalfun", "music/tribalfun.mp3");
+        trackListByName.put("victorydrums", "music/drums.mp3");
 
         int count = 0;
         for (String name : trackListByName.keySet()){
