@@ -89,6 +89,7 @@ public class LevelSelect extends ALevel {
 
                     public void execute() {
                         TradersOfTheLastCarp.musicPlayer.playSong("test6", 0.3f);
+                        TradersOfTheLastCarp.musicPlayer.getCurrentSong().setLooping(true);
                         setNextLevel(grid[finalRow][finalCol].levelClass);
                         initNextLevel();
                     }

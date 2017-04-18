@@ -26,7 +26,7 @@ public class Ontario extends PlayableCharacter {
 
         setHpMax(5);
         setHpCurrent(getHpMax());
-        setSpeed(50);
+        setSpeed(30);
         setMaxVel(640);
         setFriction(0.95f);
     }
@@ -59,8 +59,8 @@ public class Ontario extends PlayableCharacter {
         walk_side = assetManager.get(AssetList.JOE_WALK_SIDE.toString());
         walk_animation_side = new Animation<TextureRegion>(1 / 16f, walk_side.getRegions(), Animation.PlayMode.LOOP);
         walk_front = assetManager.get(AssetList.JOE_WALK_FRONT.toString());
-        walk_animation_front = new Animation<TextureRegion>(1 / 16f, walk_front.getRegions(), Animation.PlayMode.LOOP);
-        walk_back = assetManager.get(AssetList.JACK_WALK_BACK.toString());
+        walk_animation_front = new Animation<TextureRegion>(1 / 14f, walk_front.getRegions(), Animation.PlayMode.LOOP);
+        walk_back = assetManager.get(AssetList.JOE_WALK_BACK.toString());
         walk_animation_back = new Animation<TextureRegion>(1 / 16f, walk_back.getRegions(), Animation.PlayMode.LOOP);
 
         // Attacking Textures and Animation.

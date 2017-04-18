@@ -43,10 +43,8 @@ public class EndLevel extends ALevel {
     }
 
     public void initOtherLevelStuff() {
-        TradersOfTheLastCarp.musicPlayer.stop();
-        TradersOfTheLastCarp.musicPlayer.setSong("victorydrums");
+        TradersOfTheLastCarp.musicPlayer.playSong("victorydrums", 1f);
         TradersOfTheLastCarp.musicPlayer.getCurrentSong().setLooping(true);
-        TradersOfTheLastCarp.musicPlayer.play();
 
         addActor(new EndScreen(getAssetManager()));
         addActor(carp);
