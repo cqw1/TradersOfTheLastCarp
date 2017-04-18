@@ -39,6 +39,7 @@
   <object id="92" x="141.333" y="802.667" width="38.6667" height="40">
    <properties>
     <property name="message" value="Pay attention to the location of the goldfish!"/>
+    <property name="type" value="CARP"/>
    </properties>
   </object>
  </objectgroup>

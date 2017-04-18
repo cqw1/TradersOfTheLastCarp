@@ -38,6 +38,7 @@ public class ExitPortal extends ATrap {
         wormHole = new ParticleEffect();
         wormHole.load(Gdx.files.internal(AssetList.WORMHOLE_EFFECT.toString()), particleAtlas);
         wormHole.start();
+//        setZIndex(4);
     }
 
     public ExitPortal(AssetManager assetManager, float x, float y, Directionality d) {

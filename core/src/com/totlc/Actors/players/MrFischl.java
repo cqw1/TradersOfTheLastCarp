@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.totlc.Actors.damage.Bubble;
+import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.damage.DamageEnum;
 import com.totlc.Actors.damage.DamageFactory;
 import com.totlc.Actors.weapons.NullWeapon;
@@ -129,8 +130,11 @@ public class MrFischl extends PlayableCharacter {
             } else {
                 initVel = new Point2D.Double(0, -500);
             }
-            getStage().addActor(DamageFactory.createDamage(DamageEnum.BUBBLE, initVel, getAssetManager(), (float)getHitBoxCenter().getX() - 33, (float)getHitBoxCenter().getY(), 2));
-
+            Damage bubble = DamageFactory.createDamage(DamageEnum.BUBBLE, initVel, getAssetManager(), (float)getHitBoxCenter().getX() - 33, (float)getHitBoxCenter().getY() - 16, 2);
+            getStage().addActor(bubble);
+            if (getIsFacing().isFacingUp()){
+                bubble.setZIndex(getZIndex() - 1);
+            }
         } else{
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
             sound.play(1.0f);

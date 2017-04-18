@@ -38,6 +38,7 @@ public class EntrancePortal extends ATrigger {
         wormHole = new ParticleEffect();
         wormHole.load(Gdx.files.internal(AssetList.WORMHOLE_EFFECT.toString()), particleAtlas);
         wormHole.start();
+//        setZIndex(4);
     }
 
     @Override
