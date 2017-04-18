@@ -36,14 +36,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="TEXT">
-  <object id="31" x="350" y="736" width="46" height="46">
-   <properties>
-    <property name="message" value="Enemies with shield icons are invulnerable-- be careful!"/>
-    <property name="type" value="TEXT"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="TEXT"/>
  <objectgroup name="ITEMS">
   <object id="28" x="345.333" y="394.667" width="81.3333" height="78.6667">
    <properties>

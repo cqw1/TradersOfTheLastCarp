@@ -35,8 +35,8 @@ public class WallfacedProtector extends AEnemy {
     TextureAtlas stand, walk_side, walk_front, walk_back, head;
     Animation<TextureRegion> walk_animation_side, walk_animation_front, walk_animation_back;
 
-    private static float width = 128, height = 136;
-    private static float shieldSize = 200;
+    private static float width = 128, height = 128;
+    private static float shieldSize = 100;
     private float textureWidthBody, textureHeightBody, textureWidthHead, textureHeightHead;
     private float headXOffset;
     private float headYOffset;
