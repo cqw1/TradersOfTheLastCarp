@@ -7,19 +7,19 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public enum AssetList {
     //Sounds
-    TRAP_ACTIVATION("sounds/trap_activation.mp3", Sound.class),
-    KEY_PICKUP_SOUND("sounds/ding0.wav", Sound.class),
-    ELECTRICITY_SOUND("sounds/electricity8.mp3", Sound.class),
-    SPIKES_SOUND("sounds/sword0.mp3", Sound.class),
-    HEAL_SOUND("sounds/healspell2.mp3", Sound.class),
-    GOLDFISH_SOUND("sounds/splash1.mp3", Sound.class),
-    GAME_OVER_SOUND("sounds/wahwahwaah.ogg", Sound.class),
-    YOU_LOSE("sounds/youlose.mp3", Sound.class),
-    FINE("sounds/fine.mp3", Sound.class),
-    BLOP("sounds/blop.mp3", Sound.class),
-    BUBBLES("sounds/bubbles.mp3", Sound.class),
-    DEEPQUACK("sounds/deepquack.wav", Sound.class),
-    DEEPQUACKREPEAT("sounds/deepquackrepeat.mp3", Sound.class),
+    TRAP_ACTIVATION("sounds/trap_activation.mp3", null),
+    KEY_PICKUP_SOUND("sounds/ding0.wav", null),
+    ELECTRICITY_SOUND("sounds/electricity8.mp3", null),
+    SPIKES_SOUND("sounds/sword0.mp3", null),
+    HEAL_SOUND("sounds/healspell2.mp3", null),
+    GOLDFISH_SOUND("sounds/splash1.mp3", null),
+    GAME_OVER_SOUND("sounds/wahwahwaah.ogg", null),
+    YOU_LOSE("sounds/youlose.mp3", null),
+    FINE("sounds/fine.mp3", null),
+    BLOP("sounds/blop.mp3", null),
+    BUBBLES("sounds/bubbles.mp3", null),
+    DEEPQUACK("sounds/deepquack.wav", null),
+    DEEPQUACKREPEAT("sounds/deepquackrepeat.mp3", null),
 
     // UI elements and icons.
     ARROW("UI/arrow.png", Texture.class),

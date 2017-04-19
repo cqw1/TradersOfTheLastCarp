@@ -257,7 +257,9 @@ public abstract class ALevel extends Stage {
                     player.createWeapon();
                 } else {
                     try {
+                        int numGoldfish = TradersOfTheLastCarp.player.getGoldfishCount() / 2;
                         TradersOfTheLastCarp.player = (Player) TradersOfTheLastCarp.playerClass.getConstructor(AssetManager.class).newInstance(assetManager);
+                        TradersOfTheLastCarp.player.setGoldfishCount(numGoldfish);
                         ALevel nextLevelObject = LevelFactory.createLevel(this.getClass(), assetManager);
                         loadLevel(nextLevelObject);
                         Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
@@ -418,7 +420,7 @@ public abstract class ALevel extends Stage {
                 addActor(tb);
             }
         } catch (NullPointerException n) {
-            System.err.print("No UI layer detected");
+            System.err.print("No UI layer detected\n");
         }
     }
 

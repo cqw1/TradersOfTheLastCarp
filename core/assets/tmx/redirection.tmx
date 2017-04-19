@@ -95,7 +95,7 @@
  <objectgroup name="TEXT">
   <object id="44" x="54.6667" y="42.6667" width="34.6667" height="36">
    <properties>
-    <property name="message" value="Portals transport enemies. And projectiles!"/>
+    <property name="message" value="Portals transport enemies. And projectiles. Be creative!"/>
     <property name="type" value="CARP"/>
    </properties>
   </object>
