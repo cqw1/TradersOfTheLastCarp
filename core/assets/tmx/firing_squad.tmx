@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="124">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="28" tilewidth="32" tileheight="32" nextobjectid="126">
  <properties>
   <property name="objective" type="int" value="2"/>
  </properties>
@@ -138,17 +138,17 @@
   </object>
  </objectgroup>
  <objectgroup name="TERRAIN">
-  <object id="109" x="274.667" y="386.667" width="74.6667" height="73.3333">
+  <object id="109" x="282.667" y="389.667" width="74.6667" height="73.3333">
    <properties>
     <property name="type" value="ROCK"/>
    </properties>
   </object>
-  <object id="110" x="276" y="464" width="74.6667" height="73.3333">
+  <object id="110" x="283" y="450" width="74.6667" height="73.3333">
    <properties>
     <property name="type" value="ROCK"/>
    </properties>
   </object>
-  <object id="118" x="274.667" y="306.667" width="74.6667" height="73.3333">
+  <object id="118" x="282.667" y="331.667" width="74.6667" height="73.3333">
    <properties>
     <property name="type" value="ROCK"/>
    </properties>
@@ -159,6 +159,11 @@
    </properties>
   </object>
   <object id="120" x="438.666" y="696" width="74.6667" height="73.3333">
+   <properties>
+    <property name="type" value="ROCK"/>
+   </properties>
+  </object>
+  <object id="125" x="283" y="510" width="74.6667" height="73.3333">
    <properties>
     <property name="type" value="ROCK"/>
    </properties>
