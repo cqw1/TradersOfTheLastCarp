@@ -161,12 +161,15 @@ public class TextBox extends Actor {
 
     public void removeTextBox() {
         this.remove();
+
         if (speaker != null) {
             speaker.remove();
         }
-        sound.stop();
-        setSoundPlaying(false);
-        sound.dispose();
+
+        if (sound != null) {
+            sound.stop();
+            setSoundPlaying(false);
+        }
         TradersOfTheLastCarp.textBoxShowing = false;
     }
 
