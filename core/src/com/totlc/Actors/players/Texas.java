@@ -34,8 +34,8 @@ public class Texas extends PlayableCharacter {
 
         setHpMax(5);
         setHpCurrent(getHpMax());
-        setSpeed(300);
-        setMaxVel(300);
+        setSpeed(320);
+        setMaxVel(320);
     }
 
     @Override
