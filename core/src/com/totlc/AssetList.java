@@ -148,6 +148,9 @@ public enum AssetList {
     JOE_WALK_SIDE("sprites/Ontario/walk/joe_walk_side.atlas", TextureAtlas.class),
     JOE_WALK_FRONT("sprites/Ontario/walk/joe_walk_front.atlas", TextureAtlas.class),
     JOE_WALK_BACK("sprites/Ontario/walk/joe_walk_back.atlas", TextureAtlas.class),
+    JOE_WHIP_SIDE("sprites/Ontario/whip/joe_whip_side.atlas", TextureAtlas.class),
+    JOE_WHIP_FRONT("sprites/Ontario/whip/joe_whip_front.atlas", TextureAtlas.class),
+    JOE_WHIP_BACK("sprites/Ontario/whip/joe_whip_back.atlas", TextureAtlas.class),
     ROSE_HEAD("sprites/Texas/rose_head.atlas", TextureAtlas.class),
     ROSE_STAND("sprites/Texas/rose_stand.atlas", TextureAtlas.class),
 

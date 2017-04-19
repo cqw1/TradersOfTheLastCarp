@@ -10,6 +10,9 @@ import com.badlogic.gdx.utils.Array;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 
+import java.awt.*;
+import java.awt.geom.Point2D;
+
 public class Ontario extends PlayableCharacter {
 
     public Ontario(AssetManager assetManager) {
@@ -35,13 +38,9 @@ public class Ontario extends PlayableCharacter {
     public void act(float deltaTime){
         super.act(deltaTime);
         if (getAttacking()) {
-            if (!(this.isMovingDown() || this.isMovingLeft() ||
-                    this.isMovingRight() || this.isMovingUp())) {
-                setAnimationTime(0);
-            }
-
             float formerX = getX();
             float formerY = getY();
+            setVel(new Point2D.Double(getVel().getX() * 0.95f, getVel().getY() * 0.95f));
             setAcc(getNewAcceleration());
             updateVelocity();
             moveUnit(deltaTime);
@@ -64,11 +63,11 @@ public class Ontario extends PlayableCharacter {
         walk_animation_back = new Animation<TextureRegion>(1 / 16f, walk_back.getRegions(), Animation.PlayMode.LOOP);
 
         // Attacking Textures and Animation.
-        whip_side = assetManager.get(AssetList.JACK_WHIP_SIDE.toString());
+        whip_side = assetManager.get(AssetList.JOE_WHIP_SIDE.toString());
         whip_animation_side = new Animation<TextureRegion>(1.0f /whip_side.getRegions().size * 0.3f, whip_side.getRegions());
-        whip_front = assetManager.get(AssetList.JACK_WHIP_FRONT.toString());
+        whip_front = assetManager.get(AssetList.JOE_WHIP_FRONT.toString());
         whip_animation_front = new Animation<TextureRegion>(1.0f /whip_front.getRegions().size * 0.3f, whip_front.getRegions());
-        whip_back = assetManager.get(AssetList.JACK_WHIP_BACK.toString());
+        whip_back = assetManager.get(AssetList.JOE_WHIP_BACK.toString());
         whip_animation_back = new Animation<TextureRegion>(1.0f /whip_back.getRegions().size * 0.3f, whip_back.getRegions());
 
         // Head Textures.
