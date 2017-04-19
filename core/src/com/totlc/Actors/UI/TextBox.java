@@ -10,6 +10,7 @@ import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 
 import static com.totlc.TradersOfTheLastCarp.CONFIG_WIDTH;
+import static com.totlc.TradersOfTheLastCarp.textBoxShowing;
 
 public class TextBox extends Actor {
     // Texture information.
@@ -170,6 +171,7 @@ public class TextBox extends Actor {
             sound.stop();
             setSoundPlaying(false);
         }
+
         TradersOfTheLastCarp.textBoxShowing = false;
     }
 

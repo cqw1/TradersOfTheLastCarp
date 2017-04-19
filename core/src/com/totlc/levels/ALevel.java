@@ -143,6 +143,7 @@ public abstract class ALevel extends Stage {
 
     @Override
     public void act(float delta) {
+
         //First let actors update themselves
         for (Actor a: getActors()) {
             a.act(delta);
