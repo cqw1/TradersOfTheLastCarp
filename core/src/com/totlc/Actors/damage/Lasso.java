@@ -72,12 +72,15 @@ public class Lasso extends Damage{
             }
             setVel(targetVector);
             if (this.target != null){
+                float formerX = getX();
+                float formerY = getY();
                 this.target.moveRel((float)(getHitBoxCenter().getX() - target.getHitBoxCenter().getX()),
                         (float)(getHitBoxCenter().getY() - target.getHitBoxCenter().getY()));
                 if (new Point2D.Double(getHitBoxCenter().getX(),
                         getHitBoxCenter().getY()).distance(this.origin.getHitBoxCenter()) <= Math.max(target.getHitBoxWidth() / 2, target.getHitBoxHeight() / 2) + origin.getHitBoxHeight() / 2 + 20) {
                     remove();
                 }
+                this.target.returnIntoBounds(formerX, formerY);
             } else if (new Point2D.Double(getHitBoxCenter().getX(), getHitBoxCenter().getY()).distance(this.origin.getCenter()) <= getWidth()) {
                 remove();
             }
