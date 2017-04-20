@@ -27,15 +27,15 @@ public class Texas extends PlayableCharacter {
     public Texas(AssetManager assetManager, float x, float y) {
         super(assetManager, x, y);
 
-        setHeadXOffset(5);
+        setHeadXOffset(3);
         setHeadYOffset(30);
-        setSway(2);
+        setSway(1);
         setBob(3);
 
         setHpMax(5);
         setHpCurrent(getHpMax());
-        setSpeed(300);
-        setMaxVel(300);
+        setSpeed(320);
+        setMaxVel(320);
     }
 
     @Override
@@ -46,9 +46,9 @@ public class Texas extends PlayableCharacter {
         //Walking Textures and Animations.
         walk_side = assetManager.get(AssetList.ROSE_WALK_SIDE.toString());
         walk_animation_side = new Animation<TextureRegion>(1 / 12f, walk_side.getRegions(), Animation.PlayMode.LOOP);
-        walk_front = assetManager.get(AssetList.JACK_WALK_FRONT.toString());
+        walk_front = assetManager.get(AssetList.ROSE_WALK_FRONT.toString());
         walk_animation_front = new Animation<TextureRegion>(1 / 12f, walk_front.getRegions(), Animation.PlayMode.LOOP);
-        walk_back = assetManager.get(AssetList.JACK_WALK_BACK.toString());
+        walk_back = assetManager.get(AssetList.ROSE_WALK_BACK.toString());
         walk_animation_back = new Animation<TextureRegion>(1 / 12f, walk_back.getRegions(), Animation.PlayMode.LOOP);
 
         // Attacking Textures and Animation.

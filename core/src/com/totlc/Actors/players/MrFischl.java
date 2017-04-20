@@ -37,7 +37,7 @@ public class MrFischl extends PlayableCharacter {
         setHpCurrent(getHpMax());
         setSpeed(300);
         setMaxVel(300);
-        setWeaponUsageCD(500);
+        setWeaponUsageCD(800);
     }
 
     @Override

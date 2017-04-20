@@ -106,7 +106,7 @@ public class JustDessert extends AEnemy{
     @Override
     public boolean collidesWith(Actor otherActor){
         boolean returnMe = super.collidesWith(otherActor);
-        if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1) {
+        if (otherActor instanceof Damage && ((Damage)otherActor).getDamageType() != 1 && ((Damage)otherActor).getAttack() > 0) {
             if (!isInvincible()) {
                 int newHP = (int) Math.floor(getHpCurrent() * 0.5);
                 if (newHP > 0 && getHpCurrent() > 1){
