@@ -12,6 +12,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.totlc.Actors.Character;
 import com.totlc.Actors.enemies.AEnemy;
+import com.totlc.Actors.terrain.AWall;
+import com.totlc.Actors.terrain.Rock;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
 
@@ -85,9 +87,6 @@ public class Lasso extends Damage{
                 remove();
             }
         }
-        if (isOutOfBounds()) {
-            remove();
-        }
     }
 
 
@@ -96,7 +95,7 @@ public class Lasso extends Damage{
         batch.end();
         lineRenderer.begin(ShapeRenderer.ShapeType.Line);
         lineRenderer.setColor(Color.BLACK);
-        lineRenderer.line(getHitBox().getTransformedVertices()[6], getHitBox().getTransformedVertices()[7], (float) origin.getHitBoxCenter().getX(), (float) origin.getHitBoxCenter().getY());
+        lineRenderer.line(getHitBox().getTransformedVertices()[6], getHitBox().getTransformedVertices()[7], (float) origin.getHitBoxCenter().getX(), (float) origin.getHitBoxCenter().getY() - 32);
         lineRenderer.end();
         batch.begin();
         if (this.target == null){
@@ -113,6 +112,10 @@ public class Lasso extends Damage{
             this.outgoing = false;
             this.target.moveRel((float)(getHitBoxCenter().getX() - target.getHitBoxCenter().getX()),
                     (float)(getHitBoxCenter().getY() - target.getHitBoxCenter().getY()));
+        } else if (otherActor instanceof AWall) {
+            if (!(otherActor instanceof Rock)){
+                this.outgoing = false;
+            }
         }
         return false;
     }

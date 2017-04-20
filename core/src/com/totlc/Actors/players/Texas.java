@@ -29,7 +29,7 @@ public class Texas extends PlayableCharacter {
 
         setHeadXOffset(3);
         setHeadYOffset(30);
-        setSway(1);
+        setSway(2);
         setBob(3);
 
         setHpMax(5);
@@ -52,7 +52,7 @@ public class Texas extends PlayableCharacter {
         walk_animation_back = new Animation<TextureRegion>(1 / 12f, walk_back.getRegions(), Animation.PlayMode.LOOP);
 
         // Attacking Textures and Animation.
-        whip_side = assetManager.get(AssetList.JACK_WHIP_SIDE.toString());
+        whip_side = assetManager.get(AssetList.ROSE_WHIP_SIDE.toString());
         whip_animation_side = new Animation<TextureRegion>(1.0f /whip_side.getRegions().size * 0.3f, whip_side.getRegions());
         whip_front = assetManager.get(AssetList.JACK_WHIP_FRONT.toString());
         whip_animation_front = new Animation<TextureRegion>(1.0f /whip_front.getRegions().size * 0.3f, whip_front.getRegions());
@@ -63,7 +63,7 @@ public class Texas extends PlayableCharacter {
         head = assetManager.get(AssetList.ROSE_HEAD.toString());
 
         // Lasso placeholder initialization.
-        setWeapon(new NullWeapon(assetManager, this, 0, 0.3f, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
+        setWeapon(new NullWeapon(assetManager, this, 0, 0.5f, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
         getWeapon().getHitBox().setScale(0, 0);    }
 
     @Override
@@ -127,7 +127,7 @@ public class Texas extends PlayableCharacter {
                 initVel = new Point2D.Double(0, -2000);
             }
 
-            Lasso lasso = new Lasso(getAssetManager(), this, (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 0, 2, 500, initVel);
+            Lasso lasso = new Lasso(getAssetManager(), this, (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY() - 32, 0, 2, 500, initVel);
             getStage().addActor(lasso);
             lasso.setZIndex(getZIndex() - 1);
         } else{
