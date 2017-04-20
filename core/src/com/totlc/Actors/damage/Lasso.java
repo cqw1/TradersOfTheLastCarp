@@ -95,7 +95,7 @@ public class Lasso extends Damage{
         batch.end();
         lineRenderer.begin(ShapeRenderer.ShapeType.Line);
         lineRenderer.setColor(Color.BLACK);
-        lineRenderer.line(getHitBox().getTransformedVertices()[6], getHitBox().getTransformedVertices()[7], (float) origin.getHitBoxCenter().getX(), (float) origin.getHitBoxCenter().getY() - 32);
+        lineRenderer.line(getHitBox().getTransformedVertices()[6], getHitBox().getTransformedVertices()[7], (float) origin.getHitBoxCenter().getX() - 8, (float) origin.getHitBoxCenter().getY() - 28);
         lineRenderer.end();
         batch.begin();
         if (this.target == null){

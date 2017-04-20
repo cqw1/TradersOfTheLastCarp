@@ -183,9 +183,9 @@ public class StorkTrooper extends AEnemy {
         fireSound.play(1f);
         getStage().addActor(new BulletCasing(getAssetManager(), (float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY()));
         if (getIsFacing().isFacingLeft()){
-            getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3000, aimVector.getY() * 3000), getAssetManager(), (float) getHitBoxCenter().getX() - getTextureWidthBody(), (float) getHitBoxCenter().getY(), 1));
+            getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 2400, aimVector.getY() * 2400), getAssetManager(), (float) getHitBoxCenter().getX() - getTextureWidthBody(), (float) getHitBoxCenter().getY(), 1));
         } else{
-            getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3000, aimVector.getY() * 3000), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 1));
+            getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 2400, aimVector.getY() * 2400), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 1));
         }
         this.aiming = false;
     }

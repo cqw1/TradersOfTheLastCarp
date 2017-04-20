@@ -93,9 +93,9 @@ public class HeavyStorkTrooper extends AEnemy {
                     this.lastShotTime = System.currentTimeMillis();
                     getStage().addActor(new BulletCasing(getAssetManager(), (float)getHitBoxCenter().getX(), (float)getHitBoxCenter().getY()));
                     if (getIsFacing().isFacingLeft()){
-                        getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3600, aimVector.getY() * 3600), getAssetManager(), (float) getHitBoxCenter().getX() - getTextureWidthBody(), (float) getHitBoxCenter().getY(), 1));
+                        getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 2000, aimVector.getY() * 2000), getAssetManager(), (float) getHitBoxCenter().getX() - getTextureWidthBody(), (float) getHitBoxCenter().getY(), 1));
                     } else {
-                        getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 3600, aimVector.getY() * 3600), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 1));
+                        getStage().addActor(DamageFactory.createDamage(DamageEnum.BULLET, new Point2D.Double(aimVector.getX() * 2000, aimVector.getY() * 2000), getAssetManager(), (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY(), 1));
                     }
                     aimVector = getTarget(((ALevel)getStage()).getPlayer());
                     bulletSound.play(0.8f);

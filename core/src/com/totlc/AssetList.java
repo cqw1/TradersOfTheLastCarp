@@ -157,6 +157,8 @@ public enum AssetList {
     ROSE_WALK_FRONT("sprites/Texas/walk/rose_walk_front.atlas", TextureAtlas.class),
     ROSE_WALK_BACK("sprites/Texas/walk/rose_walk_back.atlas", TextureAtlas.class),
     ROSE_WHIP_SIDE("sprites/Texas/whip/rose_whip_side.atlas", TextureAtlas.class),
+    ROSE_WHIP_FRONT("sprites/Texas/whip/rose_whip_front.atlas", TextureAtlas.class),
+    ROSE_WHIP_BACK("sprites/Texas/whip/rose_whip_back.atlas", TextureAtlas.class),
 
     // Weapon Sprites
     ORANGE_WHIP_LEFT("sprites/whip/orange/orange_whip_left.atlas", TextureAtlas.class),

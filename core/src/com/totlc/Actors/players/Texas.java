@@ -54,16 +54,16 @@ public class Texas extends PlayableCharacter {
         // Attacking Textures and Animation.
         whip_side = assetManager.get(AssetList.ROSE_WHIP_SIDE.toString());
         whip_animation_side = new Animation<TextureRegion>(1.0f /whip_side.getRegions().size * 0.3f, whip_side.getRegions());
-        whip_front = assetManager.get(AssetList.JACK_WHIP_FRONT.toString());
+        whip_front = assetManager.get(AssetList.ROSE_WHIP_FRONT.toString());
         whip_animation_front = new Animation<TextureRegion>(1.0f /whip_front.getRegions().size * 0.3f, whip_front.getRegions());
-        whip_back = assetManager.get(AssetList.JACK_WHIP_BACK.toString());
+        whip_back = assetManager.get(AssetList.ROSE_WHIP_BACK.toString());
         whip_animation_back = new Animation<TextureRegion>(1.0f /whip_back.getRegions().size * 0.3f, whip_back.getRegions());
 
         // Head Textures.
         head = assetManager.get(AssetList.ROSE_HEAD.toString());
 
         // Lasso placeholder initialization.
-        setWeapon(new NullWeapon(assetManager, this, 0, 0.5f, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
+        setWeapon(new NullWeapon(assetManager, this, 0, 0.36f, AssetList.ORANGE_WHIP_BACK.toString(), AssetList.ORANGE_WHIP_FRONT.toString(), AssetList.ORANGE_WHIP_LEFT.toString(), AssetList.ORANGE_WHIP_RIGHT.toString()));
         getWeapon().getHitBox().setScale(0, 0);    }
 
     @Override
@@ -118,18 +118,20 @@ public class Texas extends PlayableCharacter {
             sound.play(1.0f);
             Point2D initVel;
             if (getIsFacing().isFacingRight()){
-                initVel = new Point2D.Double(2000, 0);
+                initVel = new Point2D.Double(1600, 0);
             } else if(getIsFacing().isFacingLeft()) {
-                initVel = new Point2D.Double(-2000, 0);
+                initVel = new Point2D.Double(-1600, 0);
             } else if(getIsFacing().isFacingUp()) {
-                initVel = new Point2D.Double(0, 2000);
+                initVel = new Point2D.Double(0, 1600);
             } else {
-                initVel = new Point2D.Double(0, -2000);
+                initVel = new Point2D.Double(0, -1600);
             }
 
             Lasso lasso = new Lasso(getAssetManager(), this, (float) getHitBoxCenter().getX(), (float) getHitBoxCenter().getY() - 32, 0, 2, 500, initVel);
             getStage().addActor(lasso);
-            lasso.setZIndex(getZIndex() - 1);
+            if (!getIsFacing().isFacingDown()){
+                lasso.setZIndex(getZIndex() - 1);
+            }
         } else{
             Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/negative0.wav"));
             sound.play(1.0f);
