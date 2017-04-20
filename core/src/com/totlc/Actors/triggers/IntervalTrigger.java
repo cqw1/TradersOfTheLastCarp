@@ -42,6 +42,10 @@ public class IntervalTrigger extends ATrigger {
         interval = time;
     }
 
+    public long getInterval() {
+        return interval;
+    }
+
     public void setStartTime(long time) {
         triggerTime = System.currentTimeMillis() + time;
     }

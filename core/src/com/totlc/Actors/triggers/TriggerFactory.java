@@ -39,7 +39,7 @@ public class TriggerFactory {
         }
 
         if (mp.containsKey("start")) {
-            ((IntervalTrigger) returnMe).setStartTime(mp.get("start", Integer.class));
+            ((IntervalTrigger) returnMe).setStartTime(mp.get("start", Integer.class) + ((IntervalTrigger) returnMe).getInterval());
         }
 
         return returnMe;
