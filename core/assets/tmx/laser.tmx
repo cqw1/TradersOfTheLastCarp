@@ -64,7 +64,7 @@
   <object id="37" x="330.663" y="512" width="40" height="42.6667">
    <properties>
     <property name="delay" type="int" value="11000"/>
-    <property name="start" type="int" value="0"/>
+    <property name="start" type="int" value="2000"/>
     <property name="trap_id" value="29"/>
     <property name="type" value="INTERVAL"/>
    </properties>
@@ -72,7 +72,7 @@
   <object id="45" x="1121" y="525.333" width="40" height="42.6667">
    <properties>
     <property name="delay" type="int" value="11000"/>
-    <property name="start" type="int" value="2000"/>
+    <property name="start" type="int" value="4000"/>
     <property name="trap_id" value="44"/>
     <property name="type" value="INTERVAL"/>
    </properties>
@@ -80,7 +80,7 @@
   <object id="48" x="751.667" y="521.333" width="40" height="42.6667">
    <properties>
     <property name="delay" type="int" value="11000"/>
-    <property name="start" type="int" value="5500"/>
+    <property name="start" type="int" value="7500"/>
     <property name="trap_id" value="47"/>
     <property name="type" value="INTERVAL"/>
    </properties>
