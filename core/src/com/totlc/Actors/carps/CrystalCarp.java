@@ -43,6 +43,7 @@ public class CrystalCarp extends Actor {
 
     // Optional sound to play when the carp talks.
     private Sound sound;
+    private float volume = 0.8f;
 
     public CrystalCarp(AssetManager assetManager, float x, float y, float delay, float talkTime, float scale) {
         setX(x);
@@ -140,8 +141,12 @@ public class CrystalCarp extends Actor {
         this.sound = Gdx.audio.newSound(Gdx.files.internal(soundName));
     }
 
+    public void setVolume(float volume) {
+        this.volume = volume;
+    }
+
     public void playVoice() {
-        this.sound.play(0.8f);
+        this.sound.play(volume);
     }
 
 }

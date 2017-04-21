@@ -20,6 +20,11 @@ public enum AssetList {
     BUBBLES("sounds/bubbles.mp3", null),
     DEEPQUACK("sounds/deepquack.wav", null),
     DEEPQUACKREPEAT("sounds/deepquackrepeat.mp3", null),
+    THANKYOUCOLORADOJANE("sounds/thankyoucoloradojane.mp3", null),
+    THANKYOULOUISIANAJACK("sounds/thankyoulouisianajack.mp3", null),
+    THANKYOUMRFISCHL("sounds/thankyoumrfischl.mp3", null),
+    THANKYOUONTARIOJOE("sounds/thankyouontariojoe.mp3", null),
+    THANKYOUTEXASROSE("sounds/thankyoutexasrose.mp3", null),
 
     // UI elements and icons.
     ARROW("UI/arrow.png", Texture.class),
