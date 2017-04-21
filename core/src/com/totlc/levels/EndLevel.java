@@ -36,7 +36,7 @@ public class EndLevel extends ALevel {
                 CONFIG_WIDTH / 2 - CrystalCarp.WIDTH / 2,
                 CONFIG_HEIGHT / 4 - CrystalCarp.HEIGHT / 2,
                 1,
-                4.25f,
+                5.5f,
                 1f
         );
 
