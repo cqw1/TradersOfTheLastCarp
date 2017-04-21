@@ -45,6 +45,7 @@ public class FellChaperone extends AEnemy{
     public FellChaperone(AssetManager assetManager, float x, float y, AMovement movement) {
         super(assetManager, new Rectangle(x, y, width, height), movement, basehp, atk);
         moveHitBox(getWidth() * 0.36f, 0);
+        getHitBox().setScale(1, 0.6f);
         this.windDown = false;
         this.spawnedHitbox = false;
 

@@ -1,8 +1,10 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.totlc.Actors.effects.Confetti;
 import com.totlc.Actors.enemies.*;
 import com.totlc.Actors.enemies.movement.*;
+import com.totlc.Actors.items.AItem;
 import com.totlc.Actors.items.APickup;
 import com.totlc.Actors.items.Goldfish;
 import com.totlc.Actors.items.Key;
@@ -38,68 +40,62 @@ public class SandBoxLevel extends ALevel{
         setNameString("SandBox");
 
         TradersOfTheLastCarp.musicPlayer.stop();
-        TradersOfTheLastCarp.musicPlayer.setSong("test0");
-        TradersOfTheLastCarp.musicPlayer.getCurrentSong().setLooping(true);
-        TradersOfTheLastCarp.musicPlayer.play();
+//        TradersOfTheLastCarp.musicPlayer.setSong("test0");
+//        TradersOfTheLastCarp.musicPlayer.getCurrentSong().setLooping(true);
+//        TradersOfTheLastCarp.musicPlayer.play();
 
-//        ATrap boulder = new BoulderTrap(getAssetManager(), 300, 500);
-//        addActor(boulder);
+//        getPlayer().setGoldfishCount(25);
+//        addActor(new Confetti(getAssetManager(), getPlayer()));
 
-//        EntrancePortal enter = new EntrancePortal(getAssetManager(), 500, 300);
+        //Demo Level 1
+//        ATrap y = new FireTrap(getAssetManager(), 800, 400, Directionality.LEFT);
+//        addActor(y);
+//        ATrap y1 = new FireTrap(getAssetManager(), 600, 200, Directionality.LEFT);
+//        addActor(y1);
+        ATrap y2 = new FireTrap(getAssetManager(), 700, 600, Directionality.DOWN);
+        addActor(y2);
+//        ATrap y3 = new FireTrap(getAssetManager(), 500, 700, Directionality.DOWN);
+//        addActor(y3);
+//        ATrap y4 = new FireTrap(getAssetManager(), 700, 300, Directionality.LEFT);
+//        addActor(y4);
+//        ATrap y5 = new FireTrap(getAssetManager(), 300, 600, Directionality.DOWN);
+//        addActor(y5);
 //
-//        ExitPortal wormhole = new ExitPortal(getAssetManager(), 100, 600, Directionality.RIGHT);
-//        addActor(wormhole);
+//        AWall r = new Rock(getAssetManager(), 200, 700);
+//        addActor(r);
+
+
+//        APickup a = new Goldfish(getAssetManager(), 200, 200);
+//        addActor(a);
+//        APickup a1 = new Goldfish(getAssetManager(), 300, 500);
+//        addActor(a1);
+//        APickup a2 = new Goldfish(getAssetManager(), 500, 700);
+//        addActor(a2);
+//        APickup a3 = new Goldfish(getAssetManager(), 700, 300);
+//        addActor(a3);
+//        APickup a4 = new Goldfish(getAssetManager(), 800, 400);
+//        addActor(a4);
+//        APickup a5 = new Goldfish(getAssetManager(), 600, 500);
+//        addActor(a5);
+
+//        IntervalTrigger z = new IntervalTrigger(getAssetManager(), 200, 400);
+//        z.setStartTime(1000);
+//        z.setInterval(2500);
+//        z.addTrap(y1);
+//        z.addTrap(y3);
+//        z.addTrap(y5);
+//        addActor(z);
 //
-//        enter.addTrap(wormhole);
-//        addActor(enter);
+        IntervalTrigger z1 = new IntervalTrigger(getAssetManager(), 200, 400);
+        z1.setStartTime(3500);
+        z1.setInterval(2500);
+//        z1.addTrap(y);
+        z1.addTrap(y2);
+//        z1.addTrap(y4);
+        addActor(z1);
 
-//        ATrigger trigger0 = new ButtonTrigger(getAssetManager(), 1000, 300);
-//        ATrigger trigger1 = new ButtonTrigger(getAssetManager(), 100, 300);
-//        trigger0.addTrap(boulder);
-//        addActor(trigger0);
-//        trigger1.addTrap(boulder);
-//        addActor(trigger1);
-
-//        AEnemy wallface = new WallfacedProtector(getAssetManager(), 500, 500, new BasicMovement(getPlayer()));
-//        addActor(wallface);
-
-//        ATrap laser = new LaserTotem(getAssetManager(), 500, 500, 1000, 90);
-//        addActor(laser);
-//        trigger0.addTrap(laser);
-
-//        AEnemy fisherman = new EnthralledFisherman(getAssetManager(), 200, 200, new BasicMovement(getPlayer()));
-//        addActor(fisherman);
-//
-//        AEnemy harpooner = new EnthralledHarpooner(getAssetManager(), 700, 700, new BasicMovement(getPlayer()));
-//        addActor(harpooner);
-//
-
-//        AEnemy chaperone = new FellChaperone(getAssetManager(), 700, 300, new ZoningMovement(getPlayer()));
-//        addActor(chaperone);
-//
-//        AEnemy pangolini = new DaredevilPangolini(getAssetManager(), 900, 100, new BasicMovement(getPlayer()));
-//        addActor(pangolini);
-
-        AWall rock = new Rock(getAssetManager(), 300, 300);
-        addActor(rock);
-
-        AEnemy stork0 = new StorkTrooper(getAssetManager(), 900, 100, new IntervalMovement(getPlayer(), 600, 200));
-        addActor(stork0);
-
-        AEnemy stork1 = new StorkTrooper(getAssetManager(), 900, 300, new IntervalMovement(getPlayer(), 600, 200));
-        addActor(stork1);
-
-        AEnemy stork2 = new StorkTrooper(getAssetManager(), 900, 500, new IntervalMovement(getPlayer(), 600, 200));
-        addActor(stork2);
-//
-//        AEnemy stork3 = new StorkTrooper(getAssetManager(), 1200, 500, new AvoidantMovement(getPlayer()));
-//        addActor(stork3);
-//
-//        AEnemy stork4 = new StorkTrooper(getAssetManager(), 1200, 300, new AvoidantMovement(getPlayer()));
-//        addActor(stork4);
-
-        AEnemy hstork = new HeavyStorkTrooper(getAssetManager(), 1000, 500, new IntervalMovement(getPlayer(), 2000, 1000));
-        addActor(hstork);
+        AEnemy x = new JustDessert(getAssetManager(), 900, 400, new ProximityBasedAggro(getPlayer()));
+        addActor(x);
 
         endInit();
     }
