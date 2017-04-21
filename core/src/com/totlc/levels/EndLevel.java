@@ -12,6 +12,7 @@ import com.totlc.Actors.UI.ButtonPrompt;
 import com.totlc.Actors.carps.CrystalCarp;
 import com.totlc.Actors.effects.AEffect;
 import com.totlc.Actors.effects.Confetti;
+import com.totlc.Actors.players.*;
 import com.totlc.Actors.tileset.EndScreen;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;
@@ -35,15 +36,35 @@ public class EndLevel extends ALevel {
                 CONFIG_WIDTH / 2 - CrystalCarp.WIDTH / 2,
                 CONFIG_HEIGHT / 4 - CrystalCarp.HEIGHT / 2,
                 1,
-                0.5f,
+                4.25f,
                 1f
         );
-        carp.setVoice(AssetList.FINE.toString());
-        confetti = new Confetti(assetManager, getPlayer());
+
+        Player player = getPlayer();
+
+        carp.setVolume(1.0f);
+
+        if (player instanceof Colorado) {
+            carp.setVoice(AssetList.THANKYOUCOLORADOJANE.toString());
+        } else if (player instanceof Louisiana) {
+            carp.setVoice(AssetList.THANKYOULOUISIANAJACK.toString());
+        } else if (player instanceof MrFischl) {
+            carp.setVoice(AssetList.THANKYOUMRFISCHL.toString());
+        } else if (player instanceof Ontario) {
+            carp.setVoice(AssetList.THANKYOUONTARIOJOE.toString());
+        } else if (player instanceof Texas) {
+            carp.setVoice(AssetList.THANKYOUTEXASROSE.toString());
+        } else {
+            carp.setVoice(AssetList.FINE.toString());
+        }
+
+
+        confetti = new Confetti(assetManager, player);
+
     }
 
     public void initOtherLevelStuff() {
-        TradersOfTheLastCarp.musicPlayer.playSong("victorydrums", 1f);
+        TradersOfTheLastCarp.musicPlayer.playSong("victorydrums", 0.5f);
         TradersOfTheLastCarp.musicPlayer.getCurrentSong().setLooping(true);
 
         addActor(new EndScreen(getAssetManager()));
