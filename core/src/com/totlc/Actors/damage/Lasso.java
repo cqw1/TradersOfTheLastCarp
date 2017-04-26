@@ -82,13 +82,14 @@ public class Lasso extends Damage{
                         getHitBoxCenter().getY()).distance(this.origin.getHitBoxCenter()) <= Math.max(target.getHitBoxWidth() / 2, target.getHitBoxHeight() / 2) + origin.getHitBoxHeight() / 2 + 20) {
                     remove();
                 }
-//                this.target.returnIntoBounds(formerX, formerY);
+                if (this.target.getStage() != null){
+                    this.target.returnIntoBounds(formerX, formerY);
+                }
             } else if (new Point2D.Double(getHitBoxCenter().getX(), getHitBoxCenter().getY()).distance(this.origin.getCenter()) <= getWidth()) {
                 remove();
             }
         }
     }
-
 
     @Override
     public void draw(Batch batch, float alpha) {

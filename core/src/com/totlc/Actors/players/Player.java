@@ -151,7 +151,6 @@ public class Player extends Character {
     @Override
     public void act(float deltaTime){
         increaseAnimationTime(deltaTime);
-
         if (System.currentTimeMillis() > (invincibilityStart + invincibilityPeriod)) {
             setInvincible(false);
         }

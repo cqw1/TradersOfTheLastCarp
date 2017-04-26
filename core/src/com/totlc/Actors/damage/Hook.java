@@ -66,7 +66,9 @@ public class Hook extends Damage {
                 float formerY = getY();
                 this.target.moveRel((float)(getHitBoxCenter().getX() - target.getHitBoxCenter().getX()),
                         (float)(getHitBoxCenter().getY() - target.getHitBoxCenter().getY()));
-                this.target.returnIntoBounds(formerX, formerY);
+                if (this.target.getStage() != null){
+                    this.target.returnIntoBounds(formerX, formerY);
+                }
             }
             if (new Point2D.Double(getHitBoxCenter().getX(), getHitBoxCenter().getY()).distance(this.origin.getCenter()) <= getWidth()) {
                 remove();

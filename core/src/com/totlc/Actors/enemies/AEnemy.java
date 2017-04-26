@@ -13,6 +13,7 @@ import com.totlc.Actors.damage.Damage;
 import com.totlc.Actors.damage.Lasso;
 import com.totlc.Actors.effects.Stun;
 import com.totlc.Actors.enemies.movement.AMovement;
+import com.totlc.Actors.terrain.AWall;
 import com.totlc.Actors.weapons.Whip;
 import com.totlc.AssetList;
 import com.totlc.TradersOfTheLastCarp;

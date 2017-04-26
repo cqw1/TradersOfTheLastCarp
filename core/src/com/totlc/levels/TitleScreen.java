@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class TitleScreen extends ALevel {
 
     private final TotlcObject titleScreen;
-    private ButtonPrompt cursor;
+    private ButtonPrompt cursor, credits;
     private float cursorScale = 0.5f;
     private int optionFocusIndex = 0;
     private ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>();
@@ -119,6 +119,27 @@ public class TitleScreen extends ALevel {
         cursor.update();
         addActor(cursor);
         addActor(menuOptions.get(optionFocusIndex));
+
+        //Button Prompt
+        credits = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_Q.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 200 * cursorScale - 250, 20) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                if (System.currentTimeMillis() % 1000 <= 200) {
+                    return;
+                }
+                batch.draw(getAsset(), getX(), getY(), 320 * cursorScale, 120 * cursorScale);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        };
+
+        credits.update();
+        addActor(credits);
     }
 
     public void act(float delta) {

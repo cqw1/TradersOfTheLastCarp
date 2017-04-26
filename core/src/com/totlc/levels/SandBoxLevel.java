@@ -1,6 +1,8 @@
 package com.totlc.levels;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.totlc.Actors.UI.ButtonPrompt;
 import com.totlc.Actors.effects.Confetti;
 import com.totlc.Actors.enemies.*;
 import com.totlc.Actors.enemies.movement.*;
@@ -12,6 +14,7 @@ import com.totlc.Actors.terrain.AWall;
 import com.totlc.Actors.terrain.Rock;
 import com.totlc.Actors.traps.*;
 import com.totlc.Actors.triggers.*;
+import com.totlc.AssetList;
 import com.totlc.Directionality;
 import com.totlc.TradersOfTheLastCarp;
 import com.totlc.levels.ObjectiveVerifier.*;
@@ -40,9 +43,9 @@ public class SandBoxLevel extends ALevel{
         setNameString("SandBox");
 
         TradersOfTheLastCarp.musicPlayer.stop();
-//        TradersOfTheLastCarp.musicPlayer.setSong("test0");
-//        TradersOfTheLastCarp.musicPlayer.getCurrentSong().setLooping(true);
-//        TradersOfTheLastCarp.musicPlayer.play();
+        TradersOfTheLastCarp.musicPlayer.setSong("test0");
+        TradersOfTheLastCarp.musicPlayer.getCurrentSong().setLooping(true);
+        TradersOfTheLastCarp.musicPlayer.play();
 
 //        getPlayer().setGoldfishCount(25);
 //        addActor(new Confetti(getAssetManager(), getPlayer()));
@@ -52,8 +55,8 @@ public class SandBoxLevel extends ALevel{
 //        addActor(y);
 //        ATrap y1 = new FireTrap(getAssetManager(), 600, 200, Directionality.LEFT);
 //        addActor(y1);
-        ATrap y2 = new FireTrap(getAssetManager(), 700, 600, Directionality.DOWN);
-        addActor(y2);
+//        ATrap y2 = new FireTrap(getAssetManager(), 700, 600, Directionality.DOWN);
+//        addActor(y2);
 //        ATrap y3 = new FireTrap(getAssetManager(), 500, 700, Directionality.DOWN);
 //        addActor(y3);
 //        ATrap y4 = new FireTrap(getAssetManager(), 700, 300, Directionality.LEFT);
@@ -86,16 +89,54 @@ public class SandBoxLevel extends ALevel{
 //        z.addTrap(y5);
 //        addActor(z);
 //
-        IntervalTrigger z1 = new IntervalTrigger(getAssetManager(), 200, 400);
-        z1.setStartTime(3500);
-        z1.setInterval(2500);
+//        IntervalTrigger z1 = new IntervalTrigger(getAssetManager(), 200, 400);
+//        z1.setStartTime(3500);
+//        z1.setInterval(2500);
 //        z1.addTrap(y);
-        z1.addTrap(y2);
+//        z1.addTrap(y2);
 //        z1.addTrap(y4);
-        addActor(z1);
+//        addActor(z1);
 
-        AEnemy x = new JustDessert(getAssetManager(), 900, 400, new ProximityBasedAggro(getPlayer()));
-        addActor(x);
+//        AEnemy x = new JustDessert(getAssetManager(), 900, 400, new ProximityBasedAggro(getPlayer()));
+//        addActor(x);
+
+        ButtonPrompt credits;
+        credits = new ButtonPrompt(getAssetManager(), AssetList.CREDITS.toString(), (TradersOfTheLastCarp.CONFIG_WIDTH - 1320) / 2, (TradersOfTheLastCarp.CONFIG_HEIGHT - 602) / 2) {
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                batch.draw(getAsset(), getX(), getY(), 1320, 602);
+            }
+
+            @Override
+            public void update() {
+            }
+        };
+
+        credits.update();
+        addActor(credits);
+
+        ButtonPrompt escPrompt;
+
+        escPrompt = new ButtonPrompt(getAssetManager(), AssetList.BUTTON_PROMPT_ESC.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300, 30) {
+            private float baseY = getY();
+
+            @Override
+            public void draw(Batch batch, float alpha) {
+                if (System.currentTimeMillis() % 1000 <= 200) {
+                    return;
+                }
+                batch.draw(getAsset(), getX(), getY(), 150 , 60);
+            }
+
+            @Override
+            public void update() {
+//                setY(baseY - (optionFocusIndex - 1) * 120 * cursorScale);
+            }
+        };
+
+        escPrompt.update();
+        addActor(escPrompt);
 
         endInit();
     }

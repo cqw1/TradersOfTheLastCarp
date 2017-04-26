@@ -17,6 +17,10 @@ public abstract class Character extends TotlcObject {
 
     private boolean invincible = false;
 
+    private boolean hookGracePeriod = true;
+
+    private long hookEndTime = 0;
+
     public Character(AssetManager assetManager, Rectangle r) {
         super(assetManager, r);
     }
@@ -60,5 +64,21 @@ public abstract class Character extends TotlcObject {
 
     public void setInvincible(boolean invincible) {
         this.invincible = invincible;
+    }
+
+    public boolean isHookGracePeriod() {
+        return hookGracePeriod;
+    }
+
+    public void setHookGracePeriod(boolean hookGracePeriod) {
+        this.hookGracePeriod = hookGracePeriod;
+    }
+
+    public long getHookEndTime() {
+        return hookEndTime;
+    }
+
+    public void setHookEndTime(long hookEndTime) {
+        this.hookEndTime = hookEndTime;
     }
 }
