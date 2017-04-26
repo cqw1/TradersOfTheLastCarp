@@ -101,11 +101,11 @@ public class SandBoxLevel extends ALevel{
 //        addActor(x);
 
         ButtonPrompt credits;
-        credits = new ButtonPrompt(getAssetManager(), AssetList.CREDITS.toString(), (TradersOfTheLastCarp.CONFIG_WIDTH - 1320) / 2, (TradersOfTheLastCarp.CONFIG_HEIGHT - 602) / 2) {
+        credits = new ButtonPrompt(getAssetManager(), AssetList.CREDITS.toString(), (TradersOfTheLastCarp.CONFIG_WIDTH - 1023) / 2, (TradersOfTheLastCarp.CONFIG_HEIGHT - 751) / 2) {
 
             @Override
             public void draw(Batch batch, float alpha) {
-                batch.draw(getAsset(), getX(), getY(), 1320, 602);
+                batch.draw(getAsset(), getX(), getY(), 1023, 751);
             }
 
             @Override
