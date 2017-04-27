@@ -40,7 +40,7 @@ public class SandBoxLevel extends ALevel{
 
     public void initOtherLevelStuff() {
         setPlayer(TradersOfTheLastCarp.player);
-        setNameString("SandBox");
+        setNameString("Credits");
 
         TradersOfTheLastCarp.musicPlayer.stop();
         TradersOfTheLastCarp.musicPlayer.setSong("test0");
@@ -118,7 +118,7 @@ public class SandBoxLevel extends ALevel{
 
         ButtonPrompt escPrompt;
 
-        escPrompt = new ButtonPrompt(getAssetManager(), AssetList.BUTTON_PROMPT_ESC.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 300, 30) {
+        escPrompt = new ButtonPrompt(getAssetManager(), AssetList.BUTTON_PROMPT_ESC.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 175, 30) {
             private float baseY = getY();
 
             @Override

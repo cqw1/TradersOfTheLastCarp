@@ -59,7 +59,7 @@ public class TitleScreen extends ALevel {
         menuOptions.add(new MenuOption(assetManager, AssetList.OPTION_QUICKPLAY.toString()) {
             @Override
             public void draw(Batch batch, float alpha) {
-                batch.draw(getAssetManager().get(asset, Texture.class), (float) optionsStart.getX(), (float) optionsStart.getY(), (float)optionsSize.getX(), (float)optionsSize.getY());
+                batch.draw(getAsset(), (float) optionsStart.getX(), (float) optionsStart.getY(), (float)optionsSize.getX(), (float)optionsSize.getY());
             }
 
             public void execute() {
@@ -74,7 +74,7 @@ public class TitleScreen extends ALevel {
         menuOptions.add(new MenuOption(assetManager, AssetList.OPTION_LVLSELECT.toString()) {
             @Override
             public void draw(Batch batch, float alpha) {
-                batch.draw(getAssetManager().get(asset, Texture.class), (float) optionsStart.getX(), (float) optionsStart.getY(), (float)optionsSize.getX(), (float)optionsSize.getY());
+                batch.draw(getAsset(), (float) optionsStart.getX(), (float) optionsStart.getY(), (float)optionsSize.getX(), (float)optionsSize.getY());
             }
 
             public void execute() {
@@ -87,7 +87,7 @@ public class TitleScreen extends ALevel {
         menuOptions.add(new MenuOption(assetManager, AssetList.OPTION_CHARSELECT.toString()) {
             @Override
             public void draw(Batch batch, float alpha) {
-                batch.draw(getAssetManager().get(asset, Texture.class), (float) optionsStart.getX(), (float) optionsStart.getY(), (float)optionsSize.getX(), (float)optionsSize.getY());
+                batch.draw(getAsset(), (float) optionsStart.getX(), (float) optionsStart.getY(), (float)optionsSize.getX(), (float)optionsSize.getY());
             }
 
             public void execute() {
@@ -99,7 +99,7 @@ public class TitleScreen extends ALevel {
         addActor(titleScreen);
 
         //Button Prompt
-        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 50, 20) {
+        cursor = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_SPACE.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 250 * cursorScale - 80, 10) {
             private float baseY = getY();
 
             @Override
@@ -121,7 +121,7 @@ public class TitleScreen extends ALevel {
         addActor(menuOptions.get(optionFocusIndex));
 
         //Button Prompt
-        credits = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_Q.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 200 * cursorScale - 250, 20) {
+        credits = new ButtonPrompt(assetManager, AssetList.BUTTON_PROMPT_Q.toString(), TradersOfTheLastCarp.CONFIG_WIDTH - 200 * cursorScale - 280, 10) {
             private float baseY = getY();
 
             @Override

@@ -136,9 +136,8 @@ public class TradersOfTheLastCarp extends ApplicationAdapter {
 
 	public void loadAssets() {
 	    // Special loading here
-        systemFont0 =  new BitmapFont(new FileHandle(AssetList.LOVELO_FONT.toString()),
-                new FileHandle(AssetList.LOVELO_IMAGE.toString()), false);
-		systemFont0L =  new BitmapFont(new FileHandle(AssetList.LOVELO_LARGE.toString()));
+        systemFont0 =  new BitmapFont(Gdx.files.internal(AssetList.LOVELO_FONT.toString()), false);
+		systemFont0L =  new BitmapFont(Gdx.files.internal(AssetList.LOVELO_LARGE.toString()));
 
 
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
