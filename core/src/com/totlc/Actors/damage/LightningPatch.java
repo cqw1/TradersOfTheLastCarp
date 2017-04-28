@@ -62,10 +62,9 @@ public class LightningPatch extends Damage {
     private void loadAssets(AssetManager assetManager){
         particleAtlas = assetManager.get(AssetList.PARTICLES.toString());
         electricity = new ParticleEffect();
-        electricity.setPosition(getX(), getY());
         moveHitBox(-getHitBoxWidth() * 0.5f, -getHitBoxHeight() * 0.5f);
         electricity.load(Gdx.files.internal(AssetList.ELECTRICITY.toString()), particleAtlas);
-
         electricity.start();
+        electricity.setPosition(getX(), getY());
     }
 }

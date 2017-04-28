@@ -73,6 +73,7 @@ public abstract class ALevel extends Stage {
 
     // LEvel entity z-indices.
     private static int terrainIndex = 1;
+    private static int uiIndex = 2000;
 
     HashSet<Actor> toBeRemoved = new HashSet<Actor>();
 
@@ -326,6 +327,10 @@ public abstract class ALevel extends Stage {
         addActor(hpBar);
         addActor(inventory);
         addActor(info);
+        bar0.setZIndex(uiIndex);
+        hpBar.setZIndex(uiIndex + 1);
+        inventory.setZIndex(uiIndex + 2);
+        info.setZIndex(uiIndex);
     }
 
     public void loadFromTMX(String tmxFileName) {
@@ -356,6 +361,7 @@ public abstract class ALevel extends Stage {
                 MapProperties currentObjProp = mo.getProperties();
                 ATrap currentTrap = TrapFactory.createTrapFromMP(currentObjProp, getAssetManager());
                 addActor(currentTrap);
+                currentTrap.setZIndex(terrainIndex);
 
                 // Update mapping so triggers can use it
                 id2Trap.put(currentObjProp.get("id", Integer.class), currentTrap);
@@ -372,6 +378,7 @@ public abstract class ALevel extends Stage {
                 }
 
                 addActor(currentTrigger);
+                currentTrigger.setZIndex(terrainIndex + 1);
             }
         } catch (NullPointerException n) {
             System.err.print("No trap or trigger layer detected.\n");
@@ -383,6 +390,7 @@ public abstract class ALevel extends Stage {
                 MapProperties currentObjProp = mo.getProperties();
                 APickup currentItem = PickupFactory.createPickupFromMP(currentObjProp, getAssetManager());
                 addActor(currentItem);
+                currentItem.setZIndex(terrainIndex + 2);
             }
         } catch (NullPointerException n) {
             System.err.print("No item layer detected.\n");
@@ -419,6 +427,7 @@ public abstract class ALevel extends Stage {
                 MapProperties currentObjProp = mo.getProperties();
                 TextBox tb = TextBoxFactory.createTextBoxFromMp(currentObjProp, getAssetManager());
                 addActor(tb);
+                tb.setZIndex(uiIndex);
             }
         } catch (NullPointerException n) {
             System.err.print("No UI layer detected\n");
